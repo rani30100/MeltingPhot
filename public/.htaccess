@@ -1,0 +1,36 @@
+<Directory /var/www/html/monsite>
+    DirectoryIndex index.php
+</Directory>
+
+<IfModule mod_rewrite.c>
+    RewriteEngine On  # Activer la réécriture d'URL
+    RewriteCond %{HTTP:Accept-LAnguange} ^fr.*$ [NC]  <!--# Vérifier si la langue de préférence du client est le français,La syntaxe "NC" signifie "no case" (pas de distinction entre les majuscules et les minuscules) lors de la comparaison de la chaîne de caractères. -->
+    RewriteRule ^$ /fr [L,R=302]  <!--# Rediriger la page d'accueil vers la version française avec un code de redirection HTTP 302 -->
+
+    RewriteCond %{HTTP:Accept-LAnguange} ^en.*$ [NC]
+    RewriteRule ^$ /en [L,R=302]
+
+    RewriteCond %{HTTP:Accept-LAnguange} ^.*$ [NC]
+    RewriteRule ^$ /fr [L,R=302] <!--Si la local n'est pas fr ou en, par défaut il est en francais-->
+
+    RewriteCond %{REQUEST_FILENAME} !-f   <!--# Vérifier si le fichier demandé n'existe pas-->
+    RewriteCond %{REQUEST_FILENAME} !-d   <!--# Vérifier si le dossier demandé n'existe pas -->
+    RewriteRule ^(.*)$ index.php [QSA,L]   <!--# Réécrire l'URL vers index.php en conservant les paramètres de l'URL et en arrêtant le traitement des règles de réécriture ultérieures -->
+
+    <!--Forcer l'utilisation de HTTPS-->
+    RewriteEngine On
+    RewriteCond %{HTTPS} off
+    RewriteRule ^ https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
+
+    <!-- Limites les accès aux fichiers : -->
+    <FilesMatch "\.(htaccess|htpasswd|ini|phps|fla|psd|log|sh)$">
+        Order allow,deny
+        Deny from all
+    </FilesMatch>
+    
+    <!--Activer la protection contre l'inclusion de fichiers distants : -->
+    php_flag allow_url_include off
+
+
+</IfModule>
+
