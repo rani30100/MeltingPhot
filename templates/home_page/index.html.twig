@@ -4,11 +4,13 @@
 {% endblock %}
 
 {% block body %}
-  <link rel="stylesheet" href="{{ asset('Scss/style.scss') }}">
+	<link rel="stylesheet" href="{{ asset('Scss/style.scss') }}">
+	<section class="block">
+		<button>Mettre en anglais</button>
 
-            <button>Mettre en anglais</button>
+		<h1>{% trans %}Welcome to my website{% endtrans %}</h1>
+		<p>{% trans %}Thank you for visiting{% endtrans %}</p>
+	</section>
 
-        <h1>{% trans %}Welcome to my website{% endtrans %}</h1>
-	<p>{% trans %}Thank you for visiting{% endtrans %}</p>
-   
+
 {% endblock %}
