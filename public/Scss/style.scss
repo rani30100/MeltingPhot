@@ -27,5 +27,28 @@ body {
         margin-top: 7px;
         margin-bottom: 11px;
     }
+
+}
+
+// Footer
+.info-contact {
+    display: flex;
+    justify-content: center;
+
+}
+.text-contact{
+    max-width: 570px;
+}
+
+@media screen and (max-width: 767px){
+    .info-contact{
+        display: none;
+    }
+    
+}
+@media screen and (min-width: 768px){
+    .contact-2{
+        display: none;
+    }
     
 }

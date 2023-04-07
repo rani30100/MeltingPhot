@@ -1,16 +1,133 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Hello HomePageController!
+{% block title %}MeltingPhot !
+{% endblock %}
+{% block stylesheets %}
+	<link rel="stylesheet" href="{{ asset('Scss/style.css') }}">
+
+{% endblock %}
+{% block body %}
+<nav class="navbar navbar-expand-lg bg-body-tertiary">
+	<div class="d-flex justy-content-center w-100" id="">
+		<ul class="navbar-nav me-auto mb-2 mb-lg-0 w-100 d-flex justify-content-center align-items-center">
+				<li class="nav-item me-2 meltingphot">
+					<a class="nav-link active" aria-current="page" href="#">MELTINGPHOT</a>
+				</li>
+				<li class="nav-item me-2">
+					<a class="nav-link" href="#">ACTIONS</a>
+				</li>
+				<li class="nav-item dropdown me-2">
+					<a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+						{% trans %}POUR QUI ? {% endtrans %}
+					</a>
+				</li>
+				<li>
+					<img  class ="logo me-2"src="{{ asset('img/logo.png')}}" width alt="">
+				</li>
+				<li class="nav-item me-2">
+					<a class="nav-link" href="#">{% trans %}PARTENAIRES {% endtrans %}</a>
+				</li>
+				<li class="nav-item me-2">
+					<a class="nav-link" href="#">{% trans %}NOUS SOUTENIR{% endtrans %}</a>
+				</li>
+				<li class="nav-item me-2">
+					<a class="nav-link" href="#">CONTACT</a>
+				</li>
+				
+					<form class="d-flex nav-items me-2" role="search">
+					<input class="form-control me-2 search" type="search" placeholder="{% trans %}Ma recherche {% endtrans %}" aria-label="Search">
+					<button class="btn btn-outline-success search-btn" type="submit">Search</button>
+					</form>
+				
+				<li class="nav-item ">
+				<a id="language-link" class="p-2" href="{{ path('app_home_page_e_n') }}">
+					<img  class="flag"src="{{ asset('img/eng.png') }}">
+				</a>
+				</li>
+				
+				<li class="nav-item ">
+				<a id="language-link" class="p-2" href="{{ path('app_home_page') }}">
+					<img  id="flag"src="{{ asset('img/drapeau.png') }}">
+				</a>
+				</li>
+			</ul>
+		</div>
+	</div>
+</nav>
+
+<section class="block">
+
+		<h1>{% trans %}Bienvenue sur mon site{% endtrans %}</h1>
+	
+
+</section>
+
+
+<!-- Footer -->
+<footer class="text-center text-lg-start bg-light text-muted">
+	<section class="p-4 border-top">
+		<div class="container text-center text-md-start mt-5">
+	<!-- Grid row -->
+			<div class="row mt-3 d-flex">
+				<div class="col-md-3 col-lg-2 col-xl-2 mx-auto mb-4">
+					<!-- Links -->
+					<img src="{{ asset('img/logo.png')}}" class="fw-bold mb-4"></img>
+				</div>
+				<!-- Grid column -->
+	<div class="d-flex justify-content-center ">
+		<p class="text-contact">{% trans %}MELTINGPHOT est un acteur important sur le territoire en mennant des projets d'éducations par l'image auprès des associations, collectivités et entreprises.{% endtrans %}</p>
+	</div>
+				<div class="d-flex justify-content-center mb-3">
+					<a href="" class="me-4 text-reset">
+						<i class="fab fa-facebook-f"></i>
+					</a>
+					<a href="" class="me-4 text-reset">
+						<i class="fab fa-twitter"></i>
+					</a>
+					<a href="" class="me-4 text-reset">
+						<i class="fab fa-google"></i>
+					</a>
+					<a href="" class="me-4 text-reset">
+						<i class="fab fa-instagram"></i>
+					</a>
+					<a href="" class="me-4 text-reset">
+						<i class="fab fa-linkedin"></i>
+					</a>
+					<a href="" class="me-4 text-reset">
+						<i class="fab fa-github"></i>
+					</a>
+				</div>
+				<!-- Grid column -->
+				<div class="col-md-4 col-lg-3 col-xl-3 mx-auto mb-md-0 mb-4 contact-2">
+					<!-- Links -->
+					<p><i class="fas fa-home me-3"></i>15 Route de bagnols, 30100 Alès</p>
+					<p><i class="fas fa-envelope me-3"></i>info@example.com</p>
+					<p><i class="fas fa-phone me-3"></i>06 64 21 93 75</p>
+
+				</div>
+				<!-- Grid column -->
+			</div>
+			<!-- Grid row -->
+		</div>
+		<div class="info-contact ">
+			<!-- Links -->
+			<p class="ms-3"><i class="fas fa-home me-2"></i>15 Route de bagnols, 30100 Alès</p>
+			<p class="ms-3"><i class="fas fa-envelope me-2"></i>info@example.com</p>
+			<p class="ms-3"><i class="fas fa-phone me-2"></i>06 64 21 93 75</p>
+		</div>
+	</section>
+	<!-- Section: Links  -->
+
+	<!-- Copyright -->
+	<div class="text-center p-4" style="background-color: #D00A4B;">
+		© 2021 Copyright:
+		<a class="text-reset fw-bold" href="https://mdbootstrap.com/">MDBootstrap.com</a>
+	</div>
+	<!-- Copyright -->
+</footer>
+<!-- Footer -->
+</body>
+
+
 {% endblock %}
 
-{% block body %}
-	<link rel="stylesheet" href="{{ asset('Scss/style.scss') }}">
-	<section class="block">
-	
-		
-		<h1>Welcome to my website</h1>
-		<p>Thank you for visiting</p>
-	</section>
-
-
-</section>{% endblock %}
