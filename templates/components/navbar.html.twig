@@ -5,44 +5,49 @@
 <body>
 	{% block body %}
 		<nav class="navbar navbar-expand-lg bg-body-tertiary">
-			<div class="container-fluid">
-				<a class="navbar-brand" href="#">Navbar</a>
-				<button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-					<span class="navbar-toggler-icon"></span>
-				</button>
-				<div class="collapse navbar-collapse" id="navbarSupportedContent">
-					<ul class="navbar-nav me-auto mb-2 mb-lg-0">
-						<li class="nav-item">
-							<a class="nav-link active" aria-current="page" href="#">Home</a>
+				<div class="d-flex justy-content-center w-100" id="">
+					<ul class="navbar-nav me-auto mb-2 mb-lg-0 w-100 d-flex justify-content-center align-items-center">
+						<li class="nav-item me-2 meltingphot">
+							<a class="nav-link active" aria-current="page" href="#">MELTINGPHOT</a>
 						</li>
-						<li class="nav-item">
-							<a class="nav-link" href="#">Link</a>
+						<li class="nav-item me-2">
+							<a class="nav-link" href="#">ACTIONS</a>
 						</li>
-						<li class="nav-item dropdown">
+						<li class="nav-item dropdown me-2">
 							<a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-								Dropdown
+								POUR QUI ? 
 							</a>
-							<ul class="dropdown-menu">
-								<li>
-									<a class="dropdown-item" href="#">Action</a>
-								</li>
-								<li>
-									<a class="dropdown-item" href="#">Another action</a>
-								</li>
-								<li><hr class="dropdown-divider"></li>
-								<li>
-									<a class="dropdown-item" href="#">Something else here</a>
-								</li>
-							</ul>
 						</li>
-						<li class="nav-item">
-							<a class="nav-link disabled">Disabled</a>
+						<li>
+							<img  class ="logo me-2"src="{{ asset('img/logo.png')}}" width alt="">
+						</li>
+						<li class="nav-item me-2">
+							<a class="nav-link" href="#">PARTENAIRES</a>
+						</li>
+						<li class="nav-item me-2">
+							<a class="nav-link" href="#">NOUS SOUTENIR</a>
+						</li>
+						<li class="nav-item me-2">
+							<a class="nav-link" href="#">CONTACT</a>
+						</li>
+						
+							<form class="d-flex nav-items me-2" role="search">
+							<input class="form-control me-2 search" type="search" placeholder="Ma recherche" aria-label="Search">
+							<button class="btn btn-outline-success search-btn" type="submit">Search</button>
+							</form>
+						
+						<li class="nav-item ">
+						<a id="language-link" class="p-2" href="{{ path('app_home_page_e_n') }}">
+							<img  class="flag"src="{{ asset('img/eng.png') }}">
+						</a>
+						</li>
+						
+						<li class="nav-item ">
+						<a id="language-link" class="p-2" href="{{ path('app_home_page') }}">
+							<img  id="flag"src="{{ asset('img/drapeau.png') }}">
+						</a>
 						</li>
 					</ul>
-					<form class="d-flex" role="search">
-						<input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
-						<button class="btn btn-outline-success" type="submit">Search</button>
-					</form>
 				</div>
 			</div>
 		</nav>

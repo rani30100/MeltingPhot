@@ -10,7 +10,7 @@ use Symfony\Component\Translation\TranslatableMessage;
 
 class HomePageController extends AbstractController
 {
-    #[Route('/', name: 'app_home_page')]
+    #[Route('/fr', name: 'app_home_page')]
     public function index(TranslatorInterface $translator): Response
     {    
 
