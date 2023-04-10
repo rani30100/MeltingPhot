@@ -7,9 +7,9 @@
 
 {% endblock %}
 {% block body %}
-<nav class="navbar navbar-expand-lg bg-body-tertiary">
-	<div class="d-flex justy-content-center w-100" id="">
-		<ul class="navbar-nav me-auto mb-2 mb-lg-0 w-100 d-flex justify-content-center align-items-center">
+	<nav class="navbar navbar-expand-lg bg-body-tertiary">
+		<div class="d-flex justy-content-center w-100" id="">
+			<ul class="navbar-nav me-auto mb-2 mb-lg-0 w-100 d-flex justify-content-center align-items-center">
 				<li class="nav-item me-2 meltingphot">
 					<a class="nav-link active" aria-current="page" href="#">MELTINGPHOT</a>
 				</li>
@@ -22,7 +22,7 @@
 					</a>
 				</li>
 				<li>
-					<img  class ="logo me-2"src="{{ asset('img/logo.png')}}" width alt="">
+					<img class="logo me-2" src="{{ asset('img/logo.png')}}" width alt="">
 				</li>
 				<li class="nav-item me-2">
 					<a class="nav-link" href="#">PARTENAIRES</a>
@@ -33,101 +33,126 @@
 				<li class="nav-item me-2">
 					<a class="nav-link" href="#">CONTACT</a>
 				</li>
-				
-					<form class="d-flex nav-items me-2" role="search">
+
+				<form class="d-flex nav-items me-2" role="search">
 					<input class="form-control me-2 search" type="search" placeholder="Ma recherche..." aria-label="Search">
 					<button class="btn btn-outline-success search-btn" type="submit">Search</button>
-					</form>
-				
+				</form>
+
 				<li class="nav-item ">
-				<a id="language-link" class="p-2" href="{{ path('app_home_page_e_n') }}">
-					<img  class="flag"src="{{ asset('img/eng.png') }}">
-				</a>
+					<a id="language-link" class="p-2" href="{{ path('app_home_page_e_n') }}">
+						<img class="flag" src="{{ asset('img/eng.png') }}">
+					</a>
 				</li>
-				
+
 				<li class="nav-item ">
-				<a id="language-link" class="p-2" href="{{ path('app_home_page') }}">
-					<img  id="flag"src="{{ asset('img/drapeau.png') }}">
-				</a>
+					<a id="language-link" class="p-2" href="{{ path('app_home_page') }}">
+						<img id="flag" src="{{ asset('img/drapeau.png') }}">
+					</a>
 				</li>
 			</ul>
 		</div>
 	</div>
 </nav>
 
-<section class="block">
+<main class="main">
+	<section class="know-more">
+		<img src="{{asset('img/fond.jpg')}}" class="know-more_img" alt="" srcset="" style="width: 100%; height: 100vh;">
+		<h2 class="know-more_title1">ACTIONS DE </h2>
+		<h1 class="know-more_title2">VALORISATION <span class="black">&</span> D'EDUCATION </h1>
+		<h2 class="know-more_title3"> PAR L'IMAGE</h2>
+		<p class="know-more_description">Lorem ipsum dolor sit amet consectetur adipisicing elit. Quae temporibus cumque natus.</p>
+		<a href="#" class="know-more_button btn btn-danger">En savoir plus</a>
+	</section>
+	{# <h1>{% trans %}Bienvenue sur mon site{% endtrans %}</h1> #}
 
-	<h1>Bienvenue sur mon site</h1>
 
-
-</section>
+</main>
 
 
 <!-- Footer -->
 <footer class="text-center text-lg-start bg-light text-muted">
 	<section class="p-4 border-top">
-		<div class="container text-center text-md-start mt-5">
-	<!-- Grid row -->
+		<div
+			class="container text-center text-md-start mt-5">
+			<!-- Grid row -->
 			<div class="row mt-3 d-flex">
-				<div class="col-md-3 col-lg-2 col-xl-2 mx-auto mb-4">
+				<div
+					class="col-md-3 col-lg-2 col-xl-2 mx-auto mb-4">
 					<!-- Links -->
 					<img src="{{ asset('img/logo.png')}}" class="fw-bold mb-4"></img>
-				</div>
-				<!-- Grid column -->
-	<div class="d-flex justify-content-center ">
-		<p class="text-contact">MELTINGPHOT est un acteur important sur le territoire en mennant des projets d'éducations par l'image auprès des associations, collectivités et entreprises.</p>
-	</div>
-				<div class="d-flex justify-content-center mb-3">
-					<a href="" class="me-4 text-reset">
-						<i class="fab fa-facebook-f"></i>
-					</a>
-					<a href="" class="me-4 text-reset">
-						<i class="fab fa-twitter"></i>
-					</a>
-					<a href="" class="me-4 text-reset">
-						<i class="fab fa-google"></i>
-					</a>
-					<a href="" class="me-4 text-reset">
-						<i class="fab fa-instagram"></i>
-					</a>
-					<a href="" class="me-4 text-reset">
-						<i class="fab fa-linkedin"></i>
-					</a>
-					<a href="" class="me-4 text-reset">
-						<i class="fab fa-github"></i>
-					</a>
-				</div>
-				<!-- Grid column -->
-				<div class="col-md-4 col-lg-3 col-xl-3 mx-auto mb-md-0 mb-4 contact-2">
-					<!-- Links -->
-					<p><i class="fas fa-home me-3"></i>15 Route de bagnols, 30100 Alès</p>
-					<p><i class="fas fa-envelope me-3"></i>info@example.com</p>
-					<p><i class="fas fa-phone me-3"></i>06 64 21 93 75</p>
-
-				</div>
-				<!-- Grid column -->
 			</div>
-			<!-- Grid row -->
-		</div>
-		<div class="info-contact ">
-			<!-- Links -->
-			<p class="ms-3"><i class="fas fa-home me-2"></i>15 Route de bagnols, 30100 Alès</p>
-			<p class="ms-3"><i class="fas fa-envelope me-2"></i>info@example.com</p>
-			<p class="ms-3"><i class="fas fa-phone me-2"></i>06 64 21 93 75</p>
-		</div>
-	</section>
-	<!-- Section: Links  -->
+			<!-- Grid column -->
+			<div class="d-flex justify-content-center ">
+				<p class="text-contact">MELTINGPHOT est un acteur important sur le territoire en mennant des projets d'éducations par l'image auprès des associations, collectivités et entreprises.</p>
+			</div>
+			<div class="d-flex justify-content-center mb-3">
+				<a href="" class="me-4 text-reset">
+					<i class="fab fa-facebook-f"></i>
+				</a>
+				<a href="" class="me-4 text-reset">
+					<i class="fab fa-twitter"></i>
+				</a>
+				<a href="" class="me-4 text-reset">
+					<i class="fab fa-google"></i>
+				</a>
+				<a href="" class="me-4 text-reset">
+					<i class="fab fa-instagram"></i>
+				</a>
+				<a href="" class="me-4 text-reset">
+					<i class="fab fa-linkedin"></i>
+				</a>
+				<a href="" class="me-4 text-reset">
+					<i class="fab fa-github"></i>
+				</a>
+			</div>
+			<!-- Grid column -->
+			<div
+				class="col-md-4 col-lg-3 col-xl-3 mx-auto mb-md-0 mb-4 contact-2">
+				<!-- Links -->
+				<p>
+					<i class="fas fa-home me-3"></i>15 Route de bagnols, 30100 Alès</p>
+				<p>
+					<i class="fas fa-envelope me-3"></i>info@example.com</p>
+				<p>
+					<i class="fas fa-phone me-3"></i>06 64 21 93 75</p>
 
-	<!-- Copyright -->
-	<div class="text-center p-4" style="background-color: #D00A4B;">
-		© 2021 Copyright:
-		<a class="text-reset fw-bold" href="https://mdbootstrap.com/">MDBootstrap.com</a>
+			</div>
+			<!-- Grid column -->
+		</div>
+		<!-- Grid row -->
 	</div>
-	<!-- Copyright -->
-</footer>
-<!-- Footer -->
+	<div
+		class="info-contact ">
+		<!-- Links -->
+		<p class="ms-3">
+			<i class="fas fa-home me-2"></i>15 Route de bagnols, 30100 Alès</p>
+		<p class="ms-3">
+			<i class="fas fa-envelope me-2"></i>info@example.com</p>
+		<p class="ms-3">
+			<i class="fas fa-phone me-2"></i>06 64 21 93 75</p>
+	</div>
+</section>
+<!-- Section: Links  -->
+
+<!-- Copyright -->
+<div class="text-center p-4" style="background-color: #D00A4B;">
+	© 2021 Copyright:
+	<a class="text-reset fw-bold" href="https://mdbootstrap.com/">MDBootstrap.com</a>
+</div>
+<!-- Copyright --></footer><!-- Footer -->{# js #}<script>
+const button = document.querySelector('.know-more_button');
+const title1 = document.querySelector('.know-more_title1');
+const title2 = document.querySelector('.know-more_title2');
+const title3 = document.querySelector('.know-more_title3');
+const description = document.querySelector('.know-more_description');
+
+window.addEventListener('load', () => {
+button.style.transform = 'translateX(0)';
+title1.style.transform = 'translateX(0)';
+title2.style.transform = 'translateX(0)';
+title3.style.transform = 'translateX(0)';
+description.style.transform = 'translateX(0)';
+});</script>
 </body>
-
-
 {% endblock %}
-
