@@ -7,192 +7,79 @@
 
 {% endblock %}
 {% block body %}
-	<nav class="navbar navbar-expand-lg bg-body-tertiary">
-		<div class="d-flex justy-content-center w-100" id="">
-			<ul class="navbar-nav me-auto mb-2 mb-lg-0 w-100 d-flex justify-content-center align-items-center">
-				<li class="nav-item me-2 meltingphot">
-					<a class="nav-link active" aria-current="page" href="#">MELTINGPHOT</a>
-				</li>
-				<li class="nav-item me-2">
-					<a class="nav-link" href="#">ACTIONS</a>
-				</li>
-				<li class="nav-item dropdown me-2">
-					<a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-						POUR QUI ?
-					</a>
-				</li>
-				<li>
-					<img class="logo me-2" src="{{ asset('img/logo.png')}}" width alt="">
-				</li>
-				<li class="nav-item me-2">
-					<a class="nav-link" href="#">PARTENAIRES</a>
-				</li>
-				<li class="nav-item me-2">
-					<a class="nav-link" href="#">NOUS SOUTENIR</a>
-				</li>
-				<li class="nav-item me-2">
-					<a class="nav-link" href="#">CONTACT</a>
-				</li>
+<html>
+	<body>
+		<!-- Footer -->
+		<footer class="text-center text-lg-start bg-light text-muted">
+			<section class="p-4 border-top">
+				<div
+					class="text-center text-md-start mt-5">
+					<!-- Grid row -->
+					<div class="row mt-3 d-flex">
+						<div
+							class="col-md-3 col-lg-2 col-xl-2 mx-auto mb-4">
+							<!-- Links -->
+							<img src="{{ asset('img/logo.png')}}" class="fw-bold mb-4"></img>
+					</div>
+					<!-- Grid column -->
+					<div class="d-flex justify-content-center ">
+						<p class="text-contact">MELTINGPHOT est un acteur important sur le territoire en mennant des projets d'éducations par l'image auprès des associations, collectivités et entreprises.</p>
+					</div>
+					<div class="d-flex justify-content-center mb-3">
+						<a href="" class="me-4 text-reset">
+							<i class="fab fa-facebook-f"></i>
+						</a>
+						<a href="" class="me-4 text-reset">
+							<i class="fab fa-twitter"></i>
+						</a>
+						<a href="" class="me-4 text-reset">
+							<i class="fab fa-google"></i>
+						</a>
+						<a href="" class="me-4 text-reset">
+							<i class="fab fa-instagram"></i>
+						</a>
+						<a href="" class="me-4 text-reset">
+							<i class="fab fa-linkedin"></i>
+						</a>
+						<a href="" class="me-4 text-reset">
+							<i class="fab fa-github"></i>
+						</a>
+					</div>
+					<!-- Grid column -->
+					<div
+						class="col-md-4 col-lg-3 col-xl-3 mx-auto mb-md-0 mb-4 contact-2">
+						<!-- Links -->
+						<p>
+							<i class="fas fa-home me-3"></i>15 Route de bagnols, 30100 Alès</p>
+						<p>
+							<i class="fas fa-envelope me-3"></i>info@example.com</p>
+						<p>
+							<i class="fas fa-phone me-3"></i>06 64 21 93 75</p>
 
-				<form class="d-flex nav-items me-2 form" role="search">
-					<input class="form-control me-2 search" type="search" placeholder="Ma recherche..." aria-label="Search">
-					<button class="btn btn-outline-success search-btn" type="submit">Rechercher</button>
-				</form>
-
-				<li class="nav-item ">
-					<a id="language-link" class="p-2" href="{{ path('app_home_page_e_n') }}">
-						<img class="flag" src="{{ asset('img/eng.png') }}">
-					</a>
-				</li>
-
-				<li class="nav-item ">
-					<a id="language-link" class="p-2" href="{{ path('app_home_page') }}">
-						<img id="flag" src="{{ asset('img/drapeau.png') }}">
-					</a>
-				</li>
-			</ul>
-		</div>
-	</div>
-</nav>
-
-<section class="main">
-	<section class="know-more d-flex justify-content-end">
-		<div class="know-more_box d-flex flex-column align-self-center">
-			<div class="d-flex flex-column mb-5 know-more-content" style= "width:450px;">
-				<h3 class="ms-3 fs-3">ACTIONS DE </h2>
-				<h2><span class="color1 fs-1">VALORISATION</span>
-				<p class="mb-0">&</p>
-				<h2><span class="color1 fs-1">D'EDUCATION</span></h2>
-				<h3 class="text-center fs-3"> PAR L'IMAGE</h2>
-				<p style="width:300px">Lorem ipsum dolor sit amet consectetur adipisicing elit. Quae temporibus cumque natus.</p>
-				<a href="#" class="btn btn-danger btn_know-more align-self-center">En savoir plus</a>
-			
+					</div>
+					<!-- Grid column -->
+				</div>
+				<!-- Grid row -->
 			</div>
-		</div>
-	</section>
-	{# <h1>{% trans %}Bienvenue sur mon site{% endtrans %}</h1> #}
-
-</section>
-<section class="d-flex flex-column parent-div">
-{# 1er article #}
-	<article class="d-flex flex-row article">
-		<img class="forms-svg"src="{{asset('img/carre-je-film-mon-futur-métier.svg')}}" alt="">
-		<div class="d-flex flex-column justify-content-center">
-			<div class="block-article">
-				<span class="numbers">01</span>
-				<h3 class="color1">JE FILME MON FUTUR METIER</h2>
-				<p class="block-article_description">Lorem ipsum dolor sit, amet consectetur adipisicing elit. Nobis itaque delectus corrupti debitis optio quaerat nam sit qui ullam nulla.</p>
-			</div>
-				<p class="ms-4 block-article_description2">Lorem ipsum dolor sit amet consectetur adipisicing elit. Ea labore nesciunt magnam eveniet accusantium placeat blanditiis et iusto. Tempore, id distinctio, dolorem similique sunt aspernatur, quod maiores incidunt fugiat quidem cupiditate voluptatibus dignissimos voluptatem expedita.</p>
-		</div>
-	</article>
-{# 2ème article  #}
-	<article class="d-flex flex-row-reverse article">
-		<img class="forms-svg"src="{{asset('img/carre-Rond.svg')}}" alt="">
-		<div class="d-flex flex-column justify-content-center">
-			<div class="block-article_rond">
-				<span class="number2">02</span>
-				<h3 class="color1">JE FILME MON FUTUR METIER</h2>
-				<p class="block-article_description ">Lorem ipsum dolor sit, amet consectetur adipisicing elit. Nobis itaque delectus corrupti debitis optio quaerat nam sit qui ullam nulla.</p>
-			</div>
-				<p class="ms-4 block-article_description2 text-start">Lorem ipsum dolor sit amet consectetur adipisicing elit. Ea labore nesciunt magnam eveniet accusantium placeat blanditiis et iusto. Tempore, id distinctio, dolorem similique sunt aspernatur, quod maiores incidunt fugiat quidem cupiditate voluptatibus dignissimos voluptatem expedita.</p>
-		</div>
-	</article>
-{# 3ème article #}
-	<article class="d-flex flex-row">
-		<img class ="forms-svg"src="{{asset('img/carre-je-film-mon-futur-métier.svg')}}" alt="">
-		<div class="d-flex flex-column justify-content-center">
-			<div class="block-article">
-				<span class="numbers">03</span>
-				<h3 class="color1">JE FILME MON FUTUR METIER</h2>
-				<p class="block-article_description">Lorem ipsum dolor sit, amet consectetur adipisicing elit. Nobis itaque delectus corrupti debitis optio quaerat nam sit qui ullam nulla.</p>
-			</div>
-				<p class="ms-4 block-article_description2 text-start">Lorem ipsum dolor sit amet consectetur adipisicing elit. Ea labore nesciunt magnam eveniet accusantium placeat blanditiis et iusto. Tempore, id distinctio, dolorem similique sunt aspernatur, quod maiores incidunt fugiat quidem cupiditate voluptatibus dignissimos voluptatem expedita.</p>
-		</div>
-	</article>
-
-</section>
-
-
-
-
-
-
-<!-- Footer -->
-<footer class="text-center text-lg-start bg-light text-muted">
-	<section class="p-4 border-top">
-		<div class="text-center text-md-start mt-5">
-			<!-- Grid row -->
-			<div class="row mt-3 d-flex">
-				<div class="col-md-3 col-lg-2 col-xl-2 mx-auto mb-4">
-					<!-- Links -->
-					<img src="{{ asset('img/logo.png')}}" class="fw-bold mb-4"></img>
-			</div>
-			<!-- Grid column -->
-			<div class="d-flex justify-content-center ">
-				<p class="text-contact">MELTINGPHOT est un acteur important sur le territoire en mennant des projets d'éducations par l'image auprès des associations, collectivités et entreprises.</p>
-			</div>
-			<div class="d-flex justify-content-center mb-3">
-				<a href="" class="me-4 text-reset">
-					<i class="fab fa-facebook-f"></i>
-				</a>
-				<a href="" class="me-4 text-reset">
-					<i class="fab fa-twitter"></i>
-				</a>
-				<a href="" class="me-4 text-reset">
-					<i class="fab fa-google"></i>
-				</a>
-				<a href="" class="me-4 text-reset">
-					<i class="fab fa-instagram"></i>
-				</a>
-				<a href="" class="me-4 text-reset">
-					<i class="fab fa-linkedin"></i>
-				</a>
-				<a href="" class="me-4 text-reset">
-					<i class="fab fa-github"></i>
-				</a>
-			</div>
-			<!-- Grid column -->
-			<div
-				class="col-md-4 col-lg-3 col-xl-3 mx-auto mb-md-0 mb-4 contact-2">
+			<div class="info-contact ">
 				<!-- Links -->
-				<p>
-					<i class="fas fa-home me-3"></i>15 Route de bagnols, 30100 Alès</p>
-				<p>
-					<i class="fas fa-envelope me-3"></i>info@example.com</p>
-				<p>
-					<i class="fas fa-phone me-3"></i>06 64 21 93 75</p>
-
+				<p class="ms-3">
+					<i class="fas fa-home me-2"></i>15 Route de bagnols, 30100 Alès</p>
+				<p class="ms-3">
+					<i class="fas fa-envelope me-2"></i>info@example.com</p>
+				<p class="ms-3">
+					<i class="fas fa-phone me-2"></i>06 64 21 93 75</p>
 			</div>
-			<!-- Grid column -->
+		</section>
+		<!-- Section: Links  -->
+
+		<!-- Copyright -->
+		<div class="text-center p-4" style="background-color: #D00A4B;">
+			© 2021 Copyright:
+			<a class="text-reset fw-bold" href="https://mdbootstrap.com/">MDBootstrap.com</a>
 		</div>
-		<!-- Grid row -->
-	</div>
-	<div
-		class="info-contact ">
-		<!-- Links -->
-		<p class="ms-3">
-			<i class="fas fa-home me-2"></i>15 Route de bagnols, 30100 Alès</p>
-		<p class="ms-3">
-			<i class="fas fa-envelope me-2"></i>info@example.com</p>
-		<p class="ms-3">
-			<i class="fas fa-phone me-2"></i>06 64 21 93 75</p>
-	</div>
-</section>
-<!-- Section: Links  -->
-
-<!-- Copyright -->
-<div class="text-center p-4" style="background-color: #D00A4B;">
-	© 2021 Copyright:
-	<a class="text-reset fw-bold" href="https://mdbootstrap.com/">MDBootstrap.com</a>
-</div>
-<!-- Copyright --></footer><!-- Footer -->{# js #}
-
-</body>
-
-		
-	
-
+			<!-- Copyright -->
+		</footer><!-- Footer -->
+	</body>
 </html>
-
 {% endblock %}

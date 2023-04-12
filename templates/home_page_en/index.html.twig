@@ -7,61 +7,7 @@
 
 {% endblock %}
 {% block body %}
-<nav class="navbar navbar-expand-lg bg-body-tertiary">
-	<div class="d-flex justy-content-center w-100" id="">
-		<ul class="navbar-nav me-auto mb-2 mb-lg-0 w-100 d-flex justify-content-center align-items-center">
-				<li class="nav-item me-2 meltingphot">
-					<a class="nav-link active" aria-current="page" href="#">MELTINGPHOT</a>
-				</li>
-				<li class="nav-item me-2">
-					<a class="nav-link" href="#">ACTIONS</a>
-				</li>
-				<li class="nav-item dropdown me-2">
-					<a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-						{% trans %}POUR QUI ? {% endtrans %}
-					</a>
-				</li>
-				<li>
-					<img  class ="logo me-2"src="{{ asset('img/logo.png')}}" width alt="">
-				</li>
-				<li class="nav-item me-2">
-					<a class="nav-link" href="#">{% trans %}PARTENAIRES {% endtrans %}</a>
-				</li>
-				<li class="nav-item me-2">
-					<a class="nav-link" href="#">{% trans %}NOUS SOUTENIR{% endtrans %}</a>
-				</li>
-				<li class="nav-item me-2">
-					<a class="nav-link" href="#">CONTACT</a>
-				</li>
-				
-					<form class="d-flex nav-items me-2" role="search">
-					<input class="form-control me-2 search" type="search" placeholder="{% trans %}Ma recherche {% endtrans %}" aria-label="Search">
-					<button class="btn btn-outline-success search-btn" type="submit">Search</button>
-					</form>
-				
-				<li class="nav-item ">
-				<a id="language-link" class="p-2" href="{{ path('app_home_page_e_n') }}">
-					<img  class="flag"src="{{ asset('img/eng.png') }}">
-				</a>
-				</li>
-				
-				<li class="nav-item ">
-				<a id="language-link" class="p-2" href="{{ path('app_home_page') }}">
-					<img  id="flag"src="{{ asset('img/drapeau.png') }}">
-				</a>
-				</li>
-			</ul>
-		</div>
-	</div>
-</nav>
 
-<main class="main">
-	<section class="know-more">
-	</section>
-		{# <h1>{% trans %}Bienvenue sur mon site{% endtrans %}</h1> #}
-	
-
-</main>
 
 
 <!-- Footer -->
@@ -127,7 +73,7 @@
 	<!-- Copyright -->
 </footer>
 <!-- Footer -->
-</body>
+
 
 
 {% endblock %}
