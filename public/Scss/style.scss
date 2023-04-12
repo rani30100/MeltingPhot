@@ -35,14 +35,57 @@ body {
 
             .know-more_box {
                 width: 30%;
+                margin-left: 14rem;
+                 //Concernce Tous les h1 de la class know-more_box
+          
 
                 .know-more-content {
+                    h1{
+                        font-weight: bolder;
+                        font-size: 3rem;
+                        font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+                        margin-bottom: -5px;
+                    }
+                    //Sign &
+                    .sign{
+                        align-self: center;
+                        margin-left: -14rem;
+                        font-size: 2rem;
+                    }
+                     //Concernce Tous les h2 de la class know-more_box
+                    h2{
+                        margin-top: -2rem;
+                        margin-right: 40px;
+                        font-size: 2rem;
+                        font-weight: bolder;
+                        font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+                        margin-top: -3px;
+                    }
+    
+                    //Concernce Tous les h3 de la class know-more_box
+                    h3{
+                        align-self:baseline;
+                        padding-left: 69px;
+                        font-weight: initial;
+    
+                    }
+                    // Ce H3 en dessous est pour le texte "Par L'image"
+                    .h3{
+                        align-self: flex-end;
+                        margin-right: 59px;
+                    }
 
                     .know-more-content_description {
                         width: 300px;
+                        text-align: justify;
+                        margin-right: 59px;
+                    }
+                    .know-more_btn{
+                        margin-right: 59px;
                     }
 
                 }
+                
             }
         }
 
@@ -132,8 +175,8 @@ body {
 
 // Footer
 footer {
-    .info-contact {
-        display: flex;
+    .info-contact2 {
+
         justify-content: center;
 
     }
@@ -143,16 +186,64 @@ footer {
     }
 }
 
-@media screen and (max-width: 767px) {
-    .info-contact {
-        display: none;
+@media screen and (min-width:360px) and (max-width: 699px) {
+    //navbar
+
+
+    //Bloc 1
+    body {
+        .main{
+            .know-more{
+                .know-more_box{
+                    .know-more-content h1 {
+                        font-weight: bolder;
+                        font-size: 2rem;
+                        font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS", sans-serif;
+                        margin-bottom: -5px;
+                      }
+                    .know-more-content{
+                        width: fit-content;
+                        h1{
+                            font-size: 2rem;
+                        }
+                        .sign{
+                            margin-left: 9px;
+                        }
+                        h3{
+                            font-weight: initial;
+                            padding-left: 93px;
+                        }
+                        .h3{
+                            align-self: flex-end;
+                            margin-right: 53px;
+                        }
+                        .know-more-content_description {
+                            margin-right: 52px;
+                            padding-left: 60px;
+                        }
+                        .know-more-box_btn{
+                            margin-right: -11px;
+                        }
+                        
+
+                }
+            }
+        }
+    }  
     }
 
+    //Footer
+    .info-contact2{
+        display: none;
+    }
 }
 
-@media screen and (min-width: 768px) {
+@media screen and (min-width: 700px) {
     .contact-2 {
         display: none;
     }
-
+    .info-contact2 {
+        display: flex;
+    }
+  
 }

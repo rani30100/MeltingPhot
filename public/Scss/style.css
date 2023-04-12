@@ -22,9 +22,43 @@ body .main .know-more {
 }
 body .main .know-more .know-more_box {
   width: 30%;
+  margin-left: 14rem;
+}
+body .main .know-more .know-more_box .know-more-content h1 {
+  font-weight: bolder;
+  font-size: 3rem;
+  font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS", sans-serif;
+  margin-bottom: -5px;
+}
+body .main .know-more .know-more_box .know-more-content .sign {
+  align-self: center;
+  margin-left: -14rem;
+  font-size: 2rem;
+}
+body .main .know-more .know-more_box .know-more-content h2 {
+  margin-top: -2rem;
+  margin-right: 40px;
+  font-size: 2rem;
+  font-weight: bolder;
+  font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS", sans-serif;
+  margin-top: -3px;
+}
+body .main .know-more .know-more_box .know-more-content h3 {
+  align-self: baseline;
+  padding-left: 69px;
+  font-weight: initial;
+}
+body .main .know-more .know-more_box .know-more-content .h3 {
+  align-self: flex-end;
+  margin-right: 59px;
 }
 body .main .know-more .know-more_box .know-more-content .know-more-content_description {
   width: 300px;
+  text-align: justify;
+  margin-right: 59px;
+}
+body .main .know-more .know-more_box .know-more-content .know-more_btn {
+  margin-right: 59px;
 }
 body .main .color1 {
   color: #D00A4B;
@@ -97,21 +131,54 @@ body .parent-div .block-article_description2 {
   direction: rtl;
 }
 
-footer .info-contact {
-  display: flex;
+footer .info-contact2 {
   justify-content: center;
 }
 footer .text-contact {
   max-width: 570px;
 }
 
-@media screen and (max-width: 767px) {
-  .info-contact {
+@media screen and (min-width: 360px) and (max-width: 699px) {
+  body .main .know-more .know-more_box .know-more-content h1 {
+    font-weight: bolder;
+    font-size: 2rem;
+    font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS", sans-serif;
+    margin-bottom: -5px;
+  }
+  body .main .know-more .know-more_box .know-more-content {
+    width: -moz-fit-content;
+    width: fit-content;
+  }
+  body .main .know-more .know-more_box .know-more-content h1 {
+    font-size: 2rem;
+  }
+  body .main .know-more .know-more_box .know-more-content .sign {
+    margin-left: 9px;
+  }
+  body .main .know-more .know-more_box .know-more-content h3 {
+    font-weight: initial;
+    padding-left: 93px;
+  }
+  body .main .know-more .know-more_box .know-more-content .h3 {
+    align-self: flex-end;
+    margin-right: 53px;
+  }
+  body .main .know-more .know-more_box .know-more-content .know-more-content_description {
+    margin-right: 52px;
+    padding-left: 60px;
+  }
+  body .main .know-more .know-more_box .know-more-content .know-more-box_btn {
+    margin-right: -11px;
+  }
+  .info-contact2 {
     display: none;
   }
 }
-@media screen and (min-width: 768px) {
+@media screen and (min-width: 700px) {
   .contact-2 {
     display: none;
+  }
+  .info-contact2 {
+    display: flex;
   }
 }/*# sourceMappingURL=style.css.map */
