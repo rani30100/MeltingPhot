@@ -1,83 +1,107 @@
-body .main {
-  height: 100vh;
-  width: 100%;
+body .navbar .logo {
+  width: 120px;
+  margin-top: 7px;
+  margin-bottom: 11px;
 }
-body .main h1 {
-  color: pink;
-}
-body .main .know-more_img {
-  width: 100%;
-  height: 100vh;
-  display: block;
-  z-index: 1;
-}
-body .main .know-more_title1 {
-  position: absolute;
-  top: 50%;
-  left: 63%;
-  transform: translateX(100%);
-  transition: transform 0.6s ease-out;
-  z-index: 2;
-  color: black;
-}
-body .main .know-more_title2 {
-  position: absolute;
-  top: 54%;
-  left: 61%;
-  transform: translateX(100%);
-  transition: transform 0.6s ease-out;
-  z-index: 2;
-  color: #d40147;
-}
-body .main .know-more_title3 {
-  position: absolute;
-  top: 59%;
-  left: 80%;
-  transform: translateX(100%);
-  transition: transform 0.6s ease-out;
-  z-index: 2;
-  color: black;
-}
-body .main .know-more_description {
-  position: absolute;
-  top: 65%;
-  left: 69%;
-  transform: translateX(100%);
-  transition: transform 0.6s ease-out;
-  z-index: 2;
-}
-body .main .know-more_button {
-  position: absolute;
-  top: 73%;
-  left: 90%;
-  transform: translateX(100%);
-  transition: transform 0.6s ease-out;
-  z-index: 2;
-}
-body .search {
+body .navbar .form .search {
   height: -moz-fit-content;
   height: fit-content;
   align-self: center;
   min-width: 120px;
   max-width: 210px;
 }
-body .search-btn {
+body .navbar .form .search-btn {
   height: -moz-fit-content;
   height: fit-content;
   align-self: center;
 }
-body .logo {
-  width: 120px;
-  margin-top: 7px;
+body .main .know-more {
+  min-height: 500px;
+  width: 100%;
+  background-color: #f0f0f0;
+}
+body .main .know-more .know-more_box {
+  width: 30%;
+}
+body .main .know-more .know-more_box .know-more-content .know-more-content_description {
+  width: 300px;
+}
+body .main .color1 {
+  color: #D00A4B;
+}
+body .main .btn_know-more {
+  width: 125px;
+}
+body .container {
+  height: 300px;
+  width: 200px;
+  background-color: grey;
+  box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+}
+body .parent-div {
+  margin-left: 15%;
+  margin-right: 15%;
+}
+body .parent-div .article {
+  margin-bottom: -11rem;
+}
+body .parent-div .forms-svg {
+  max-width: 500px;
+}
+body .parent-div .numbers {
+  display: block;
+  border-bottom: 2px solid black;
+  border-bottom-width: 3px;
+  font-weight: bolder;
+  width: 5rem;
   margin-bottom: 11px;
 }
+body .parent-div .block-article {
+  margin-left: -6rem;
+  margin-top: 3rem;
+}
+body .parent-div .block-article h3.color1 {
+  color: #D00A4B;
+  padding-bottom: 9px;
+}
+body .parent-div .block-article .block-article_description {
+  width: 30rem;
+}
+body .parent-div .block-article_rond {
+  align-self: end;
+  margin-right: -6rem;
+  display: flex;
+  flex-direction: column;
+  margin-top: 4rem;
+}
+body .parent-div .block-article_rond .number2 {
+  align-self: end;
+  flex-direction: row-reverse;
+  display: flex;
+  border-bottom: 2px solid black;
+  border-bottom-width: 3px;
+  font-weight: bolder;
+  width: 5rem;
+  margin-bottom: 11px;
+}
+body .parent-div .block-article_rond h3 {
+  align-self: flex-end;
+  color: #D00A4B;
+  padding-bottom: 9px;
+}
+body .parent-div .block-article_rond .block-article_description {
+  width: 30rem;
+}
+body .parent-div .block-article_description2 {
+  width: 40rem;
+  direction: rtl;
+}
 
-.info-contact {
+footer .info-contact {
   display: flex;
   justify-content: center;
 }
-
-.text-contact {
+footer .text-contact {
   max-width: 570px;
 }
 

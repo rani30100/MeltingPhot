@@ -1,94 +1,146 @@
+$rouge : #D00A4B;
+
+
 body {
-    .main {
-        height: 100vh;
-        width: 100%;
-
-        h1 {
-            color: pink;
+    .navbar {
+        .logo {
+            width: 120px;
+            margin-top: 7px;
+            margin-bottom: 11px;
         }
 
-        .know-more_img {
-            width: 100%;
-            height: 100vh;
-            display: block;
-            z-index: 1;
-        }
-        .know-more_title1{
-            position: absolute;
-            top: 50%;
-            left: 63%;
-            transform: translateX(100%);
-            transition: transform 0.6s ease-out;
-            z-index: 2;
-            color: black;
-        }
-        .know-more_title2{
-            position: absolute;
-            top: 54%;
-            left: 61%;
-            transform: translateX(100%);
-            transition: transform 0.6s ease-out;
-            z-index: 2;
-            color: #d40147;
-        }
-        .know-more_title3{
-            position: absolute;
-            top: 59%;
-            left: 80%;
-            transform: translateX(100%);
-            transition: transform 0.6s ease-out;
-            z-index: 2;
-            color: black;
-        }
-        .know-more_description{
-            position: absolute;
-            top: 65%;
-            left: 69%;
-            transform: translateX(100%);
-            transition: transform 0.6s ease-out;
-            z-index: 2;
-        }
-
-        .know-more_button {
-            position: absolute;
-            top: 73%;
-            left: 90%;
-            transform: translateX(100%);
-            transition: transform 0.6s ease-out;
-            z-index: 2;
+        .form {
+            .search {
+                height: fit-content;
+                align-self: center;
+                min-width: 120px;
+                max-width: 210px;
             }
+
+            .search-btn {
+                height: fit-content;
+                align-self: center;
+            }
+
+        }
     }
 
-    .search {
-        height: fit-content;
-        align-self: center;
-        min-width: 120px;
-        max-width: 210px;
+    .main {
+
+        //1er Bloc de page
+        .know-more {
+            min-height: 500px;
+            width: 100%;
+            background-color: #f0f0f0;
+
+            .know-more_box {
+                width: 30%;
+
+                .know-more-content {
+
+                    .know-more-content_description {
+                        width: 300px;
+                    }
+
+                }
+            }
+        }
+
+        .color1 {
+            color: $rouge;
+        }
+
+        .btn_know-more {
+            width: 125px;
+        }
     }
 
-    .search-btn {
-        height: fit-content;
-        align-self: center;
-
+    .container {
+        height: 300px;
+        width: 200px;
+        background-color: grey;
+        box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
     }
 
-    .logo {
-        width: 120px;
-        margin-top: 7px;
-        margin-bottom: 11px;
+    .parent-div {
+        margin-left: 15%;
+        margin-right: 15%;
+        .article{
+            margin-bottom: -11rem;
+        }
+        .forms-svg{
+            max-width: 500px;
+        }
+        .numbers {
+            display: block;
+            border-bottom: 2px solid black;
+            border-bottom-width: 3px;
+            font-weight: bolder;
+            width: 5rem;
+            margin-bottom: 11px;
+        }
+        
+
+        .block-article {
+        
+            margin-left: -6rem;
+            margin-top: 3rem;
+        
+
+            h3.color1 {
+                color: $rouge;
+                padding-bottom: 9px;
+            }
+
+            .block-article_description {
+                width: 30rem;
+            }
+        }
+        .block-article_rond{
+            align-self: end;
+            margin-right: -6rem;
+            display: flex;
+            flex-direction: column;
+            margin-top: 4rem;
+            .number2 {
+                align-self: end;
+                flex-direction: row-reverse;
+                display: flex;
+                border-bottom: 2px solid black;
+                border-bottom-width: 3px;
+                font-weight: bolder;
+                width: 5rem;
+                margin-bottom: 11px;
+            }
+            h3{
+                align-self:flex-end;
+                color :$rouge;
+                padding-bottom: 9px;
+            }
+            .block-article_description {
+                width: 30rem;
+            }
+        }
+        .block-article_description2{
+            width: 40rem;
+            direction: rtl;
+        }
     }
 
 }
+
 
 // Footer
-.info-contact {
-    display: flex;
-    justify-content: center;
+footer {
+    .info-contact {
+        display: flex;
+        justify-content: center;
 
-}
+    }
 
-.text-contact {
-    max-width: 570px;
+    .text-contact {
+        max-width: 570px;
+    }
 }
 
 @media screen and (max-width: 767px) {
