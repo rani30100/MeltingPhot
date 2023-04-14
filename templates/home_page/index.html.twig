@@ -10,20 +10,20 @@
 	<nav class="navbar navbar-expand-lg bg-body-tertiary">
 		<div class="d-flex justy-content-center w-100" id="">
 			<ul class="navbar-nav me-auto mb-2 mb-lg-0 w-100 d-flex justify-content-center align-items-center">
+				<li>
+					<img class="logo me-2" src="{{ asset('img/logo.png')}}" width alt="">
+				</li>
 				<li class="nav-item me-2 meltingphot">
 					<a class="nav-link active" aria-current="page" href="#">MELTINGPHOT</a>
 				</li>
 				<li class="nav-item me-2">
 					<a class="nav-link" href="#">ACTIONS</a>
 				</li>
-				<li class="nav-item dropdown me-2">
-					<a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-						POUR QUI ?
-					</a>
-				</li>
-				<li>
-					<img class="logo me-2" src="{{ asset('img/logo.png')}}" width alt="">
-				</li>
+				{# <li class="nav-item dropdown me-2">
+								<a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+									POUR QUI ?
+								</a>
+							</li> #}
 				<li class="nav-item me-2">
 					<a class="nav-link" href="#">PARTENAIRES</a>
 				</li>
@@ -34,7 +34,7 @@
 					<a class="nav-link" href="#">CONTACT</a>
 				</li>
 
-				<form class="d-flex nav-items me-2 form" role="search">
+				{# <form class="d-flex nav-items me-2 form" role="search">
 					<input class="form-control me-2 search" type="search" placeholder="Ma recherche..." aria-label="Search">
 					<button class="btn btn-outline-success search-btn" type="submit">Rechercher</button>
 				</form>
@@ -43,89 +43,115 @@
 					<a id="language-link" class="p-2" href="{{ path('app_home_page_e_n') }}">
 						<img class="flag" src="{{ asset('img/eng.png') }}">
 					</a>
-				</li>
+				</li> #}
 
-				<li class="nav-item ">
+				{# <li class="nav-item ">
 					<a id="language-link" class="p-2" href="{{ path('app_home_page') }}">
 						<img id="flag" src="{{ asset('img/drapeau.png') }}">
 					</a>
-				</li>
+				</li> #}
 			</ul>
 		</div>
-	</div>
-</nav>
+	</nav>
 
-<section class="main">
-	<section class="know-more d-flex justify-content-center">
-		<div class="know-more_box d-flex flex-column align-self-center align-items-end">
-			<div class="d-flex flex-column mb-5 know-more-content align-items-end">
-				<h3 class="ms-3 ">ACTIONS DE </h2>
-				<h1 class="color1">VALORISATION</h1>
-				<p class="mb-0 sign">&</p>
-				<h2 class="color1 fs-1">D'EDUCATION</h2>
-				<h3 class="text-center h3 "> PAR L'IMAGE</h2>
-				<p  class="know-more-content_description">Lorem ipsum dolor sit amet consectetur adipisicing elit. Quae temporibus cumque natus.</p>
-				<div class="know-more-box_btn">
-					<a href="#" class="btn btn-danger know-more_btn align-self-center">En savoir plus</a>
+	<section class="main">
+		<section class="know-more d-flex justify-content-center">
+			<div class="know-more_box d-flex flex-column align-self-center align-items-end">
+				<div class="d-flex flex-column mb-5 know-more-content align-items-end">
+					<h3 class="ms-3 ">ACTIONS DE
+					</h2>
+					<h1 class="color1">VALORISATION</h1>
+					<p class="mb-0 sign">&</p>
+					<h2 class="color1 fs-1">D'EDUCATION</h2>
+					<h3 class="text-center h3 ">
+						PAR L'IMAGE</h2>
+					<p class="know-more-content_description">Lorem ipsum dolor sit amet consectetur adipisicing elit. Quae temporibus cumque natus.</p>
+					<div class="know-more-box_btn">
+						<a href="#" class="btn btn-danger know-more_btn align-self-center">En savoir plus</a>
+					</div>
 				</div>
 			</div>
-		</div>
+		</section>
+		{# <h1>{% trans %}Bienvenue sur mon site{% endtrans %}</h1> #}
+
 	</section>
-	{# <h1>{% trans %}Bienvenue sur mon site{% endtrans %}</h1> #}
+	<section class="d-flex flex-column parent-article">
+		{# 1er article #}
+		<article class="d-flex article">
+			<img id="forms-svg" class="article-img1" src="{{asset('img/HébéMag.png')}}" alt="">
+			<div class="">
+				<img id="forms-svg2" class="article-img2" src="{{asset('img/Rani_carre.png')}}" alt="">
+			</div>
+			<div class="d-flex flex-column justify-content-center article-box">
+				<div class='article-title'>
+					<span class="numbers">01</span>
+					<h3 class="color1">JE FILME MON FUTUR METIER</h3>
+				</div>
+				<div>
+					<p class="block-article_description">HÉBÉMAG : Découvrir son futur métier en allant à la rencontre des professionnels telle une vraie équipe de journalistes en tournage. Rédiger un magazine sur la thématique du métier envisagé.</p>
+				</div>
+				<div class="bloc1_description2">
+					<p class=" block-article_description2">Lorem ipsum dolor sit amet consectetur adipisicing elit. Ea labore nesciunt magnam eveniet accusantium placeat blanditiis et iusto. Tempore, id distinctio, dolorem similique sunt aspernatur, quod maiores incidunt fugiat quidem cupiditate voluptatibus dignissimos voluptatem expedita.</p>
+				</div>
+			</div>
+		</article>
+		<p class=" p-description2">Lorem ipsum dolor sit amet consectetur adipisicing elit. Ea labore nesciunt magnam eveniet accusantium placeat blanditiis et iusto. Tempore, id distinctio, dolorem similique sunt aspernatur, quod maiores incidunt fugiat quidem cupiditate voluptatibus dignissimos voluptatem expedita.</p>
+		
+
+		{# 2ème article  #}
+		<article class="d-flex flex-row-reverse mt-4 article2">
+			<div class="d-flex flex-row-reverse bloc-img">
+				<img id="g" class="float-end article2-img" src="{{asset('img/IMG_Miniature_Meltingphot__Image_Vignette_Page_accueil_meltingphot_je_Filme_mon_futur_metier300_300_px_3.png')}}" alt="">
+				<img class="article2-img2" src="{{asset('img/rond.png')}}" alt="">
+			</div>
+			<div class="article2-main">
+				<div class="article2-title d-flex flex-column align-items-end">
+					<span class="article2-title-chiffre">02</span>
+					<h3 class="article2-title_nom">ODONYMES</h2>
+				</div>
+
+				<div class="d-flex flex-column article2-box_description">
+					<p class="article2_description">Lorem ipsum dolor sit, amet consectetur adipisicing elit. Nobis itaque delectus corrupti debitis optio quaerat nam sit qui ullam nulla.</p>
+
+					<p class="article2_description2">Lorem ipsum dolor sit amet consectetur adipisicing elit. Ea labore nesciunt magnam eveniet accusantium placeat blanditiis et iusto. Tempore, id distinctio, dolorem similique sunt aspernatur, quod maiores incidunt fugiat quidem cupiditate voluptatibus dignissimos voluptatem expedita.</p>
+				</div>
+			</div>
+
+	</article>
+
+	{# 3ème article  #}
+			<article class="d-flex article">
+			<img id="forms-svg" class="article-img1" src="{{asset('img/IMG_Miniature_Meltingphot__Image_Vignette_Page_accueil_meltingphot_je_Filme_mon_futur_metier300_300_px.png')}}" alt="">
+			<div class="">
+				<img id="forms-svg2" class="article-img2" src="{{asset('img/Rani_carre.png')}}" alt="">
+			</div>
+			<div class="d-flex flex-column justify-content-center article-box">
+				<div class='article-title'>
+					<span class="numbers">03</span>
+					<h3 class="color1">JE FILME MON FUTUR METIER</h3>
+				</div>
+				<div>
+					<p class="block-article_description">Lorem ipsum dolor sit, amet consectetur adipisicing elit. Nobis itaque delectus corrupti debitis optio quaerat nam sit qui ullam nulla.</p>
+				</div>
+				<div class="bloc1_description2">
+					<p class=" block-article_description2">Lorem ipsum dolor sit amet consectetur adipisicing elit. Ea labore nesciunt magnam eveniet accusantium placeat blanditiis et iusto. Tempore, id distinctio, dolorem similique sunt aspernatur, quod maiores incidunt fugiat quidem cupiditate voluptatibus dignissimos voluptatem expedita.</p>
+				</div>
+			</div>
+		</article>
+		<p class=" p-description2">Lorem ipsum dolor sit amet consectetur adipisicing elit. Ea labore nesciunt magnam eveniet accusantium placeat blanditiis et iusto. Tempore, id distinctio, dolorem similique sunt aspernatur, quod maiores incidunt fugiat quidem cupiditate voluptatibus dignissimos voluptatem expedita.</p>
 
 </section>
-<section class="d-flex flex-column parent-div">
-{# 1er article #}
-	<article class="d-flex flex-row article">
-		<img class="forms-svg"src="{{asset('img/carre-je-film-mon-futur-métier.svg')}}" alt="">
-		<div class="d-flex flex-column justify-content-center">
-			<div class="block-article">
-				<span class="numbers">01</span>
-				<h3 class="color1">JE FILME MON FUTUR METIER</h2>
-				<p class="block-article_description">Lorem ipsum dolor sit, amet consectetur adipisicing elit. Nobis itaque delectus corrupti debitis optio quaerat nam sit qui ullam nulla.</p>
-			</div>
-				<p class="ms-4 block-article_description2">Lorem ipsum dolor sit amet consectetur adipisicing elit. Ea labore nesciunt magnam eveniet accusantium placeat blanditiis et iusto. Tempore, id distinctio, dolorem similique sunt aspernatur, quod maiores incidunt fugiat quidem cupiditate voluptatibus dignissimos voluptatem expedita.</p>
-		</div>
-	</article>
-{# 2ème article  #}
-	<article class="d-flex flex-row-reverse article">
-		<img class="forms-svg"src="{{asset('img/carre-Rond.svg')}}" alt="">
-		<div class="d-flex flex-column justify-content-center">
-			<div class="block-article_rond">
-				<span class="number2">02</span>
-				<h3 class="color1">ODONYMES</h2>
-				<p class="block-article_description ">Lorem ipsum dolor sit, amet consectetur adipisicing elit. Nobis itaque delectus corrupti debitis optio quaerat nam sit qui ullam nulla.</p>
-			</div>
-				<p class="ms-4 block-article_description2 text-start">Lorem ipsum dolor sit amet consectetur adipisicing elit. Ea labore nesciunt magnam eveniet accusantium placeat blanditiis et iusto. Tempore, id distinctio, dolorem similique sunt aspernatur, quod maiores incidunt fugiat quidem cupiditate voluptatibus dignissimos voluptatem expedita.</p>
-		</div>
-	</article>
-{# 3ème article #}
-	<article class="d-flex flex-row">
-		<img class ="forms-svg"src="{{asset('img/carre-je-film-mon-futur-métier.svg')}}" alt="">
-		<div class="d-flex flex-column justify-content-center">
-			<div class="block-article">
-				<span class="numbers">03</span>
-				<h3 class="color1">PROJETS MULTICULTURELS</h2>
-				<p class="block-article_description">Lorem ipsum dolor sit, amet consectetur adipisicing elit. Nobis itaque delectus corrupti debitis optio quaerat nam sit qui ullam nulla.</p>
-			</div>
-				<p class="ms-4 block-article_description2 text-start">Lorem ipsum dolor sit amet consectetur adipisicing elit. Ea labore nesciunt magnam eveniet accusantium placeat blanditiis et iusto. Tempore, id distinctio, dolorem similique sunt aspernatur, quod maiores incidunt fugiat quidem cupiditate voluptatibus dignissimos voluptatem expedita.</p>
-		</div>
-	</article>
-
-</section>
-
-
-
-
 
 
 <!-- Footer -->
 <footer class="text-center text-lg-start bg-light text-muted">
 	<section class="p-4 border-top">
-		<div class="text-center text-md-start mt-5">
+		<div
+			class="text-center text-md-start mt-5">
 			<!-- Grid row -->
 			<div class="row mt-3 d-flex">
-				<div class="col-md-3 col-lg-2 col-xl-2 mx-auto mb-4">
+				<div
+					class="col-md-3 col-lg-2 col-xl-2 mx-auto mb-4">
 					<!-- Links -->
 					<img src="{{ asset('img/logo.png')}}" class="fw-bold mb-4"></img>
 			</div>
@@ -134,24 +160,21 @@
 				<p class="text-contact">MELTINGPHOT est un acteur important sur le territoire en mennant des projets d'éducations par l'image auprès des associations, collectivités et entreprises.</p>
 			</div>
 			<div class="d-flex justify-content-center mb-3">
-				<a href="" class="me-4 text-reset">
+				<a href="https://www.facebook.com/MeltingPhot/?locale=fr_FR" class="me-4 text-reset">
 					<i class="fab fa-facebook-f"></i>
 				</a>
-				<a href="" class="me-4 text-reset">
+				<a href="https://twitter.com/melting_phot?lang=fr" class="me-4 text-reset">
 					<i class="fab fa-twitter"></i>
 				</a>
-				<a href="" class="me-4 text-reset">
-					<i class="fab fa-google"></i>
-				</a>
-				<a href="" class="me-4 text-reset">
+				<a href="https://www.instagram.com/meltingphot/?hl=fr" class="me-4 text-reset">
 					<i class="fab fa-instagram"></i>
 				</a>
-				<a href="" class="me-4 text-reset">
+				<a href="https://www.linkedin.com/company/meltingphot" class="me-4 text-reset">
 					<i class="fab fa-linkedin"></i>
 				</a>
-				<a href="" class="me-4 text-reset">
+				{# <a href="" class="me-4 text-reset">
 					<i class="fab fa-github"></i>
-				</a>
+				</a> #}
 			</div>
 			<!-- Grid column -->
 			<div
@@ -183,17 +206,11 @@
 <!-- Section: Links  -->
 
 <!-- Copyright -->
-<div class="text-center p-4" style="background-color: #D00A4B;">
-	© 2021 Copyright:
-	<a class="text-reset fw-bold" href="https://mdbootstrap.com/">MDBootstrap.com</a>
+<div class="text-center p-4 fw-bold" style="background-color: #D00A4B;">
+
+	Tous droits réservés © 2023 @MeltingPhot
+</a>
+<p class="fst-italic fw-light fs-6">En effet, tous les éléments présents sur Internet (textes, images, vidéos, extraits sonores, codes informatiques…)
+	sont de facto soumis au droit d’auteur, même si l’accès est libre, gratuit et sans mention particulière.</p>
 </div>
-<!-- Copyright --></footer><!-- Footer -->{# js #}
-
-</body>
-
-		
-	
-
-</html>
-
-{% endblock %}
+<!-- Copyright --></footer><!-- Footer -->{# js #}</body></html>{% endblock %}
