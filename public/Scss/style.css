@@ -31,7 +31,6 @@ body .main .know-more .know-more_box {
 }
 body .main .know-more .know-more_box .know-more-content h1 {
   font-weight: bolder;
-  font-size: 3rem;
   font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS", sans-serif;
   margin-bottom: -5px;
 }
@@ -43,6 +42,7 @@ body .main .know-more .know-more_box .know-more-content .sign {
 body .main .know-more .know-more_box .know-more-content h2 {
   margin-top: -2rem;
   margin-right: 40px;
+  margin-left: 35px;
   font-size: 2rem;
   font-weight: bolder;
   font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS", sans-serif;
@@ -68,6 +68,32 @@ body .main .know-more .know-more_box .know-more-content .know-more_btn {
 body .main .btn_know-more {
   width: 125px;
 }
+body .banniere {
+  position: relative;
+  height: 600px;
+  overflow: hidden;
+}
+body .video-background {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: -1;
+}
+body .overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  z-index: 1;
+}
+body .content {
+  position: relative;
+  z-index: 2;
+}
 body .container {
   height: 300px;
   width: 200px;
@@ -83,6 +109,7 @@ body .parent-article {
   margin-bottom: 5rem;
 }
 body .parent-article .article {
+  margin-top: 3rem;
   margin-bottom: 3rem;
 }
 body .parent-article .article img {
@@ -175,7 +202,6 @@ body .article2 .article2_description {
   margin-right: 100px;
 }
 body .article2 .article2_description2 {
-  margin: 1rem;
   text-align: justify;
   width: 512px;
   align-self: end;
@@ -184,8 +210,11 @@ body .article2 .article2_description2 {
 body .article3 {
   margin-top: 3rem;
 }
-body .videoYTB {
-  margin: 2rem;
+body .column {
+  display: flex;
+  flex-direction: column;
+  align-self: center;
+  margin-bottom: 10rem;
 }
 
 footer .info-contact2 {
@@ -207,6 +236,9 @@ footer .text-contact {
   }
   .video-ordi {
     display: none;
+  }
+  h1 {
+    font-size: 32px;
   }
   body .main {
     background-color: #f0f0f0;
@@ -288,6 +320,16 @@ footer .text-contact {
     margin-right: 14px;
     margin-top: 7px;
   }
+  body .labelYtb {
+    margin-left: 1rem;
+  }
+  body .blocYTB {
+    display: flex;
+    flex-direction: column;
+  }
+  body .column {
+    margin-bottom: 3rem;
+  }
   #forms-svg {
     width: 100px;
     height: 100px;
@@ -319,11 +361,18 @@ footer .text-contact {
     text-align: center;
     font-weight: bold;
   }
+  h1, h2 {
+    align-self: center;
+  }
+  h1 {
+    font-size: 32px;
+  }
 }
 body .parent-article .block-article_description {
   margin-left: -13px;
   width: -moz-fit-content;
   width: fit-content;
+  max-width: 400px;
 }
 
 @media screen and (min-width: 700px) {
@@ -348,8 +397,8 @@ body .parent-article .block-article_description {
     justify-content: space-around;
     margin-bottom: 12rem;
   }
-  .video-mobile {
-    display: none;
+  .labelYtb {
+    max-width: 370px;
   }
   .info-contact2 {
     display: flex;

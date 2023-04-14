@@ -45,7 +45,6 @@ body {
                 .know-more-content {
                     h1 {
                         font-weight: bolder;
-                        font-size: 3rem;
                         font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
                         margin-bottom: -5px;
                     }
@@ -61,6 +60,7 @@ body {
                     h2 {
                         margin-top: -2rem;
                         margin-right: 40px;
+                        margin-left: 35px;
                         font-size: 2rem;
                         font-weight: bolder;
                         font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
@@ -92,7 +92,7 @@ body {
                     }
 
                 }
-
+                
             }
         }
 
@@ -101,6 +101,36 @@ body {
             width: 125px;
         }
     }
+    .banniere {
+        position: relative;
+        height: 600px;
+        overflow: hidden;
+    }
+    
+    .video-background {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        z-index: -1;
+    }
+    
+    .overlay {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-color: rgba(0, 0, 0, 0.5);
+        z-index: 1;
+    }
+    
+    .content {
+        position: relative;
+        z-index: 2;
+    }
+    
 
     .container {
         height: 300px;
@@ -117,6 +147,7 @@ body {
         margin-bottom: 5rem;
 
         .article {
+            margin-top: 3rem;
             margin-bottom: 3rem;
 
             img {
@@ -242,8 +273,6 @@ body {
         }
 
         .article2_description2 {
-
-            margin: 1rem;
             text-align: justify;
             width: 512px;
             align-self: end;
@@ -254,9 +283,16 @@ body {
         margin-top: 3rem;
     }
 
-    .videoYTB{
-        margin: 2rem;
-    }
+  .column{
+    display: flex;
+    flex-direction:column ;
+    align-self: center;
+    margin-bottom: 10rem;
+  }
+ 
+
+
+
 }
 
 
@@ -381,6 +417,9 @@ footer {
     .video-ordi {
         display: none;
       }
+      h1{
+        font-size: 32px;
+    }
     body {
 
         //Premier bloc
@@ -479,6 +518,17 @@ footer {
                 margin-top: 7px;
             }
         }
+        .labelYtb{
+            margin-left:1rem;
+          }
+        .blocYTB{
+            display: flex;
+            flex-direction: column
+            ;
+        }
+        .column{
+            margin-bottom: 3rem;
+        }
     }
 
 
@@ -525,12 +575,19 @@ footer {
         text-align: center;
         font-weight: bold;
     }
+    h1,h2{
+        align-self: center;
+    }
+    h1{
+        font-size: 32px;
+    }
     
 }
 
 body .parent-article .block-article_description {
     margin-left: -13px;
     width: fit-content;
+    max-width: 400px;
 }
 
 
@@ -565,10 +622,11 @@ body .parent-article .block-article_description {
         justify-content: space-around;
         margin-bottom: 12rem;
     }
-
-    .video-mobile{
-        display: none;
-    }
+    .labelYtb{
+       
+        max-width: 370px;
+      }
+  
     .info-contact2 {
         display: flex;
     }

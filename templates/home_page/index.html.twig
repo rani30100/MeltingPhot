@@ -17,7 +17,7 @@
 					<a class="nav-link active" aria-current="page" href="#">MELTINGPHOT</a>
 				</li>
 				<li class="nav-item me-2">
-					<a class="nav-link" href="#">ACTIONS</a>
+					<a class="nav-link" href="#parent-article">ACTIONS</a>
 				</li>
 				{# <li class="nav-item dropdown me-2">
 								<a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
@@ -73,12 +73,19 @@
 			</div>
 		</section>
 		{# <h1>{% trans %}Bienvenue sur mon site{% endtrans %}</h1> #}
-
 	</section>
-	<section class="d-flex flex-column parent-article">
+	<section class="banniere">
+		<iframe class="video-background" width="560" height="315" src="https://www.youtube.com/embed/ryBswgXcUGg?autoplay=1&mute=1" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+		<div class="overlay"></div>
+		
+	</section>
+
+
+
+	<section id="parent-article" class="d-flex flex-column parent-article">
 		{# 1er article #}
 		<article class="d-flex article">
-			<img id="forms-svg" class="article-img1" src="{{asset('img/HébéMag.png')}}" alt="">
+			<img id="forms-svg" class="article-img1" src="{{asset('img/Image_Vignette_Page accueil meltingphot_je Filme mon futur métier.png')}}" alt="">
 			<div class="">
 				<img id="forms-svg2" class="article-img2" src="{{asset('img/Rani_carre.png')}}" alt="">
 			</div>
@@ -90,18 +97,18 @@
 				<div>
 					<p class="block-article_description">HÉBÉMAG : Découvrir son futur métier en allant à la rencontre des professionnels telle une vraie équipe de journalistes en tournage. Rédiger un magazine sur la thématique du métier envisagé.</p>
 				</div>
-				<div class="bloc1_description2">
+				{# <div class="bloc1_description2">
 					<p class=" block-article_description2">Lorem ipsum dolor sit amet consectetur adipisicing elit. Ea labore nesciunt magnam eveniet accusantium placeat blanditiis et iusto. Tempore, id distinctio, dolorem similique sunt aspernatur, quod maiores incidunt fugiat quidem cupiditate voluptatibus dignissimos voluptatem expedita.</p>
-				</div>
+				</div> #}
 			</div>
 		</article>
-		<p class=" p-description2">Lorem ipsum dolor sit amet consectetur adipisicing elit. Ea labore nesciunt magnam eveniet accusantium placeat blanditiis et iusto. Tempore, id distinctio, dolorem similique sunt aspernatur, quod maiores incidunt fugiat quidem cupiditate voluptatibus dignissimos voluptatem expedita.</p>
+		{# <p class=" p-description2">Lorem ipsum dolor sit amet consectetur adipisicing elit. Ea labore nesciunt magnam eveniet accusantium placeat blanditiis et iusto. Tempore, id distinctio, dolorem similique sunt aspernatur, quod maiores incidunt fugiat quidem cupiditate voluptatibus dignissimos voluptatem expedita.</p> #}
 		
 
 		{# 2ème article  #}
 		<article class="d-flex flex-row-reverse mt-4 article2">
 			<div class="d-flex flex-row-reverse bloc-img">
-				<img id="g" class="float-end article2-img" src="{{asset('img/IMG_Miniature_Meltingphot__Image_Vignette_Page_accueil_meltingphot_je_Filme_mon_futur_metier300_300_px_3.png')}}" alt="">
+				<img id="g" class="float-end article2-img" src="{{asset('img/ODONYMES _Image_Vignette_Page accueil meltingphot_je Filme mon futur métier.png')}}" alt="">
 				<img class="article2-img2" src="{{asset('img/rond.png')}}" alt="">
 			</div>
 			<div class="article2-main">
@@ -111,17 +118,17 @@
 				</div>
 
 				<div class="d-flex flex-column article2-box_description">
-					<p class="article2_description">Lorem ipsum dolor sit, amet consectetur adipisicing elit. Nobis itaque delectus corrupti debitis optio quaerat nam sit qui ullam nulla.</p>
+					<p class="article2_description"> En septembre 2023, dans le cadre des journées du patrimoine, les habitants des prés Saint Jean auront l’honneur de vous faire découvrir l’histoire de leur quartier comme vous ne l’auriez jamais imaginée.</p>
 
-					<p class="article2_description2">Lorem ipsum dolor sit amet consectetur adipisicing elit. Ea labore nesciunt magnam eveniet accusantium placeat blanditiis et iusto. Tempore, id distinctio, dolorem similique sunt aspernatur, quod maiores incidunt fugiat quidem cupiditate voluptatibus dignissimos voluptatem expedita.</p>
+					{# <p class="article2_description2">Lorem ipsum dolor sit amet consectetur adipisicing elit. Ea labore nesciunt magnam eveniet accusantium placeat blanditiis et iusto. Tempore, id distinctio, dolorem similique sunt aspernatur, quod maiores incidunt fugiat quidem cupiditate voluptatibus dignissimos voluptatem expedita.</p> #}
 				</div>
 			</div>
 
-	</article>
+		</article>
 
 	{# 3ème article  #}
 			<article class="d-flex article">
-			<img id="forms-svg" class="article-img1" src="{{asset('img/IMG_Miniature_Meltingphot__Image_Vignette_Page_accueil_meltingphot_je_Filme_mon_futur_metier300_300_px.png')}}" alt="">
+			<img id="forms-svg" class="article-img1" src="{{asset('img/Je filme mon futur métier Meltingphot_Image_Vignette_Page accueil meltingphot_je Filme mon futur métier.png')}}" alt="">
 			<div class="">
 				<img id="forms-svg2" class="article-img2" src="{{asset('img/Rani_carre.png')}}" alt="">
 			</div>
@@ -131,16 +138,53 @@
 					<h3 class="color1">JE FILME MON FUTUR METIER</h3>
 				</div>
 				<div>
-					<p class="block-article_description">Lorem ipsum dolor sit, amet consectetur adipisicing elit. Nobis itaque delectus corrupti debitis optio quaerat nam sit qui ullam nulla.</p>
+					<p class="block-article_description"> Des projets culturels d’envergure ayant pour finalité une production audiovisuelle complexe : clip vidéo, court-métrage, film d’animation, exposition interactive, magazine, … et permettant l’apprentissage de disciplines multiples (vidéo, photo, lightpainting, vidéopainting, écriture, danse, graff, stopmotion, montage, chant, musique, prise de son, …)</p>
 				</div>
 				<div class="bloc1_description2">
-					<p class=" block-article_description2">Lorem ipsum dolor sit amet consectetur adipisicing elit. Ea labore nesciunt magnam eveniet accusantium placeat blanditiis et iusto. Tempore, id distinctio, dolorem similique sunt aspernatur, quod maiores incidunt fugiat quidem cupiditate voluptatibus dignissimos voluptatem expedita.</p>
+					{# <p class=" block-article_description2">Lorem ipsum dolor sit amet consectetur adipisicing elit. Ea labore nesciunt magnam eveniet accusantium placeat blanditiis et iusto. Tempore, id distinctio, dolorem similique sunt aspernatur, quod maiores incidunt fugiat quidem cupiditate voluptatibus dignissimos voluptatem expedita.</p> #}
 				</div>
 			</div>
 		</article>
-		<p class=" p-description2">Lorem ipsum dolor sit amet consectetur adipisicing elit. Ea labore nesciunt magnam eveniet accusantium placeat blanditiis et iusto. Tempore, id distinctio, dolorem similique sunt aspernatur, quod maiores incidunt fugiat quidem cupiditate voluptatibus dignissimos voluptatem expedita.</p>
+		{# <p class=" p-description2">Lorem ipsum dolor sit amet consectetur adipisicing elit. Ea labore nesciunt magnam eveniet accusantium placeat blanditiis et iusto. Tempore, id distinctio, dolorem similique sunt aspernatur, quod maiores incidunt fugiat quidem cupiditate voluptatibus dignissimos voluptatem expedita.</p> #}
 
-</section>
+	</section>
+
+	<div class="d-flex justify-content-around blocYTB ">
+
+		<div class="column ">
+			<div class="d-flex flex-column align-items-center text-center">
+				<iframe name ="ytb1" class="card " width="364" height="205" src="https://www.youtube.com/embed/ryBswgXcUGg" title="MAKING OFF Présentation Action MeltingPhot &#39;Je filme mon métier de Restaurateurs&#39;_ Alès en Cévennes." frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+				<label class ="fw-bold mb-5 labelYtb"for="ytb1">MAKING OFF Présentation Action MeltingPhot 'Je filme mon métier de Restaurateurs'_ Alès en Cévennes.</label>
+			</div>
+		
+			<div class="d-flex flex-column align-items-center text-center">
+				<iframe name ="ytb2" class="card" width="364" height="205" src="https://www.youtube.com/embed/2PyAIHcMWaM" title="INTERVIEW &quot;Je Filme mon futur métier&quot; du Cheffe Yasmine Gurbuz de Tutti Frichti à Alès." frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+				<label class ="fw-bold mb-5 labelYtb" for="ytb2">INTERVIEW "Je Filme mon futur métier" du Cheffe Yasmine Gurbuz de Tutti Frichti à Alès.</label>
+			</div>
+		</div>
+
+		<div class="column ">
+			<div class="d-flex flex-column align-items-center text-center">
+				<iframe name ="ytb3" class="card " width="364" height="205" src="https://www.youtube.com/embed/8EV_8ePSPKs" title="INTERVIEW &quot;Je Filme mon Futur métier&quot; de Cheffe avec Solène Séguin - Le Comptoir des Halles à Alès." frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+				<label class ="fw-bold mb-5 labelYtb" for="ytb3">INTERVIEW "Je Filme mon Futur métier" de Cheffe avec Solène Séguin - Le Comptoir des Halles à Alès.</label>
+			</div>
+			<div class="d-flex flex-column align-items-center text-center">
+				<iframe name ="ytb4" class="card" width="364" height="205" src="https://www.youtube.com/embed/UUoQfUQ94w0" title="INTERVIEW &quot;Je Filme mon futur métier&quot; du Chef Abdel Choualli, restaurant Le Roi du Couscous à Alès." frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+				<label class ="fw-bold mb-5 labelYtb" for="ytb4">INTERVIEW "Je Filme mon futur métier" du Chef Abdel Choualli, restaurant Le Roi du Couscous à Alès.</label>
+			</div>
+		</div>
+
+		<div class="column ">
+			<div class="d-flex flex-column align-items-center text-center">
+				<iframe name ="ytb5" class="card " width="364" height="205" src="https://www.youtube.com/embed/lt1XKRMzuVo" title="INTERVIEW 30secondes &quot;Je Filme mon futur métier&quot; du Chef Sébastien Rath, Restaurant Le Riche à Alès." frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+				<label class ="fw-bold mb-5 labelYtb" class ="fw-bold mb-5" for="ytb5">INTERVIEW 30secondes "Je Filme mon futur métier" du Chef Sébastien Rath, Restaurant Le Riche à Alès.</label>
+			</div>
+			<div class="d-flex flex-column align-items-center text-center">
+				<iframe name ="ytb6" class="card" width="364" height="205" src="https://www.youtube.com/embed/lrVyo7FBst4" title="INTERVIEW &quot;Je Filme mon futur métier&quot; de la Cheffe Morgan Carte du Bistrot d&#39;Urban Parc à Alès." frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+				<label class ="fw-bold mb-5 labelYtb" for="ytb6">INTERVIEW "Je Filme mon futur métier" de la Cheffe Morgan Carte du Bistrot d'Urban Parc à Alès.</label>
+			</div>
+		</div>
+	</div>
 
 
 <!-- Footer -->
