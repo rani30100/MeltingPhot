@@ -1,0 +1,166 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello ActionsController!{% endblock %}
+
+{% block body %}
+{# Navbar #}
+	<nav class="navbar navbar-expand-lg bg-body-tertiary">
+		<div class="d-flex justy-content-center w-100" id="">
+			<ul class="navbar-nav me-auto mb-2 mb-lg-0 w-100 d-flex justify-content-center align-items-center">
+				<li>
+					<img class="logo me-2" src="{{ asset('img/logo.png')}}" width alt="">
+				</li>
+				<li class="nav-item me-2 meltingphot">
+					<a class="nav-link active" aria-current="page" href="/fr">MELTINGPHOT</a>
+				</li>
+				<li class="nav-item me-2">
+					<a class="nav-link" href="/actions">ACTIONS</a>
+				</li>
+				{# <li class="nav-item dropdown me-2">
+								<a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+									POUR QUI ?
+								</a>
+							</li> #}
+				<li class="nav-item me-2">
+					<a class="nav-link" href="#">PARTENAIRES</a>
+				</li>
+				<li class="nav-item me-2">
+					<a class="nav-link" href="#">NOUS SOUTENIR</a>
+				</li>
+				<li class="nav-item me-2">
+					<a class="nav-link" href="#">CONTACT</a>
+				</li>
+
+				{# <form class="d-flex nav-items me-2 form" role="search">
+					<input class="form-control me-2 search" type="search" placeholder="Ma recherche..." aria-label="Search">
+					<button class="btn btn-outline-success search-btn" type="submit">Rechercher</button>
+				</form>
+
+				<li class="nav-item ">
+					<a id="language-link" class="p-2" href="{{ path('app_home_page_e_n') }}">
+						<img class="flag" src="{{ asset('img/eng.png') }}">
+					</a>
+				</li> #}
+
+				{# <li class="nav-item ">
+					<a id="language-link" class="p-2" href="{{ path('app_home_page') }}">
+						<img id="flag" src="{{ asset('img/drapeau.png') }}">
+					</a>
+				</li> #}
+			</ul>
+		</div>
+	</nav>
+
+    <div class="d-flex justify-content-sm-center actions-videos">
+
+	<div class="column" style="height:544px">
+			<div class="d-flex flex-column align-items-center text-center">
+				<iframe name ="ytb1" class="card " width="364" height="205" src="https://www.youtube.com/embed/ryBswgXcUGg" title="MAKING OFF Présentation Action MeltingPhot &#39;Je filme mon métier de Restaurateurs&#39;_ Alès en Cévennes." frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+				<label class ="fw-bold mb-5 labelYtb"for="ytb1">MAKING OFF Présentation Action MeltingPhot 'Je filme mon métier de Restaurateurs'_ Alès en Cévennes.</label>
+			</div>
+			<div class="d-flex flex-column align-items-center text-center">
+            	<iframe name ="ytb2" class="card" width="364" height="205" src="https://www.youtube.com/embed/2PyAIHcMWaM" title="INTERVIEW &quot;Je Filme mon futur métier&quot; du Cheffe Yasmine Gurbuz de Tutti Frichti à Alès." frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+				<label class ="fw-bold mb-5 labelYtb" for="ytb2">INTERVIEW "Je Filme mon futur métier" du Cheffe Yasmine Gurbuz de Tutti Frichti à Alès.</label>
+			</div>
+		</div>
+		<div class="column ">
+			<div class="d-flex flex-column align-items-center text-center">
+				<iframe name ="ytb3" class="card " width="364" height="205" src="https://www.youtube.com/embed/8EV_8ePSPKs" title="INTERVIEW &quot;Je Filme mon Futur métier&quot; de Cheffe avec Solène Séguin - Le Comptoir des Halles à Alès." frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+				<label class ="fw-bold mb-5 labelYtb" for="ytb3">INTERVIEW "Je Filme mon Futur métier" de Cheffe avec Solène Séguin - Le Comptoir des Halles à Alès.</label>
+			</div>
+			<div class="d-flex flex-column align-items-center text-center">
+				<iframe name ="ytb4" class="card" width="364" height="205" src="https://www.youtube.com/embed/UUoQfUQ94w0" title="INTERVIEW &quot;Je Filme mon futur métier&quot; du Chef Abdel Choualli, restaurant Le Roi du Couscous à Alès." frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+				<label class ="fw-bold mb-5 labelYtb" for="ytb4">INTERVIEW "Je Filme mon futur métier" du Chef Abdel Choualli, restaurant Le Roi du Couscous à Alès.</label>
+			</div>
+		</div>
+
+		<div class="column ">
+			<div class="d-flex flex-column align-items-center text-center">
+				<iframe name ="ytb5" class="card " width="364" height="205" src="https://www.youtube.com/embed/lt1XKRMzuVo" title="INTERVIEW 30secondes &quot;Je Filme mon futur métier&quot; du Chef Sébastien Rath, Restaurant Le Riche à Alès." frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+				<label class ="fw-bold mb-5 labelYtb" class ="fw-bold mb-5" for="ytb5">INTERVIEW 30secondes "Je Filme mon futur métier" du Chef Sébastien Rath, Restaurant Le Riche à Alès.</label>
+			</div>
+			<div class="d-flex flex-column align-items-center text-center">
+				<iframe name ="ytb6" class="card" width="364" height="205" src="https://www.youtube.com/embed/lrVyo7FBst4" title="INTERVIEW &quot;Je Filme mon futur métier&quot; de la Cheffe Morgan Carte du Bistrot d&#39;Urban Parc à Alès." frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+				<label class ="fw-bold mb-5 labelYtb" for="ytb6">INTERVIEW "Je Filme mon futur métier" de la Cheffe Morgan Carte du Bistrot d'Urban Parc à Alès.</label>
+			</div>
+		</div>
+	</div>
+
+
+
+
+
+
+
+    {# Footer #}
+    <footer class="text-center text-lg-start bg-light text-muted">
+	<section class="p-4 border-top">
+		<div
+			class="text-center text-md-start mt-5">
+			<!-- Grid row -->
+			<div class="row mt-3 d-flex">
+				<div class="d-flex justify-content-center">
+					<!-- Links -->
+					<img src="{{ asset('img/logo.png')}}" class="fw-bold mb-4"></img>
+			</div>
+			<!-- Grid column -->
+			<div class="d-flex justify-content-center ">
+				<p class="text-contact">MELTINGPHOT est un acteur important sur le territoire en mennant des projets d'éducations par l'image auprès des associations, collectivités et entreprises.</p>
+			</div>
+			<div class="d-flex justify-content-center mb-3">
+				<a href="https://www.facebook.com/MeltingPhot/?locale=fr_FR" class="me-4 text-reset">
+					<i class="fab fa-facebook-f"></i>
+				</a>
+				<a href="https://twitter.com/melting_phot?lang=fr" class="me-4 text-reset">
+					<i class="fab fa-twitter"></i>
+				</a>
+				<a href="https://www.instagram.com/meltingphot/?hl=fr" class="me-4 text-reset">
+					<i class="fab fa-instagram"></i>
+				</a>
+				<a href="https://www.linkedin.com/company/meltingphot" class="me-4 text-reset">
+					<i class="fab fa-linkedin"></i>
+				</a>
+				{# <a href="" class="me-4 text-reset">
+					<i class="fab fa-github"></i>
+				</a> #}
+			</div>
+			<!-- Grid column -->
+			<div
+				class="col-md-4 col-lg-3 col-xl-3 mx-auto mb-md-0 mb-4 contact-2">
+				<!-- Links -->
+				<p>
+					<i class="fas fa-home me-3"></i>15 Route de bagnols, 30100 Alès</p>
+				<p>
+					<i class="fas fa-envelope me-3"></i>info@example.com</p>
+				<p>
+					<i class="fas fa-phone me-3"></i>06 64 21 93 75</p>
+
+			</div>
+			<!-- Grid column -->
+		</div>
+		<!-- Grid row -->
+	</div>
+	<div
+		class="info-contact2 ">
+		<!-- Links -->
+		<p class="ms-3">
+			<i class="fas fa-home me-2"></i>15 Route de bagnols, 30100 Alès</p>
+		<p class="ms-3">
+			<i class="fas fa-envelope me-2"></i>info@example.com</p>
+		<p class="ms-3">
+			<i class="fas fa-phone me-2"></i>06 64 21 93 75</p>
+	</div>
+</section>
+<!-- Section: Links  -->
+
+<!-- Copyright -->
+<div class="text-center p-4 fw-bold text-white d-flex flex-column align-items-center" style="background-color: #D00A4B;">
+
+	Tous droits réservés © 2023 @MeltingPhot
+</a>
+<p class="fst-italic fw-light fs-6 text-white copyright-text">En effet, tous les éléments présents sur Internet (textes, images, vidéos, extraits sonores, codes informatiques…)
+	sont de facto soumis au droit d’auteur, même si l’accès est libre, gratuit et sans mention particulière.</p>
+</div>
+<!-- Copyright --></footer><!-- Footer -->{# js #}</body></html>
+
+{% endblock %}

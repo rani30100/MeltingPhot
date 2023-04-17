@@ -196,7 +196,8 @@ body .btn_know-more {
   display: flex;
   flex-direction: column;
   align-self: center;
-  margin-bottom: 10rem;
+  margin-bottom: 2rem;
+  margin-top: 4rem;
 }
 
 swiper-container {
@@ -308,6 +309,10 @@ swiper-slide iframe {
   max-width: 770px;
 }
 
+footer .footer-logo {
+  display: flex !important;
+  justify-content: center !important;
+}
 footer .info-contact2 {
   justify-content: center;
 }
@@ -468,6 +473,9 @@ footer .text-contact {
   }
   h1 {
     font-size: 32px;
+  }
+  .actions-videos {
+    flex-direction: column;
   }
 }
 body .parent-article .block-article_description {
