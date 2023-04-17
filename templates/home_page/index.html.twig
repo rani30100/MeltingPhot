@@ -7,6 +7,11 @@
 
 {% endblock %}
 {% block body %}
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.9.0/slick.min.css"/>
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.9.0/slick.min.js"></script>
+
+
 	<nav class="navbar navbar-expand-lg bg-body-tertiary">
 		<div class="d-flex justy-content-center w-100" id="">
 			<ul class="navbar-nav me-auto mb-2 mb-lg-0 w-100 d-flex justify-content-center align-items-center">
@@ -55,8 +60,15 @@
 	</nav>
 
 	<section class="main">
-		<section class="know-more d-flex justify-content-center">
-			<div class="know-more_box d-flex flex-column align-self-center align-items-end">
+		<section class="know-more">
+
+		<div class="know-more-box_btn" style="margin-left: 44%;width: 200px;height: 318px;">
+			<a href="#" class="btn btn-danger know-more_btn" style="/*! align-content: ; */margin-top: 115%;">En savoir plus</a>
+		</div>
+		
+	
+		</section>
+			{# <div class="know-more_box d-flex flex-column align-self-center align-items-end">
 				<div class="d-flex flex-column mb-5 know-more-content align-items-end">
 					<h3 class="ms-3 ">ACTIONS DE
 					</h2>
@@ -70,15 +82,14 @@
 						<a href="#" class="btn btn-danger know-more_btn align-self-center">En savoir plus</a>
 					</div>
 				</div>
-			</div>
-		</section>
+			</div> #}
 		{# <h1>{% trans %}Bienvenue sur mon site{% endtrans %}</h1> #}
 	</section>
-	<section class="banniere">
-		<iframe class="video-background" width="560" height="315" src="https://www.youtube.com/embed/ryBswgXcUGg?autoplay=1&mute=1" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+	{# <section class="banniere">
+		<iframe class="video-background" width="100%" height="315" src="https://www.youtube.com/embed/ryBswgXcUGg?autoplay=1&mute=1" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 		<div class="overlay"></div>
 		
-	</section>
+	</section> #}
 
 
 
@@ -107,7 +118,7 @@
 
 		{# 2ème article  #}
 		<article class="d-flex flex-row-reverse mt-4 article2">
-			<div class="d-flex flex-row-reverse bloc-img">
+			<div class="d-flex flex-row-reverse bloc-img"style="margin-top: -25px;">
 				<img id="g" class="float-end article2-img" src="{{asset('img/ODONYMES _Image_Vignette_Page accueil meltingphot_je Filme mon futur métier.png')}}" alt="">
 				<img class="article2-img2" src="{{asset('img/rond.png')}}" alt="">
 			</div>
@@ -135,7 +146,7 @@
 			<div class="d-flex flex-column justify-content-center article-box">
 				<div class='article-title'>
 					<span class="numbers">03</span>
-					<h3 class="color1">JE FILME MON FUTUR METIER</h3>
+					<h3 class="color1">Projets Multiculutrels</h3>
 				</div>
 				<div>
 					<p class="block-article_description"> Des projets culturels d’envergure ayant pour finalité une production audiovisuelle complexe : clip vidéo, court-métrage, film d’animation, exposition interactive, magazine, … et permettant l’apprentissage de disciplines multiples (vidéo, photo, lightpainting, vidéopainting, écriture, danse, graff, stopmotion, montage, chant, musique, prise de son, …)</p>
@@ -185,6 +196,43 @@
 			</div>
 		</div>
 	</div>
+{# Carrousel  5 videos #}
+<swiper-container class="MySwiper swiper-centered" slides-per-view="3">
+	
+		<swiper-slide class="slide-img swiper-slide-active" style="width: 400px;" role="group" aria-label="1 / 5">
+		</swiper-slide>
+		
+		<swiper-slide class="slide-img" style="widht:400px">
+		</swiper-slide>
+
+		<swiper-slide class="slide-img" style="widht:400px">
+		</swiper-slide>
+
+		<swiper-slide class="slide-img" style="widht:400px">
+		</swiper-slide>
+
+		<swiper-slide class="slide-img" style="widht:400px">
+		</swiper-slide>
+	
+	<div class="swiper-button-prev">Prev</div>
+  	<div class="swiper-button-next">Next</div>
+
+  </swiper-container>
+  
+
+
+  <script src="https://cdn.jsdelivr.net/npm/swiper@9/swiper-element-bundle.min.js"></script>
+  {# on personnalise les btns #}
+  <script>
+  var mySwiper = new Swiper('.swiper-container', {
+    // Désactiver les flèches de navigation par défaut
+    navigation: {
+      nextEl: '.swiper-button-next',
+      prevEl: '.swiper-button-prev',
+    },
+  });
+</script>
+
 
 
 <!-- Footer -->

@@ -3,6 +3,9 @@
   color: #D00A4B;
 }
 
+body {
+  background-color: #f0f0f0;
+}
 body .navbar .logo {
   width: 120px;
   margin-top: 7px;
@@ -20,60 +23,31 @@ body .navbar .form .search-btn {
   height: fit-content;
   align-self: center;
 }
+body .bloc-imgTop {
+  width: 600px;
+  height: 400px;
+  background-image: url(../img/HébéMag.png);
+  background-size: cover;
+}
 body .main .know-more {
-  min-height: 500px;
+  min-height: 318px;
   width: 100%;
-  background-color: #f0f0f0;
+  background-image: url(../img/channels4_banner.jpg);
+  background-repeat: no-repeat;
+  background-size: contain;
+  align-items: center;
 }
-body .main .know-more .know-more_box {
-  width: 30%;
-  margin-left: 14rem;
-}
-body .main .know-more .know-more_box .know-more-content h1 {
-  font-weight: bolder;
-  font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS", sans-serif;
-  margin-bottom: -5px;
-}
-body .main .know-more .know-more_box .know-more-content .sign {
-  align-self: center;
-  margin-left: -14rem;
-  font-size: 2rem;
-}
-body .main .know-more .know-more_box .know-more-content h2 {
-  margin-top: -2rem;
-  margin-right: 40px;
-  margin-left: 35px;
-  font-size: 2rem;
-  font-weight: bolder;
-  font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS", sans-serif;
-  margin-top: -3px;
-}
-body .main .know-more .know-more_box .know-more-content h3 {
-  align-self: baseline;
-  padding-left: 69px;
-  font-weight: initial;
-}
-body .main .know-more .know-more_box .know-more-content .h3 {
-  align-self: flex-end;
-  margin-right: 59px;
-}
-body .main .know-more .know-more_box .know-more-content .know-more-content_description {
-  width: 300px;
-  text-align: justify;
-  margin-right: 59px;
-}
-body .main .know-more .know-more_box .know-more-content .know-more_btn {
-  margin-right: 59px;
-}
-body .main .btn_know-more {
+body .btn_know-more {
   width: 125px;
 }
-body .banniere {
+
+.banniere {
   position: relative;
   height: 600px;
   overflow: hidden;
 }
-body .video-background {
+
+.video-background {
   position: absolute;
   top: 0;
   left: 0;
@@ -81,7 +55,8 @@ body .video-background {
   height: 100%;
   z-index: -1;
 }
-body .overlay {
+
+.overlay {
   position: absolute;
   top: 0;
   left: 0;
@@ -90,17 +65,20 @@ body .overlay {
   background-color: rgba(0, 0, 0, 0.5);
   z-index: 1;
 }
-body .content {
+
+.content {
   position: relative;
   z-index: 2;
 }
-body .container {
+
+.container {
   height: 300px;
   width: 200px;
   background-color: grey;
   box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
 }
-body .parent-article {
+
+.parent-article {
   margin-left: 15%;
   margin-right: 15%;
   height: -moz-fit-content;
@@ -108,26 +86,26 @@ body .parent-article {
   margin-top: 5rem;
   margin-bottom: 5rem;
 }
-body .parent-article .article {
+.parent-article .article {
   margin-top: 3rem;
   margin-bottom: 3rem;
 }
-body .parent-article .article img {
+.parent-article .article img {
   width: 300px;
   height: 300px;
 }
-body .parent-article .article .article-title {
-  margin-top: 4rem;
+.parent-article .article .article-title {
+  margin-top: 6rem;
   margin-left: -184px;
 }
-body .parent-article .article #forms-svg {
+.parent-article .article #forms-svg {
   z-index: 1;
 }
-body .parent-article .article #forms-svg2 {
+.parent-article .article #forms-svg2 {
   margin-left: -93px;
   z-index: 0;
 }
-body .parent-article .numbers {
+.parent-article .numbers {
   display: block;
   border-bottom: 2px solid black;
   border-bottom-width: 3px;
@@ -135,22 +113,22 @@ body .parent-article .numbers {
   width: 5rem;
   margin-bottom: 11px;
 }
-body .parent-article .block-article {
+.parent-article .block-article {
   margin-left: -6rem;
   margin-top: 3rem;
 }
-body .parent-article .block-article h3.color1 {
+.parent-article .block-article h3.color1 {
   color: #D00A4B;
   padding-bottom: 9px;
 }
-body .parent-article .block-article_rond {
+.parent-article .block-article_rond {
   align-self: end;
   margin-right: -6rem;
   display: flex;
   flex-direction: column;
   margin-top: 4rem;
 }
-body .parent-article .block-article_rond .number2 {
+.parent-article .block-article_rond .number2 {
   align-self: end;
   flex-direction: row-reverse;
   display: flex;
@@ -160,40 +138,42 @@ body .parent-article .block-article_rond .number2 {
   width: 5rem;
   margin-bottom: 11px;
 }
-body .parent-article .block-article_rond h3 {
+.parent-article .block-article_rond h3 {
   align-self: flex-end;
   color: #D00A4B;
   padding-bottom: 9px;
 }
-body .parent-article .block-article_description {
+.parent-article .block-article_description {
   margin-left: -182px;
   width: 393px;
   text-align: justify;
 }
-body .parent-article .block-article_description2 {
+.parent-article .block-article_description2 {
   max-width: 32rem;
   text-align: justify;
 }
-body .article2-main {
+
+.article2-main {
   margin-top: 130px;
   margin-right: -110px;
   align-self: flex-start;
 }
-body .article2 .article2-title {
+
+.article2 .article2-title {
   margin-top: -63px;
   text-align: end;
 }
-body .article2 .article2-title span {
+.article2 .article2-title span {
   display: block;
   border-bottom: 2px solid black;
   border-bottom-width: 3px;
   font-weight: bolder;
   width: 5rem;
 }
-body .article2 .article2-title h3 {
+.article2 .article2-title h3 {
   color: #D00A4B;
 }
-body .article2 .article2_description {
+.article2 .article2_description {
   min-width: 228px;
   margin-left: 1rem;
   text-align: justify;
@@ -201,20 +181,101 @@ body .article2 .article2_description {
   width: 400px;
   margin-right: 100px;
 }
-body .article2 .article2_description2 {
+.article2 .article2_description2 {
   text-align: justify;
   width: 512px;
   align-self: end;
   padding-right: 124px;
 }
-body .article3 {
+
+.article3 {
   margin-top: 3rem;
 }
-body .column {
+
+.column {
   display: flex;
   flex-direction: column;
   align-self: center;
   margin-bottom: 10rem;
+}
+
+swiper-container {
+  width: 100%;
+  height: 400px;
+}
+
+swiper-slide {
+  text-align: center;
+  font-size: 18px;
+  background: #fff;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+swiper-slide iframe {
+  display: block;
+  width: 100%;
+  height: 100%;
+  -o-object-fit: cover;
+     object-fit: cover;
+}
+
+.videos {
+  width: 100%;
+  height: 290px;
+}
+
+.mySwiper {
+  width: 80vw;
+  background-color: white !important;
+  margin: 0 auto;
+}
+
+:host ::ng-deep .swiper-wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.swiper-button-prev,
+.swiper-button-next {
+  border: 3px solid black;
+  width: 40px;
+  height: 80px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 18px;
+  writing-mode: vertical-lr; /* Pour écrire le texte en vertical */
+  text-orientation: upright; /* Pour afficher le texte dans le bon sens */
+}
+
+.swiper-button-prev {
+  left: 10px;
+}
+
+.swiper-button-next {
+  right: 10px;
+}
+
+.slide-img {
+  background-repeat: no-repeat;
+  width: 70%;
+  height: 100%;
+  background-size: cover;
+  background-image: url(../img/[IPROJET\ MULTICULTUREL\ Meltingphot]\ _Image_Vignette_Page\ accueil\ meltingphot_je\ Filme\ mon\ futur\ métier\(300 × 300 px\).png);
+  width: 230px !important;
+  height: auto !important;
+  margin-right: 18px !important;
+  padding: 0 !important;
+}
+
+.swiper-pagination-bullet-active {
+  background-color: white !important;
 }
 
 footer .info-contact2 {
@@ -225,6 +286,9 @@ footer .text-contact {
 }
 
 @media screen and (min-width: 360px) and (max-width: 699px) {
+  .know-more {
+    display: none;
+  }
   body .article2 .article2-title {
     margin-top: -183px;
     margin-right: -5px;
@@ -242,10 +306,6 @@ footer .text-contact {
   }
   body .main {
     background-color: #f0f0f0;
-  }
-  body .know-more {
-    margin-left: 15%;
-    margin-right: 15%;
   }
   body .parent-article {
     margin-left: 0;

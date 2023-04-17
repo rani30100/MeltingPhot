@@ -5,6 +5,7 @@ $rouge : #D00A4B;
 }
 
 body {
+    background-color: #f0f0f0;
     .navbar {
         .logo {
             width: 120px;
@@ -27,74 +28,28 @@ body {
 
         }
     }
-
+    .bloc-imgTop{
+        width: 600px;
+        height: 400px;
+        background-image: url(../img/HébéMag.png);
+        background-size:cover;
+    }
+    
     .main {
-
-        //1er Bloc de page
+       
+    //1er Bloc de page
         .know-more {
-            min-height: 500px;
+         
+            min-height: 318px;
             width: 100%;
-            background-color: #f0f0f0;
+            background-image: url(../img/channels4_banner.jpg);
+            background-repeat: no-repeat;
+            background-size: contain;
+            align-items: center;
 
-            .know-more_box {
-                width: 30%;
-                margin-left: 14rem;
-                //Concernce Tous les h1 de la class know-more_box
-
-
-                .know-more-content {
-                    h1 {
-                        font-weight: bolder;
-                        font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
-                        margin-bottom: -5px;
-                    }
-
-                    //Sign &
-                    .sign {
-                        align-self: center;
-                        margin-left: -14rem;
-                        font-size: 2rem;
-                    }
-
-                    //Concernce Tous les h2 de la class know-more_box
-                    h2 {
-                        margin-top: -2rem;
-                        margin-right: 40px;
-                        margin-left: 35px;
-                        font-size: 2rem;
-                        font-weight: bolder;
-                        font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
-                        margin-top: -3px;
-                    }
-
-                    //Concernce Tous les h3 de la class know-more_box
-                    h3 {
-                        align-self: baseline;
-                        padding-left: 69px;
-                        font-weight: initial;
-
-                    }
-
-                    // Ce H3 en dessous est pour le texte "Par L'image"
-                    .h3 {
-                        align-self: flex-end;
-                        margin-right: 59px;
-                    }
-
-                    .know-more-content_description {
-                        width: 300px;
-                        text-align: justify;
-                        margin-right: 59px;
-                    }
-
-                    .know-more_btn {
-                        margin-right: 59px;
-                    }
-
-                }
-                
-            }
         }
+
+    }
 
         // Bouton en savoir plus
         .btn_know-more {
@@ -156,7 +111,7 @@ body {
             }
 
             .article-title {
-                margin-top: 4rem;
+                margin-top: 6rem;
                 margin-left: -184px;
             }
 
@@ -289,12 +244,84 @@ body {
     align-self: center;
     margin-bottom: 10rem;
   }
+
+  //le caroussel
+
+  swiper-container {
+    width: 100%;
+    height: 400px;
+  }
+
+  swiper-slide {
+    text-align: center;
+    font-size: 18px;
+    background: #fff;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  swiper-slide iframe {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+ .videos{
+    width: 100%;
+    height: 290px;
+ }
+ .mySwiper{
+    width: 80vw;
+    background-color: white !important;
+    margin: 0 auto;
+  
+ }
+ :host ::ng-deep .swiper-wrapper {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  
+ .swiper-button-prev,
+ .swiper-button-next {
+   border: 3px solid black;
+   width: 40px;
+   height: 80px;
+   display: flex;
+   align-items: center;
+   justify-content: center;
+   position: absolute;
+   top: 50%;
+   transform: translateY(-50%);
+   font-size: 18px;
+   writing-mode: vertical-lr; /* Pour écrire le texte en vertical */
+   text-orientation: upright; /* Pour afficher le texte dans le bon sens */
+ }
  
-
-
-
+ .swiper-button-prev {
+   left: 10px;
+ }
+ 
+ .swiper-button-next {
+   right: 10px;
+ }
+  
+ .slide-img{
+    background-repeat: no-repeat;
+    width: 70%;
+    height: 100%;
+    background-size: cover;
+    background-image: url(../img/[IPROJET\ MULTICULTUREL\ Meltingphot]\ _Image_Vignette_Page\ accueil\ meltingphot_je\ Filme\ mon\ futur\ métier\(300\ ×\ 300\ px\).png);
+    width: 230px !important;
+    height: auto !important;
+    margin-right: 18px !important;
+    padding: 0 !important;
 }
-
+.swiper-pagination-bullet-active {
+    background-color: white !important;
+  }
+ 
 
 // Footer
 footer {
@@ -405,6 +432,11 @@ footer {
 
 // /* Styles for screens with width between 360px and 699px */
 @media screen and (min-width: 360px) and (max-width: 699px) {
+    .know-more{
+            display: none;
+     
+    }
+   
     body .article2 .article2-title {
         margin-top: -183px;
         margin-right: -5px;
@@ -425,12 +457,10 @@ footer {
         //Premier bloc
         .main {
             background-color: #f0f0f0;
+           
         }
 
-        .know-more {
-            margin-left: 15%;
-            margin-right: 15%;
-        }
+     
 
         // 1 er article 
         .parent-article {
