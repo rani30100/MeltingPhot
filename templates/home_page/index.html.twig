@@ -160,7 +160,7 @@
 
 	</section>
 
-	<div class="d-flex justify-content-around blocYTB ">
+	{# <div class="d-flex justify-content-around blocYTB ">
 
 		<div class="column ">
 			<div class="d-flex flex-column align-items-center text-center">
@@ -195,43 +195,24 @@
 				<label class ="fw-bold mb-5 labelYtb" for="ytb6">INTERVIEW "Je Filme mon futur métier" de la Cheffe Morgan Carte du Bistrot d'Urban Parc à Alès.</label>
 			</div>
 		</div>
-	</div>
+	</div> #}
 {# Carrousel  5 videos #}
-<swiper-container class="MySwiper swiper-centered" slides-per-view="3">
-	
-		<swiper-slide class="slide-img swiper-slide-active" style="width: 400px;" role="group" aria-label="1 / 5">
-		</swiper-slide>
-		
-		<swiper-slide class="slide-img" style="widht:400px">
-		</swiper-slide>
-
-		<swiper-slide class="slide-img" style="widht:400px">
-		</swiper-slide>
-
-		<swiper-slide class="slide-img" style="widht:400px">
-		</swiper-slide>
-
-		<swiper-slide class="slide-img" style="widht:400px">
-		</swiper-slide>
-	
-	<div class="swiper-button-prev">Prev</div>
-  	<div class="swiper-button-next">Next</div>
-
-  </swiper-container>
-  
 
 
-  <script src="https://cdn.jsdelivr.net/npm/swiper@9/swiper-element-bundle.min.js"></script>
-  {# on personnalise les btns #}
-  <script>
-  var mySwiper = new Swiper('.swiper-container', {
-    // Désactiver les flèches de navigation par défaut
-    navigation: {
-      nextEl: '.swiper-button-next',
-      prevEl: '.swiper-button-prev',
-    },
-  });
-</script>
+<div class=" w-100 h-400 bg-white bloc-carrousel">
+  <div class="row d-flex justify-content-center">
+    <div class="col-2 columns1">
+    </div>
+    <div class="col-2 columns2">
+    </div>
+    <div class="col-2 columns3">
+    </div>
+    <div class="col-2 columns4">
+    </div>
+    <div class="col-2 columns5">
+    </div>
+  </div>
+</div>
 
 
 
@@ -298,11 +279,11 @@
 <!-- Section: Links  -->
 
 <!-- Copyright -->
-<div class="text-center p-4 fw-bold" style="background-color: #D00A4B;">
+<div class="text-center p-4 fw-bold text-white d-flex flex-column align-items-center" style="background-color: #D00A4B;">
 
 	Tous droits réservés © 2023 @MeltingPhot
 </a>
-<p class="fst-italic fw-light fs-6">En effet, tous les éléments présents sur Internet (textes, images, vidéos, extraits sonores, codes informatiques…)
+<p class="fst-italic fw-light fs-6 text-white copyright-text">En effet, tous les éléments présents sur Internet (textes, images, vidéos, extraits sonores, codes informatiques…)
 	sont de facto soumis au droit d’auteur, même si l’accès est libre, gratuit et sans mention particulière.</p>
 </div>
 <!-- Copyright --></footer><!-- Footer -->{# js #}</body></html>{% endblock %}

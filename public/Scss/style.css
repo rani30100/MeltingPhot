@@ -250,8 +250,10 @@ swiper-slide iframe {
   top: 50%;
   transform: translateY(-50%);
   font-size: 18px;
-  writing-mode: vertical-lr; /* Pour écrire le texte en vertical */
-  text-orientation: upright; /* Pour afficher le texte dans le bon sens */
+  writing-mode: vertical-lr;
+  /* Pour écrire le texte en vertical */
+  text-orientation: upright;
+  /* Pour afficher le texte dans le bon sens */
 }
 
 .swiper-button-prev {
@@ -276,6 +278,34 @@ swiper-slide iframe {
 
 .swiper-pagination-bullet-active {
   background-color: white !important;
+}
+
+.container {
+  height: 400px;
+}
+
+.columns1,
+.columns2,
+.columns3,
+.columns4,
+.columns5 {
+  background-image: url(../img/IMG_Miniature_Meltingphot__Image_Vignette_Page_accueil_meltingphot_je_Filme_mon_futur_metier300_300_px.png);
+  background-repeat: no-repeat;
+  height: 335px;
+  margin-right: -35px;
+  margin-top: 3rem;
+  margin-left: 3rem;
+  background-size: cover;
+  width: 245px;
+  margin-bottom: 3rem;
+}
+
+.bloc-carrousel {
+  margin-top: -105px;
+}
+
+.copyright-text {
+  max-width: 770px;
 }
 
 footer .info-contact2 {
@@ -331,7 +361,9 @@ footer .text-contact {
     text-align: center;
     font-size: 100%;
     color: #D00A4B;
-    max-width: 372px;
+    margin-left: 170px;
+    width: -moz-max-content;
+    width: max-content;
   }
   body .article-title .numbers {
     margin-left: 52px;
@@ -377,7 +409,7 @@ footer .text-contact {
   }
   body .article2 .article2-title_nom {
     font-size: large;
-    margin-right: 14px;
+    margin-right: 119px;
     margin-top: 7px;
   }
   body .labelYtb {
@@ -410,8 +442,17 @@ footer .text-contact {
     margin-left: 0;
     width: 100%;
   }
-  .boxe-video_1, .boxe-video_2, .boxe-video_3 {
+  .boxe-video_1,
+  .boxe-video_2,
+  .boxe-video_3 {
     align-items: center;
+  }
+  .columns1,
+  .columns2,
+  .columns3,
+  .columns4,
+  .columns5 {
+    margin-left: 0px;
   }
   .info-contact2 {
     display: none;
@@ -421,7 +462,8 @@ footer .text-contact {
     text-align: center;
     font-weight: bold;
   }
-  h1, h2 {
+  h1,
+  h2 {
     align-self: center;
   }
   h1 {
@@ -466,4 +508,33 @@ body .parent-article .block-article_description {
   .contact-2 {
     display: none;
   }
+}
+@media (max-width: 767px) {
+  .carousel-inner .carousel-item > div {
+    display: none;
+  }
+  .carousel-inner .carousel-item > div:first-child {
+    display: block;
+  }
+}
+.carousel-inner .carousel-item.active,
+.carousel-inner .carousel-item-next,
+.carousel-inner .carousel-item-prev {
+  display: flex;
+}
+
+/* medium and up screens */
+@media (min-width: 768px) {
+  .carousel-inner .carousel-item-end.active,
+  .carousel-inner .carousel-item-next {
+    transform: translateX(25%);
+  }
+  .carousel-inner .carousel-item-start.active,
+  .carousel-inner .carousel-item-prev {
+    transform: translateX(-25%);
+  }
+}
+.carousel-inner .carousel-item-end,
+.carousel-inner .carousel-item-start {
+  transform: translateX(0);
 }/*# sourceMappingURL=style.css.map */
