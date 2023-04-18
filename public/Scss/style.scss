@@ -362,7 +362,7 @@ swiper-slide iframe {
 }
 
 
-// Footer
+// Footer Accueil
 footer {
     .footer-logo {
     display: flex !important;
@@ -379,6 +379,38 @@ footer {
         max-width: 570px;
     }
 }
+
+
+
+
+//Page Contact
+.bloc-contact{
+    margin-top: 8rem;
+}
+.bloc-adress{
+    margin-top: 6rem;
+    margin-left: -15rem;
+}
+.bloc-adress_place,.bloc-adress_phone{
+    margin-right: 8rem;
+}
+.send-btn{
+    background-color: $rouge;
+    border-radius: 0px;
+    padding: 6px 55px 6px;
+    font-weight: bolder;
+    color: white;
+    line-height: 40px;
+    &:hover{
+        transform: scale(1.05);
+        background-color: $rouge;
+        color: white;
+    }
+}
+.contact-form{
+    margin-bottom: 6rem;
+}
+
 
 @media screen and (min-width: 360px) and (max-width: 699px) {
     .know-more {
@@ -600,11 +632,35 @@ body .parent-article .block-article_description {
     width: fit-content;
     max-width: 400px;
 }
+//----------------------------------------------------------------------------------------------------//
+//PageContact 
 
+.contact-input {
+    border-top: none;
+    border-left: none;
+    border-right: none;
+    background-color: #f0f0f0;
+    padding: 10px 0;
+    border-bottom: 1px solid #666;
+    font-size: 14px;
+    width: 300px;
+    margin-right: 2rem;
+    outline: none;
+    transition: border-color .2s;
 
+    
+      &:active, &:focus {
+        border-bottom-color:black;
+        border-bottom-width:3px!important;
+      }
+}
 
+.contact-Message{
+    width: 50%;
+    margin-top: 40px;
+    padding-bottom: 91px;
 
-
+}
 
 
 

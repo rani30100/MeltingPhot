@@ -320,6 +320,37 @@ footer .text-contact {
   max-width: 570px;
 }
 
+.bloc-contact {
+  margin-top: 8rem;
+}
+
+.bloc-adress {
+  margin-top: 6rem;
+  margin-left: -15rem;
+}
+
+.bloc-adress_place, .bloc-adress_phone {
+  margin-right: 8rem;
+}
+
+.send-btn {
+  background-color: #D00A4B;
+  border-radius: 0px;
+  padding: 6px 55px 6px;
+  font-weight: bolder;
+  color: white;
+  line-height: 40px;
+}
+.send-btn:hover {
+  transform: scale(1.05);
+  background-color: #D00A4B;
+  color: white;
+}
+
+.contact-form {
+  margin-bottom: 6rem;
+}
+
 @media screen and (min-width: 360px) and (max-width: 699px) {
   .know-more {
     display: none;
@@ -483,6 +514,30 @@ body .parent-article .block-article_description {
   width: -moz-fit-content;
   width: fit-content;
   max-width: 400px;
+}
+
+.contact-input {
+  border-top: none;
+  border-left: none;
+  border-right: none;
+  background-color: #f0f0f0;
+  padding: 10px 0;
+  border-bottom: 1px solid #666;
+  font-size: 14px;
+  width: 300px;
+  margin-right: 2rem;
+  outline: none;
+  transition: border-color 0.2s;
+}
+.contact-input:active, .contact-input:focus {
+  border-bottom-color: black;
+  border-bottom-width: 3px !important;
+}
+
+.contact-Message {
+  width: 50%;
+  margin-top: 40px;
+  padding-bottom: 91px;
 }
 
 @media screen and (min-width: 700px) {

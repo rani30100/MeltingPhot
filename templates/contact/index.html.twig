@@ -1,0 +1,201 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}MeltingPhot !
+{% endblock %}
+{% block stylesheets %}
+	<link rel="stylesheet" href="{{ asset('Scss/style.css') }}">
+
+{% endblock %}
+{% block body %}
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.9.0/slick.min.css"/>
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.9.0/slick.min.js"></script>
+
+
+	<nav class="navbar navbar-expand-lg bg-body-tertiary">
+		<div class="d-flex justy-content-center w-100" id="">
+			<ul class="navbar-nav me-auto mb-2 mb-lg-0 w-100 d-flex justify-content-center align-items-center">
+			<li>
+                <a href="/fr">
+                    <img class="logo me-2" src="{{ asset('img/logo.png')}}" width alt="">
+                    </img>
+                </a>
+            </li>
+
+				<li class="nav-item me-2 meltingphot">
+					<a class="nav-link active" aria-current="page" href="/fr">MELTINGPHOT</a>
+				</li>
+				<li class="nav-item me-2">
+					<a class="nav-link" href="/actions">ACTIONS</a>
+				</li>
+				{# <li class="nav-item dropdown me-2">
+								<a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+									POUR QUI ?
+								</a>
+							</li> #}
+				<li class="nav-item me-2">
+					<a class="nav-link" href="#">PARTENAIRES</a>
+				</li>
+				<li class="nav-item me-2">
+					<a class="nav-link" href="#">NOUS SOUTENIR</a>
+				</li>
+				<li class="nav-item me-2">
+					<a class="nav-link" href="/contact">CONTACT</a>
+				</li>
+
+				{# <form class="d-flex nav-items me-2 form" role="search">
+					<input class="form-control me-2 search" type="search" placeholder="Ma recherche..." aria-label="Search">
+					<button class="btn btn-outline-success search-btn" type="submit">Rechercher</button>
+				</form>
+
+				<li class="nav-item ">
+					<a id="language-link" class="p-2" href="{{ path('app_home_page_e_n') }}">
+						<img class="flag" src="{{ asset('img/eng.png') }}">
+					</a>
+				</li> #}
+
+				{# <li class="nav-item ">
+					<a id="language-link" class="p-2" href="{{ path('app_home_page') }}">
+						<img id="flag" src="{{ asset('img/drapeau.png') }}">
+					</a>
+				</li> #}
+			</ul>
+		</div>
+	</nav>
+
+<iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2863.7722805166513!2d4.101080076874332!3d44.12931897108358!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x12b4425109d4d983%3A0x365da74f82b38f13!2s15%20Rte%20de%20Bagnols%2C%2030100%20Al%C3%A8s!5e0!3m2!1sfr!2sfr!4v1681739820341!5m2!1sfr!2sfr" width="100%" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+
+
+<section>
+    <div class="bloc-contact">
+        <h1 class="fw-bolder text-center">Pour nous contacter c'est simple !</h1>
+        <p class="text-center">Vous avez un projet d'éducation ou de valorisation par l'image et souhaitez en discutez, vous êtes au bon endroit !</p>
+    </div>
+
+   <div class="d-flex justify-content-center bloc-adress">
+        <div class="bloc-adress_place">
+            <h4 class="fw-bold text-decoration-underline">Adresse Meltingphot</h4>
+            <p>15 route de Bagnols, 30100 Alès</p>
+        </div>
+        <div class="bloc-adress_phone">
+            <h4 class="fw-bold text-decoration-underline">Phone </h4>
+            <p>06 64 21 93 75 </p>
+        </div>
+   
+       <div>
+            <h4 class="fw-bold text-decoration-underline">Social </h4>
+            <div class="d-flex flex-row">
+        	    <a href="https://www.facebook.com/MeltingPhot/?locale=fr_FR" class="me-4 text-reset">
+                    <i class="fab fa-facebook-f"></i>
+                </a>
+                <a href="https://twitter.com/melting_phot?lang=fr" class="me-4 text-reset">
+                    <i class="fab fa-twitter"></i>
+                </a>
+                <a href="https://www.instagram.com/meltingphot/?hl=fr" class="me-4 text-reset">
+                    <i class="fab fa-instagram"></i>
+                </a>
+                <a href="https://www.linkedin.com/company/meltingphot" class="me-4 text-reset">
+                    <i class="fab fa-linkedin"></i>
+                </a>
+            </div>
+        </div>
+   </div>
+  
+    <form action="" method="post" class="contact-form">
+    <div class="d-flex justify-content-center">
+        <input class="contact-input" name =""type="text" placeholder="Nom"></input>
+        <label for=""></label>
+
+         <input class="contact-input" name =""type="text" placeholder="Email"></input>
+        <label for=""></label>
+
+         <input class="contact-input" name =""type="text" placeholder="Sujets"></input>
+        <label for=""></label>
+       
+    
+    </div>
+    <div class="d-flex justify-content-center">
+        <input class="contact-input contact-Message" name =""type="text" placeholder="Message"></input>
+        <label for=""></label>
+    </div> 
+        <div class="d-flex justify-content-center mt-5">
+            <button class ="mt-5 btn send-btn "type="submit">Envoyer</button>
+        </div>
+    
+    </form>
+</section>
+
+
+
+
+
+<!-- Footer -->
+<footer class="text-center text-lg-start bg-light text-muted">
+	<section class="p-4 border-top">
+		<div
+			class="text-center text-md-start mt-5">
+			<!-- Grid row -->
+			<div class="row mt-3 d-flex">
+				<div class="d-flex justify-content-center">
+					<!-- Links -->
+					<img src="{{ asset('img/logo.png')}}" class="fw-bold mb-4"></img>
+			</div>
+			<!-- Grid column -->
+			<div class="d-flex justify-content-center ">
+				<p class="text-contact">MELTINGPHOT est un acteur important sur le territoire en mennant des projets d'éducations par l'image auprès des associations, collectivités et entreprises.</p>
+			</div>
+			<div class="d-flex justify-content-center mb-3">
+				<a href="https://www.facebook.com/MeltingPhot/?locale=fr_FR" class="me-4 text-reset">
+					<i class="fab fa-facebook-f"></i>
+				</a>
+				<a href="https://twitter.com/melting_phot?lang=fr" class="me-4 text-reset">
+					<i class="fab fa-twitter"></i>
+				</a>
+				<a href="https://www.instagram.com/meltingphot/?hl=fr" class="me-4 text-reset">
+					<i class="fab fa-instagram"></i>
+				</a>
+				<a href="https://www.linkedin.com/company/meltingphot" class="me-4 text-reset">
+					<i class="fab fa-linkedin"></i>
+				</a>
+				{# <a href="" class="me-4 text-reset">
+					<i class="fab fa-github"></i>
+				</a> #}
+			</div>
+			<!-- Grid column -->
+			<div
+				class="col-md-4 col-lg-3 col-xl-3 mx-auto mb-md-0 mb-4 contact-2">
+				<!-- Links -->
+				<p>
+					<i class="fas fa-home me-3"></i>15 Route de bagnols, 30100 Alès</p>
+				<p>
+					<i class="fas fa-envelope me-3"></i>info@example.com</p>
+				<p>
+					<i class="fas fa-phone me-3"></i>06 64 21 93 75</p>
+
+			</div>
+			<!-- Grid column -->
+		</div>
+		<!-- Grid row -->
+	</div>
+	<div
+		class="info-contact2 ">
+		<!-- Links -->
+		<p class="ms-3">
+			<i class="fas fa-home me-2"></i>15 Route de bagnols, 30100 Alès</p>
+		<p class="ms-3">
+			<i class="fas fa-envelope me-2"></i>info@example.com</p>
+		<p class="ms-3">
+			<i class="fas fa-phone me-2"></i>06 64 21 93 75</p>
+	</div>
+</section>
+<!-- Section: Links  -->
+
+<!-- Copyright -->
+<div class="text-center p-4 fw-bold text-white d-flex flex-column align-items-center" style="background-color: #D00A4B;">
+
+	Tous droits réservés © 2023 @MeltingPhot
+</a>
+<p class="fst-italic fw-light fs-6 text-white copyright-text">En effet, tous les éléments présents sur Internet (textes, images, vidéos, extraits sonores, codes informatiques…)
+	sont de facto soumis au droit d’auteur, même si l’accès est libre, gratuit et sans mention particulière.</p>
+</div>
+<!-- Copyright --></footer><!-- Footer -->{# js #}</body></html>{% endblock %}
