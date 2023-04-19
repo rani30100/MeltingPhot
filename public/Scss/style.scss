@@ -468,24 +468,27 @@ label[for="contact_piege"] {
         letter-spacing: 4px;
     }
 }
-actions-bandeau-img1{
+.actions-bandeau-img1{
     height: 400px;
-    background-image: url(../img/elips_site_web_meltingphot.svg);
+    background-image: url(../img/Point.png);
+    position: absolute;
+    z-index: 0;
+    width: 760px;
+    opacity: 0.3;
 }
 
 .actions-bandeau-img2 {
-    background-image: url(../img/Mon\ projet-.png);
-    background-size: cover;
+    background-image: url(../img/Rectangle.png);
+    background-size: contain;
     position: absolute;
-    padding-top: 108px;
-    background-size: cover;
     background-repeat: no-repeat;
-    height: 23%;
-    width: 79%;
-    left: 375px;
-    margin-top: 64px;
+    min-height: 445px;
+    height: 445px;
+    max-height: 445px;
+    width: 72%;
+    left: 531px;
+    margin-top: -10px;
     z-index: 0;
-
 }
 
 .actions-bandeau_trait {
@@ -510,8 +513,19 @@ actions-bandeau-img1{
 
 .btn-filtres {
     border-radius: 8px;
+    color: white;
+    border: 2px solid white;
     height: 40px;
     width: 11rem;
+    background-color: $rouge;
+}
+.actions-description{
+    padding-top: 165px;
+    position: absolute;
+    width: 405px;
+    text-align: justify;
+
+    margin-left: 42%;
 }
 
 @media screen and (min-width: 360px) and (max-width: 699px) {

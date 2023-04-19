@@ -35,10 +35,18 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     #[ORM\ManyToMany(targetEntity: Newsletter::class, mappedBy: 'user_id')]
     private Collection $newsletters;
 
+    #[ORM\OneToMany(mappedBy: 'user', targetEntity: Video::class)]
+    private Collection $created_at;
+
+    #[ORM\OneToMany(mappedBy: 'user_id', targetEntity: Image::class)]
+    private Collection $images;
+
     public function __construct()
     {
         $this->posts = new ArrayCollection();
         $this->newsletters = new ArrayCollection();
+        $this->created_at = new ArrayCollection();
+        $this->images = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -163,6 +171,66 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     {
         if ($this->newsletters->removeElement($newsletter)) {
             $newsletter->removeUserId($this);
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, Video>
+     */
+    public function getCreatedAt(): Collection
+    {
+        return $this->created_at;
+    }
+
+    public function addCreatedAt(Video $createdAt): self
+    {
+        if (!$this->created_at->contains($createdAt)) {
+            $this->created_at->add($createdAt);
+            $createdAt->setUser($this);
+        }
+
+        return $this;
+    }
+
+    public function removeCreatedAt(Video $createdAt): self
+    {
+        if ($this->created_at->removeElement($createdAt)) {
+            // set the owning side to null (unless already changed)
+            if ($createdAt->getUser() === $this) {
+                $createdAt->setUser(null);
+            }
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, Image>
+     */
+    public function getImages(): Collection
+    {
+        return $this->images;
+    }
+
+    public function addImage(Image $image): self
+    {
+        if (!$this->images->contains($image)) {
+            $this->images->add($image);
+            $image->setUserId($this);
+        }
+
+        return $this;
+    }
+
+    public function removeImage(Image $image): self
+    {
+        if ($this->images->removeElement($image)) {
+            // set the owning side to null (unless already changed)
+            if ($image->getUserId() === $this) {
+                $image->setUserId(null);
+            }
         }
 
         return $this;
