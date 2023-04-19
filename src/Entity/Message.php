@@ -5,6 +5,7 @@ namespace App\Entity;
 use App\Repository\MessageRepository;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
+use EWZ\Bundle\RecaptchaBundle\Validator\Constraints as Recaptcha;
 
 #[ORM\Entity(repositoryClass: MessageRepository::class)]
 class Message
@@ -25,7 +26,7 @@ class Message
 
     #[ORM\Column(type: Types::TEXT)]
     private ?string $Message = null;
-
+ 
     public function getId(): ?int
     {
         return $this->id;

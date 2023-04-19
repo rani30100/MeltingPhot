@@ -365,11 +365,11 @@ swiper-slide iframe {
 // Footer Accueil
 footer {
     .footer-logo {
-    display: flex !important;
-    justify-content: center !important;
-    }  
+        display: flex !important;
+        justify-content: center !important;
+    }
 
-  .info-contact2 {
+    .info-contact2 {
 
         justify-content: center;
 
@@ -384,33 +384,135 @@ footer {
 
 
 //Page Contact
-.bloc-contact{
+.contact-input {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+}
+
+.bloc-contact {
     margin-top: 8rem;
 }
-.bloc-adress{
+
+.bloc-adress {
     margin-top: 6rem;
-    margin-left: -15rem;
+    margin-left: -13rem;
 }
-.bloc-adress_place,.bloc-adress_phone{
+
+.bloc-adress_place,
+.bloc-adress_phone {
     margin-right: 8rem;
 }
-.send-btn{
+
+.send-btn {
     background-color: $rouge;
     border-radius: 0px;
     padding: 6px 55px 6px;
     font-weight: bolder;
     color: white;
     line-height: 40px;
-    &:hover{
+
+    &:hover {
         transform: scale(1.05);
         background-color: $rouge;
         color: white;
     }
 }
-.contact-form{
+
+.contact-form {
     margin-bottom: 6rem;
 }
 
+.form-group {
+    display: flex;
+    justify-content: center;
+}
+
+.contact-NES {
+    margin: 0 auto;
+}
+//cacher le label piege 
+label[for="contact_piege"] {
+    display: none !important;
+  }
+  
+
+//captcha 
+.grecaptcha-badge {
+    visibility: hidden;
+}
+
+
+
+
+
+//page Actions
+.actions-bloc {
+    width: 35%;
+    margin-left: 15%;
+    padding-top: 145px;
+    min-width: 454px;
+    z-index: 1;
+    position: absolute;
+}
+
+.actions-bandeau {
+    height: 400px;
+
+
+    h1 {
+        font-family: 'Raleway', sans-serif;
+        font-size: 70px;
+        font-weight: 500;
+        letter-spacing: 4px;
+    }
+}
+actions-bandeau-img1{
+    height: 400px;
+    background-image: url(../img/elips_site_web_meltingphot.svg);
+}
+
+.actions-bandeau-img2 {
+    background-image: url(../img/Mon\ projet-.png);
+    background-size: cover;
+    position: absolute;
+    padding-top: 108px;
+    background-size: cover;
+    background-repeat: no-repeat;
+    height: 23%;
+    width: 79%;
+    left: 375px;
+    margin-top: 64px;
+    z-index: 0;
+
+}
+
+.actions-bandeau_trait {
+    border-bottom: 3px solid black;
+    border-bottom-width: 5px;
+    width: 5rem;
+}
+
+.actions-bandeau_sous-titre {
+    width: 270px;
+    align-items: first baseline;
+}
+
+.color-grey {
+    color: grey;
+}
+
+.point {
+    width: 50px;
+    height: 50px;
+}
+
+.btn-filtres {
+    border-radius: 8px;
+    height: 40px;
+    width: 11rem;
+}
 
 @media screen and (min-width: 360px) and (max-width: 699px) {
     .know-more {
@@ -621,7 +723,7 @@ footer {
         font-size: 32px;
     }
 
-    .actions-videos{
+    .actions-videos {
         flex-direction: column;
     }
 
@@ -632,6 +734,7 @@ body .parent-article .block-article_description {
     width: fit-content;
     max-width: 400px;
 }
+
 //----------------------------------------------------------------------------------------------------//
 //PageContact 
 
@@ -648,14 +751,15 @@ body .parent-article .block-article_description {
     outline: none;
     transition: border-color .2s;
 
-    
-      &:active, &:focus {
-        border-bottom-color:black;
-        border-bottom-width:3px!important;
-      }
+
+    &:active,
+    &:focus {
+        border-bottom-color: black;
+        border-bottom-width: 3px !important;
+    }
 }
 
-.contact-Message{
+.contact-Message {
     width: 50%;
     margin-top: 40px;
     padding-bottom: 91px;

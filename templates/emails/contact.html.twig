@@ -1,0 +1,9 @@
+
+{# La forme du mail qui sera envoyé  #}
+
+{% block body %}
+    <p>Nom : {{ message.getNom() }}</p>
+    <p>Email : {{ message.getEmail() }}</p>
+    <p>Sujet : {{ message.getSubject() }}</p>
+    <p>Message : {{ message.getMessage() }}</p>
+{% endblock %}
