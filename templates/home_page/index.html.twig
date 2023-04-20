@@ -41,6 +41,16 @@
 				<li class="nav-item me-2">
 					<a class="nav-link" href="/contact">CONTACT</a>
 				</li>
+					<li class="nav-item me-2">
+					<a class="nav-link" href="/login">Login</a>
+				</li>
+					</li>
+					<li class="nav-item me-2">
+					<a class="nav-link" href="/logout">Se déconnecter</a>
+				</li>
+				{% if app.user %}
+					<p>Bienvenue, {{ app.user.email }}!</p>
+				{% endif %}
 
 				{# <form class="d-flex nav-items me-2 form" role="search">
 					<input class="form-control me-2 search" type="search" placeholder="Ma recherche..." aria-label="Search">
@@ -65,8 +75,8 @@
 	<section class="main">
 		<section class="know-more">
 
-		<div class="know-more-box_btn" style="margin-left: 44%;width: 200px;height: 318px;">
-			<a href="https://www.youtube.com/@meltingphot" target="_blank" class="btn btn-danger know-more_btn" style="/*! align-content: ; */margin-top: 115%;">En (Sa) voir +</a>
+		<div class="know-more-box_btn d-flex flex-column justify-content-center" style="margin-left: 44%;width: 200px;height: 318px;">
+			<a href="https://www.youtube.com/@meltingphot" target="_blank" class="btn btn-danger know-more_btn" style="margin-top: 30px;">En (Sa) voir +</a>
 		</div>
 		
 	

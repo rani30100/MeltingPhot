@@ -56,9 +56,19 @@ body {
     // Bouton en savoir plus
     .btn_know-more {
         width: 125px;
+
     }
 }
+.know-more-box_btn{
+    margin-left: 44%;
+    width: 200px;
+    height: 318px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding-top: 35px;
 
+}
 .banniere {
     position: relative;
     height: 600px;
