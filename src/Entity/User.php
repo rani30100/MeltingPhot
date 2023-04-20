@@ -58,6 +58,10 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     {
         return $this->id;
     }
+    public function __toString(): string
+    {
+        return $this->email;
+    }
 
     public function getEmail(): ?string
     {
@@ -89,6 +93,8 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
         $roles = $this->roles;
         // guarantee every user at least has ROLE_USER
         $roles[] = 'ROLE_USER';
+        $roles[] = 'ROLE_ADMIN';
+        $roles[] = 'ROLE_EDITOR';
 
         return array_unique($roles);
     }

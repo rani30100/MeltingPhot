@@ -41,6 +41,16 @@ body .btn_know-more {
   width: 125px;
 }
 
+.know-more-box_btn {
+  margin-left: 44%;
+  width: 200px;
+  height: 318px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding-top: 35px;
+}
+
 .banniere {
   position: relative;
   height: 600px;
@@ -445,6 +455,8 @@ label[for=contact_piege] {
   height: 40px;
   width: 11rem;
   background-color: #D00A4B;
+  text-decoration: none;
+  text-align: center;
 }
 
 .actions-description {

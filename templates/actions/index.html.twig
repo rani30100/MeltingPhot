@@ -1,143 +1,126 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Hello ActionsController!{% endblock %}
+{% block title %}Hello ActionsController!
+{% endblock %}
 
 {% block body %}
-{# Navbar #}
+	{# Navbar #}
 	<nav class="navbar navbar-expand-lg bg-body-tertiary">
 		<div class="d-flex justy-content-center w-100" id="">
 			<ul class="navbar-nav me-auto mb-2 mb-lg-0 w-100 d-flex justify-content-center align-items-center">
 				<li>
 					<a href="/fr">
-						<img class="logo me-2" src="{{ asset('img/logo.png')}}" width alt="">
-						</img>
-					</a>
-            	</li>	
-				<li class="nav-item me-2 meltingphot">
-					<a class="nav-link active" aria-current="page" href="/fr">MELTINGPHOT</a>
+						<img class="logo me-2" src="{{ asset('img/logo.png')}}" width alt=""></img>
 				</li>
-				<li class="nav-item me-2">
-					<a class="nav-link" href="/actions">ACTIONS</a>
-				</li>
-				{# <li class="nav-item dropdown me-2">
-								<a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-									POUR QUI ?
-								</a>
-							</li> #}
-				<li class="nav-item me-2">
-					<a class="nav-link" href="#">PARTENAIRES</a>
-				</li>
-				<li class="nav-item me-2">
-					<a class="nav-link" href="#">NOUS SOUTENIR</a>
-				</li>
-				<li class="nav-item me-2">
-					<a class="nav-link" href="/contact">CONTACT</a>
-				</li>
+			</a>
+		</li>
+		<li class="nav-item me-2 meltingphot">
+			<a class="nav-link active" aria-current="page" href="/fr">MELTINGPHOT</a>
+		</li>
+		<li class="nav-item me-2">
+			<a class="nav-link" href="/actions">ACTIONS</a>
+		</li>
+		{# <li class="nav-item dropdown me-2">
+										<a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+											POUR QUI ?
+										</a>
+									</li> #}
+		<li class="nav-item me-2">
+			<a class="nav-link" href="#">PARTENAIRES</a>
+		</li>
+		<li class="nav-item me-2">
+			<a class="nav-link" href="#">NOUS SOUTENIR</a>
+		</li>
+		<li class="nav-item me-2">
+			<a class="nav-link" href="/contact">CONTACT</a>
+		</li>
 
-				{# <form class="d-flex nav-items me-2 form" role="search">
-					<input class="form-control me-2 search" type="search" placeholder="Ma recherche..." aria-label="Search">
-					<button class="btn btn-outline-success search-btn" type="submit">Rechercher</button>
-				</form>
+		{# <form class="d-flex nav-items me-2 form" role="search">
+							<input class="form-control me-2 search" type="search" placeholder="Ma recherche..." aria-label="Search">
+							<button class="btn btn-outline-success search-btn" type="submit">Rechercher</button>
+						</form>
+		
+						<li class="nav-item ">
+							<a id="language-link" class="p-2" href="{{ path('app_home_page_e_n') }}">
+								<img class="flag" src="{{ asset('img/eng.png') }}">
+							</a>
+						</li> #}
 
-				<li class="nav-item ">
-					<a id="language-link" class="p-2" href="{{ path('app_home_page_e_n') }}">
-						<img class="flag" src="{{ asset('img/eng.png') }}">
-					</a>
-				</li> #}
-
-				{# <li class="nav-item ">
-					<a id="language-link" class="p-2" href="{{ path('app_home_page') }}">
-						<img id="flag" src="{{ asset('img/drapeau.png') }}">
-					</a>
-				</li> #}
-			</ul>
+		{# <li class="nav-item ">
+							<a id="language-link" class="p-2" href="{{ path('app_home_page') }}">
+								<img id="flag" src="{{ asset('img/drapeau.png') }}">
+							</a>
+						</li> #}
+	</ul>
+</div></nav><section class="actions-bandeau w-100 bg-secondary-subtle h-400">
+<div class="actions-bandeau-img1"></div>
+<div class="actions-bandeau-img2"></div>
+<article class="actions-bloc">
+	<h1>Nos Actions</h1>
+	<div class="d-flex flex-row justify-content-between actions-bandeau_sous-titre">
+		<div class="actions-bandeau_trait"></div>
+		<div>
+			<span class="color-grey">MeltingPhot/</span>
+			<span class="color1">Vidéos</span>
 		</div>
-	</nav>
-
-	<section class="actions-bandeau w-100 bg-secondary-subtle h-400">
-		<div class ="actions-bandeau-img1"></div>
-		<div class="actions-bandeau-img2"></div>
-		<article class="actions-bloc">
-			<h1>Nos Actions</h1>
-			<div class="d-flex flex-row justify-content-between actions-bandeau_sous-titre">
-				<div class="actions-bandeau_trait"></div>
-				<div><span class="color-grey">MeltingPhot/</span><span class="color1">Vidéos</span></div>
-			</div>
-
-		</article>
-	
-		
-		<p class="actions-description">Lorem, ipsum dolor sit amet consectetur adipisicing elit. Ipsam voluptate quidem ullam beatae vero excepturi fuga deserunt aperiam. Eius repudiandae laborum accusantium voluptatem illum odio impedit delectus expedita beatae laboriosam!</p>
-		
-	</section>
-	<div class="d-flex justify-content-center align-items-center mt-5"> 
-		<label for="my-dropdown ">Je filme mon futur métier de :</label>
-		<select class="btn-filtres ms-3" id="my-dropdown" name="my-dropdown">
-		<option value="option-1">Métier</option>
-		<option value="option-2">Boxe</option>
-		<option value="option-3">Chorégraphe</option>
-		</select>
-
-		<select class="btn-filtres ms-3" id="my-dropdown" name="my-dropdown">
-		<option value="option-1">Date de Sortie</option>
-		<option value="option-2">2023</option>
-		<option value="option-3">2022</option>
-		</select>
-
-		<button class="btn-filtres ms-3">Ordre Croissant</button>
-		<button class="btn-filtres ms-3">Ordre Décroissant</button>
 	</div>
 
+</article>
+
+
+<p class="actions-description">Lorem, ipsum dolor sit amet consectetur adipisicing elit. Ipsam voluptate quidem ullam beatae vero excepturi fuga deserunt aperiam. Eius repudiandae laborum accusantium voluptatem illum odio impedit delectus expedita beatae laboriosam!</p></section><div class="d-flex justify-content-center align-items-center mt-5">
+<label class="fw-bold" for="my-dropdown ">Je filme mon futur métier de :</label>
+<select class="btn-filtres ms-3" id="my-dropdown" name="my-dropdown">
+	<option value="option-1">Métier</option>
+	<option value="option-2">Restauration</option>
+</select>
+
+<select class="btn-filtres ms-3" id="my-dropdown2" name="my-dropdown">
+	<option value="option-1">Date de Sortie</option>
+	<option href="actions/2023" value="option-2">2023</option>
+	<option href="actions/2022"value="option-3">2022</option>
+</select></div><div class="d-flex justify-content-center mt-2">
+<a class="btn btn-filtres ms-3" id="btn-croissant" style="padding-top:5px;" data-sort="asc" href="/actions/asc">La plus récente</a>
+<a class="btn btn-filtres ms-3" id="btn-decroissant" style="padding-top:5px;" data-sort="desc" href="/actions/desc">La plus vieille</a></div><div class="d-flex justify-content-center flex-wrap">
+{% for video in videos %}
+	<div class="mt-5">
+		<div class="d-flex flex-column align-items-center text-center videos-container">
+			<iframe name="ytb{{ loop.index }}" class="card" width="364" height="205" src="https://www.youtube.com/embed/{{ video.snippet.resourceId.videoId }}" title="{{ video.snippet.title }}" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+			<label class=" mb-3 labelYtb" style="font-size:14px;" ;for="ytb{{ loop.index }}">{{ video.snippet.title }}</label>
+		</div>
+	</div>
+{% endfor %}
 </div>
-    <div class="d-flex justify-content-sm-center actions-videos">
 
-	<div class="column" style="height:544px">
-			<div class="d-flex flex-column align-items-center text-center">
-				<iframe name ="ytb1" class="card " width="364" height="205" src="https://www.youtube.com/embed/ryBswgXcUGg" title="MAKING OFF Présentation Action MeltingPhot &#39;Je filme mon métier de Restaurateurs&#39;_ Alès en Cévennes." frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
-				<label class ="fw-bold mb-5 labelYtb"for="ytb1">MAKING OFF Présentation Action MeltingPhot 'Je filme mon métier de Restaurateurs'_ Alès en Cévennes.</label>
-			</div>
-			<div class="d-flex flex-column align-items-center text-center">
-            	<iframe name ="ytb2" class="card" width="364" height="205" src="https://www.youtube.com/embed/2PyAIHcMWaM" title="INTERVIEW &quot;Je Filme mon futur métier&quot; du Cheffe Yasmine Gurbuz de Tutti Frichti à Alès." frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
-				<label class ="fw-bold mb-5 labelYtb" for="ytb2">INTERVIEW "Je Filme mon futur métier" du Cheffe Yasmine Gurbuz de Tutti Frichti à Alès.</label>
-			</div>
-		</div>
-		<div class="column ">
-			<div class="d-flex flex-column align-items-center text-center">
-				<iframe name ="ytb3" class="card " width="364" height="205" src="https://www.youtube.com/embed/8EV_8ePSPKs" title="INTERVIEW &quot;Je Filme mon Futur métier&quot; de Cheffe avec Solène Séguin - Le Comptoir des Halles à Alès." frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
-				<label class ="fw-bold mb-5 labelYtb" for="ytb3">INTERVIEW "Je Filme mon Futur métier" de Cheffe avec Solène Séguin - Le Comptoir des Halles à Alès.</label>
-			</div>
-			<div class="d-flex flex-column align-items-center text-center">
-				<iframe name ="ytb4" class="card" width="364" height="205" src="https://www.youtube.com/embed/UUoQfUQ94w0" title="INTERVIEW &quot;Je Filme mon futur métier&quot; du Chef Abdel Choualli, restaurant Le Roi du Couscous à Alès." frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
-				<label class ="fw-bold mb-5 labelYtb" for="ytb4">INTERVIEW "Je Filme mon futur métier" du Chef Abdel Choualli, restaurant Le Roi du Couscous à Alès.</label>
-			</div>
-		</div>
+<script>
+		document.getElementById("my-dropdown2").addEventListener("change", function () {
+			var option = this.options[this.selectedIndex];
+		if (option.value == "option-3") {
+			window.location.href = "/actions/2022";}
+		})
+			{# si il clique sur option 2023 alors est redirigé #}
+	document.getElementById("my-dropdown2").addEventListener("change", function () {
+	var option = this.options[this.selectedIndex];
+	if (option.value == "option-2") {
+	window.location.href = "/actions/2023";}
+	})
 
-		<div class="column ">
-			<div class="d-flex flex-column align-items-center text-center">
-				<iframe name ="ytb5" class="card " width="364" height="205" src="https://www.youtube.com/embed/lt1XKRMzuVo" title="INTERVIEW 30secondes &quot;Je Filme mon futur métier&quot; du Chef Sébastien Rath, Restaurant Le Riche à Alès." frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
-				<label class ="fw-bold mb-5 labelYtb" class ="fw-bold mb-5" for="ytb5">INTERVIEW 30secondes "Je Filme mon futur métier" du Chef Sébastien Rath, Restaurant Le Riche à Alès.</label>
-			</div>
-			<div class="d-flex flex-column align-items-center text-center">
-				<iframe name ="ytb6" class="card" width="364" height="205" src="https://www.youtube.com/embed/lrVyo7FBst4" title="INTERVIEW &quot;Je Filme mon futur métier&quot; de la Cheffe Morgan Carte du Bistrot d&#39;Urban Parc à Alès." frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
-				<label class ="fw-bold mb-5 labelYtb" for="ytb6">INTERVIEW "Je Filme mon futur métier" de la Cheffe Morgan Carte du Bistrot d'Urban Parc à Alès.</label>
-			</div>
-		</div>
-	</div>
+	
+	
+	
+	
+	;
+</script>
 
-
-
-
-
-
-
-    {# Footer #}
-    <footer class="text-center text-lg-start bg-light text-muted">
+{# Footer #}
+<footer class="text-center text-lg-start bg-light text-muted">
 	<section class="p-4 border-top">
 		<div
 			class="text-center text-md-start mt-5">
 			<!-- Grid row -->
 			<div class="row mt-3 d-flex">
-				<div class="d-flex justify-content-center">
+				<div
+					class="d-flex justify-content-center">
 					<!-- Links -->
 					<img src="{{ asset('img/logo.png')}}" class="fw-bold mb-4"></img>
 			</div>
@@ -159,8 +142,8 @@
 					<i class="fab fa-linkedin"></i>
 				</a>
 				{# <a href="" class="me-4 text-reset">
-					<i class="fab fa-github"></i>
-				</a> #}
+									<i class="fab fa-github"></i>
+								</a> #}
 			</div>
 			<!-- Grid column -->
 			<div
@@ -188,17 +171,10 @@
 		<p class="ms-3">
 			<i class="fas fa-phone me-2"></i>06 64 21 93 75</p>
 	</div>
-</section>
-<!-- Section: Links  -->
+	</section>
 
-<!-- Copyright -->
+<!-- Section: Links  --><!-- Copyright -->
 <div class="text-center p-4 fw-bold text-white d-flex flex-column align-items-center" style="background-color: #D00A4B;">
 
-	Tous droits réservés © 2023 @MeltingPhot
-</a>
-<p class="fst-italic fw-light fs-6 text-white copyright-text">En effet, tous les éléments présents sur Internet (textes, images, vidéos, extraits sonores, codes informatiques…)
-	sont de facto soumis au droit d’auteur, même si l’accès est libre, gratuit et sans mention particulière.</p>
-</div>
-<!-- Copyright --></footer><!-- Footer -->{# js #}</body></html>
-
-{% endblock %}
+Tous droits réservés © 2023 @MeltingPhot</a><p class="fst-italic fw-light fs-6 text-white copyright-text">En effet, tous les éléments présents sur Internet (textes, images, vidéos, extraits sonores, codes informatiques…)
+		sont de facto soumis au droit d’auteur, même si l’accès est libre, gratuit et sans mention particulière.</p></div><!-- Copyright --></footer><!-- Footer -->{# js #}</body></html>{% endblock %}
