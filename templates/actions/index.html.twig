@@ -70,10 +70,7 @@
 
 <p class="actions-description">Lorem, ipsum dolor sit amet consectetur adipisicing elit. Ipsam voluptate quidem ullam beatae vero excepturi fuga deserunt aperiam. Eius repudiandae laborum accusantium voluptatem illum odio impedit delectus expedita beatae laboriosam!</p></section><div class="d-flex justify-content-center align-items-center mt-5">
 <label class="fw-bold" for="my-dropdown ">Je filme mon futur métier de :</label>
-<select class="btn-filtres ms-3" id="my-dropdown" name="my-dropdown">
-	<option value="option-1">Métier</option>
-	<option value="option-2">Restauration</option>
-</select>
+<input class="btn-filtres ms-3" id="my-dropdown" name="my-dropdown" value="Restauration" readonly />
 
 <select class="btn-filtres ms-3" id="my-dropdown2" name="my-dropdown">
 	<option value="option-1">Date de Sortie</option>
@@ -82,14 +79,20 @@
 </select></div><div class="d-flex justify-content-center mt-2">
 <a class="btn btn-filtres ms-3" id="btn-croissant" style="padding-top:5px;" data-sort="asc" href="/actions/asc">La plus récente</a>
 <a class="btn btn-filtres ms-3" id="btn-decroissant" style="padding-top:5px;" data-sort="desc" href="/actions/desc">La plus vieille</a></div><div class="d-flex justify-content-center flex-wrap">
-{% for video in videos %}
-	<div class="mt-5">
-		<div class="d-flex flex-column align-items-center text-center videos-container">
-			<iframe name="ytb{{ loop.index }}" class="card" width="364" height="205" src="https://www.youtube.com/embed/{{ video.snippet.resourceId.videoId }}" title="{{ video.snippet.title }}" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
-			<label class=" mb-3 labelYtb" style="font-size:14px;" ;for="ytb{{ loop.index }}">{{ video.snippet.title }}</label>
+{% if videos|length > 0 %}
+	{% for video in videos %}
+		<div class="mt-5">
+			<div class="d-flex flex-column align-items-center text-center videos-container">
+				<iframe name="ytb{{ loop.index }}" class="card" width="364" height="205" src="https://www.youtube.com/embed/{{ video.snippet.resourceId.videoId }}" title="{{ video.snippet.title }}" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+				<label class=" mb-3 labelYtb" style="font-size:14px;" ;for="ytb{{ loop.index }}">{{ video.snippet.title }}</label>
+			</div>
 		</div>
-	</div>
-{% endfor %}
+	{% endfor %}
+{% else %}
+	<p class="no-results-message">Aucun résultat pour cette recherche...</p>
+
+{% endif %}
+
 </div>
 
 <script>

@@ -59,7 +59,8 @@ body {
 
     }
 }
-.know-more-box_btn{
+
+.know-more-box_btn {
     margin-left: 44%;
     width: 200px;
     height: 318px;
@@ -69,6 +70,7 @@ body {
     padding-top: 35px;
 
 }
+
 .banniere {
     position: relative;
     height: 600px;
@@ -442,11 +444,12 @@ footer {
 .contact-NES {
     margin: 0 auto;
 }
+
 //cacher le label piege 
 label[for="contact_piege"] {
     display: none !important;
-  }
-  
+}
+
 
 //captcha 
 .grecaptcha-badge {
@@ -478,7 +481,8 @@ label[for="contact_piege"] {
         letter-spacing: 4px;
     }
 }
-.actions-bandeau-img1{
+
+.actions-bandeau-img1 {
     height: 400px;
     background-image: url(../img/Point.png);
     position: absolute;
@@ -532,13 +536,19 @@ label[for="contact_piege"] {
     text-align: center;
 
 }
-.actions-description{
+
+.actions-description {
     padding-top: 165px;
     position: absolute;
     width: 405px;
     text-align: justify;
-
     margin-left: 42%;
+}
+
+.no-results-message {
+    font-size: 20px;
+    margin: 50px;
+    font-weight: bolder;
 }
 
 @media screen and (min-width: 360px) and (max-width: 699px) {

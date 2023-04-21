@@ -467,6 +467,12 @@ label[for=contact_piege] {
   margin-left: 42%;
 }
 
+.no-results-message {
+  font-size: 20px;
+  margin: 50px;
+  font-weight: bolder;
+}
+
 @media screen and (min-width: 360px) and (max-width: 699px) {
   .know-more {
     display: none;

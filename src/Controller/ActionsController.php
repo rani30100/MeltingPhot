@@ -13,8 +13,8 @@ use Google\Client;
 
 class ActionsController extends AbstractController
 {
-    #[Route('/actions/{order}', defaults: ['order' => 'test'], methods: ['GET', 'HEAD'], name: 'app_actions')]
-    public function index(string $order, EntityManagerInterface $entityManager, Request $request): Response
+    #[Route('/actions/{order}/{year}', defaults: ['order' => 'test','year'=>'null'], methods: ['GET', 'HEAD'], name: 'app_actions')]
+    public function index(string $order,string $year, EntityManagerInterface $entityManager, Request $request): Response
     {
         // dd($order);
 
@@ -57,6 +57,7 @@ class ActionsController extends AbstractController
             $videos = array_filter($videos, function ($video) {
                 return substr($video['snippet']['publishedAt'], 0, 4) == '2023';
             });
+            
         }
         // filtrer les vidéos en fonction de l'année de publication
         if ($order == '2022') {
@@ -65,11 +66,6 @@ class ActionsController extends AbstractController
             });
         }
 
-
-
-
-
-
         if ($order == 'Cheffe') {
             // Trier les vidéos par date de publication (de la plus récente à la plus ancienne)
             usort($videos, function ($a, $b) {
@@ -77,7 +73,6 @@ class ActionsController extends AbstractController
                 return strcmp($b['snippet']['publishedAt'], $a['snippet']['publishedAt']);
             });
         }
-
 
         if ($order == 'desc') {
             // Trier les vidéos par date de publication (de la plus récente à la plus ancienne)
@@ -91,8 +86,7 @@ class ActionsController extends AbstractController
             });
         }
 
-
-
+   
         return $this->render('actions/index.html.twig', [
             'controller_name' => 'ActionsController',
             'videos' => $videos,
