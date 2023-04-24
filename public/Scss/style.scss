@@ -49,6 +49,10 @@ body {
             background-size: contain;
             align-items: center;
 
+            a {
+                margin-left: 45%;
+                margin-top: 12%;
+            }
         }
 
     }
@@ -461,6 +465,7 @@ label[for="contact_piege"] {
 
 
 //page Actions
+
 .actions-bloc {
     width: 35%;
     margin-left: 15%;
@@ -767,36 +772,41 @@ label[for="contact_piege"] {
 
 
     //Page Actions
-    .actions-bandeau_sous-titre{
+    .actions-bandeau_sous-titre {
         align-items: center;
         width: 100%;
         justify-content: center !important;
     }
-    .actions-bloc{
+
+    .actions-bloc {
         width: 100%;
         margin-left: 0px;
         text-align: left;
         margin-top: -100px;
-        h1{
+
+        h1 {
             text-align: center;
             font-size: 40px;
         }
 
     }
-    .actions-description{
+
+    .actions-description {
         margin-left: 7px;
         text-align: justify;
         min-width: 343px;
         width: 91% !important;
         margin: 1rem !important;
     }
+
     .btn-filtres {
         width: 80%;
     }
-    .order-btn{
+
+    .order-btn {
         width: 90%;
     }
-} 
+}
 
 body .parent-article .block-article_description {
     margin-left: -13px;
@@ -878,6 +888,9 @@ body .parent-article .block-article_description {
     .contact-2 {
         display: none;
     }
+
+
+ 
 
 }
 

@@ -37,6 +37,10 @@ body .main .know-more {
   background-size: contain;
   align-items: center;
 }
+body .main .know-more a {
+  margin-left: 45%;
+  margin-top: 12%;
+}
 body .btn_know-more {
   width: 125px;
 }

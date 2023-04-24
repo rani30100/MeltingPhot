@@ -3,8 +3,17 @@ controllers:
         path: ../src/Controller/
         namespace: App\Controller
     type: annotation
-  
-    
+    prefix:
+        /: "/"
+        fr: "/fr"
+        en: "/en"
+    locale: ""
+    defaults:
+        _locale: "fr"
+    requirements:
+        _locale: "fr|en"
+    trailing_slash_on_root: true
+
 kernel:
     resource: App\Kernel
     type: attribute
