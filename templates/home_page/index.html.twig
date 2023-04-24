@@ -31,25 +31,25 @@
 						POUR QUI ?
 					</a>
 				</li> #}
-				<li class="nav-item me-2">
+				{# <li class="nav-item me-2">
 					<a class="nav-link" href="#">PARTENAIRES</a>
 				</li>
 
 				<li class="nav-item me-2">
 					<a class="nav-link" href="#">NOUS SOUTENIR</a>
-				</li>
+				</li> #}
 
 				<li class="nav-item me-2">
 					<a class="nav-link" href="/contact">CONTACT</a>
 				</li>
 
-				<li class="nav-item me-2">
+				{# <li class="nav-item me-2">
 					<a class="nav-link" href="/login">Login</a>
 				</li>
 			
 				<li class="nav-item me-2">
 					<a class="nav-link" href="/logout">Se déconnecter</a>
-				</li>
+				</li> #}
 				{% if app.user %}
 					<p>Bienvenue,
 						{{ app.user.email }}!</p>
@@ -80,7 +80,7 @@
 		</section>
 
 		<section id="parent-article" class="d-flex flex-column parent-article">
-			{# 1er article #}
+			{# 1er article  #}
 			<article class="d-flex article">
 				<img id="forms-svg" class="article-img1" src="{{asset('img/Image_Vignette_Page accueil meltingphot_je Filme mon futur métier.png')}}" alt="">
 				<div class="">
@@ -88,13 +88,17 @@
 				</div>
 				<div class="d-flex flex-column justify-content-center article-box">
 					<div class='article-title'>
-						<span class="numbers">01</span>
+						<span class="numbers">03</span>
 						<h3 class="color1">{{ 'tagline_1.title'|trans({}, 'home') }}</h3>
 					</div>
-				</div>
 					<div>
-						<p class="block-article_description">HÉBÉMAG : Découvrir son futur métier en allant à la rencontre des professionnels telle une vraie équipe de journalistes en tournage. Rédiger un magazine sur la thématique du métier envisagé.</p>
+						<p class="block-article_description">
+							HÉBÉMAG : Découvrir son futur métier en allant à la rencontre des professionnels telle une vraie équipe de journalistes en tournage. Rédiger un magazine sur la thématique du métier envisagé.</p>
 					</div>
+					<div
+						class="bloc1_description2">{# <p class=" block-article_description2">Lorem ipsum dolor sit amet consectetur adipisicing elit. Ea labore nesciunt magnam eveniet accusantium placeat blanditiis et iusto. Tempore, id distinctio, dolorem similique sunt aspernatur, quod maiores incidunt fugiat quidem cupiditate voluptatibus dignissimos voluptatem expedita.</p> #}
+					</div>
+				</div>
 			</article>
 
 			{# 2ème article  #}
@@ -138,9 +142,34 @@
 			</article>
 		</section>
 
-
+<div id="carouselExampleIndicators" class="carousel slide">
+  <div class="carousel-indicators">
+    <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+    <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="1" aria-label="Slide 2"></button>
+    <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="2" aria-label="Slide 3"></button>
+  </div>
+  <div class="carousel-inner">
+    <div class="carousel-item active">
+      <img src="{{asset("img/IMG_Miniature_Meltingphot__Image_Vignette_Page_accueil_meltingphot_je_Filme_mon_futur_metier300_300_px.png")}}" class="d-block w-100" alt="...">
+    </div>
+    <div class="carousel-item">
+      <img src="{{asset("img/IMG_Miniature_Meltingphot__Image_Vignette_Page_accueil_meltingphot_je_Filme_mon_futur_metier300_300_px.png")}}" class="d-block w-100" alt="...">
+    </div>
+    <div class="carousel-item">
+      <img src="{{asset("img/IMG_Miniature_Meltingphot__Image_Vignette_Page_accueil_meltingphot_je_Filme_mon_futur_metier300_300_px.png")}}" class="d-block w-100" alt="...">
+    </div>
+  </div>
+  <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="prev">
+    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+    <span class="visually-hidden">Previous</span>
+  </button>
+  <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="next">
+    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+    <span class="visually-hidden">Next</span>
+  </button>
+</div>
 	{# Carrousel  5 videos #}
-	<div class=" w-100 h-400 bg-white bloc-carrousel">
+	{# <div class=" w-100 h-400 bg-white bloc-carrousel">
 		<div class="row d-flex justify-content-center">
 			<div class="col-2 columns1"></div>
 			<div class="col-2 columns2"></div>
@@ -149,7 +178,7 @@
 			<div class="col-2 columns5"></div>
 			</div>
 		</div>
-	</div>
+	</div> #}
 
 	<!-- Footer -->
 	<footer class="text-center text-lg-start bg-light text-muted"><section class="p-4 border-top">

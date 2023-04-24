@@ -3,6 +3,12 @@
   color: #D00A4B;
 }
 
+.carousel {
+  height: 700px;
+  width: 700px;
+  margin: auto;
+}
+
 body {
   background-color: #f0f0f0;
 }
@@ -101,7 +107,7 @@ body .btn_know-more {
   margin-bottom: 5rem;
 }
 .parent-article .article {
-  margin-top: 3rem;
+  margin-top: 0rem;
   margin-bottom: 3rem;
 }
 .parent-article .article img {
@@ -481,6 +487,11 @@ label[for=contact_piege] {
 }
 
 @media screen and (min-width: 360px) and (max-width: 699px) {
+  .carousel {
+    height: 300px;
+    width: 300px;
+    margin: auto;
+  }
   .know-more {
     display: none;
   }
@@ -644,7 +655,7 @@ label[for=contact_piege] {
   }
   .actions-bloc {
     width: 100%;
-    margin-left: 0px;
+    margin-left: -35px;
     text-align: left;
     margin-top: -100px;
   }
@@ -653,9 +664,8 @@ label[for=contact_piege] {
     font-size: 40px;
   }
   .actions-description {
-    margin-left: 7px;
     text-align: justify;
-    min-width: 343px;
+    min-width: 330px;
     width: 91% !important;
     margin: 1rem !important;
   }
