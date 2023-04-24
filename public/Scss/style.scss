@@ -1,10 +1,12 @@
 $rouge : #D00A4B;
 
+
 .color1 {
     color: $rouge;
 }
 
 body {
+
     background-color: #f0f0f0;
 
     .navbar {
@@ -398,7 +400,7 @@ footer {
 
 
 
-
+// -------------------------------------------------------------
 //Page Contact
 .contact-input {
     display: flex;
@@ -446,6 +448,9 @@ footer {
 }
 
 .contact-NES {
+    display: flex;
+    width: 50%;
+    justify-content: space-between;
     margin: 0 auto;
 }
 
@@ -806,7 +811,69 @@ label[for="contact_piege"] {
     .order-btn {
         width: 90%;
     }
+
+    // Page contact mobile
+
+    .bloc-adress {
+        margin-top: 0px;
+        margin-left: 0px;
+        flex-direction: column;
+        margin-top: 30px;
+        margin-bottom: 30px;
+
+
+        .bloc-adress_phone {
+            margin-right: 0px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+
+        .bloc-adress_place {
+            min-width: 233px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin-right: 0px;
+            margin-bottom: 20px;
+            margin-top: 3rem;
+        }
+
+        .bloc-adress_social {
+            min-width: 233px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin-bottom: 2rem;
+        }
+
+    }
+
+    .contact-NES {
+        display: flex;
+        align-items: center;
+        flex-direction: column;
+        margin-top: 3rem;
+        width: 100%;
+
+        input {
+            margin-top: 30px;
+        }
+
+    }
+
+    .message {
+        margin-top: 35px;
+        width: 84% !important;
+        margin-left: 1rem;
+        height: 100px;
+    }
+
+
+
 }
+
 
 body .parent-article .block-article_description {
     margin-left: -13px;
@@ -889,10 +956,19 @@ body .parent-article .block-article_description {
         display: none;
     }
 
+    // Page contact ordi
+    .content-message {
+        display: flex;
+        justify-content: center;
 
- 
+        textarea{
+            margin-top: 30px;
+            width: 750px ;
+            height: 110px;
+          }
+        }
+    }
 
-}
 
 @media (max-width: 767px) {
     .carousel-inner .carousel-item>div {

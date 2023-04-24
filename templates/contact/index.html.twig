@@ -78,7 +78,7 @@
             <p>06 64 21 93 75 </p>
         </div>
    
-       <div>
+       <div class="bloc-adress_social">
             <h4 class="fw-bold text-decoration-underline">Social </h4>
             <div class="d-flex flex-row">
         	    <a href="https://www.facebook.com/MeltingPhot/?locale=fr_FR" class="me-4 text-reset">
@@ -98,8 +98,8 @@
    </div>
 
     {{ form_start(form, {'attr': {'class': 'contact-form'}}) }}
-        <div class="w-50 d-flex flex-row justify-content-between contact-NES">
-            {{ form_row(form.Nom, {'attr': {'class': 'contact-input', 'placeholder': 'Nom'}}) }}
+        <div class="contact-NES">
+            {{ form_row(form.Nom, {'attr': {'class': 'contact-input','placeholder': 'Nom'}}) }}
             <label for=""></label>
 
             {{ form_row(form.email, {'attr': {'class': 'contact-input', 'placeholder': 'Email'}}) }}
@@ -108,12 +108,13 @@
             {{ form_row(form.Subject, {'attr': {'class': 'contact-input','placeholder': 'Sujets'}}) }}
             <label for=""></label>
         </div>
-
-            {{ form_row(form.Message, {'attr': {'class': 'contact-input contact-Message', 'placeholder': 'Message'}}) }}
+		<div class="content-message">
+            {{ form_row(form.Message, {'attr': {'class': 'message contact-input', 'placeholder': 'Message'}}) }}
             <label for=""></label>
+		</div>
 
         <div class="d-flex justify-content-center mt-3">
-            {{form_row(form.submit,{'attr': {'class': 'mt-5 btn send-btn'
+            {{form_row(form.submit,{'attr': {'class': 'mt-5 btn send-btn btn-outline-success'
             }})}}
         </div>
 		{{ form_label(form.piege, null, {'label_attr': {'style': 'display:none;'}}) }}

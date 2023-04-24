@@ -56,7 +56,7 @@ class ContactType extends AbstractType
                 new Assert\NotBlank(),
             ],
             'label'=> false,
-            'attr'=>['class' => 'contact-input contact-Message ', 'style' => 'width: 50%;margin:40px auto;'],
+            // 'attr'=>['class' => 'contact-input contact-Message ', 'style' => 'width: 50%;margin:40px auto;'],
         ])
         ->add('submit', SubmitType::class, [
             'label' => 'Envoyer',
