@@ -11,142 +11,135 @@
 				<li>
 					<a href="/fr">
 						<img class="logo me-2" src="{{ asset('img/logo.png')}}" width alt=""></img>
+					</a>
 				</li>
-			</a>
-		</li>
-		<li class="nav-item me-2 meltingphot">
-			<a class="nav-link active" aria-current="page" href="/fr">MELTINGPHOT</a>
-		</li>
-		<li class="nav-item me-2">
-			<a class="nav-link" href="/actions">ACTIONS</a>
-		</li>
-		{# <li class="nav-item dropdown me-2">
-										<a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-											POUR QUI ?
-										</a>
-									</li> #}
-		<li class="nav-item me-2">
-			<a class="nav-link" href="#">PARTENAIRES</a>
-		</li>
-		<li class="nav-item me-2">
-			<a class="nav-link" href="#">NOUS SOUTENIR</a>
-		</li>
-		<li class="nav-item me-2">
-			<a class="nav-link" href="/contact">CONTACT</a>
-		</li>
+				<li class="nav-item me-2 meltingphot">
+					<a class="nav-link active" aria-current="page" href="/fr">MELTINGPHOT</a>
+				</li>
+				<li class="nav-item me-2">
+					<a class="nav-link" href="/actions">ACTIONS</a>
+				</li>
+				{# <li class="nav-item dropdown me-2">
+					<a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+						POUR QUI ?
+					</a>
+				</li> #}
+				<li class="nav-item me-2">
+					<a class="nav-link" href="#">PARTENAIRES</a>
+				</li>
+				<li class="nav-item me-2">
+					<a class="nav-link" href="#">NOUS SOUTENIR</a>
+				</li>
+				<li class="nav-item me-2">
+					<a class="nav-link" href="/contact">CONTACT</a>
+				</li>
 
-		{# <form class="d-flex nav-items me-2 form" role="search">
-							<input class="form-control me-2 search" type="search" placeholder="Ma recherche..." aria-label="Search">
-							<button class="btn btn-outline-success search-btn" type="submit">Rechercher</button>
-						</form>
-		
-						<li class="nav-item ">
-							<a id="language-link" class="p-2" href="{{ path('app_home_page_e_n') }}">
-								<img class="flag" src="{{ asset('img/eng.png') }}">
-							</a>
-						</li> #}
+				{# <form class="d-flex nav-items me-2 form" role="search">
+									<input class="form-control me-2 search" type="search" placeholder="Ma recherche..." aria-label="Search">
+									<button class="btn btn-outline-success search-btn" type="submit">Rechercher</button>
+								</form>
+				
+								<li class="nav-item ">
+									<a id="language-link" class="p-2" href="{{ path('app_home_page_e_n') }}">
+										<img class="flag" src="{{ asset('img/eng.png') }}">
+									</a>
+								</li> #}
 
-		{# <li class="nav-item ">
-							<a id="language-link" class="p-2" href="{{ path('app_home_page') }}">
-								<img id="flag" src="{{ asset('img/drapeau.png') }}">
-							</a>
-						</li> #}
-	</ul>
-</div></nav><section class="actions-bandeau w-100 bg-secondary-subtle h-400">
-<div class="actions-bandeau-img1"></div>
-<div class="actions-bandeau-img2"></div>
-<article class="actions-bloc">
-	<h1>Nos Actions</h1>
-	<div class="d-flex flex-row justify-content-between actions-bandeau_sous-titre">
-		<div class="actions-bandeau_trait"></div>
-		<div>
-			<span class="color-grey">MeltingPhot/</span>
-			<span class="color1">Vidéos</span>
+				{# <li class="nav-item ">
+									<a id="language-link" class="p-2" href="{{ path('app_home_page') }}">
+										<img id="flag" src="{{ asset('img/drapeau.png') }}">
+									</a>
+								</li> #}
+			</ul>
 		</div>
-	</div>
-
-</article>
-
-
-<p class="actions-description">Lorem, ipsum dolor sit amet consectetur adipisicing elit. Ipsam voluptate quidem ullam beatae vero excepturi fuga deserunt aperiam. Eius repudiandae laborum accusantium voluptatem illum odio impedit delectus expedita beatae laboriosam!</p></section><div class="d-flex justify-content-center align-items-center mt-5">
-<label class="fw-bold" for="my-dropdown ">Je filme mon futur métier de :</label>
-<input class="btn-filtres ms-3" id="my-dropdown" name="my-dropdown" value="Restauration" readonly />
-
-<select class="btn-filtres ms-3" id="my-dropdown2" name="my-dropdown">
-	<option value="option-1">Date de Sortie</option>
-	<option href="actions/2023" value="option-2">2023</option>
-	<option href="actions/2022"value="option-3">2022</option>
-</select></div><div class="d-flex justify-content-center mt-2">
-<a class="btn btn-filtres ms-3" id="btn-croissant" style="padding-top:5px;" data-sort="asc" href="/actions/asc">La plus récente</a>
-<a class="btn btn-filtres ms-3" id="btn-decroissant" style="padding-top:5px;" data-sort="desc" href="/actions/desc">La plus vieille</a></div><div class="d-flex justify-content-center flex-wrap">
-{% if videos|length > 0 %}
-	{% for video in videos %}
-		<div class="mt-5">
-			<div class="d-flex flex-column align-items-center text-center videos-container">
-				<iframe name="ytb{{ loop.index }}" class="card" width="364" height="205" src="https://www.youtube.com/embed/{{ video.snippet.resourceId.videoId }}" title="{{ video.snippet.title }}" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
-				<label class=" mb-3 labelYtb" style="font-size:14px;" ;for="ytb{{ loop.index }}">{{ video.snippet.title }}</label>
+	</nav>
+	<section class="actions-bandeau w-100 bg-secondary-subtle h-400">
+		<div class="actions-bandeau-img1"></div>
+		<div class="actions-bandeau-img2"></div>
+		<article class="actions-bloc">
+			<h1>Nos Actions</h1>
+			<div class="d-flex flex-row justify-content-between actions-bandeau_sous-titre">
+				<div class="actions-bandeau_trait"></div>
+				<div>
+					<span class="color-grey">MeltingPhot/</span>
+					<span class="color1">Vidéos</span>
+				</div>
 			</div>
+		</article>
+		<p class="actions-description">Lorem, ipsum dolor sit amet consectetur adipisicing elit. Ipsam voluptate quidem ullam beatae vero excepturi fuga deserunt aperiam. Eius repudiandae laborum accusantium voluptatem illum odio impedit delectus expedita beatae laboriosam!</p></section><div class="d-flex justify-content-center align-items-center mt-5">
+		<label class="fw-bold" for="my-dropdown ">Je filme mon futur métier de :</label>
+		<input class="btn-filtres ms-3" id="my-dropdown" name="my-dropdown" value="Restauration" readonly />
+
+		<select class="btn-filtres ms-3" id="my-dropdown2" name="my-dropdown">
+			<option value="option-1">Date de Sortie</option>
+			<option href="actions/2023" value="option-2">2023</option>
+			<option href="actions/2022"value="option-3">2022</option>
+		</select>
+
+		<div class="d-flex justify-content-center mt-2">
+			<a class="btn btn-filtres ms-3" id="btn-croissant" style="padding-top:5px;" data-sort="asc" href="/actions/asc">La plus récente</a>
+			<a class="btn btn-filtres ms-3" id="btn-decroissant" style="padding-top:5px;" data-sort="desc" href="/actions/desc">La plus vieille</a></div><div class="d-flex justify-content-center flex-wrap">
+			{% if videos|length > 0 %}
+				{% for video in videos %}
+					<div class="mt-5">
+						<div class="d-flex flex-column align-items-center text-center videos-container">
+							<iframe name="ytb{{ loop.index }}" class="card" width="364" height="205" src="https://www.youtube.com/embed/{{ video.snippet.resourceId.videoId }}" title="{{ video.snippet.title }}" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+							<label class=" mb-3 labelYtb" style="font-size:14px;" ;for="ytb{{ loop.index }}">{{ video.snippet.title }}</label>
+						</div>
+					</div>
+				{% endfor %}
+			{% else %}
+			<p class="no-results-message">Aucun résultat pour cette recherche...</p>
+			{% endif %}
 		</div>
-	{% endfor %}
-{% else %}
-	<p class="no-results-message">Aucun résultat pour cette recherche...</p>
 
-{% endif %}
-
-</div>
-
-<script>
+	{# Js pour chnager d'url #}
+	<script>
+			document.getElementById("my-dropdown2").addEventListener("change", function () {
+				var option = this.options[this.selectedIndex];
+			if (option.value == "option-3") {
+				window.location.href = "/actions/2022";}
+			})
+				{# si il clique sur option 2023 alors est redirigé #}
 		document.getElementById("my-dropdown2").addEventListener("change", function () {
-			var option = this.options[this.selectedIndex];
-		if (option.value == "option-3") {
-			window.location.href = "/actions/2022";}
+		var option = this.options[this.selectedIndex];
+		if (option.value == "option-2") {
+		window.location.href = "/actions/2023";}
 		})
-			{# si il clique sur option 2023 alors est redirigé #}
-	document.getElementById("my-dropdown2").addEventListener("change", function () {
-	var option = this.options[this.selectedIndex];
-	if (option.value == "option-2") {
-	window.location.href = "/actions/2023";}
-	})
-
-	
-	
-	
-	
-	;
-</script>
+		;
+	</script>
 
 {# Footer #}
 <footer class="text-center text-lg-start bg-light text-muted">
 	<section class="p-4 border-top">
-		<div
-			class="text-center text-md-start mt-5">
+		<div class="text-center text-md-start mt-5">
 			<!-- Grid row -->
 			<div class="row mt-3 d-flex">
-				<div
-					class="d-flex justify-content-center">
+				<div class="d-flex justify-content-center">
 					<!-- Links -->
 					<img src="{{ asset('img/logo.png')}}" class="fw-bold mb-4"></img>
-			</div>
-			<!-- Grid column -->
-			<div class="d-flex justify-content-center ">
-				<p class="text-contact">MELTINGPHOT est un acteur important sur le territoire en mennant des projets d'éducations par l'image auprès des associations, collectivités et entreprises.</p>
-			</div>
-			<div class="d-flex justify-content-center mb-3">
-				<a href="https://www.facebook.com/MeltingPhot/?locale=fr_FR" class="me-4 text-reset">
-					<i class="fab fa-facebook-f"></i>
-				</a>
-				<a href="https://twitter.com/melting_phot?lang=fr" class="me-4 text-reset">
-					<i class="fab fa-twitter"></i>
-				</a>
-				<a href="https://www.instagram.com/meltingphot/?hl=fr" class="me-4 text-reset">
-					<i class="fab fa-instagram"></i>
-				</a>
-				<a href="https://www.linkedin.com/company/meltingphot" class="me-4 text-reset">
-					<i class="fab fa-linkedin"></i>
-				</a>
-				{# <a href="" class="me-4 text-reset">
-									<i class="fab fa-github"></i>
-								</a> #}
+				</div>
+				<!-- Grid column -->
+				<div class="d-flex justify-content-center ">
+					<p class="text-contact">MELTINGPHOT est un acteur important sur le territoire en mennant des projets d'éducations par l'image auprès des associations, collectivités et entreprises.</p>
+				</div>
+				<div class="d-flex justify-content-center mb-3">
+					<a href="https://www.facebook.com/MeltingPhot/?locale=fr_FR" class="me-4 text-reset">
+						<i class="fab fa-facebook-f"></i>
+					</a>
+					<a href="https://twitter.com/melting_phot?lang=fr" class="me-4 text-reset">
+						<i class="fab fa-twitter"></i>
+					</a>
+					<a href="https://www.instagram.com/meltingphot/?hl=fr" class="me-4 text-reset">
+						<i class="fab fa-instagram"></i>
+					</a>
+					<a href="https://www.linkedin.com/company/meltingphot" class="me-4 text-reset">
+						<i class="fab fa-linkedin"></i>
+					</a>
+					{# <a href="" class="me-4 text-reset">
+										<i class="fab fa-github"></i>
+									</a> #}
+				</div>
 			</div>
 			<!-- Grid column -->
 			<div
@@ -158,12 +151,11 @@
 					<i class="fas fa-envelope me-3"></i>info@example.com</p>
 				<p>
 					<i class="fas fa-phone me-3"></i>06 64 21 93 75</p>
-
 			</div>
 			<!-- Grid column -->
 		</div>
 		<!-- Grid row -->
-	</div>
+	</section>
 	<div
 		class="info-contact2 ">
 		<!-- Links -->
