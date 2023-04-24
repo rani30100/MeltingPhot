@@ -11,7 +11,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
 class HomePageController extends AbstractController
 {
-    #[Route('/fr', name: 'app_home_page')]
+    #[Route('/', name: 'app_home_page')]
     public function index(TranslatorInterface $translator,Security $security): Response
     {    
         $user = $security->getUser();

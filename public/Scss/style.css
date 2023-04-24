@@ -630,6 +630,34 @@ label[for=contact_piege] {
   .actions-videos {
     flex-direction: column;
   }
+  .actions-bandeau_sous-titre {
+    align-items: center;
+    width: 100%;
+    justify-content: center !important;
+  }
+  .actions-bloc {
+    width: 100%;
+    margin-left: 0px;
+    text-align: left;
+    margin-top: -100px;
+  }
+  .actions-bloc h1 {
+    text-align: center;
+    font-size: 40px;
+  }
+  .actions-description {
+    margin-left: 7px;
+    text-align: justify;
+    min-width: 343px;
+    width: 91% !important;
+    margin: 1rem !important;
+  }
+  .btn-filtres {
+    width: 80%;
+  }
+  .order-btn {
+    width: 90%;
+  }
 }
 body .parent-article .block-article_description {
   margin-left: -13px;
