@@ -1,0 +1,62 @@
+.contact-input {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+}
+
+.bloc-contact {
+    margin-top: 8rem;
+}
+
+.bloc-adress {
+    margin-top: 6rem;
+    margin-left: -13rem;
+}
+
+.bloc-adress_place,
+.bloc-adress_phone {
+    margin-right: 8rem;
+}
+
+.send-btn {
+    background-color: $rouge;
+    border-radius: 0px;
+    padding: 6px 55px 6px;
+    font-weight: bolder;
+    color: white;
+    line-height: 40px;
+
+    &:hover {
+        transform: scale(1.05);
+        background-color: $rouge;
+        color: white;
+    }
+}
+
+.contact-form {
+    margin-bottom: 6rem;
+}
+
+.form-group {
+    display: flex;
+    justify-content: center;
+}
+
+.contact-NES {
+    display: flex;
+    width: 50%;
+    justify-content: space-between;
+    margin: 0 auto;
+}
+
+//cacher le label piege 
+label[for="contact_piege"] {
+    display: none !important;
+}
+
+
+//captcha 
+.grecaptcha-badge {
+    visibility: hidden;
+}

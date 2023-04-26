@@ -10,7 +10,7 @@
 			<ul class="navbar-nav me-auto mb-2 mb-lg-0 w-100 d-flex justify-content-center align-items-center">
 				<li>
 					<a href="/">
-						<img class="logo me-2" src="{{ asset('img/logo.png')}}" width alt=""></img>
+						<img class="logo me-2" src="{{ asset('img/logo.png')}}" alt=""/>
 					</a>
 				</li>
 				<li class="nav-item me-2 meltingphot">
@@ -19,138 +19,133 @@
 				<li class="nav-item me-2">
 					<a class="nav-link" href="/actions">ACTIONS</a>
 				</li>
-				{# <li class="nav-item dropdown me-2">
-					<a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-						POUR QUI ?
-					</a>
-				</li> #}
-				{# <li class="nav-item me-2">
-					<a class="nav-link" href="#">PARTENAIRES</a>
-				</li>
-				<li class="nav-item me-2">
-					<a class="nav-link" href="#">NOUS SOUTENIR</a>
-				</li> #}
 				<li class="nav-item me-2">
 					<a class="nav-link" href="/contact">CONTACT</a>
 				</li>
-
-				{# <form class="d-flex nav-items me-2 form" role="search">
-									<input class="form-control me-2 search" type="search" placeholder="Ma recherche..." aria-label="Search">
-									<button class="btn btn-outline-success search-btn" type="submit">Rechercher</button>
-								</form>
-				
-								<li class="nav-item ">
-									<a id="language-link" class="p-2" href="{{ path('app_home_page_e_n') }}">
-										<img class="flag" src="{{ asset('img/eng.png') }}">
-									</a>
-								</li> #}
-
-				{# <li class="nav-item ">
-									<a id="language-link" class="p-2" href="{{ path('app_home_page') }}">
-										<img id="flag" src="{{ asset('img/drapeau.png') }}">
-									</a>
-								</li> #}
 			</ul>
 		</div>
 	</nav>
-
-
-	<section class="actions-bandeau w-100 bg-secondary-subtle h-400">
-		<div class="actions-bandeau-img1"></div>
-		<div class="actions-bandeau-img2"></div>
+	<section class="actions-bandeau w-100 bg-secondary-subtle h-400 d-flex flex-column justify-content-center align-items-center p-1">
 		<article class="actions-bloc">
-			<h1>Nos Actions</h1>
-			<div class="d-flex flex-row justify-content-between actions-bandeau_sous-titre">
-				<div class="actions-bandeau_trait"></div>
-				<div>
-					<span class="color-grey">MeltingPhot/</span>
-					<span class="color1">Vidéos</span>
-				</div>
-			</div>
-		</article>
-		<p class="actions-description">Lorem, ipsum dolor sit amet consectetur adipisicing elit. Ipsam voluptate quidem ullam beatae vero excepturi fuga deserunt aperiam. Eius repudiandae laborum accusantium voluptatem illum odio impedit delectus expedita beatae laboriosam!</p>
-	</section>
-
-	<div class="d-flex justify-content-center align-items-center mt-5 flex-column">
-			<label class="fw-bold" for="my-dropdown ">Je filme mon futur métier de :</label>
-		<div class="d-flex">
-			<input class="btn-filtres ms-3" id="my-dropdown" name="my-dropdown" value="Restauration" readonly />
-
-			<select class="btn-filtres ms-3" id="my-dropdown2" name="my-dropdown">
-				<option value="option-1">Date de Sortie</option>
-				<option href="actions/2023" value="option-2">2023</option>
-				<option href="actions/2022"value="option-3">2022</option>
-			</select>
-		</div>
-
-	
-		<div class="d-flex mt-2 order-btn justify-content-between">
-			<a class="btn btn-filtres ms-3" id="btn-croissant" style="padding-top:5px;" data-sort="asc" href="/actions/asc">La plus récente</a>
-			<a class="btn btn-filtres ms-3" id="btn-decroissant" style="padding-top:5px;" data-sort="desc" href="/actions/desc">La plus vieille</a>
-		</div>
-		<div class="d-flex justify-content-center flex-wrap">
-			{% if videos|length > 0 %}
-				{% for video in videos %}
-					<div class="mt-5">
-						<div class="d-flex flex-column align-items-center text-center videos-container">
-							<iframe name="ytb{{ loop.index }}" class="card" width="364" height="205" src="https://www.youtube.com/embed/{{ video.snippet.resourceId.videoId }}" title="{{ video.snippet.title }}" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
-							<label class=" mb-3 labelYtb" style="font-size:14px;" ;for="ytb{{ loop.index }}">{{ video.snippet.title }}</label>
+			<div class="container d-lg-flex flex-lg-row justify-content-lg-center align-items-lg-center">
+				<div class="col-lg-4">
+					<h1>Nos Actions</h1>
+					<div class="d-flex flex-row justify-content-between align-items-center actions-bandeau_sous-titre m-auto">
+						<div class="actions-bandeau_trait"></div>
+						<div>
+							<span class="color-grey">MeltingPhot/</span>
+							<span class="color1">Vidéos</span>
 						</div>
 					</div>
-				{% endfor %}
-			{% else %}
-			<p class="no-results-message">Aucun résultat pour cette recherche...</p>
-			{% endif %}
+				</div>
+				<p class="col-lg-8 mt-5 m-lg-0 text-justify">Lorem, ipsum dolor sit amet consectetur adipisicing elit. Ipsam voluptate quidem ullam beatae vero excepturi fuga deserunt aperiam. Eius repudiandae laborum accusantium voluptatem illum odio impedit delectus expedita beatae laboriosam!</p>
+			</div>
+		</article>
+	</section>
+	<div class="d-flex flex-column flex-md-row align-items-center justify-content-center bloc-filtres">
+		<h2 for="my-dropdown" class="text-center fw-light">NOS
+			<span class="fw-bold">ACTIONS D'EDUCATION
+			</span>PAR L'IMAGE</h2>
+		<div class="col-6 btn-filtres-items">
+			<input class="btn btn-filtres w-100" id="my-dropdown" name="my-dropdown" value="Restauration" readonly/>
+		</div>
+		<div class="col-6 btn-filtres-items">
+			<select class="form-select w-100 btn btn-filtres" id="my-dropdown2" name="my-dropdown">
+				<option value="option-1">Date de Sortie</option>
+				<option href="actions/2023" value="option-2">2023</option>
+				<option href="actions/2022" value="option-3">2022</option>
+			</select>
+		</div>
+		<div class="col-6 btn-filtres-items">
+			<a class="btn btn-filtres w-100" id="btn-croissant" style="padding-top:5px;" data-sort="asc" href="/actions/asc">La plus récente</a>
+		</div>
+		<div class="col-6 btn-filtres-items">
+			<a class="btn btn-filtres w-100" id="btn-decroissant" style="padding-top:5px;" data-sort="desc" href="/actions/desc">La plus vieille</a>
 		</div>
 	</div>
 
 
-	{# Footer #}
+	<div class="d-flex justify-content-center flex-wrap bloc-videos p-1">
+		{% if videos|length > 0 %}
+			{% for video in videos %}
+				<div class="mt-1 bloc-videos-item">
+					<div class="d-flex flex-column align-items-center text-center videos-container">
+						<div>
+							<button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#videoModal{{ loop.index }}">
+								<i class="bi bi-play-circle"></i>
+								{{ video.snippet.title }}
+							</button>
+						</div>
+					</div>
+				</div>
+
+				<div class="modal fade" id="videoModal{{ loop.index }}" tabindex="-1" aria-labelledby="videoModal{{ loop.index }}Label" aria-hidden="true">
+					<div class="modal-dialog modal-lg modal-dialog-centered">
+						<div class="modal-content">
+							<div class="modal-header">
+								<h5 class="modal-title" id="videoModal{{ loop.index }}Label">{{ video.snippet.title }}</h5>
+								<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+							</div>
+							<div class="modal-body">
+								<div class="embed-responsive embed-responsive-16by9">
+									<iframe class="embed-responsive-item w-100 modal-video" src="https://www.youtube.com/embed/{{ video.snippet.resourceId.videoId }}?rel=0" allowfullscreen></iframe>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			{% endfor %}
+
+		{% else %}
+			<p class="no-results-message">Aucun résultat pour cette recherche...</p>
+		{% endif %}
+	</div>
+
+
 	<footer class="text-center text-lg-start bg-light text-muted">
 		<section class="p-4 border-top">
-			<div class="text-center text-md-start mt-5">
+			<div
+				class="text-center text-md-start mt-5">
 				<!-- Grid row -->
 				<div class="row mt-3 d-flex">
-					<div class="d-flex justify-content-center">
+					<div
+						class="d-flex justify-content-center">
 						<!-- Links -->
 						<img src="{{ asset('img/logo.png')}}" class="fw-bold mb-4"></img>
-					</div>
-					<!-- Grid column -->
-					<div class="d-flex justify-content-center ">
-						<p class="text-contact">MELTINGPHOT est un acteur important sur le territoire en mennant des projets d'éducations par l'image auprès des associations, collectivités et entreprises.</p>
-					</div>
-					<div class="d-flex justify-content-center mb-3">
-						<a href="https://www.facebook.com/MeltingPhot/?locale=fr_FR" class="me-4 text-reset">
-							<i class="fab fa-facebook-f"></i>
-						</a>
-						<a href="https://twitter.com/melting_phot?lang=fr" class="me-4 text-reset">
-							<i class="fab fa-twitter"></i>
-						</a>
-						<a href="https://www.instagram.com/meltingphot/?hl=fr" class="me-4 text-reset">
-							<i class="fab fa-instagram"></i>
-						</a>
-						<a href="https://www.linkedin.com/company/meltingphot" class="me-4 text-reset">
-							<i class="fab fa-linkedin"></i>
-						</a>
-						{# <a href="" class="me-4 text-reset">
-											<i class="fab fa-github"></i>
-										</a> #}
-					</div>
 				</div>
 				<!-- Grid column -->
-				<div class="col-md-4 col-lg-3 col-xl-3 mx-auto mb-md-0 mb-4 contact-2">
-					<!-- Links -->
-					<p>
-						<i class="fas fa-home me-3"></i>15 Route de bagnols, 30100 Alès</p>
-					<p>
-						<i class="fas fa-envelope me-3"></i>info@example.com</p>
-					<p>
-						<i class="fas fa-phone me-3"></i>06 64 21 93 75</p>
+				<div class="d-flex justify-content-center ">
+					<p class="text-contact">MELTINGPHOT est un acteur important sur le territoire en mennant des projets d'éducations par l'image auprès des associations, collectivités et entreprises.</p>
 				</div>
-				<!-- Grid column -->
+				<div class="d-flex justify-content-center mb-3">
+					<a href="https://www.facebook.com/MeltingPhot/?locale=fr_FR" class="me-4 text-reset">
+						<i class="fab fa-facebook-f"></i>
+					</a>
+					<a href="https://twitter.com/melting_phot?lang=fr" class="me-4 text-reset">
+						<i class="fab fa-twitter"></i>
+					</a>
+					<a href="https://www.instagram.com/meltingphot/?hl=fr" class="me-4 text-reset">
+						<i class="fab fa-instagram"></i>
+					</a>
+					<a href="https://www.linkedin.com/company/meltingphot" class="me-4 text-reset">
+						<i class="fab fa-linkedin"></i>
+					</a>
+				</div>
 			</div>
-			<!-- Grid row -->
-		<div class="info-contact2 ">
+		</div>
+		<!-- Grid column -->
+		<div
+			class="col-md-4 col-lg-3 col-xl-3 mx-auto mb-md-0 mb-4 contact-2">
+			<!-- Links -->
+			<p>
+				<i class="fas fa-home me-3"></i>15 Route de bagnols, 30100 Alès</p>
+			<p>
+				<i class="fas fa-envelope me-3"></i>info@example.com</p>
+			<p>
+				<i class="fas fa-phone me-3"></i>06 64 21 93 75</p>
+		</div>
+		<div
+			class="info-contact2 ">
 			<!-- Links -->
 			<p class="ms-3">
 				<i class="fas fa-home me-2"></i>15 Route de bagnols, 30100 Alès</p>
@@ -160,31 +155,36 @@
 				<i class="fas fa-phone me-2"></i>06 64 21 93 75</p>
 		</div>
 	</section>
-
-		<!-- Section: Links  --><!-- Copyright -->
-		<div class="text-center p-4 fw-bold text-white d-flex flex-column align-items-center" style="background-color: #D00A4B;">
-
-		Tous droits réservés © 2023 @MeltingPhot</a><p class="fst-italic fw-light fs-6 text-white copyright-text">En effet, tous les éléments présents sur Internet (textes, images, vidéos, extraits sonores, codes informatiques…)
-				sont de facto soumis au droit d’auteur, même si l’accès est libre, gratuit et sans mention particulière.</p>
-		</div><!-- Copyright -->
-	</footer><!-- Footer -->{# js #}
-</body>
-</html>
-
-
-{# Js pour chnager d'url #}
+	<!-- Section: Links  -->
+	<!-- Copyright -->
+	<div class="text-center p-4 fw-bold text-white d-flex flex-column align-items-center" style="background-color: #D00A4B;">
+		<a>Tous droits réservés © 2023 @MeltingPhot</a>
+		<p class="fst-italic fw-light fs-6 text-white copyright-text">En effet, tous les éléments présents sur Internet (textes, images, vidéos, extraits sonores, codes informatiques…)
+																																																																																																																																																																																																																																																																																																						sont de facto soumis au droit d’auteur, même si l’accès est libre, gratuit et sans mention particulière.</p>
+	</div>
+	<!-- Copyright -->
+</footer>
 <script>
-		document.getElementById("my-dropdown2").addEventListener("change", function () {
-			var option = this.options[this.selectedIndex];
-		if (option.value == "option-3") {
-			window.location.href = "/actions/2022";}
-		})
-			{# si il clique sur option 2023 alors est redirigé #}
 	document.getElementById("my-dropdown2").addEventListener("change", function () {
-		var option = this.options[this.selectedIndex];
-	if (option.value == "option-2") {
-		window.location.href = "/actions/2023";}
-	})
-	;
-</script>
-{% endblock %}
+var option = this.options[this.selectedIndex];
+if (option.value == "option-3") {
+window.location.href = "/actions/2022";
+}
+});
+
+document.getElementById("my-dropdown2").addEventListener("change", function () {
+var option = this.options[this.selectedIndex];
+if (option.value == "option-2") {
+window.location.href = "/actions/2023";
+}
+});
+
+
+// Modal
+const myModal = document.getElementById('myModal')
+const myInput = document.getElementById('myInput')
+
+myModal.addEventListener('shown.bs.modal', () => {
+myInput.focus()
+})
+</script>{% endblock %}

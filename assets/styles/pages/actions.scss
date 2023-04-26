@@ -1,0 +1,154 @@
+@use "sass:math";
+@import '../variables.scss';
+
+h2 {
+    color: $rouge;
+}
+
+// Espacement des videos
+.actions-bandeau {
+    height: 400px;
+}
+
+.actions-bloc {
+    width: 100%;
+    text-align: left;
+
+    .container {
+        h1 {
+            text-align: center;
+            font-size: 40px;
+        }
+
+        .actions-description {
+            text-align: justify;
+            // min-width: 330px;
+            // width: 91% !important;
+            // margin: 1rem !important;
+        }
+    }
+
+}
+
+.actions-bandeau {
+    height: 400px;
+    background-image: linear-gradient(to right, rgba($background-color, 0.4), rgba($background-color, 0.7)), url(../../images/Point.png);
+    background-size: cover;
+    background-repeat: no-repeat;
+
+    h1 {
+        font-family: 'Raleway', sans-serif;
+        font-size: 70px;
+        font-weight: 500;
+        letter-spacing: 4px;
+    }
+
+    @include media-breakpoint-up(lg) {
+        background-image:
+            linear-gradient(to right, rgba($background-color, 0.4), rgba($background-color, 0.7)),
+            url(../../images/Rectangle.png),
+            url(../../images/Point.png);
+
+        background-size: cover, 70% 100%, cover;
+        background-position: top left, top right, top left;
+
+    }
+}
+
+.actions-bandeau_trait {
+    border-bottom: 3px solid black;
+    border-bottom-width: 5px;
+    width: 5rem;
+}
+
+.actions-bandeau_sous-titre {
+    width: 270px;
+}
+
+.color-grey {
+    color: grey;
+}
+
+.point {
+    width: 50px;
+    height: 50px;
+}
+
+.btn-filtres {
+    border-radius: 8px;
+    color: white;
+    border: 2px solid white;
+    height: 40px;
+    width: 11rem;
+    background-color: $rouge;
+    text-decoration: none;
+    text-align: center;
+
+}
+
+.actions-description {
+    padding-top: 165px;
+    // position: absolute;
+    // max-width: 405px;
+    text-align: justify;
+    // margin-left: 793px;
+}
+
+.no-results-message {
+    font-size: 20px;
+    margin: 50px;
+    font-weight: bolder;
+}
+
+.bloc-videos {
+    margin: 0 auto;
+    @extend .container;
+
+    &-item {
+        width: 100%;
+        @extend .d-flex;
+        @extend .justify-content-center;
+        @extend .align-items-start;
+
+        @include media-breakpoint-up(sm) {
+            width: 50%
+        }
+
+        @include media-breakpoint-up(md) {
+            width: percentage(math.div(1, 3));
+        }
+
+        @include media-breakpoint-up(xl) {
+            width: percentage(math.div(1, 5));
+        }
+    }
+
+
+}
+
+.btn-filtres-items {
+    width: 15%;
+    min-width: 140px;
+}
+
+.modal-content {
+    height: 540px;
+}
+
+.modal-video {
+    height: 400px;
+    padding: 2rem;
+
+}
+
+.actions-bandeau_sous-titre {
+    width: 100%;
+}
+
+.btn-filtres {
+    width: 80%;
+}
+
+.order-btn {
+    width: 90%;
+}

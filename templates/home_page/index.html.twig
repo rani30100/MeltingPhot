@@ -2,10 +2,7 @@
 
 {% block title %}MeltingPhot !
 {% endblock %}
-{% block stylesheets %}
-	<link rel="stylesheet" href="{{ asset('Scss/style.css') }}">
 
-{% endblock %}
 {% block body %}
 	<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 	<link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.9.0/slick.min.css"/>
@@ -17,159 +14,160 @@
 			<ul class="navbar-nav me-auto mb-2 mb-lg-0 w-100 d-flex justify-content-center align-items-center">
 				<li>
 					<a href="/"></a>
-						<img class="logo me-2" src="{{ asset('img/logo.png')}}" width alt=""></img>
+					<img class="logo me-2" src="{{ asset('img/logo.png')}}" width alt="">
 				</li>
-		
-				<li class="nav-item me-2 meltingphot">
-					<a class="nav-link active" aria-current="page" href="/">MELTINGPHOT</a>
-				</li>
-				<li class="nav-item me-2">
-					<a class="nav-link" href="/actions">ACTIONS</a>
-				</li>
-				{# <li class="nav-item dropdown me-2">
-					<a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-						POUR QUI ?
-					</a>
-				</li> #}
-				{# <li class="nav-item me-2">
-					<a class="nav-link" href="#">PARTENAIRES</a>
-				</li>
+			</img>
+		</li>
 
-				<li class="nav-item me-2">
-					<a class="nav-link" href="#">NOUS SOUTENIR</a>
-				</li> #}
+		<li class="nav-item me-2 meltingphot">
+			<a class="nav-link active" aria-current="page" href="/">MELTINGPHOT</a>
+		</li>
+		<li class="nav-item me-2">
+			<a class="nav-link" href="/actions">ACTIONS</a>
+		</li>
+		{# <li class="nav-item dropdown me-2">
+													<a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+														POUR QUI ?
+													</a>
+												</li> #}
+		{# <li class="nav-item me-2">
+													<a class="nav-link" href="#">PARTENAIRES</a>
+												</li>
+								
+												<li class="nav-item me-2">
+													<a class="nav-link" href="#">NOUS SOUTENIR</a>
+												</li> #}
 
-				<li class="nav-item me-2">
-					<a class="nav-link" href="/contact">CONTACT</a>
-				</li>
+		<li class="nav-item me-2">
+			<a class="nav-link" href="/contact">CONTACT</a>
+		</li>
 
-				{# <li class="nav-item me-2">
-					<a class="nav-link" href="/login">Login</a>
-				</li>
-			
-				<li class="nav-item me-2">
-					<a class="nav-link" href="/logout">Se déconnecter</a>
-				</li> #}
-				{% if app.user %}
-					<p>Bienvenue,
-						{{ app.user.email }}!</p>
-				{% endif %}
+		{# <li class="nav-item me-2">
+													<a class="nav-link" href="/login">Login</a>
+												</li>
+											
+												<li class="nav-item me-2">
+													<a class="nav-link" href="/logout">Se déconnecter</a>
+												</li> #}
+		{% if app.user %}
+			<p>Bienvenue,
+				{{ app.user.email }}!</p>
+		{% endif %}
 
-				{# <form class="d-flex nav-items me-2 form" role="search">
-					<input class="form-control me-2 search" type="search" placeholder="Ma recherche..." aria-label="Search">
-					<button class="btn btn-outline-success search-btn" type="submit">Rechercher</button>
-				</form>
+		{# <form class="d-flex nav-items me-2 form" role="search">
+													<input class="form-control me-2 search" type="search" placeholder="Ma recherche..." aria-label="Search">
+													<button class="btn btn-outline-success search-btn" type="submit">Rechercher</button>
+												</form>
+								
+												<li class="nav-item ">
+													<a id="language-link" class="p-2" href="{{ path('app_home_page_e_n') }}">
+														<img class="flag" src="{{ asset('img/eng.png') }}">
+													</a>
+												</li> #}
 
-				<li class="nav-item ">
-					<a id="language-link" class="p-2" href="{{ path('app_home_page_e_n') }}">
-						<img class="flag" src="{{ asset('img/eng.png') }}">
-					</a>
-				</li> #}
+		{# <li class="nav-item ">
+													<a id="language-link" class="p-2" href="{{ path('app_home_page') }}">
+														<img id="flag" src="{{ asset('img/drapeau.png') }}">
+													</a>
+												</li> #}
+	</ul>
+</div></nav><section class="main">
+<section class="know-more">
+	<a href="https://www.youtube.com/@meltingphot" target="_blank" class="btn btn-danger know-more_btn">En (Sa) voir +</a>
+</section>
 
-				{# <li class="nav-item ">
-					<a id="language-link" class="p-2" href="{{ path('app_home_page') }}">
-						<img id="flag" src="{{ asset('img/drapeau.png') }}">
-					</a>
-				</li> #}
-			</ul>
+<section
+	id="parent-article" class="d-flex flex-column parent-article">
+	{# 1er article  #}
+	<article class="d-flex article">
+		<img id="forms-svg" class="article-img1" src="{{asset('img/Image_Vignette_Page accueil meltingphot_je Filme mon futur métier.png')}}" alt="">
+		<div class="">
+			<img id="forms-svg2" class="article-img2" src="{{asset('img/Rani_carre.png')}}" alt="">
 		</div>
-	</nav>
-	<section class="main">
-		<section class="know-more">
-			<a href="https://www.youtube.com/@meltingphot" target="_blank" class="btn btn-danger know-more_btn">En (Sa) voir +</a>
-		</section>
+		<div class="d-flex flex-column justify-content-center article-box">
+			<div class='article-title'>
+				<span class="numbers">03</span>
+				<h3 class="color1">{{ 'tagline_1.title'|trans({}, 'home') }}</h3>
+			</div>
+			<div>
+				<p class="block-article_description">
+					HÉBÉMAG : Découvrir son futur métier en allant à la rencontre des professionnels telle une vraie équipe de journalistes en tournage. Rédiger un magazine sur la thématique du métier envisagé.</p>
+			</div>
+			<div
+				class="bloc1_description2">{# <p class=" block-article_description2">Lorem ipsum dolor sit amet consectetur adipisicing elit. Ea labore nesciunt magnam eveniet accusantium placeat blanditiis et iusto. Tempore, id distinctio, dolorem similique sunt aspernatur, quod maiores incidunt fugiat quidem cupiditate voluptatibus dignissimos voluptatem expedita.</p> #}
+			</div>
+		</div>
+	</article>
 
-		<section id="parent-article" class="d-flex flex-column parent-article">
-			{# 1er article  #}
-			<article class="d-flex article">
-				<img id="forms-svg" class="article-img1" src="{{asset('img/Image_Vignette_Page accueil meltingphot_je Filme mon futur métier.png')}}" alt="">
-				<div class="">
-					<img id="forms-svg2" class="article-img2" src="{{asset('img/Rani_carre.png')}}" alt="">
-				</div>
-				<div class="d-flex flex-column justify-content-center article-box">
-					<div class='article-title'>
-						<span class="numbers">03</span>
-						<h3 class="color1">{{ 'tagline_1.title'|trans({}, 'home') }}</h3>
-					</div>
-					<div>
-						<p class="block-article_description">
-							HÉBÉMAG : Découvrir son futur métier en allant à la rencontre des professionnels telle une vraie équipe de journalistes en tournage. Rédiger un magazine sur la thématique du métier envisagé.</p>
-					</div>
-					<div
-						class="bloc1_description2">{# <p class=" block-article_description2">Lorem ipsum dolor sit amet consectetur adipisicing elit. Ea labore nesciunt magnam eveniet accusantium placeat blanditiis et iusto. Tempore, id distinctio, dolorem similique sunt aspernatur, quod maiores incidunt fugiat quidem cupiditate voluptatibus dignissimos voluptatem expedita.</p> #}
-					</div>
-				</div>
-			</article>
+	{# 2ème article  #}
+	<article class="d-flex flex-row-reverse mt-4 article2">
+		<div class="d-flex flex-row-reverse bloc-img" style="margin-top: -25px;">
+			<img id="g" class="float-end article2-img" src="{{asset('img/ODONYMES _Image_Vignette_Page accueil meltingphot_je Filme mon futur métier.png')}}" alt="">
+			<img class="article2-img2" src="{{asset('img/rond.png')}}" alt="">
+		</div>
+		<div class="article2-main">
+			<div class="article2-title d-flex flex-column align-items-end">
+				<span class="article2-title-chiffre">02</span>
+				<h3 class="article2-title_nom">ODONYMES</h2>
+			</div>
 
-			{# 2ème article  #}
-			<article class="d-flex flex-row-reverse mt-4 article2">
-				<div class="d-flex flex-row-reverse bloc-img" style="margin-top: -25px;">
-					<img id="g" class="float-end article2-img" src="{{asset('img/ODONYMES _Image_Vignette_Page accueil meltingphot_je Filme mon futur métier.png')}}" alt="">
-					<img class="article2-img2" src="{{asset('img/rond.png')}}" alt="">
-				</div>
-				<div class="article2-main">
-					<div class="article2-title d-flex flex-column align-items-end">
-						<span class="article2-title-chiffre">02</span>
-						<h3 class="article2-title_nom">ODONYMES</h2>
-					</div>
+			<div class="d-flex flex-column article2-box_description">
+				<p class="article2_description">
+					En septembre 2023, dans le cadre des journées du patrimoine, les habitants des prés Saint Jean auront l’honneur de vous faire découvrir l’histoire de leur quartier comme vous ne l’auriez jamais imaginée.</p>
+			</div>
+		</div>
+	</article>
 
-					<div class="d-flex flex-column article2-box_description">
-						<p class="article2_description">
-						En septembre 2023, dans le cadre des journées du patrimoine, les habitants des prés Saint Jean auront l’honneur de vous faire découvrir l’histoire de leur quartier comme vous ne l’auriez jamais imaginée.</p>
-					</div>
-				</div>
-			</article>
-
-			{# 3ème article  #}
-			<article class="d-flex article">
-				<img id="forms-svg" class="article-img1" src="{{asset('img/Je filme mon futur métier Meltingphot_Image_Vignette_Page accueil meltingphot_je Filme mon futur métier.png')}}" alt="">
-				<div class="">
-					<img id="forms-svg2" class="article-img2" src="{{asset('img/Rani_carre.png')}}" alt="">
-				</div>
-				<div class="d-flex flex-column justify-content-center article-box">
-					<div class='article-title'>
-						<span class="numbers">03</span>
-						<h3 class="color1">Projets Multiculutrels</h3>
-					</div>
-					<div>
-						<p class="block-article_description">
-							Des projets culturels d’envergure ayant pour finalité une production audiovisuelle complexe : clip vidéo, court-métrage, film d’animation, exposition interactive, magazine, … et permettant l’apprentissage de disciplines multiples (vidéo, photo, lightpainting, vidéopainting, écriture, danse, graff, stopmotion, montage, chant, musique, prise de son, …)</p>
-					</div>
-					<div
-						class="bloc1_description2">{# <p class=" block-article_description2">Lorem ipsum dolor sit amet consectetur adipisicing elit. Ea labore nesciunt magnam eveniet accusantium placeat blanditiis et iusto. Tempore, id distinctio, dolorem similique sunt aspernatur, quod maiores incidunt fugiat quidem cupiditate voluptatibus dignissimos voluptatem expedita.</p> #}
-					</div>
-				</div>
-			</article>
-		</section>
+	{# 3ème article  #}
+	<article class="d-flex article">
+		<img id="forms-svg" class="article-img1" src="{{asset('img/Je filme mon futur métier Meltingphot_Image_Vignette_Page accueil meltingphot_je Filme mon futur métier.png')}}" alt="">
+		<div class="">
+			<img id="forms-svg2" class="article-img2" src="{{asset('img/Rani_carre.png')}}" alt="">
+		</div>
+		<div class="d-flex flex-column justify-content-center article-box">
+			<div class='article-title'>
+				<span class="numbers">03</span>
+				<h3 class="color1">Projets Multiculutrels</h3>
+			</div>
+			<div>
+				<p class="block-article_description">
+					Des projets culturels d’envergure ayant pour finalité une production audiovisuelle complexe : clip vidéo, court-métrage, film d’animation, exposition interactive, magazine, … et permettant l’apprentissage de disciplines multiples (vidéo, photo, lightpainting, vidéopainting, écriture, danse, graff, stopmotion, montage, chant, musique, prise de son, …)</p>
+			</div>
+			<div
+				class="bloc1_description2">{# <p class=" block-article_description2">Lorem ipsum dolor sit amet consectetur adipisicing elit. Ea labore nesciunt magnam eveniet accusantium placeat blanditiis et iusto. Tempore, id distinctio, dolorem similique sunt aspernatur, quod maiores incidunt fugiat quidem cupiditate voluptatibus dignissimos voluptatem expedita.</p> #}
+			</div>
+		</div>
+	</article>
+</section>
 
 <div id="carouselExampleIndicators" class="carousel slide">
-  <div class="carousel-indicators">
-    <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
-    <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="1" aria-label="Slide 2"></button>
-    <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="2" aria-label="Slide 3"></button>
-  </div>
-  <div class="carousel-inner">
-    <div class="carousel-item active">
-      <img src="{{asset("img/IMG_Miniature_Meltingphot__Image_Vignette_Page_accueil_meltingphot_je_Filme_mon_futur_metier300_300_px.png")}}" class="d-block w-100" alt="...">
-    </div>
-    <div class="carousel-item">
-      <img src="{{asset("img/IMG_Miniature_Meltingphot__Image_Vignette_Page_accueil_meltingphot_je_Filme_mon_futur_metier300_300_px.png")}}" class="d-block w-100" alt="...">
-    </div>
-    <div class="carousel-item">
-      <img src="{{asset("img/IMG_Miniature_Meltingphot__Image_Vignette_Page_accueil_meltingphot_je_Filme_mon_futur_metier300_300_px.png")}}" class="d-block w-100" alt="...">
-    </div>
-  </div>
-  <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="prev">
-    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-    <span class="visually-hidden">Previous</span>
-  </button>
-  <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="next">
-    <span class="carousel-control-next-icon" aria-hidden="true"></span>
-    <span class="visually-hidden">Next</span>
-  </button>
+	<div class="carousel-indicators">
+		<button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+		<button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="1" aria-label="Slide 2"></button>
+		<button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="2" aria-label="Slide 3"></button>
+	</div>
+	<div class="carousel-inner">
+		<div class="carousel-item active">
+			<img src="{{asset("img/IMG_Miniature_Meltingphot__Image_Vignette_Page_accueil_meltingphot_je_Filme_mon_futur_metier300_300_px.png")}}" class="d-block w-100" alt="...">
+		</div>
+		<div class="carousel-item">
+			<img src="{{asset("img/IMG_Miniature_Meltingphot__Image_Vignette_Page_accueil_meltingphot_je_Filme_mon_futur_metier300_300_px.png")}}" class="d-block w-100" alt="...">
+		</div>
+		<div class="carousel-item">
+			<img src="{{asset("img/IMG_Miniature_Meltingphot__Image_Vignette_Page_accueil_meltingphot_je_Filme_mon_futur_metier300_300_px.png")}}" class="d-block w-100" alt="...">
+		</div>
+	</div>
+	<button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="prev">
+		<span class="carousel-control-prev-icon" aria-hidden="true"></span>
+		<span class="visually-hidden">Previous</span>
+	</button>
+	<button class="carousel-control-next" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="next">
+		<span class="carousel-control-next-icon" aria-hidden="true"></span>
+		<span class="visually-hidden">Next</span>
+	</button>
 </div>
-	{# Carrousel  5 videos #}
-	{# <div class=" w-100 h-400 bg-white bloc-carrousel">
+{# Carrousel  5 videos #}
+{# <div class=" w-100 h-400 bg-white bloc-carrousel">
 		<div class="row d-flex justify-content-center">
 			<div class="col-2 columns1"></div>
 			<div class="col-2 columns2"></div>
@@ -180,15 +178,17 @@
 		</div>
 	</div> #}
 
-	<!-- Footer -->
-	<footer class="text-center text-lg-start bg-light text-muted"><section class="p-4 border-top">
-		<div class="text-center text-md-start mt-5">
+<!-- Footer -->
+	<footer class="text-center text-lg-start bg-light text-muted"> <section class="p-4 border-top">
+		<div
+			class="text-center text-md-start mt-5">
 			<!-- Grid row -->
 			<div class="row mt-3 d-flex">
-				<div class="d-flex justify-content-center">
+				<div
+					class="d-flex justify-content-center">
 					<!-- Links -->
 					<img src="{{ asset('img/logo.png')}}" class="fw-bold mb-4"></img>
-				</div>
+			</div>
 			<!-- Grid column -->
 			<div class="d-flex justify-content-center ">
 				<p class="text-contact">MELTINGPHOT est un acteur important sur le territoire en mennant des projets d'éducations par l'image auprès des associations, collectivités et entreprises.</p>
@@ -205,11 +205,12 @@
 					<i class="fab fa-linkedin"></i>
 				</a>
 				{# <a href="" class="me-4 text-reset">
-													<i class="fab fa-github"></i>
-												</a> #}
+																													<i class="fab fa-github"></i>
+																												</a> #}
 			</div>
 			<!-- Grid column -->
-			<div class="col-md-4 col-lg-3 col-xl-3 mx-auto mb-md-0 mb-4 contact-2">
+			<div
+				class="col-md-4 col-lg-3 col-xl-3 mx-auto mb-md-0 mb-4 contact-2">
 				<!-- Links -->
 				<p>
 					<i class="fas fa-home me-3"></i>15 Route de bagnols, 30100 Alès</p>
@@ -220,28 +221,24 @@
 			</div>
 			<!-- Grid column -->
 		</div>
-			<!-- Grid row -->
-			<div class="info-contact2 ">
-				<!-- Links -->
-				<p class="ms-3">
-					<i class="fas fa-home me-2"></i>15 Route de bagnols, 30100 Alès</p>
-				<p class="ms-3">
-					<i class="fas fa-envelope me-2"></i>info@example.com</p>
-				<!-- Copyright -->
-				<p class="ms-3">
-					<i class="fas fa-phone me-2"></i>06 64 21 93 75</p>
-			</div>
-			</section><!-- Section: Links  --><!-- Copyright -->
-			
-			<div class="text-center p-4 fw-bold text-white d-flex flex-column align-items-center" style="background-color: #D00A4B;">Tous droits réservés © 2023 @MeltingPhot</a>
-				<p class="fst-italic fw-light fs-6 text-white copyright-text">
-				En effet, tous les éléments présents sur Internet (textes, images, vidéos, extraits sonores, codes informatiques…)
-				sont de facto soumis au droit d’auteur, même si l’accès est libre, gratuit et sans mention particulière.</p>
-			</div>
-	</footer><!-- Footer -->{# js #}
+		<!-- Grid row -->
+		<div
+			class="info-contact2 ">
+			<!-- Links -->
+			<p class="ms-3">
+				<i class="fas fa-home me-2"></i>15 Route de bagnols, 30100 Alès</p>
+			<p class="ms-3">
+				<i class="fas fa-envelope me-2"></i>info@example.com</p>
+			<!-- Copyright -->
+			<p class="ms-3">
+				<i class="fas fa-phone me-2"></i>06 64 21 93 75</p>
+		</div>
+	</section>
+	<!-- Section: Links  -->
+	<!-- Copyright -->
 
-</body>
-
-</html>
-
-{% endblock %}
+	<div class="text-center p-4 fw-bold text-white d-flex flex-column align-items-center" style="background-color: #D00A4B;">Tous droits réservés © 2023 @MeltingPhot</a>
+	<p class="fst-italic fw-light fs-6 text-white copyright-text">
+		En effet, tous les éléments présents sur Internet (textes, images, vidéos, extraits sonores, codes informatiques…)
+												sont de facto soumis au droit d’auteur, même si l’accès est libre, gratuit et sans mention particulière.</p>
+</div></footer><!-- Footer -->{# js #}</body></html>{% endblock %}
