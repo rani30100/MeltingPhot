@@ -13,10 +13,10 @@ class VideoType extends AbstractType
     {
         $builder
             ->add('name')
-            ->add('path')
             ->add('created_at')
+            ->add('url')
             ->add('user')
-        ;
+            ->add('category');
     }
 
     public function configureOptions(OptionsResolver $resolver): void

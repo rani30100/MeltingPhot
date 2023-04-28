@@ -30,6 +30,14 @@ class Category
     #[ORM\Column(length: 255)]
     private ?string $Les_vitrines_des_cevennes = null;
 
+    #[ORM\OneToMany(mappedBy: 'category', targetEntity: Video::class, orphanRemoval: true)]
+    private Collection $videos;
+
+    public function __construct()
+    {
+        $this->videos = new ArrayCollection();
+    }
+
     public function getId(): ?int
     {
         return $this->id;
@@ -91,6 +99,36 @@ class Category
     public function setLesVitrinesDesCevennes(string $Les_vitrines_des_cevennes): self
     {
         $this->Les_vitrines_des_cevennes = $Les_vitrines_des_cevennes;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, Video>
+     */
+    public function getVideos(): Collection
+    {
+        return $this->videos;
+    }
+
+    public function addVideo(Video $video): self
+    {
+        if (!$this->videos->contains($video)) {
+            $this->videos->add($video);
+            $video->setCategory($this);
+        }
+
+        return $this;
+    }
+
+    public function removeVideo(Video $video): self
+    {
+        if ($this->videos->removeElement($video)) {
+            // set the owning side to null (unless already changed)
+            if ($video->getCategory() === $this) {
+                $video->setCategory(null);
+            }
+        }
 
         return $this;
     }

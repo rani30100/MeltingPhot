@@ -25,9 +25,10 @@ class Video
     #[ORM\Column(length: 255)]
     private ?string $url = null;
 
-    #[ORM\ManyToOne(inversedBy: 'Je_filme_mon_futur_metier')]
+    #[ORM\ManyToOne(inversedBy: 'videos')]
     #[ORM\JoinColumn(nullable: false)]
     private ?Category $category = null;
+
 
 
     public function getId(): ?int

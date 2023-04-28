@@ -1,20 +1,46 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Hello AdminController!{% endblock %}
+{% block title %}Video index
+{% endblock %}
 
 {% block body %}
-<style>
-    .example-wrapper { margin: 1em auto; max-width: 800px; width: 95%; font: 18px/1.5 sans-serif; }
-    .example-wrapper code { background: #F5F5F5; padding: 2px 6px; }
-</style>
+	<section class="container card">
+		<div class="block-add_video">
+			<h1>Ajouter une video</h1>
 
-<div class="example-wrapper">
-    <h1> Mon coté Admin</h1>
+			<table class="table">
+				<thead>
+					<tr>
+						<th>Id</th>
+						<th>Nom</th>
+						<th>Ajouté le</th>
+						<th>Url</th>
+						<th>actions</th>
+					</tr>
+				</thead>
+				<tbody>
+					{% for video in videos %}
+						<tr>
+							<td>{{ video.id }}</td>
+							<td>{{ video.name }}</td>
+							<td>{{ video.createdAt ? video.createdAt|date('Y-m-d H:i:s') : '' }}</td>
+							<td>{{ video.url }}</td>
+							<td>
+								<a href="{{ path('app_admin_show', {'id': video.id}) }}">Montrer</a>
+								<a href="{{ path('app_admin_edit', {'id': video.id}) }}">Modifier</a>
 
-  
-    <ul>
-        <li>Ajouter une vidéo <code><a href="{{ '/admin/video' }}">src/Controller/AdminController.php</a></code></li>
-        <li>Ajouter une image <code><a href="{{ '/var/www/html/Projet-MeltingPhot/templates/admin/index.html.twig'|file_link(0) }}">templates/admin/index.html.twig</a></code></li>
-    </ul>
-</div>
+							</td>
+						</tr>
+					{% else %}
+						<tr>
+							<td colspan="5">no records found</td>
+						</tr>
+					{% endfor %}
+				</tbody>
+			</table>
+
+			<a href="{{ path('app_admin_new') }}">Create new</a>
+
+		</div>
+	</section>
 {% endblock %}
