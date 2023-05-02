@@ -2,8 +2,10 @@
 
 namespace App\Entity;
 
-use App\Repository\VideoRepository;
+use DateTime;
+use DateTimeImmutable;
 use Doctrine\ORM\Mapping as ORM;
+use App\Repository\VideoRepository;
 
 #[ORM\Entity(repositoryClass: VideoRepository::class)]
 class Video
@@ -22,6 +24,8 @@ class Video
     #[ORM\Column]
     private ?\DateTimeImmutable $created_at = null;
 
+
+
     #[ORM\Column(length: 255)]
     private ?string $url = null;
 
@@ -29,7 +33,10 @@ class Video
     #[ORM\JoinColumn(nullable: false)]
     private ?Category $category = null;
 
-
+    public function __construct()
+    {
+        $this->created_at = new DateTimeImmutable('now');
+    }
 
     public function getId(): ?int
     {
