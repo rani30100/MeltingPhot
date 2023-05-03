@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Controller\admin;
+namespace App\Controller\Admin;
 
 use App\Entity\Video;
 use App\Form\VideoType;
@@ -9,12 +9,14 @@ use App\Repository\VideoRepository;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
 #[Route('/admin/video')]
 class VideoController extends AbstractController
 {
     #[Route('/', name: 'app_video_index', methods: ['GET'])]
+
     public function index(VideoRepository $videoRepository): Response
     {
         return $this->render('video/index.html.twig', [
@@ -23,9 +25,10 @@ class VideoController extends AbstractController
     }
 
     #[Route('/new', name: 'app_video_new', methods: ['GET', 'POST'])]
-    public function new(Request $request, VideoRepository $videoRepository): Response
+    public function new(Request $request, VideoRepository $videoRepository, Video $video): Response
     {
         $video = new Video();
+        dd($video);
         $form = $this->createForm(VideoType::class, $video);
         $form->handleRequest($request);
 
@@ -70,12 +73,13 @@ class VideoController extends AbstractController
     #[Route('/{id}', name: 'app_video_delete', methods: ['POST'])]
     public function delete(Request $request, Video $video, VideoRepository $videoRepository): Response
     {
-        if ($this->isCsrfTokenValid('delete'.$video->getId(), $request->request->get('_token'))) {
+        if ($this->isCsrfTokenValid('delete' . $video->getId(), $request->request->get('_token'))) {
             $videoRepository->remove($video, true);
         }
 
         return $this->redirectToRoute('app_video_index', [], Response::HTTP_SEE_OTHER);
     }
+
     public function adminDashboard(): Response
     {
         $this->denyAccessUnlessGranted('ROLE_ADMIN');
