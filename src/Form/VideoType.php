@@ -36,6 +36,7 @@ class VideoType extends AbstractType
             ->add('url')
             ->add('user', EntityType::class, [
                 'class' => User::class,
+                //choice label va choisir dans la base de donnée les elements qui que je veux selectionner
                 'choice_label' => 'email',
                 'data' => $currentUser,
                 'label' => 'Utilisateur',
