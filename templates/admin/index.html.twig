@@ -28,7 +28,7 @@
 							<td>
 								<a href="{{ path('app_admin_show', {'id': video.id}) }}">Montrer</a>
 								<a href="{{ path('app_admin_edit', {'id': video.id}) }}">Modifier</a>
-
+								<a href="{{path('app_admin_delete', {'id': video.id}) }}">Supprimer<a/></td>
 							</td>
 						</tr>
 					{% else %}
@@ -40,7 +40,7 @@
 			</table>
 
 			<a href="{{ path('app_admin_new') }}">Create new</a>
-			{# <a href="{{path('app_admin_delete')}}">Supprimer<a/> #}
+
 
 		</div>
 	</section>
