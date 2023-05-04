@@ -11,13 +11,13 @@ use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\Security\Core\User\UserInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
-#[Route('/admin2')]
-class Admin2Controller extends AbstractController
+#[Route('/admin')]
+class AdminController extends AbstractController
 {
     #[Route('/', name: 'app_admin_index', methods: ['GET'])]
     public function index(VideoRepository $videoRepository): Response
     {
-        return $this->render('admin2/index.html.twig', [
+        return $this->render('admin/index.html.twig', [
             'videos' => $videoRepository->findAll(),
         ]);
     }
@@ -38,7 +38,7 @@ class Admin2Controller extends AbstractController
             return $this->redirectToRoute('app_admin_index', [], Response::HTTP_SEE_OTHER);
         }
 
-        return $this->renderForm('admin2/new.html.twig', [
+        return $this->renderForm('admin/new.html.twig', [
             'video' => $video,
             'form' => $form,
 
@@ -48,7 +48,7 @@ class Admin2Controller extends AbstractController
     #[Route('/{id}', name: 'app_admin_show', requirements: ['id' => '\d+'], methods: ['GET'])]
     public function show(Video $video): Response
     {
-        return $this->render('admin2/show.html.twig', [
+        return $this->render('admin/show.html.twig', [
             'video' => $video,
         ]);
     }
@@ -65,7 +65,7 @@ class Admin2Controller extends AbstractController
             return $this->redirectToRoute('app_admin_index', [], Response::HTTP_SEE_OTHER);
         }
 
-        return $this->renderForm('admin2/edit.html.twig', [
+        return $this->renderForm('admin/edit.html.twig', [
             'video' => $video,
             'form' => $form,
         ]);
