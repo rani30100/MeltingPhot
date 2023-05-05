@@ -1,0 +1,8 @@
+easy_admin:
+    entities:
+        Image:
+            class: App\Entity\Image
+            form:
+                fields:
+                    - { property: 'name' }
+                    - { property: 'path', type: 'file', type_options: { delete: true }, label: 'Image', help: 'Supported formats: png, jpeg, jpg, gif, svg', helpHtml: true, required: false }
