@@ -81,11 +81,11 @@ class DashboardController extends AbstractDashboardController
         yield MenuItem::linkToUrl('MeltingPhot', 'fas fa-home', $this->generateUrl('app_home_page'));
     }
 
-    public function configureAssets(): Assets
-    {
-        return Assets::new()
-            ->addCssFile('css/custom.css');
-    }
+    // public function configureAssets(): Assets
+    // {
+    //     return Assets::new()
+    //         ->addCssFile('css/custom.css');
+    // }
 
 
 
