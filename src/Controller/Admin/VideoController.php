@@ -12,10 +12,10 @@ use Symfony\Component\Routing\Annotation\Route;
 
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
-#[Route('/admin/video')]
+#[Route('/admin/video', name: 'admin_video_')]
 class VideoController extends AbstractController
 {
-    #[Route('/', name: 'app_video_index', methods: ['GET'])]
+    #[Route('/', name: 'index', methods: ['GET'])]
 
     public function index(VideoRepository $videoRepository): Response
     {
@@ -24,9 +24,10 @@ class VideoController extends AbstractController
         ]);
     }
 
-    #[Route('/new', name: 'app_video_new', methods: ['GET', 'POST'])]
+    #[Route('/new', name: 'new', methods: ['GET', 'POST'])]
     public function new(Request $request, VideoRepository $videoRepository, Video $video): Response
     {
+        //pour appeller cette route {{path('admin_video_new')}}
         $video = new Video();
         dd($video);
         $form = $this->createForm(VideoType::class, $video);
@@ -44,7 +45,7 @@ class VideoController extends AbstractController
         ]);
     }
 
-    #[Route('/{id}', name: 'app_video_show', methods: ['GET'])]
+    #[Route('/{id}', name: 'show', methods: ['GET'])]
     public function show(Video $video): Response
     {
         return $this->render('video/show.html.twig', [
@@ -52,7 +53,7 @@ class VideoController extends AbstractController
         ]);
     }
 
-    #[Route('/{id}/edit', name: 'app_video_edit', methods: ['GET', 'POST'])]
+    #[Route('/{id}/edit', name: 'edit', methods: ['GET', 'POST'])]
     public function edit(Request $request, Video $video, VideoRepository $videoRepository): Response
     {
         $form = $this->createForm(VideoType::class, $video);
@@ -70,7 +71,7 @@ class VideoController extends AbstractController
         ]);
     }
 
-    #[Route('/{id}', name: 'app_video_delete', methods: ['POST'])]
+    #[Route('/{id}', name: 'delete', methods: ['POST'])]
     public function delete(Request $request, Video $video, VideoRepository $videoRepository): Response
     {
         if ($this->isCsrfTokenValid('delete' . $video->getId(), $request->request->get('_token'))) {
