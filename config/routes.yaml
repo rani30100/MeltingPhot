@@ -17,7 +17,5 @@ controllers:
 kernel:
     resource: App\Kernel
     type: attribute
-    
-admin_error:
-    path: /admin
-    controller: 'App\Controller\ErrorController::adminError'
+
+
