@@ -1,0 +1,21 @@
+"join": "Soyez au cœur de l'action en vous inscrivant aujourd'hui !"
+
+'label':
+  'name': 'Nom'
+  'password': 'Mot de passe'
+  'email': 'Email'
+  'confirm-password': 'Confirmez le mot de passe'
+
+'btn': 
+  'register' : S'enregistrer
+
+'placeholder': 
+  'name' : 'Nom'
+  'password' : "Mot de passe"
+  'email' : "Adresse email"
+
+
+
+
+'question':  "Vous avez déjà un compte ?"
+"connect" : "Se connecter ici."

@@ -22,9 +22,18 @@ class RegistrationFormType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder
-        ->add('username', TextType::class)
+        ->add('username', TextType::class, [
+            'label' => 'label.name',
+            'attr' => [
+                'placeholder' => 'placeholder.name',
+            ],
+        ])
 
             ->add('email', EmailType::class, [
+                'label' => 'label.email',
+                'attr' => [
+                    'placeholder' => 'placeholder.email',
+                ],
                 'constraints' => [
                     new NotBlank([
                         'message' => "Le champ email ne peut pas être laissé vide.",
@@ -45,8 +54,12 @@ class RegistrationFormType extends AbstractType
                 ],
             ])
             ->add('password', PasswordType::class, [
-                'label' => 'Password',
-                'attr' => ['autocomplete' => 'new-password'],
+                'label' => 'label.password',
+                'attr' => [
+                    'placeholder' => 'placeholder.password',
+                    'autocomplete' => 'new-password',
+                    'class' => 'shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 mt-1 leading-tight focus:outline-none focus:shadow-outline',
+                ],
                 'constraints' => [
                     new NotBlank([
                         'message' => 'Please enter a password',
@@ -58,6 +71,7 @@ class RegistrationFormType extends AbstractType
                     ]),
                 ],
             ]);
+            
     }
 
     public function configureOptions(OptionsResolver $resolver): void
