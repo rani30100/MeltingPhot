@@ -1,21 +1,6 @@
-
-
-
-
 .color1 {
     color: $rouge;
 }
-
-//barre de recherche Nav
-#search-form {
-    transition: opacity 0.5s ease-in-out;
-}
-
-#search-form.show {
-    opacity: 1;
-}
-
-
 
 .carousel {
     height: 700px;
@@ -43,11 +28,10 @@ body {
     .know-more {
 
         min-height: 318px;
-        width: 100%;
         background-image: url(../../images/channels4_banner.jpg);
         background-repeat: no-repeat;
-        background-size: contain;
-        align-items: center;
+        background-size: cover;
+        
 
         a {
             margin-left: 45%;

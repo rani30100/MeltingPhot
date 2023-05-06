@@ -8,6 +8,14 @@
 		<div class="alert alert-danger" role="alert">{{ flash_error }}</div>
 	{% endfor %}
 
+	{% if errors is not null and errors|length > 0 %}
+		<div class="alert alert-danger">
+			{% for error in errors %}
+				{{ error.message }}<br>
+			{% endfor %}
+		</div>
+	{% endif %}
+
 	<section class="vh-100" style="background-color: #eee;">
 		<div class=" h-100">
 			<div class="row d-flex justify-content-center align-items-center h-100">
@@ -25,6 +33,17 @@
                                             'class': 'mx-1 mx-md-4 container'
                                         }
                                     }) }}
+											{{ form_row(registrationForm.username, {
+                                            'label': "Nom d'utilisateur",
+                                            'attr': {
+                                                'class': 'd-flex flex-row align-items-center mb-4 w-100 form-control'
+                                            },
+                                            'label_attr': {
+                                                'class': 'fas fa-envelope me-2  ',
+												'style': 'margin: 30px;'
+                                            }
+                                        }) }}
+
 									{{ form_row(registrationForm.email, {
                                             'label': 'Adresse email',
                                             'attr': {
@@ -35,7 +54,7 @@
 												'style': 'margin: 30px;'
                                             }
                                         }) }}
-									{{ form_row(registrationForm.plainPassword, {
+									{{ form_row(registrationForm.password, {
                                             'label': 'Mot de passe',
                                             'attr': {
                                                 'class': 'd-flex flex-row align-items-center mb-4 w-100 form-control'

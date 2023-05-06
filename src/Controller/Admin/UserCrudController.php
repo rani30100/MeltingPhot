@@ -4,21 +4,14 @@ namespace App\Controller\Admin;
 
 use App\Entity\User;
 use Doctrine\ORM\EntityManagerInterface;
-use Symfony\Component\HttpFoundation\Request;
-use Symfony\Component\Security\Core\Security;
-use Symfony\Component\HttpFoundation\Response;
-use EasyCorp\Bundle\EasyAdminBundle\Config\Crud;
-use EasyCorp\Bundle\EasyAdminBundle\Config\Action;
 use EasyCorp\Bundle\EasyAdminBundle\Field\IdField;
-use EasyCorp\Bundle\EasyAdminBundle\Config\Actions;
 use EasyCorp\Bundle\EasyAdminBundle\Field\TextField;
-use EasyCorp\Bundle\EasyAdminBundle\Field\ImageField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\ChoiceField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\BooleanField;
-use Symfony\Component\Form\Extension\Core\Type\PasswordType;
-use EasyCorp\Bundle\EasyAdminBundle\Form\Type\FileUploadType;
 use EasyCorp\Bundle\EasyAdminBundle\Controller\AbstractCrudController;
 use Symfony\Component\PasswordHasher\Hasher\UserPasswordHasherInterface;
+
+
 
 
 
@@ -32,11 +25,13 @@ class UserCrudController extends AbstractCrudController
         $this->passwordHasher = $passwordHasher;
     }
 
+
     
     public static function getEntityFqcn(): string
-    { 
+    {
         return User::class;
     }
+
 
     public function configureFields(string $pageName): iterable
     {
@@ -61,11 +56,17 @@ class UserCrudController extends AbstractCrudController
             ->setRequired(true)
             ->setColumns(6),
 
+            TextField::new('password', 'Mot de Passe')
+            ->setFormType(PasswordType::class)
+            ->onlyWhenCreating()
+            ->setRequired(true)
+            ->setColumns(6),
+
             ChoiceField::new('roles')
                 ->setChoices([
-                    'User' => '["ROLE_USER"]',
-                    'Admin' => '["ROLE_ADMIN"]',
-                    'Super Admin' => '["ROLE_SUPER_ADMIN"]',
+                    'User' => 'ROLE_USER',
+                    'Admin' => 'ROLE_ADMIN',
+                    'Super Admin' => 'ROLE_SUPER_ADMIN',
                 ])
                 ->allowMultipleChoices()
                 ->setColumns(6),
@@ -74,10 +75,8 @@ class UserCrudController extends AbstractCrudController
             ->setLabel('Est vérifié')
             ->setColumns(6),
             // ImageField::new('imageFilename', 'Photos')->setFormType(FileUploadType::class)->setUploadDir('public/uploads')->setColumns(6),
-          
-        
-    
         ]; 
+            
     }
       
     public function persistEntity(EntityManagerInterface $entityManager, $entityInstance): void
@@ -89,8 +88,7 @@ class UserCrudController extends AbstractCrudController
         parent::persistEntity($entityManager, $entityInstance);
     }
     
-
-    
-    
 }
+      
+
       
