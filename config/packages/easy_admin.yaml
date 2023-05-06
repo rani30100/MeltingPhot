@@ -6,3 +6,9 @@ easy_admin:
                 fields:
                     - { property: 'name' }
                     - { property: 'path', type: 'file', type_options: { delete: true }, label: 'Image', help: 'Supported formats: png, jpeg, jpg, gif, svg', helpHtml: true, required: false }
+        User:
+            class: App\Entity\User
+        # ...
+            edit:
+                actions:
+                    - 'editRole'
