@@ -85,12 +85,15 @@ searchIcon.classList.toggle('d-none')
 			</form>
 		</div>
 		{% if app.user %}
-			{% if 'ROLE_ADMIN' in app.user.roles %}
+		
 
 				<p class="text-end btn btn-warning mt-3">Bienvenue, {{ app.user.username }} !</p>
 
-			{% endif %}
+			
 		{% endif %}
+		<li class="nav-item me-2">
+			<a class="nav-link" href='/new-account'>S'inscrire</a>
+		</li>
 
 
 		{# <form class="d-flex nav-items me-2 form" role="search">
