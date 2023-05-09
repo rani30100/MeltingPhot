@@ -45,6 +45,19 @@
 		<li class="nav-item me-2">
 			<a class="nav-link" href="/login">Login</a>
 		</li>
+		{% if not app.user %}
+			<li class="nav-item me-2">
+				<a class="nav-link" href="/login">
+					<i class="fa-solid fa-user"></i>
+				</a>
+
+			</li>
+		{% endif %}
+		{% if app.user %}
+			{% if 'ROLE_SUPER_ADMIN' in app.user.roles %}
+				<a class="nav-link" href="{{ path('admin_') }}">Ma Page Admin</a>
+			{% endif %}
+		{% endif %}
 
 		<li class="nav-item me-2">
 			<a class="nav-link" href="/logout">Se déconnecter</a>

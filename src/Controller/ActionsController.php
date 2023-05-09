@@ -4,7 +4,7 @@ namespace App\Controller;
 
 use Google\Client;
 use App\Entity\Video;
-use App\Form\VideoType;
+use App\Entity\Category;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Contracts\Cache\ItemInterface;
 use Symfony\Component\HttpFoundation\Request;
@@ -16,7 +16,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 class ActionsController extends AbstractController
 {
     #[Route('/actions/{order}/{year}', defaults: ['order' => 'test', 'year' => 'null'], methods: ['GET', 'HEAD'], name: 'app_actions')]
-    public function index(string $order, string $year, EntityManagerInterface $entityManager, Request $request): Response
+    public function index(string $order, string $year,EntityManagerInterface $entityManager, Request $request): Response
     {
         // dd($order);
 
@@ -37,47 +37,27 @@ class ActionsController extends AbstractController
                 'part' => 'snippet'
             ));
 
-            // Parcourez chaque vidéo pour les trier par catégorie
+            // Récupérer la catégorie "Je filme mon futur métier"
+            $category = $entityManager->getRepository(Category::class)->findOneBy(['name' => 'Je filme mon futur métier']);
+
+            // Parcourir chaque vidéo pour les stocker dans la catégorie "Je filme mon futur métier"
             foreach ($playlistItemsResponse['items'] as $playlistItem) {
-                // Récupérez le titre de la vidéo
+                // Récupérer le titre de la vidéo
                 $title = $playlistItem['snippet']['title'];
 
-                // Trier les vidéos par catégorie
-                if (strpos($title, 'Les critiques pétillantes') !== false) {
-                    // Inclure la vidéo dans la catégorie 'Les critiques pétillantes'
-                    $lesCritiquesPetillantesVideos[] = $playlistItem;
-                } elseif (strpos($title, 'Je filme mon futur métier') !== false) {
-                    // Inclure la vidéo dans la catégorie 'Je filme mon futur métier'
-                    $jeFilmeMonFuturMetierVideos[] = $playlistItem;
-                } elseif (strpos($title, 'Odonymes') !== false) {
-                    // Inclure la vidéo dans la catégorie 'Odonymes'
-                    $odonymesVideos[] = $playlistItem;
-                } elseif (strpos($title, 'Parole public') !== false) {
-                    // Inclure la vidéo dans la catégorie 'Parole public'
-                    $parolePublicVideos[] = $playlistItem;
-                } elseif (strpos($title, 'Les vitrines des cévénnes') !== false) {
-                    // Inclure la vidéo dans la catégorie 'Les vitrines des cévénnes'
-                    $lesVitrinesDesCevennesVideos[] = $playlistItem;
-                }
+                // Créer une nouvelle entité Video
+                $video = new Video();
+                $video->setTitle($title);
+                $video->setCategory($category);
+
+                // Enregistrer la vidéo dans la base de données
+                $entityManager->persist($video);
             }
-            // dd($playlistItemsResponse);
-            // Récupérez toutes les pages de résultats si la playlist contient plus de 50 vidéos
-            while ($playlistItemsResponse) {
-                foreach ($playlistItemsResponse['items'] as $playlistItem) {
-                    $videos[] = $playlistItem;
-                }
-                // Vérifiez si une autre page de résultats existe, et récupérez-la si c'est le cas
-                $nextPageToken = $playlistItemsResponse['nextPageToken'];
-                if ($nextPageToken) {
-                    $playlistItemsResponse = $youtube->playlistItems->listPlaylistItems('snippet', array(
-                        'playlistId' => 'YOUR_PLAYLIST_ID',
-                        'maxResults' => 50,
-                        'pageToken' => $nextPageToken
-                    ));
-                } else {
-                    $playlistItemsResponse = null;
-                }
-            }
+
+            // Exécuter l'opération de persistance
+            $entityManager->flush();
+           
+
 
 
             // filtrer les vidéos en fonction de l'année de publication
@@ -123,3 +103,44 @@ class ActionsController extends AbstractController
         ]);
     }
 }
+ // // Parcourez chaque vidéo pour les trier par catégorie
+            // foreach ($playlistItemsResponse['items'] as $playlistItem) {
+            //     // Récupérez le titre de la vidéo
+            //     $title = $playlistItem['snippet']['title'];
+
+            //     // Trier les vidéos par catégorie
+            //     if (strpos($title, 'Les critiques pétillantes') !== false) {
+            //         // Inclure la vidéo dans la catégorie 'Les critiques pétillantes'
+            //         $lesCritiquesPetillantesVideos[] = $playlistItem;
+            //     } elseif (strpos($title, 'Je filme mon futur métier') !== false) {
+            //         // Inclure la vidéo dans la catégorie 'Je filme mon futur métier'
+            //         $jeFilmeMonFuturMetierVideos[] = $playlistItem;
+            //     } elseif (strpos($title, 'Odonymes') !== false) {
+            //         // Inclure la vidéo dans la catégorie 'Odonymes'
+            //         $odonymesVideos[] = $playlistItem;
+            //     } elseif (strpos($title, 'Parole public') !== false) {
+            //         // Inclure la vidéo dans la catégorie 'Parole public'
+            //         $parolePublicVideos[] = $playlistItem;
+            //     } elseif (strpos($title, 'Les vitrines des cévénnes') !== false) {
+            //         // Inclure la vidéo dans la catégorie 'Les vitrines des cévénnes'
+            //         $lesVitrinesDesCevennesVideos[] = $playlistItem;
+            //     }
+            // }
+            // // dd($playlistItemsResponse);
+            // // Récupérez toutes les pages de résultats si la playlist contient plus de 50 vidéos
+            // while ($playlistItemsResponse) {
+            //     foreach ($playlistItemsResponse['items'] as $playlistItem) {
+            //         $videos[] = $playlistItem;
+            //     }
+            //     // Vérifiez si une autre page de résultats existe, et récupérez-la si c'est le cas
+            //     $nextPageToken = $playlistItemsResponse['nextPageToken'];
+            //     if ($nextPageToken) {
+            //         $playlistItemsResponse = $youtube->playlistItems->listPlaylistItems('snippet', array(
+            //             'playlistId' => 'YOUR_PLAYLIST_ID',
+            //             'maxResults' => 50,
+            //             'pageToken' => $nextPageToken
+            //         ));
+            //     } else {
+            //         $playlistItemsResponse = null;
+            //     }
+            // }

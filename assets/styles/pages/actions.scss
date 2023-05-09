@@ -126,6 +126,33 @@ h2 {
 
 }
 
+.carousel{
+    width: 93%;
+}
+.carousel_img{
+    height: 700px;
+    width: inherit;
+    min-width: 25%;
+    max-width: 366Px;
+}
+
+.carousel_img-mid{
+    height: fit-content;
+    min-height: 432px;
+    min-width: 300px;
+    max-width: 50%;
+}
+.carousel_img-mid2{
+    height: fit-content;
+    align-self: end;
+    min-height: 432px;
+    min-width: 300px;
+    height: 50%;
+    max-width: 50%;
+}
+
+
+
 .btn-filtres-items {
     width: 15%;
     min-width: 140px;
