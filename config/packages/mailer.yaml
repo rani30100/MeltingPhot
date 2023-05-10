@@ -1,10 +1,20 @@
-framework:
-    mailer:
-        dsn: 'failover(sendgrid+smtps://caca@cacaland.fr:mdp@smtp.sendgrid.net:465?encryption=ssl&auth_mode=login gmail+smtps://raniderradj2@gmail.com:upqzkurmilifracr@smtp.gmail.com:465?encryption=ssl&auth_mode=login)'
-        # jai mis deux mail grace a fail over
+mailer:
+    transports:
+        main: 'sendgrid'
+        backup: 'gmail'
 
-        # (smtps://smtp2.example.com:465?encryption=ssl&auth_mode=login)'
-        # config/packages/mailer.yaml 
-        # dsn: 'smtps://username:password@smtp-mail.outlook.com:587'
+    sendgrid_dsn: 'smtp://caca@cacaland.fr:mdp@smtp.sendgrid.net:465?encryption=ssl&auth_mode=login'
+    gmail_dsn: 'smtp://raniderradj2@gmail.com:upqzkurmilifracr@smtp.gmail.com:465?encryption=ssl&auth_mode=login'
+
+
+
+# framework:
+#     mailer:
+#         dsn: 'failover(sendgrid+smtps://caca@cacaland.fr:mdp@smtp.sendgrid.net:465?encryption=ssl&auth_mode=login gmail+smtps://raniderradj2@gmail.com:upqzkurmilifracr@smtp.gmail.com:465?encryption=ssl&auth_mode=login)'
+#         # jai mis deux mail grace a fail over
+
+#         # (smtps://smtp2.example.com:465?encryption=ssl&auth_mode=login)'
+#         # config/packages/mailer.yaml 
+#         # dsn: 'smtps://username:password@smtp-mail.outlook.com:587'
 
 

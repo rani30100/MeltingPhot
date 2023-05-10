@@ -1,0 +1,42 @@
+
+ // // Parcourez chaque vidéo pour les trier par catégorie
+            // foreach ($playlistItemsResponse['items'] as $playlistItem) {
+            //     // Récupérez le titre de la vidéo
+            //     $title = $playlistItem['snippet']['title'];
+
+            //     // Trier les vidéos par catégorie
+            //     if (strpos($title, 'Les critiques pétillantes') !== false) {
+            //         // Inclure la vidéo dans la catégorie 'Les critiques pétillantes'
+            //         $lesCritiquesPetillantesVideos[] = $playlistItem;
+            //     } elseif (strpos($title, 'Je filme mon futur métier') !== false) {
+            //         // Inclure la vidéo dans la catégorie 'Je filme mon futur métier'
+            //         $jeFilmeMonFuturMetierVideos[] = $playlistItem;
+            //     } elseif (strpos($title, 'Odonymes') !== false) {
+            //         // Inclure la vidéo dans la catégorie 'Odonymes'
+            //         $odonymesVideos[] = $playlistItem;
+            //     } elseif (strpos($title, 'Parole public') !== false) {
+            //         // Inclure la vidéo dans la catégorie 'Parole public'
+            //         $parolePublicVideos[] = $playlistItem;
+            //     } elseif (strpos($title, 'Les vitrines des cévénnes') !== false) {
+            //         // Inclure la vidéo dans la catégorie 'Les vitrines des cévénnes'
+            //         $lesVitrinesDesCevennesVideos[] = $playlistItem;
+            //     }
+            // }
+            // // dd($playlistItemsResponse);
+            // // Récupérez toutes les pages de résultats si la playlist contient plus de 50 vidéos
+            // while ($playlistItemsResponse) {
+            //     foreach ($playlistItemsResponse['items'] as $playlistItem) {
+            //         $videos[] = $playlistItem;
+            //     }
+            //     // Vérifiez si une autre page de résultats existe, et récupérez-la si c'est le cas
+            //     $nextPageToken = $playlistItemsResponse['nextPageToken'];
+            //     if ($nextPageToken) {
+            //         $playlistItemsResponse = $youtube->playlistItems->listPlaylistItems('snippet', array(
+            //             'playlistId' => 'YOUR_PLAYLIST_ID',
+            //             'maxResults' => 50,
+            //             'pageToken' => $nextPageToken
+            //         ));
+            //     } else {
+            //         $playlistItemsResponse = null;
+            //     }
+            // }
