@@ -21,7 +21,7 @@ class Video
     #[ORM\ManyToOne(inversedBy: 'created_at')]
     private ?User $user = null;
 
-    #[ORM\Column]
+    #[ORM\Column(type: 'datetime_immutable')]
     private ?\DateTimeImmutable $created_at = null;
 
 
@@ -78,6 +78,7 @@ class Video
 
         return $this;
     }
+
 
     public function getUrl(): ?string
     {

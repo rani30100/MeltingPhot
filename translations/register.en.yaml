@@ -13,8 +13,6 @@
   'name' : 'Name'
   'password' : 'Password'
   'email' : "Email Adress"
-
-'terms': "Agree terms"
     
 'question': "Already have an account?"
 "connect" : "Log in here."

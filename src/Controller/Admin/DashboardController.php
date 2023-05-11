@@ -22,7 +22,7 @@ use Symfony\Component\HttpFoundation\RequestStack;
 
 class DashboardController extends AbstractDashboardController
 {
- 
+
     // private RequestStack $rs;
     // private string $current_role;
 
@@ -32,17 +32,17 @@ class DashboardController extends AbstractDashboardController
     //     $first_role = $security->getUser()->getRoles();
     //     if($this->rs->getSession()->get('_role')==null)
     //         $this->rs->getSession()->set('_role', $first_role);
-  
+
     //     $this->current_role = $this->rs->getSession()->get('_role');
     // }
 
 
-    
+
     #[Route('/admin', name: 'admin_')]
     #[IsGranted('ROLE_SUPER_ADMIN')]
     public function index(): Response
     {
-     
+
 
         // Option 1. You can make your dashboard redirect to some common page of your backend
         //
@@ -65,56 +65,55 @@ class DashboardController extends AbstractDashboardController
     {
         $dashboard = Dashboard::new()
             ->setTitle('Ma page Admin');
-    
+
         // if ($this->current_role === 'ROLE_SUPER_ADMIN') {
         //     $dashboard
         //     ->setTitle('Ma page Super Admin');
         //     // ->setFaviconClass('fa fa-crown'); // Remplacez la classe par une classe CSS pour agrandir le texte
         // }
-    
+
         return $dashboard;
     }
-    
+
 
     public function configureMenuItems(): iterable
     {
         // if ( $this->current_role == 'ROLE_SUPER_ADMIN')
         // {
-            yield MenuItem::linkToDashboard('Dashboard', 'fa fa-home');
-            // yield MenuItem::section('Activité');
-            // yield MenuItem::linkToCrud('Ajouter une photo', 'fas fa-plus', ImageCrudController::class)
-            // ->setAction(Crud::PAGE_NEW);
+        yield MenuItem::linkToDashboard('Dashboard', 'fa fa-home');
+        // yield MenuItem::section('Activité');
+        // yield MenuItem::linkToCrud('Ajouter une photo', 'fas fa-plus', ImageCrudController::class)
+        // ->setAction(Crud::PAGE_NEW);
 
-            yield MenuItem::section('Statistiques');
-            yield MenuItem::linktoRoute('Mes Stats', 'fa fa-chart-bar', 'admin_business_stats');
-            //     // yield MenuItem::linkToCrud('The Label', 'fas fa-list', EntityClass::class);
-            //     yield MenuItem::linkToDashboard('Dashboard', 'fa fa-home');
-            
-            yield MenuItem::section("J'ajoute des éléments");
-            yield MenuItem::linkToCrud('Catégorie', 'fa-regular fa-circle-plus', Category::class);
-            yield MenuItem::linkToCrud('Image', 'fa-regular fa-image', Image::class);
-            yield MenuItem::linkToCrud('Vidéo', 'fa-light fa-video', Video::class);
-            yield MenuItem::linkToCrud('Post', 'fa fa-pencil-alt', Posts::class);
-            //     yield MenuItem::linkToCrud('Blog Posts', 'fa fa-file-text', PostsCrudController::class);
-            
-            //     yield MenuItem::section('Users');
-            
-            //     yield MenuItem::linkToCrud('Users', 'fa fa-user', UserCrudController::class);
-            yield MenuItem::section('Site MeltingPhot');
-            yield MenuItem::linkToUrl('MeltingPhot', 'fas fa-home', $this->generateUrl('app_home_page'));
+        yield MenuItem::section('Statistiques');
+        yield MenuItem::linktoRoute('Mes Stats', 'fa fa-chart-bar', 'admin_business_stats');
+        //     // yield MenuItem::linkToCrud('The Label', 'fas fa-list', EntityClass::class);
+        //     yield MenuItem::linkToDashboard('Dashboard', 'fa fa-home');
+
+        yield MenuItem::section("J'ajoute des éléments");
+        yield MenuItem::linkToCrud('Catégorie', 'fa-regular fa-circle-plus', Category::class);
+        yield MenuItem::linkToCrud('Image', 'fa-regular fa-image', Image::class);
+        yield MenuItem::linkToCrud('Vidéo', 'fa-light fa-video', Video::class);
+        yield MenuItem::linkToCrud('Post', 'fa fa-pencil-alt', Posts::class);
+        //     yield MenuItem::linkToCrud('Blog Posts', 'fa fa-file-text', PostsCrudController::class);
+
+        //     yield MenuItem::section('Users');
+
+        //     yield MenuItem::linkToCrud('Users', 'fa fa-user', UserCrudController::class);
+        yield MenuItem::section('Site MeltingPhot');
+        yield MenuItem::linkToUrl('MeltingPhot', 'fas fa-home', $this->generateUrl('app_home_page'));
         // }
         // else 
         // {
-            // yield MenuItem::section("J'ajoute des éléments");
-            // yield MenuItem::linkToCrud('Image', 'fa-regular fa-image', Image::class);
-            // yield MenuItem::linkToCrud('Vidéo', 'fa-light fa-video', Video::class);
-            // yield MenuItem::linkToCrud('Post', 'fa fa-pencil-alt', Posts::class);
+        // yield MenuItem::section("J'ajoute des éléments");
+        // yield MenuItem::linkToCrud('Image', 'fa-regular fa-image', Image::class);
+        // yield MenuItem::linkToCrud('Vidéo', 'fa-light fa-video', Video::class);
+        // yield MenuItem::linkToCrud('Post', 'fa fa-pencil-alt', Posts::class);
 
-            // yield MenuItem::section('Site MeltingPhot');
-            // yield MenuItem::linkToUrl('MeltingPhot', 'fas fa-home', $this->generateUrl('app_home_page'));
-        }
-
+        // yield MenuItem::section('Site MeltingPhot');
+        // yield MenuItem::linkToUrl('MeltingPhot', 'fas fa-home', $this->generateUrl('app_home_page'));
     }
+}
 
 // }
 
@@ -123,6 +122,3 @@ class DashboardController extends AbstractDashboardController
     //     return Assets::new()
     //         ->addCssFile('css/custom.css');
     // }
-
-
-

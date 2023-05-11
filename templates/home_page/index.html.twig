@@ -2,6 +2,19 @@
 
 {% block title %}MeltingPhot !
 {% endblock %}
+{% block javascripts %}
+	{{ parent() }}
+
+	<script>
+		const searchIcon = document.querySelector('#search-icon');
+const searchForm = document.querySelector('#search-form');
+
+searchIcon.addEventListener('click', () => {
+searchForm.classList.toggle('d-none');
+searchIcon.classList.toggle('d-none')
+});
+	</script>
+{% endblock %}
 
 {% block body %}
 	<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
@@ -19,6 +32,7 @@
 			</img>
 		</li>
 
+
 		<li class="nav-item me-2 meltingphot">
 			<a class="nav-link active" aria-current="page" href="/">MELTINGPHOT</a>
 		</li>
@@ -26,25 +40,22 @@
 			<a class="nav-link" href="/actions">ACTIONS</a>
 		</li>
 		{# <li class="nav-item dropdown me-2">
-															<a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-																POUR QUI ?
-															</a>
-														</li> #}
+			<a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+				POUR QUI ?
+			</a>
+		</li> #}
 		{# <li class="nav-item me-2">
-															<a class="nav-link" href="#">PARTENAIRES</a>
-														</li>
-										
-														<li class="nav-item me-2">
-															<a class="nav-link" href="#">NOUS SOUTENIR</a>
-														</li> #}
+			<a class="nav-link" href="#">PARTENAIRES</a>
+		</li>
+
+		<li class="nav-item me-2">
+			<a class="nav-link" href="#">NOUS SOUTENIR</a>
+		</li> #}
 
 		<li class="nav-item me-2">
 			<a class="nav-link" href="/contact">CONTACT</a>
 		</li>
 
-		<li class="nav-item me-2">
-			<a class="nav-link" href="/login">Login</a>
-		</li>
 		{% if not app.user %}
 			<li class="nav-item me-2">
 				<a class="nav-link" href="/login">
@@ -54,37 +65,57 @@
 			</li>
 		{% endif %}
 		{% if app.user %}
-			{% if 'ROLE_SUPER_ADMIN' in app.user.roles %}
+			{% if 'ROLE_ADMIN' in app.user.roles %}
 				<a class="nav-link" href="{{ path('admin_') }}">Ma Page Admin</a>
 			{% endif %}
 		{% endif %}
 
-		<li class="nav-item me-2">
-			<a class="nav-link" href="/logout">Se déconnecter</a>
-		</li>
 		{% if app.user %}
-			<p>Bienvenue,
-				{{ app.user.email }}!</p>
+			<li class="nav-item me-2">
+				<a class="nav-link" href="/logout">Se déconnecter</a>
+			</li>
 		{% endif %}
+		<div class="d-flex align-items-center">
+			<i id="search-icon" class="fa-solid fa-magnifying-glass mx-3"></i>
+			<form id="search-form" class="d-none">
+				<div class="input-group">
+					<input type="text" class="form-control" placeholder="Rechercher...">
+					<button class="btn btn-primary" type="submit">Rechercher</button>
+				</div>
+			</form>
+		</div>
+		{% if app.user %}
+		
+
+				<p class="text-end btn btn-warning mt-3">Bienvenue, {{ app.user.username }} !</p>
+
+			
+		{% endif %}
+		<li class="nav-item me-2">
+			<a class="nav-link" href='/new-account'>S'inscrire</a>
+		</li>
+
 
 		{# <form class="d-flex nav-items me-2 form" role="search">
-															<input class="form-control me-2 search" type="search" placeholder="Ma recherche..." aria-label="Search">
-															<button class="btn btn-outline-success search-btn" type="submit">Rechercher</button>
-														</form>
-										
-														<li class="nav-item ">
-															<a id="language-link" class="p-2" href="{{ path('app_home_page_e_n') }}">
-																<img class="flag" src="{{ asset('img/eng.png') }}">
-															</a>
-														</li> #}
+			<input class="form-control me-2 search" type="search" placeholder="Ma recherche..." aria-label="Search">
+			<button class="btn btn-outline-success search-btn" type="submit">Rechercher</button>
+		</form>
+
+		<li class="nav-item ">
+			<a id="language-link" class="p-2" href="{{ path('app_home_page_e_n') }}">
+				<img class="flag" src="{{ asset('img/eng.png') }}">
+			</a>
+		</li> #}
 
 		{# <li class="nav-item ">
-															<a id="language-link" class="p-2" href="{{ path('app_home_page') }}">
-																<img id="flag" src="{{ asset('img/drapeau.png') }}">
-															</a>
-														</li> #}
+			<a id="language-link" class="p-2" href="{{ path('app_home_page') }}">
+				<img id="flag" src="{{ asset('img/drapeau.png') }}">
+			</a>
+		</li> #}
 	</ul>
-</div></nav><section class="main">
+</div>
+</nav>
+<section class="main" style="background: #f8f9fa;">
 <section class="know-more">
 	<a href="https://www.youtube.com/@meltingphot" target="_blank" class="btn btn-danger know-more_btn">En (Sa) voir +</a>
 </section>
@@ -218,8 +249,8 @@
 					<i class="fab fa-linkedin"></i>
 				</a>
 				{# <a href="" class="me-4 text-reset">
-																																	<i class="fab fa-github"></i>
-																																</a> #}
+																																													<i class="fab fa-github"></i>
+																																												</a> #}
 			</div>
 			<!-- Grid column -->
 			<div
@@ -253,5 +284,5 @@
 	<div class="text-center p-4 fw-bold text-white d-flex flex-column align-items-center" style="background-color: #D00A4B;">Tous droits réservés © 2023 @MeltingPhot</a>
 	<p class="fst-italic fw-light fs-6 text-white copyright-text">
 		En effet, tous les éléments présents sur Internet (textes, images, vidéos, extraits sonores, codes informatiques…)
-														sont de facto soumis au droit d’auteur, même si l’accès est libre, gratuit et sans mention particulière.</p>
+																				sont de facto soumis au droit d’auteur, même si l’accès est libre, gratuit et sans mention particulière.</p>
 </div></footer><!-- Footer -->{# js #}</body></html>{% endblock %}

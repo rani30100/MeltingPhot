@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Controller\admin;
+namespace App\Controller\Admin;
 
 use App\Entity\Image;
 use App\Form\ImageType;
@@ -69,12 +69,14 @@ class ImageController extends AbstractController
     #[Route('/{id}', name: 'app_image_delete', methods: ['POST'])]
     public function delete(Request $request, Image $image, ImageRepository $imageRepository): Response
     {
-        if ($this->isCsrfTokenValid('delete'.$image->getId(), $request->request->get('_token'))) {
+        if ($this->isCsrfTokenValid('delete' . $image->getId(), $request->request->get('_token'))) {
             $imageRepository->remove($image, true);
         }
 
         return $this->redirectToRoute('app_image_index', [], Response::HTTP_SEE_OTHER);
     }
+
+    #[Route('/admin/dashboard', name: 'app_admin_dashboard')]
     public function adminDashboard(): Response
     {
         $this->denyAccessUnlessGranted('ROLE_ADMIN');

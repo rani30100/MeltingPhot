@@ -17,6 +17,11 @@ framework:
     #fragments: true
     php_errors:
         log: true
+    
+    # http_foundation:
+    #     trusted_proxies: ~
+    #     # La taille maximale du téléchargement de fichiers
+    #     max_content_length: 1024M
 
 when@test:
     framework:

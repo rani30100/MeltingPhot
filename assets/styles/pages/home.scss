@@ -28,11 +28,10 @@ body {
     .know-more {
 
         min-height: 318px;
-        width: 100%;
         background-image: url(../../images/channels4_banner.jpg);
         background-repeat: no-repeat;
-        background-size: contain;
-        align-items: center;
+        background-size: cover;
+        
 
         a {
             margin-left: 45%;

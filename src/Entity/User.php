@@ -2,38 +2,47 @@
 
 namespace App\Entity;
 
-use App\Repository\UserRepository;
-use Doctrine\Common\Collections\ArrayCollection;
-use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
-use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
-use Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface;
+use App\Repository\UserRepository;
+use Doctrine\Common\Collections\Collection;
+use Doctrine\Common\Collections\ArrayCollection;
+use Symfony\Component\Validator\Constraints as Assert;
 use Symfony\Component\Security\Core\User\UserInterface;
+use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
+use Symfony\Component\Validator\Context\ExecutionContextInterface;
+use Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface;
 
 #[ORM\Entity(repositoryClass: UserRepository::class)]
-#[UniqueEntity(fields: ['email'], message: 'There is already an account with this email')]
 class User implements UserInterface, PasswordAuthenticatedUserInterface
 {
+
+// Table User dans la base de donnée
     #[ORM\Id]
     #[ORM\GeneratedValue]
-    #[ORM\Column]
+    #[ORM\Column(type: 'integer')]
     private ?int $id = null;
+
 
     #[ORM\Column(length: 180, unique: true)]
     private ?string $email = null;
 
-    #[ORM\Column]
-    private array $roles = [];
+    #[ORM\Column(type: 'json')]
+    private array $roles = ['ROLE_USER', 'ROLE_ADMIN','ROLE_SUPER_ADMIN'];
+    
 
     /**
      * @var string The hashed password
      */
     #[ORM\Column]
+    #[Assert\NotBlank]
     private ?string $password = null;
-
+    
     #[ORM\OneToMany(mappedBy: 'user_id', targetEntity: Posts::class, orphanRemoval: true)]
     private Collection $posts;
 
+    #[ORM\Column]
+    private $username;
+    
     #[ORM\ManyToMany(targetEntity: Newsletter::class, mappedBy: 'user_id')]
     private Collection $newsletters;
 
@@ -62,6 +71,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     {
         return $this->email;
     }
+    
 
     public function getEmail(): ?string
     {
@@ -71,6 +81,18 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     public function setEmail(string $email): self
     {
         $this->email = $email;
+
+        return $this;
+    }
+
+    public function getUsername(): ?string
+    {
+        return $this->username;
+    }
+
+    public function setUsername(string $username): self
+    {
+        $this->username = $username;
 
         return $this;
     }
@@ -107,6 +129,8 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     /**
      * @see PasswordAuthenticatedUserInterface
      */
+
+
     public function getPassword(): string
     {
         return $this->password;
@@ -256,4 +280,51 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
 
         return $this;
     }
+
+// Contraintes de Validation
+    #[Assert\Callback]
+    public function validateUsername(ExecutionContextInterface $context, $payload)
+    {
+        // Check for spaces in the username
+        if (strpos($this->username, ' ') !== false) {
+            $context->buildViolation("Le nom d'utilisateur ne doit pas contenir d'espaces.")
+                ->atPath('username')
+                ->addViolation();
+        }
+        if (strpos($this->password, ' ') !== false) {
+            $context->buildViolation("Le nom d'utilisateur ne doit pas contenir d'espaces.")
+                ->atPath('username')
+                ->addViolation();
+        }
+
+        if (strlen($this->password) < 6) {
+            $context->buildViolation('Le mot de passe doit contenir au minimum 6 caractères')
+                ->atPath('password')
+                ->addViolation();
+        }
+
+        // Check for alphanumeric characters only
+        // if (!ctype_alnum($this->username)) {
+        //     $context->buildViolation("Le nom d'utilisateur ne peut utiliser que des chiffres et lettres.")
+        //         ->atPath('username')
+        //         ->addViolation();
+        // }
+
+
+        // Check for numbers only at the end of the username
+        if (!preg_match('/^[a-zA-Z]+[0-9]*$/', $this->username)) {
+            $context->buildViolation("Les seuls chiffres du nom d'utilisateur doivent être à la fin. Aucun caractère spécial.")
+                ->atPath('username')
+                ->addViolation();
+        }
+
+        // // Check for minimum length of the username
+        // if (strlen($this->username) < 2) {
+        //     $context->buildViolation("Le nom d'utilisateur doit comporter au moins {{ limit }} caractères.")
+        //         ->atPath('username')
+        //         ->setParameter('{{ limit }}', 2)
+        //         ->addViolation();
+        // }
+    }
+
 }
