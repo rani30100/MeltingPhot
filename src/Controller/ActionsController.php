@@ -3,9 +3,10 @@
 namespace App\Controller;
 
 use Google\Client;
-use Google\Service\YouTube;
 use App\Entity\Video;
+use DateTimeImmutable;
 use App\Entity\Category;
+use Google\Service\YouTube;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Contracts\Cache\ItemInterface;
 use Symfony\Component\HttpFoundation\Request;
@@ -17,11 +18,10 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 class ActionsController extends AbstractController
 {
     #[Route('/actions/{order}/{year}', defaults: ['order' => 'test', 'year' => 'null'], methods: ['GET', 'HEAD'], name: 'app_actions')]
-    public function index(string $order, string $year,EntityManagerInterface $entityManager, Request $request): Response
+    public function index(string $order, string $year, EntityManagerInterface $entityManager, Request $request,Category $category = null): Response
     {
-        
         $cache = new FilesystemAdapter();
-        $videos = $cache->get("videos_" . $order . "_" . $year, function (ItemInterface $item) use ($order) {
+        $videoEntities = $cache->get("videos_" . $order . "_" . $year, function (ItemInterface $item) use ($order, $entityManager) {
             // Créez un client API Google
             $client = new Client();
             $client->setApplicationName('MeltingPhot');
@@ -30,81 +30,91 @@ class ActionsController extends AbstractController
             // Créez un objet pour l'API YouTube Data
             $youtube = new \Google\Service\YouTube($client);
 
-            // Récupérez la liste des vidéos de la playlist
-            $playlistItemsResponse = $youtube->playlistItems->listPlaylistItems('snippet', array(
+            // Récupérez la liste des vidéos de la playlist Je film mon futur métier
+            $playlistMonfuturmétier = $youtube->playlistItems->listPlaylistItems('snippet', array(
                 'playlistId' => 'PLU8CGazlBJAsyM9QsrvGUK3SIDpUHngJl',
+                'maxResults' => 50,
+                'part' => 'snippet,status'
+            ));
+
+               // Récupérez la liste des vidéos de la playlist Odonymes
+               $playlistOdonymes = $youtube->playlistItems->listPlaylistItems('snippet', array(
+                'playlistId' => 'PLU8CGazlBJAsq1vzyPDWX5tEWT7aDS325',
                 'maxResults' => 50,
                 'part' => 'snippet'
             ));
-            $videos = $playlistItemsResponse->getItems();
-            
+            $videos1 = $playlistMonfuturmétier->getItems();
+            $videos2 = $playlistOdonymes ->getItems();
+
+            $videoEntities = [];
+            try {
+                foreach ($videos1 as $videoData) {
+                    $video = new Video();
+                    $video->setName($videoData['snippet']['title']);
+                    $video->setUrl('https://www.youtube.com/watch?v=' . $videoData['snippet']['resourceId']['videoId']);
+                    $video->setCreatedAt(new DateTimeImmutable($videoData['snippet']['publishedAt']));
+                    // Je définis la catégorie pour les videos 
+                    $category = $entityManager->getRepository(Category::class)->find(2);
+                    $video->setCategory($category);
+
+                    $entityManager->persist($video);
+                    $videoEntities[] = $video;
+                
+                }
+            } catch (\Exception $e) {
+                // Afficher les éventuelles erreurs de persistance
+                dd($e->getMessage('Ca marche pas mec'));
+            }
+
+            $entityManager->flush();
+
             // filtrer les vidéos en fonction de l'année de publication
             if ($order == '2023') {
-                $videos = array_filter($videos, function ($video) use ($order) {
-                    $publishedAt = $video->getSnippet()->getPublishedAt();
-                    return substr($publishedAt, 0, 4) == $order;
+                $videoEntities = array_filter($videoEntities, function ($video) use ($order) {
+                    $publishedAt = $video->getCreatedAt();
+                    return $publishedAt->format('Y') == $order;
                 });
             }
             // filtrer les vidéos en fonction de l'année de publication
             if ($order == '2022') {
-                $videos = array_filter($videos, function ($video) use ($order) {
-                    $publishedAt = $video->getSnippet()->getPublishedAt();
-                    return substr($publishedAt, 0, 4) == $order;
+                $videoEntities = array_filter($videoEntities, function ($video) use ($order) {
+                    $publishedAt = $video->getCreatedAt();
+                    return                     $publishedAt->format('Y') == $order;
                 });
             }
 
             if ($order == 'Cheffe') {
                 // Trier les vidéos par date de publication (de la plus récente à la plus ancienne)
-                usort($videos, function ($a, $b) {
-
-                    return strcmp($b['snippet']['publishedAt'], $a['snippet']['publishedAt']);
+                usort($videoEntities, function ($a, $b) {
+                    return $b->getCreatedAt() <=> $a->getCreatedAt();
                 });
             }
 
             if ($order == 'desc') {
                 // Trier les vidéos par date de publication (de la plus récente à la plus ancienne)
-                usort($videos, function ($a, $b) {
-                    return strcmp(strtotime($b['snippet']['publishedAt']), strtotime($a['snippet']['publishedAt']));
+                usort($videoEntities, function ($a, $b) {
+                    return $b->getCreatedAt() <=> $a->getCreatedAt();
                 });
             } elseif ($order == 'asc') {
-                // Trier les vidéos par date de publication (de la plus récente à la plus ancienne)
-                usort($videos, function ($a, $b) {
-                    return strcmp(strtotime($a['snippet']['publishedAt']), strtotime($b['snippet']['publishedAt']));
+                // Trier les vidéos par date de publication (de la plus ancienne à la plus récente)
+                usort($videoEntities, function ($a, $b) {
+                    return $a->getCreatedAt() <=> $b->getCreatedAt();
                 });
             }
-            
-            // Récupérer la catégorie "Je filme mon futur métier"
-            $category = $entityManager->getRepository(Category::class)->findOneBy(['name' => 'Je filme mon futur métier']);
-            $entityManager->persist($category);
 
-           // Parcourir chaque vidéo pour les stocker dans la catégorie "Je filme mon futur métier"
-           foreach ($videos as $videoData) {
-               // Récupérer le titre de la vidéo
-               $title = $videoData->getSnippet()->getTitle();
+            if ($category) {
+                $videoEntities = $entityManager->getRepository(Video::class)->findBy(['category' => $category]);
+                return $videoEntities;
+            } else {
+                $videoEntities = $entityManager->getRepository(Video::class)->findAll();
+            }
 
-               // Créer une nouvelle entité Video
-               $video = new Video();
-               $video->setTitle($title);
-               $video->setCategory($category);
-
-               // Enregistrer la vidéo dans la base de données
-               $entityManager->persist($video);
-
-           }
-
-           // Exécuter l'opération de persistance
-           $entityManager->flush();
-           
-            return $videos;
+            return $videoEntities;
         });
-        
-          
-
-
 
         return $this->render('actions/index.html.twig', [
             'controller_name' => 'ActionsController',
-            'videos' => $videos,
+            'videos' => $videoEntities,
         ]);
     }
 }

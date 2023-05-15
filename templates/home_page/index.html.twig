@@ -65,7 +65,7 @@ searchIcon.classList.toggle('d-none')
 			</li>
 		{% endif %}
 		{% if app.user %}
-			{% if 'ROLE_ADMIN' in app.user.roles %}
+			{% if 'ROLE_SUPER_ADMIN' in app.user.roles %}
 				<a class="nav-link" href="{{ path('admin_') }}">Ma Page Admin</a>
 			{% endif %}
 		{% endif %}
