@@ -125,19 +125,33 @@ h2 {
 
 
 }
+.img-1{
+    height: 50%;
+    width: 100%;
+   
+    position: relative;
+}
+.img-2{
+    height: 50%;
 
+    top: 50%;
+    position: relative;
+}
+.btn-2{
+    align-self: center;
+    margin-bottom: 148px;
+}
 .carousel{
     width: 93%;
 }
 .carousel_img{
-    height: 700px;
-    width: inherit;
+    height: 100%;
+
     z-index: 0;
    
 }
 .bloc-img-btn{
-    display: flex;
-    align-items: flex-end;
+
     min-width: 25%;
     max-width: 366px;
 }
@@ -192,7 +206,7 @@ h2 {
 }
 .videos-btn{
     width: 100px;
-    height: 100px;
+    height: 70px;
     z-index: 1;
     margin-left: -130px;
 }
