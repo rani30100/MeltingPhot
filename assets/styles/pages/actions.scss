@@ -132,8 +132,14 @@ h2 {
 .carousel_img{
     height: 700px;
     width: inherit;
+    z-index: 0;
+   
+}
+.bloc-img-btn{
+    display: flex;
+    align-items: flex-end;
     min-width: 25%;
-    max-width: 366Px;
+    max-width: 366px;
 }
 
 .carousel_img-mid{
@@ -183,4 +189,10 @@ h2 {
 .video-box {
     background-color: rgb(80, 76, 76) !important;
     height: 600px !important;
+}
+.videos-btn{
+    width: 100px;
+    height: 100px;
+    z-index: 1;
+    margin-left: -130px;
 }
