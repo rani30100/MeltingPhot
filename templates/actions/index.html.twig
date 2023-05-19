@@ -59,7 +59,8 @@
 			<button class="btn col-6 col-sm-2 ">Parole Public</button>
 			<button class="btn col-6 col-sm-2 ">Les Vitrines des Cévennes</button>
 		</div>
-		<div id="carouselExampleIndicators" class="carousel slide bg-dark">
+
+		<div id="carouselExampleIndicators" class="carousel slide carrousel-color">
 			<div class="carousel-indicators">
 				{% for i in 0..(videos|length / 2 - 1) %}
 					<button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="{{ i }}" {% if i == 0 %} class="active" aria-current="true" {% endif %} aria-label="Slide {{ i+1 }}"></button>
@@ -67,35 +68,51 @@
 			</div>
 
 
-	<div class="carousel-inner">
-    {% for i in 0..(videos|length / 2 - 1) %}
-        <div class="carousel-item {% if i == 0 %}active{% endif %}" style="height: 700px;">
-            <div class="d-flex w-100 justify-content-center">
-                <div class="col-3 extremity p-0 d-none d-xxl-flex">
-                    <img class="carousel_img w-100" src="{{ asset('img/ODONYMES _Image_Vignette_Page accueil meltingphot_je Filme mon futur métier.png')}}" alt="...">
-                </div>
-                {% for j in 0..1 %}
-                    {% set videoIndex = i * 2 + j %}
-                    {% if videoIndex < videos|length %}
-                        {% if loop.index <= 2 %}
-						 <div class="bloc-img-btn {% if loop.index == 1 %}col-4 col-sm-6 col-md-6{% else %}col-4 col-sm-6 col-md-6{% endif %} d-flex p-0 {% if j == 1 %}img-1{% else %}img-2{% endif %}">
-                                <img class="carousel_img mx-auto" src="{{ asset('img/ODONYMES _Image_Vignette_Page accueil meltingphot_je Filme mon futur métier.png')}}" alt="...">
-                                <button type="button" class="btn btn-primary videos-btn deleted-video mt-5 {% if j == 1 %}btn-2{% endif %}" data-bs-toggle="modal" data-bs-target="#videoModal{{ videoIndex }}">
-                                    <i class="bi bi-play-circle"></i>
-                                    En voir plus ...
-                                </button>
-                            </div>
-                        {% endif %}
-                    {% endif %}
-                {% endfor %}
-                <div class="col-3 extremity p-0 d-none d-xxl-flex">
-                    <img class="carousel_img w-100" src="{{ asset('img/ODONYMES _Image_Vignette_Page accueil meltingphot_je Filme mon futur métier.png')}}" alt="...">
-                </div>
-            </div>
-        </div>
-    {% endfor %}
-</div>
-
+			<div class="carousel-inner">
+				{% for i in 0..(videos|length / 2 - 1) %}
+					<div class="carousel-item {% if i == 0 %}active{% endif %}" style="height: 700px;">
+						<div class="d-flex w-100 justify-content-center">
+							<div class="col-3 extremity p-0 d-none d-xxl-flex">
+								<img class="carousel_img w-100" src="{{ asset('img/ODONYMES _Image_Vignette_Page accueil meltingphot_je Filme mon futur métier.png')}}" alt="...">
+							</div>
+							{% for j in 0..1 %}
+								{% set videoIndex = i * 2 + j %}
+								{% if videoIndex < videos|length %}
+									{% if loop.index <= 2 %}
+										<div class="bloc-img-btn {% if loop.index == 1 %}col-4 col-sm-6 col-md-6{% else %}col-4 col-sm-6 col-md-6{% endif %} d-flex p-0 {% if j == 1 %}img-1{% else %}img-2{% endif %}">
+											<img class="carousel_img w-100" src="{{ asset('img/Je filme mon futur métier Meltingphot_Image_Vignette_Page accueil meltingphot_je Filme mon futur métier.png')}}" alt="...">
+											<button type="button" class="btn btn-primary videos-btn deleted-video {% if j == 1 %}btn-2{% endif %}" data-bs-toggle="modal" data-bs-target="#videoModal{{ videoIndex + 1}}">
+												<i class="bi bi-play-circle"></i>
+												En voir plus ...
+											</button>
+										</div>
+									{% endif %}
+								{% endif %}
+							{% endfor %}
+							<div class="col-3 extremity p-0 d-none d-xxl-flex">
+								<img class="carousel_img w-100" src="{{ asset('img/ODONYMES _Image_Vignette_Page accueil meltingphot_je Filme mon futur métier.png')}}" alt="...">
+							</div>
+						</div>
+					</div>
+				{% endfor %}
+			</div>
+			{% for video in videos %}
+			<div class="modal fade" id="videoModal{{ loop.index }}" tabindex="-1" aria-labelledby="videoModal{{ loop.index }}Label" aria-hidden="true">
+				<div class="modal-dialog modal-lg modal-dialog-centered">
+				<div class="modal-content">
+					<div class="modal-header">
+					<h5 class="modal-title" id="videoModal{{ loop.index }}Label">{{ video.name }}</h5>
+					<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+					</div>
+					<div class="modal-body">
+					<div class="embed-responsive embed-responsive-16by9">
+						<iframe class="embed-responsive-item w-100 modal-video" src="{{ video.url }}?rel=0" allowfullscreen allow="autoplay"></iframe>
+					</div>
+					</div>
+				</div>
+				</div>
+			</div>
+			{% endfor %}
 
 
 			<button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="prev" style="width: 100px;">
@@ -109,13 +126,13 @@
 		</div>
 
 
-	</div>
+
 
 
 	<div class="d-flex justify-content-center flex-wrap bloc-videos p-1" id="video-container"></div>
 
 
-	<footer class="text-center text-lg-start bg-light text-muted">
+	<footer class="text-center text-lg-start bg-light text-muted w-100">
 		<section class="p-4 border-top">
 			<div
 				class="text-center text-md-start mt-5">
@@ -173,7 +190,7 @@
 	<div class="text-center p-4 fw-bold text-white d-flex flex-column align-items-center" style="background-color: #D00A4B;">
 		<a>Tous droits réservés © 2023 @MeltingPhot</a>
 		<p class="fst-italic fw-light fs-6 text-white copyright-text">En effet, tous les éléments présents sur Internet (textes, images, vidéos, extraits sonores, codes informatiques…)
-																																																																																																																																																																																																																																																																																																																																																																																																																																												sont de facto soumis au droit d’auteur, même si l’accès est libre, gratuit et sans mention particulière.</p>
+																																																																																																																																																																																																																																																																																																																																																																																																																																															sont de facto soumis au droit d’auteur, même si l’accès est libre, gratuit et sans mention particulière.</p>
 	</div>
 	<!-- Copyright -->
 </footer>

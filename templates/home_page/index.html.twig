@@ -90,9 +90,12 @@ searchIcon.classList.toggle('d-none')
 
 			
 		{% endif %}
-		<li class="nav-item me-2">
-			<a class="nav-link" href='/new-account'>S'inscrire</a>
-		</li>
+		{% if not app.user %}
+			<li class="nav-item me-2">
+				<a class="nav-link" href="/new-account">S'inscrire</a>
+			</li>
+		{% endif %}
+
 
 
 		{# <form class="d-flex nav-items me-2 form" role="search">
