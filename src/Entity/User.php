@@ -13,28 +13,8 @@ use Symfony\Component\Validator\Context\ExecutionContextInterface;
 use Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface;
 
 #[ORM\Entity(repositoryClass: UserRepository::class)]
-#[UniqueEntity(fields: ['email'], message: 'Il existe déjà un compte avec ce e-mail.')]
-#[Assert\GroupSequence(["custom", "length", "regex","User"])]
-
 class User implements UserInterface, PasswordAuthenticatedUserInterface
 {
-//Contraintes de validation
-
-#[Assert\Length(
-    min: 2,
-    max: 25,
-    minMessage: "Le nom d'utilisateur doit comporter au moins {{ limit }} caractères.",
-    maxMessage: "Le nom d'utilisateur doit comporter au maximum {{ limit }} caractères.",
-)]
-
-#[Assert\Regex(
-    pattern:"/^[a-zA-Z]+\d*$/",
-    message:"Le nom d'utilisateur ne peut contenir que des lettres et des chiffres, et les chiffres sont autorisés uniquement à la fin.", groups:["regex"]
-)]
-
-#[Assert\Callback(
-    callback:"validateUsername", groups:["custom"]
-)]
 
 // Table User dans la base de donnée
     #[ORM\Id]
@@ -324,22 +304,16 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
         }
 
         // Check for alphanumeric characters only
-        if (!ctype_alnum($this->username)) {
-            $context->buildViolation("Le nom d'utilisateur ne peut utiliser que des chiffres et lettres.")
-                ->atPath('username')
-                ->addViolation();
-        }
+        // if (!ctype_alnum($this->username)) {
+        //     $context->buildViolation("Le nom d'utilisateur ne peut utiliser que des chiffres et lettres.")
+        //         ->atPath('username')
+        //         ->addViolation();
+        // }
 
-             // Check for alphanumeric characters only
-             if (!ctype_alnum($this->password)) {
-                $context->buildViolation("Le nom d'utilisateur ne peut utiliser que des chiffres et lettres.")
-                    ->atPath('username')
-                    ->addViolation();
-            }
 
         // Check for numbers only at the end of the username
         if (!preg_match('/^[a-zA-Z]+[0-9]*$/', $this->username)) {
-            $context->buildViolation("Les seuls chiffres du nom d'utilisateur doivent être à la fin.")
+            $context->buildViolation("Les seuls chiffres du nom d'utilisateur doivent être à la fin. Aucun caractère spécial.")
                 ->atPath('username')
                 ->addViolation();
         }

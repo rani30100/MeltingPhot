@@ -18,8 +18,7 @@ searchIcon.classList.toggle('d-none')
 
 {% block body %}
 	<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-	<link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.9.0/slick.min.css"/>
-	<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.9.0/slick.min.js"></script>
+
 
 
 	<nav class="navbar navbar-expand-lg bg-body-tertiary">
@@ -65,7 +64,7 @@ searchIcon.classList.toggle('d-none')
 			</li>
 		{% endif %}
 		{% if app.user %}
-			{% if 'ROLE_ADMIN' in app.user.roles %}
+			{% if 'ROLE_SUPER_ADMIN' in app.user.roles %}
 				<a class="nav-link" href="{{ path('admin_') }}">Ma Page Admin</a>
 			{% endif %}
 		{% endif %}
@@ -85,12 +84,18 @@ searchIcon.classList.toggle('d-none')
 			</form>
 		</div>
 		{% if app.user %}
-			{% if 'ROLE_ADMIN' in app.user.roles %}
+		
 
 				<p class="text-end btn btn-warning mt-3">Bienvenue, {{ app.user.username }} !</p>
 
-			{% endif %}
+			
 		{% endif %}
+		{% if not app.user %}
+			<li class="nav-item me-2">
+				<a class="nav-link" href="/new-account">S'inscrire</a>
+			</li>
+		{% endif %}
+
 
 
 		{# <form class="d-flex nav-items me-2 form" role="search">

@@ -1,6 +1,8 @@
 @use "sass:math";
 @import '../variables.scss';
 
+$caroussel-color : #00000012;
+
 h2 {
     color: $rouge;
 }
@@ -125,6 +127,58 @@ h2 {
 
 
 }
+.img-1{
+    height: 56%;
+    width: 100%;
+   
+    position: relative;
+}
+.img-2{
+    height: 56%;
+    align-self: flex-end;
+    position: relative;
+}
+.btn-2{
+    align-self: flex-end;
+    margin-bottom: 0px;
+}
+.carousel{
+    width: 93%;
+}
+.carousel_img{
+    height: 100%;
+
+    z-index: 0;
+   
+}
+.bloc-img-btn{
+
+    
+    max-width: 366px;
+}
+.carrousel-color{
+    background-color: $caroussel-color;
+}
+.carousel_img-mid{
+    height: fit-content;
+    min-height: 432px;
+    min-width: 300px;
+    max-width: 50%;
+}
+.carousel_img-mid2{
+    height: fit-content;
+    align-self: end;
+    min-height: 432px;
+    min-width: 300px;
+    height: 50%;
+    max-width: 50%;
+}
+.carousel-control-prev-icon, .carousel-control-next-icon{
+    background-color: black;
+    border-radius: 10px;
+}
+
+
 
 .btn-filtres-items {
     width: 15%;
@@ -157,3 +211,10 @@ h2 {
     background-color: rgb(80, 76, 76) !important;
     height: 600px !important;
 }
+.videos-btn{
+    height: 50px;
+    z-index: 1;
+    margin-left: -366px;
+    align-self: flex-end;
+}
+

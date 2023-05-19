@@ -16,10 +16,10 @@
 		</div>
 	{% endif %}
 
-	<section class="vh-100" style="background-color: #eee;">
+	{# <section class="vh-100" style="background-color: #eee;">
 		<div class=" h-100">
 			<div class="row d-flex justify-content-center align-items-center h-100">
-				<div class="col-lg-12 col-xl-11">
+				<div class="col-lg-12 ">
 					<div class="card text-black" style="border-radius: 25px;">
 						<div class="card-body p-md-5">
 							<div class="row justify-content-center">
@@ -87,6 +87,91 @@
 				</div>
 			</div>
 		</div>
-	</section>
+	</section> #}
+	
+
+<body class="bg-white font-family-karla h-screen">
+    <div class="w-full flex flex-wrap">
+        <!-- Register Section -->
+        <div class="w-full md:w-1/2 flex flex-col">
+            <div class="flex justify-center md:justify-start pt-12 md:pl-12 md:-mb-12">
+                <a href="#" class="bg-blue-600 text-white font-bold text-xl p-4" alt="Logo">Logo</a>
+            </div>
+
+            <div class="flex flex-col justify-center md:justify-start my-auto pt-8 md:pt-0 px-8 md:px-24 lg:px-32">
+                <p class="text-center text-xl ml-4">{{ 'join'|trans({}, 'register') }}</p>
+
+                {{ form_start(registrationForm, {
+                    'attr': {
+                        'class': 'flex flex-col pt-3',
+                     
+                    }
+                }) }}
+
+                <div class="flex flex-col">
+					<label for="name" class="text-lg">{{ 'label.name'|trans({}, 'register') }}</label>
+					{{ form_widget(registrationForm.username, {
+						'attr': {
+							'id': 'name',
+							'placeholder': 'placeholder.name'|trans({}, 'register'),
+							'class': 'shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 mt-1 leading-tight focus:outline-none focus:shadow-outline'
+						}
+					}) }}
+                </div>
+
+                <div class="flex flex-col pt-4">
+					<label for="email" class="text-lg">{{ 'label.email'|trans({}, 'register') }}</label>
+					{{ form_widget(registrationForm.email, {
+						'attr': {
+							'id': 'email',
+							'placeholder': 'placeholder.email'|trans({}, 'register'),
+							'class': 'shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 mt-1 leading-tight focus:outline-none focus:shadow-outline'
+						}
+					}) }}
+                </div>
+
+                <div class="flex flex-col pt-4">
+
+					<label for="password" class="text-lg">{{ 'label.password'|trans({}, 'register') }}</label>
+					{{ form_widget(registrationForm.password, {
+						'attr': {
+							'id': 'password',
+							'placeholder': 'placeholder.password'|trans({}, 'register'),
+							'class': 'shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 mt-1 leading-tight focus:outline-none focus:shadow-outline'
+						}
+					}) }}
+                </div>
+{# 
+                <div class="flex flex-col pt-4">
+                    <label for="confirm-password" class="text-lg">{{ 'label.confirm-password'|trans({}, 'register') }}</label>
+                    {# {{ form_widget(registrationForm.confirmPassword, {
+                        'attr': {
+                            'id': 'confirm-password',
+                            'placeholder': "{{ 'placeholder.password'|trans({}, 'register') }}",
+                            'class': 'shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 mt-1 leading-tight focus:outline-none focus:shadow-outline'
+                        }
+                    }) }} 
+                </div> #}
+
+                <div class="flex justify-center mx-4 mb-3 mb-lg-4 m-4">
+                    <button type="submit" class="btn btn-primary btn-lg">{{ 'btn.register'|trans({}, 'register')}}</button>
+                </div>
+                {{ form_end(registrationForm) }}
+
+                <div class="text-center ">
+                    <p>{{ 'question'|trans({}, 'register') }}
+                        <a href="/login" class="underline font-semibold">{{ 'connect'|trans({}, 'register') }}</a>
+                    </p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Image Section -->
+        <div class="w-1/2 shadow-2xl">
+            <img class="object-cover w-full h-screen hidden md:block" src="https://source.unsplash.com/IXUM4cJynP0" alt="Background" />
+        </div>
+    </div>
+</body>
+
 
 {% endblock %}

@@ -1,5 +1,3 @@
 framework:
     mailer:
-        dsn: 'smtps://raniderradj2@gmail.com:upqzkurmilifracr@smtp.gmail.com:465??encryption=ssl&auth_mode=login'
-
-
+        dsn: '%env(MAILER_DSN)%'
