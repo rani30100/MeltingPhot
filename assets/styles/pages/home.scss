@@ -193,12 +193,6 @@ body {
 
 // 2ÈME ARTICLE
 
-.article2-main {
-    margin-top: 130px;
-    margin-right: -110px;
-
-    align-self: flex-start;
-}
 
 .article2 {
 
@@ -321,7 +315,7 @@ swiper-slide iframe {
     width: 70%;
     height: 100%;
     background-size: cover;
-    background-image: url(../../images/je_Filme_mon_futur_métier.png);
+  
     width: 230px !important;
     height: auto !important;
     margin-right: 18px !important;
@@ -337,7 +331,7 @@ swiper-slide iframe {
 .columns3,
 .columns4,
 .columns5 {
-    background-image: url(../../images/meltingphot_je_Filme_mon_futur_métier.png);
+    
     background-repeat: no-repeat;
     height: 335px;
     margin-right: -35px;
@@ -374,11 +368,6 @@ swiper-slide iframe {
 
     }
 
-    body .article2 .article2-title {
-        // margin-top: -183px;
-        // margin-right: -5px;
-
-    }
 
     body .article2 .article2_description {
         margin-right: 115px;
@@ -466,13 +455,19 @@ swiper-slide iframe {
             .bloc-img {
                 margin-top: 5px;
             }
+            .rond-article2{
+                display: none;
+            }
 
 
             .article2-img {
                 width: 100px;
                 height: 100px;
                 margin-right: 1rem;
+              
+
             }
+      
 
             .article2_description2 {
                 padding-right: 0px;
@@ -513,8 +508,8 @@ swiper-slide iframe {
 
 
     #forms-svg {
-        width: 100px;
-        height: 100px;
+        width: 200px;
+        height: 200px;
         margin-left: 1rem;
 
     }
@@ -530,8 +525,12 @@ swiper-slide iframe {
         margin-bottom: 1rem;
     }
 
-    .article2-img2 {
-        display: none;
+    .rond-article2{
+     
+        z-index: 0;
+    }
+    .img-article2{
+
     }
 
 
@@ -720,6 +719,14 @@ body .parent-article .block-article_description {
         display: flex;
     }
 
+
+//article 2
+.rond-article2{
+
+}
+
+
+
     //Footer
     .contact-2 {
         display: none;
@@ -740,6 +747,8 @@ body .parent-article .block-article_description {
 
 
 @media (max-width: 767px) {
+
+
     .carousel-inner .carousel-item>div {
         display: none;
     }
@@ -772,4 +781,71 @@ body .parent-article .block-article_description {
 .carousel-inner .carousel-item-end,
 .carousel-inner .carousel-item-start {
     transform: translateX(0);
+}
+
+@media screen and (min-width: 700px) and (max-width:991px) {
+
+.article2-main{
+    margin-top: 50px;
+}
+
+.img-article2
+{
+    margin-left: -100px;
+}
+.article2_description
+{
+    width: 0px !important;
+    margin-right: 0px !important;
+}
+
+.img-article2, .rond-article2{
+    min-width: 177px;
+    min-height: 236px;
+}
+
+}
+
+
+
+
+
+
+
+@media screen and (min-width: 992px) {
+//article 2
+
+.article2{
+    width: 100%;
+
+}
+
+.bloc-img{
+    height: 400px;
+
+}
+
+.img-article2{
+    z-index: 1;
+    min-width: 300px;
+}
+
+.rond-article2{
+    z-index: 0;
+    margin-right: -175px;
+    position: relative;
+    min-width: 300px;
+}
+.article2-main{
+    margin-right: -122px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    width: 100%;
+}
+.article2-title{
+    margin-top: 30px;
+}
+
+
 }

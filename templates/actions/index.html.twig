@@ -45,13 +45,12 @@
 	</section>
 
 
-	<div class="d-flex flex-column align-items-center justify-content-center bloc-filtres">
+	<div class="d-flex flex-column align-items-center justify-content-center bloc-filtres carousel-container">
 		<h2 for="my-dropdown" class="text-center fw-light">NOS
 			<span class="fw-bold">ACTIONS D'EDUCATION
 			</span>PAR L'IMAGE</h2>
 
-		<div
-			class="d-flex flex-wrap align-items-center justify-content-center">
+		<div class="d-flex flex-wrap align-items-center justify-content-center ">
 			{# quand je clique sur le filme mon futur metier affiche les videos correspondantes a cette categorie  #}
 			<a href="{{ path('app_actions', { 'order': 'test', 'year': 'null', 'category': 'Je_Filme_Mon_Futur_Métier' }) }}" class="btn col-6 col-sm-2" id="video-link">Je Filme mon futur métier</a>
 			<button class="btn col-6 col-sm-2">Odonymes</button>
@@ -73,22 +72,31 @@
 					<div class="carousel-item {% if i == 0 %}active{% endif %}" style="height: 700px;">
 						<div class="d-flex w-100 justify-content-center">
 							<div class="col-3 extremity p-0 d-none d-xxl-flex">
-								<img class="carousel_img w-100" src="{{ asset('img/ODONYMES _Image_Vignette_Page accueil meltingphot_je Filme mon futur métier.png')}}" alt="...">
+								<img class="carousel_img w-100 " src="{{ asset('img/ODONYMES _Image_Vignette_Page accueil meltingphot_je Filme mon futur métier.png')}}" alt="...">
 							</div>
-							{% for j in 0..1 %}
-								{% set videoIndex = i * 2 + j %}
-								{% if videoIndex < videos|length %}
-									{% if loop.index <= 2 %}
-										<div class="bloc-img-btn {% if loop.index == 1 %}col-4 col-sm-6 col-md-6{% else %}col-4 col-sm-6 col-md-6{% endif %} d-flex p-0 {% if j == 1 %}img-1{% else %}img-2{% endif %}">
-											<img class="carousel_img w-100" src="{{ asset('img/Je filme mon futur métier Meltingphot_Image_Vignette_Page accueil meltingphot_je Filme mon futur métier.png')}}" alt="...">
-											<button type="button" class="btn btn-primary videos-btn deleted-video {% if j == 1 %}btn-2{% endif %}" data-bs-toggle="modal" data-bs-target="#videoModal{{ videoIndex + 1}}">
-												<i class="bi bi-play-circle"></i>
-												En voir plus ...
-											</button>
-										</div>
-									{% endif %}
-								{% endif %}
-							{% endfor %}
+						{% for j in 0..1 %}
+						{% set videoIndex = i * 2 + j %}
+						{% if videoIndex < videos|length %}
+							{% if loop.index == 1 %}
+								<div class="bloc-img-btn col-4 col-sm-6 col-md-6 d-flex p-0 img-1">
+									<img class="carousel_img w-100" src="{{ asset('img/Je filme mon futur métier Meltingphot_Image_Vignette_Page accueil meltingphot_je Filme mon futur métier.png')}}" alt="...">
+									<button type="button" class="btn btn-primary videos-btn deleted-video btn-1" data-bs-toggle="modal" data-bs-target="#videoModal{{ videoIndex + 1}}">
+										<i class="bi bi-play-circle"></i>
+										En voir plus ...
+									</button>
+								</div>
+							{% elseif loop.index == 2 %}
+								<div class="bloc-img-btn col-4 col-sm-6 col-md-6 d-flex p-0 img-2">
+									<img class="carousel_img w-100" src="{{ asset('img/Je filme mon futur métier Meltingphot_Image_Vignette_Page accueil meltingphot_je Filme mon futur métier.png')}}" alt="...">
+									<button type="button" class="btn btn-primary videos-btn deleted-video btn-2" data-bs-toggle="modal" data-bs-target="#videoModal{{ videoIndex + 1}}">
+										<i class="bi bi-play-circle"></i>
+										En voir plus ...
+									</button>
+								</div>
+							{% endif %}
+						{% endif %}
+					{% endfor %}
+
 							<div class="col-3 extremity p-0 d-none d-xxl-flex">
 								<img class="carousel_img w-100" src="{{ asset('img/ODONYMES _Image_Vignette_Page accueil meltingphot_je Filme mon futur métier.png')}}" alt="...">
 							</div>
@@ -185,66 +193,66 @@
 				<i class="fas fa-phone me-2"></i>06 64 21 93 75</p>
 		</div>
 	</section>
-	<!-- Section: Links  -->
-	<!-- Copyright -->
-	<div class="text-center p-4 fw-bold text-white d-flex flex-column align-items-center" style="background-color: #D00A4B;">
-		<a>Tous droits réservés © 2023 @MeltingPhot</a>
-		<p class="fst-italic fw-light fs-6 text-white copyright-text">En effet, tous les éléments présents sur Internet (textes, images, vidéos, extraits sonores, codes informatiques…)
-																																																																																																																																																																																																																																																																																																																																																																																																																																															sont de facto soumis au droit d’auteur, même si l’accès est libre, gratuit et sans mention particulière.</p>
-	</div>
-	<!-- Copyright -->
+		<!-- Section: Links  -->
+		<!-- Copyright -->
+		<div class="text-center p-4 fw-bold text-white d-flex flex-column align-items-center" style="background-color: #D00A4B;">
+			<a>Tous droits réservés © 2023 @MeltingPhot</a>
+			<p class="fst-italic fw-light fs-6 text-white copyright-text">En effet, tous les éléments présents sur Internet (textes, images, vidéos, extraits sonores, codes informatiques…)
+																																																																																																																																																																																																																																																																																																																																																																																																																																																sont de facto soumis au droit d’auteur, même si l’accès est libre, gratuit et sans mention particulière.</p>
+		</div>
+		<!-- Copyright -->
 </footer>
 <script>
 	document.getElementById("my-dropdown2").addEventListener("change", function () {
-var option = this.options[this.selectedIndex];
-if (option.value == "option-3") {
-window.location.href = "/actions/2022";
-}
-});
+	var option = this.options[this.selectedIndex];
+	if (option.value == "option-3") {
+	window.location.href = "/actions/2022";
+	}
+	});
 
-document.getElementById("my-dropdown2").addEventListener("change", function () {
-var option = this.options[this.selectedIndex];
-if (option.value == "option-2") {
-window.location.href = "/actions/2023";
-}
-});
-
-
-// Modal
-const myModal = document.getElementById('myModal')
-const myInput = document.getElementById('myInput')
-
-myModal.addEventListener('shown.bs.modal', () => {
-myInput.focus()
-})
+	document.getElementById("my-dropdown2").addEventListener("change", function () {
+	var option = this.options[this.selectedIndex];
+	if (option.value == "option-2") {
+	window.location.href = "/actions/2023";
+	}
+	});
 
 
-const videos = document.getElementById('video-container');
-videos.style.display = 'none';
+	// Modal
+	const myModal = document.getElementById('myModal')
+	const myInput = document.getElementById('myInput')
 
-const link = document.getElementById('video-link');
-link.addEventListener('click', (event) => {
-event.preventDefault(); // Prevents navigation to the link
+	myModal.addEventListener('shown.bs.modal', () => {
+	myInput.focus()
+	})
 
-if (videos.style.display === 'none') {
-videos.style.display = 'flex'; // Show the videos
-} else {
-videos.style.display = 'none'; // Hide the videos
-}
-});
 
-// deleted video
+	const videos = document.getElementById('video-container');
+	videos.style.display = 'none';
 
-// Sélectionnez tous les boutons avec la classe 'deleted-video'
-const deletedVideos = document.querySelectorAll('.deleted-video');
+	const link = document.getElementById('video-link');
+	link.addEventListener('click', (event) => {
+	event.preventDefault(); // Prevents navigation to the link
 
-// Parcourez chaque bouton et vérifiez le texte à l'intérieur
-deletedVideos.forEach((button) => {
-const buttonText = button.innerText.trim();
+	if (videos.style.display === 'none') {
+	videos.style.display = 'flex'; // Show the videos
+	} else {
+	videos.style.display = 'none'; // Hide the videos
+	}
+	});
 
-// Vérifiez si le texte est "Deleted video"
-if (buttonText === 'Deleted video') { // Masquez le bouton en ajoutant la classe 'd-none'
-button.classList.add('d-none');
-}
-});
+	// deleted video
+
+	// Sélectionnez tous les boutons avec la classe 'deleted-video'
+	const deletedVideos = document.querySelectorAll('.deleted-video');
+
+	// Parcourez chaque bouton et vérifiez le texte à l'intérieur
+	deletedVideos.forEach((button) => {
+	const buttonText = button.innerText.trim();
+
+	// Vérifiez si le texte est "Deleted video"
+	if (buttonText === 'Deleted video') { // Masquez le bouton en ajoutant la classe 'd-none'
+	button.classList.add('d-none');
+	}
+	});
 </script>{% endblock %}
