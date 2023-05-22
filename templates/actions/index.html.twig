@@ -2,36 +2,128 @@
 
 {% block title %}Hello ActionsController!
 {% endblock %}
+{% block javascripts %}
+	{{ parent() }}
+
+	<script>
+		const searchIcon = document.querySelector('#search-icon');
+const searchForm = document.querySelector('#search-form');
+
+searchIcon.addEventListener('click', () => {
+searchForm.classList.toggle('d-none');
+searchIcon.classList.toggle('d-none')
+});
+	</script>
+{% endblock %}
 
 {% block body %}
 
 	{# Navbar #}
+
 	<nav class="navbar navbar-expand-lg bg-body-tertiary">
 		<div class="d-flex justy-content-center w-100" id="">
 			<ul class="navbar-nav me-auto mb-2 mb-lg-0 w-100 d-flex justify-content-center align-items-center">
 				<li>
-					<a href="/">
-						<img class="logo me-2" src="{{ asset('img/logo.png')}}" alt=""/>
+					<a href="/"></a>
+					<img class="logo me-2" src="{{ asset('img/logo.png')}}" width alt="">
+					</img>
+			
+				</li>
+
+
+			<li class="nav-item me-2 meltingphot">
+				<a class="nav-link active" aria-current="page" href="/">MELTINGPHOT</a>
+			</li>
+			<li class="nav-item me-2">
+				<a class="nav-link" href="/actions">ACTIONS</a>
+			</li>
+			{# <li class="nav-item dropdown me-2">
+				<a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+					POUR QUI ?
+				</a>
+			</li> #}
+			{# <li class="nav-item me-2">
+				<a class="nav-link" href="#">PARTENAIRES</a>
+			</li>
+
+			<li class="nav-item me-2">
+				<a class="nav-link" href="#">NOUS SOUTENIR</a>
+			</li> #}
+
+			<li class="nav-item me-2">
+				<a class="nav-link" href="/contact">CONTACT</a>
+			</li>
+
+			{% if not app.user %}
+				<li class="nav-item me-2">
+					<a class="nav-link" href="/login">
+						<i class="fa-solid fa-user"></i>
 					</a>
+
 				</li>
-				<li class="nav-item me-2 meltingphot">
-					<a class="nav-link active" aria-current="page" href="/">MELTINGPHOT</a>
-				</li>
+			{% endif %}
+			{% if app.user %}
+				{% if 'ROLE_SUPER_ADMIN' in app.user.roles %}
+					<a class="nav-link" href="{{ path('admin_') }}">Ma Page Admin</a>
+				{% endif %}
+			{% endif %}
+
+			{% if app.user %}
 				<li class="nav-item me-2">
-					<a class="nav-link" href="/actions">ACTIONS</a>
+					<a class="nav-link" href="/logout">Se déconnecter</a>
 				</li>
+			{% endif %}
+			<div class="d-flex align-items-center">
+				<i id="search-icon" class="fa-solid fa-magnifying-glass mx-3"></i>
+				<form id="search-form" class="d-none">
+					<div class="input-group">
+						<input type="text" class="form-control" placeholder="Rechercher...">
+						<button class="btn btn-primary" type="submit">Rechercher</button>
+					</div>
+				</form>
+			</div>
+			{% if app.user %}
+			
+
+					<p class="text-end btn btn-warning mt-3">Bienvenue, {{ app.user.username }} !</p>
+
+				
+			{% endif %}
+			{% if not app.user %}
 				<li class="nav-item me-2">
-					<a class="nav-link" href="/contact">CONTACT</a>
+					<a class="nav-link" href="/new-account">S'inscrire</a>
 				</li>
-			</ul>
+			{% endif %}
+
+
+
+			{# <form class="d-flex nav-items me-2 form" role="search">
+				<input class="form-control me-2 search" type="search" placeholder="Ma recherche..." aria-label="Search">
+				<button class="btn btn-outline-success search-btn" type="submit">Rechercher</button>
+			</form>
+
+			<li class="nav-item ">
+				<a id="language-link" class="p-2" href="/en">
+					<img class="flag" src="{{ asset('img/eng.png') }}">
+				</a>
+			</li> 
+
+			<li class="nav-item ms-2">
+				<a id="language-link" class="p-2" href="/fr">
+					<img id="flag" src="{{ asset('img/drapeau.png') }}">
+				</a>
+			</li> #}
+		</ul>
+
 		</div>
-	</nav>
+	</nav> 
+
 	<section class="actions-bandeau w-100 bg-secondary-subtle h-400 d-flex flex-column justify-content-center align-items-center p-1">
 		<article class="actions-bloc">
 			<div class="container d-lg-flex flex-lg-row justify-content-lg-center align-items-lg-center">
 				<div class="col-lg-4">
 					<h1>Nos Actions</h1>
-					<div class="d-flex flex-row justify-content-between align-items-center actions-bandeau_sous-titre m-auto">
+					<div class="d-flex flex-row justify-content-around align-items-center actions-bandeau_sous-titre m-auto">
 						<div class="actions-bandeau_trait"></div>
 						<div>
 							<span class="color-grey">MeltingPhot/</span>
@@ -45,13 +137,12 @@
 	</section>
 
 
-	<div class="d-flex flex-column align-items-center justify-content-center bloc-filtres">
+	<div class="d-flex flex-column align-items-center justify-content-center bloc-filtres carousel-container">
 		<h2 for="my-dropdown" class="text-center fw-light">NOS
 			<span class="fw-bold">ACTIONS D'EDUCATION
 			</span>PAR L'IMAGE</h2>
 
-		<div
-			class="d-flex flex-wrap align-items-center justify-content-center">
+		<div class="d-flex flex-wrap align-items-center justify-content-center ">
 			{# quand je clique sur le filme mon futur metier affiche les videos correspondantes a cette categorie  #}
 			<a href="{{ path('app_actions', { 'order': 'test', 'year': 'null', 'category': 'Je_Filme_Mon_Futur_Métier' }) }}" class="btn col-6 col-sm-2" id="video-link">Je Filme mon futur métier</a>
 			<button class="btn col-6 col-sm-2">Odonymes</button>
@@ -60,7 +151,7 @@
 			<button class="btn col-6 col-sm-2 ">Les Vitrines des Cévennes</button>
 		</div>
 
-		<div id="carouselExampleIndicators" class="carousel slide carrousel-color">
+		<div id="carouselExampleIndicators" class="carousel-actions slide carrousel-color">
 			<div class="carousel-indicators">
 				{% for i in 0..(videos|length / 2 - 1) %}
 					<button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="{{ i }}" {% if i == 0 %} class="active" aria-current="true" {% endif %} aria-label="Slide {{ i+1 }}"></button>
@@ -78,10 +169,18 @@
 							{% for j in 0..1 %}
 								{% set videoIndex = i * 2 + j %}
 								{% if videoIndex < videos|length %}
-									{% if loop.index <= 2 %}
-										<div class="bloc-img-btn {% if loop.index == 1 %}col-4 col-sm-6 col-md-6{% else %}col-4 col-sm-6 col-md-6{% endif %} d-flex p-0 {% if j == 1 %}img-1{% else %}img-2{% endif %}">
+									{% if loop.index == 1 %}
+										<div class="bloc-img-btn col-4 col-sm-6 col-md-6 d-flex p-0 img-1">
 											<img class="carousel_img w-100" src="{{ asset('img/Je filme mon futur métier Meltingphot_Image_Vignette_Page accueil meltingphot_je Filme mon futur métier.png')}}" alt="...">
-											<button type="button" class="btn btn-primary videos-btn deleted-video {% if j == 1 %}btn-2{% endif %}" data-bs-toggle="modal" data-bs-target="#videoModal{{ videoIndex + 1}}">
+											<button type="button" class="btn btn-primary videos-btn deleted-video btn-1" data-bs-toggle="modal" data-bs-target="#videoModal{{ videoIndex + 1}}">
+												<i class="bi bi-play-circle"></i>
+												En voir plus ...
+											</button>
+										</div>
+									{% elseif loop.index == 2 %}
+										<div class="bloc-img-btn col-4 col-sm-6 col-md-6 d-flex p-0 img-2">
+											<img class="carousel_img w-100" src="{{ asset('img/Je filme mon futur métier Meltingphot_Image_Vignette_Page accueil meltingphot_je Filme mon futur métier.png')}}" alt="...">
+											<button type="button" class="btn btn-primary videos-btn deleted-video btn-2" data-bs-toggle="modal" data-bs-target="#videoModal{{ videoIndex + 1}}">
 												<i class="bi bi-play-circle"></i>
 												En voir plus ...
 											</button>
@@ -96,37 +195,38 @@
 					</div>
 				{% endfor %}
 			</div>
-			{% for video in videos %}
-			<div class="modal fade" id="videoModal{{ loop.index }}" tabindex="-1" aria-labelledby="videoModal{{ loop.index }}Label" aria-hidden="true">
-				<div class="modal-dialog modal-lg modal-dialog-centered">
-				<div class="modal-content">
-					<div class="modal-header">
-					<h5 class="modal-title" id="videoModal{{ loop.index }}Label">{{ video.name }}</h5>
-					<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+
+
+
+				{% for video in videos %}
+					<div class="modal fade" id="videoModal{{ loop.index }}" tabindex="-1" aria-labelledby="videoModal{{ loop.index }}Label" aria-hidden="true">
+						<div class="modal-dialog modal-lg modal-dialog-centered">
+							<div class="modal-content">
+								<div class="modal-header">
+									<h5 class="modal-title" id="videoModal{{ loop.index }}Label">{{ video.name }}</h5>
+									<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+								</div>
+								<div class="modal-body">
+									<div class="embed-responsive embed-responsive-16by9">
+										<iframe class="embed-responsive-item w-100 modal-video" src="{{ video.url }}?rel=0" allowfullscreen allow="autoplay"></iframe>
+									</div>
+								</div>
+							</div>
+						</div>
 					</div>
-					<div class="modal-body">
-					<div class="embed-responsive embed-responsive-16by9">
-						<iframe class="embed-responsive-item w-100 modal-video" src="{{ video.url }}?rel=0" allowfullscreen allow="autoplay"></iframe>
-					</div>
-					</div>
-				</div>
-				</div>
+				{% endfor %}
+
+
+				<button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="prev" style="width: 100px;height:50%; display:flex;align-items:end">
+					<span class="carousel-control-prev-icon" aria-hidden="true"></span>
+					<span class="visually-hidden">Previous</span>
+				</button>
+				<button class="carousel-control-next" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="next" style="width: 100px;height:50%; display:flex;align-items:end">
+					<span class="carousel-control-next-icon" aria-hidden="true"></span>
+					<span class="visually-hidden">Next</span>
+				</button>
 			</div>
-			{% endfor %}
-
-
-			<button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="prev" style="width: 100px;">
-				<span class="carousel-control-prev-icon" aria-hidden="true"></span>
-				<span class="visually-hidden">Previous</span>
-			</button>
-			<button class="carousel-control-next" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="next" style="width: 100px;">
-				<span class="carousel-control-next-icon" aria-hidden="true"></span>
-				<span class="visually-hidden">Next</span>
-			</button>
 		</div>
-
-
-
 
 
 	<div class="d-flex justify-content-center flex-wrap bloc-videos p-1" id="video-container"></div>
@@ -190,7 +290,7 @@
 	<div class="text-center p-4 fw-bold text-white d-flex flex-column align-items-center" style="background-color: #D00A4B;">
 		<a>Tous droits réservés © 2023 @MeltingPhot</a>
 		<p class="fst-italic fw-light fs-6 text-white copyright-text">En effet, tous les éléments présents sur Internet (textes, images, vidéos, extraits sonores, codes informatiques…)
-																																																																																																																																																																																																																																																																																																																																																																																																																																															sont de facto soumis au droit d’auteur, même si l’accès est libre, gratuit et sans mention particulière.</p>
+																																																																																																																																																																																																																																																																																																																																																																																																																																																			sont de facto soumis au droit d’auteur, même si l’accès est libre, gratuit et sans mention particulière.</p>
 	</div>
 	<!-- Copyright -->
 </footer>

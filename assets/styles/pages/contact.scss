@@ -1,3 +1,8 @@
+body{
+    background-color: #f0f0f0;
+}
+
+
 .contact-input {
     display: flex;
     align-items: center;
@@ -10,8 +15,7 @@
 }
 
 .bloc-adress {
-    margin-top: 6rem;
-    margin-left: -13rem;
+
 }
 
 .bloc-adress_place,
@@ -21,7 +25,7 @@
 
 .send-btn {
     background-color: $rouge;
-    border-radius: 0px;
+    border-radius: 6px;
     padding: 6px 55px 6px;
     font-weight: bolder;
     color: white;
@@ -45,9 +49,9 @@
 
 .contact-NES {
     display: flex;
-    width: 50%;
-    justify-content: space-between;
-    margin: 0 auto;
+
+    justify-content: center;
+
 }
 
 //cacher le label piege 
@@ -55,8 +59,21 @@ label[for="contact_piege"] {
     display: none !important;
 }
 
-
+#contact_Message, #contact_Subject, #contact_email, #contact_Nom{
+    background-color: white;
+}
 //captcha 
 .grecaptcha-badge {
     visibility: hidden;
+}
+@media (max-width: 1000px) {
+	.bloc-adress {
+        flex-direction: column;
+        align-items: center;
+    }
+}
+
+@media (min-width: 700px)and (max-width:1400px){
+
+
 }
