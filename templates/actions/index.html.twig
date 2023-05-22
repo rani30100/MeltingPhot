@@ -31,7 +31,7 @@
 			<div class="container d-lg-flex flex-lg-row justify-content-lg-center align-items-lg-center">
 				<div class="col-lg-4">
 					<h1>Nos Actions</h1>
-					<div class="d-flex flex-row justify-content-between align-items-center actions-bandeau_sous-titre m-auto">
+					<div class="d-flex flex-row justify-content-around align-items-center actions-bandeau_sous-titre m-auto">
 						<div class="actions-bandeau_trait"></div>
 						<div>
 							<span class="color-grey">MeltingPhot/</span>
@@ -72,31 +72,30 @@
 					<div class="carousel-item {% if i == 0 %}active{% endif %}" style="height: 700px;">
 						<div class="d-flex w-100 justify-content-center">
 							<div class="col-3 extremity p-0 d-none d-xxl-flex">
-								<img class="carousel_img w-100 " src="{{ asset('img/ODONYMES _Image_Vignette_Page accueil meltingphot_je Filme mon futur métier.png')}}" alt="...">
+								<img class="carousel_img w-100" src="{{ asset('img/ODONYMES _Image_Vignette_Page accueil meltingphot_je Filme mon futur métier.png')}}" alt="...">
 							</div>
-						{% for j in 0..1 %}
-						{% set videoIndex = i * 2 + j %}
-						{% if videoIndex < videos|length %}
-							{% if loop.index == 1 %}
-								<div class="bloc-img-btn col-4 col-sm-6 col-md-6 d-flex p-0 img-1">
-									<img class="carousel_img w-100" src="{{ asset('img/Je filme mon futur métier Meltingphot_Image_Vignette_Page accueil meltingphot_je Filme mon futur métier.png')}}" alt="...">
-									<button type="button" class="btn btn-primary videos-btn deleted-video btn-1" data-bs-toggle="modal" data-bs-target="#videoModal{{ videoIndex + 1}}">
-										<i class="bi bi-play-circle"></i>
-										En voir plus ...
-									</button>
-								</div>
-							{% elseif loop.index == 2 %}
-								<div class="bloc-img-btn col-4 col-sm-6 col-md-6 d-flex p-0 img-2">
-									<img class="carousel_img w-100" src="{{ asset('img/Je filme mon futur métier Meltingphot_Image_Vignette_Page accueil meltingphot_je Filme mon futur métier.png')}}" alt="...">
-									<button type="button" class="btn btn-primary videos-btn deleted-video btn-2" data-bs-toggle="modal" data-bs-target="#videoModal{{ videoIndex + 1}}">
-										<i class="bi bi-play-circle"></i>
-										En voir plus ...
-									</button>
-								</div>
-							{% endif %}
-						{% endif %}
-					{% endfor %}
-
+							{% for j in 0..1 %}
+								{% set videoIndex = i * 2 + j %}
+								{% if videoIndex < videos|length %}
+									{% if loop.index == 1 %}
+										<div class="bloc-img-btn col-4 col-sm-6 col-md-6 d-flex p-0 img-1">
+											<img class="carousel_img w-100" src="{{ asset('img/Je filme mon futur métier Meltingphot_Image_Vignette_Page accueil meltingphot_je Filme mon futur métier.png')}}" alt="...">
+											<button type="button" class="btn btn-primary videos-btn deleted-video btn-1" data-bs-toggle="modal" data-bs-target="#videoModal{{ videoIndex + 1}}">
+												<i class="bi bi-play-circle"></i>
+												En voir plus ...
+											</button>
+										</div>
+									{% elseif loop.index == 2 %}
+										<div class="bloc-img-btn col-4 col-sm-6 col-md-6 d-flex p-0 img-2">
+											<img class="carousel_img w-100" src="{{ asset('img/Je filme mon futur métier Meltingphot_Image_Vignette_Page accueil meltingphot_je Filme mon futur métier.png')}}" alt="...">
+											<button type="button" class="btn btn-primary videos-btn deleted-video btn-2" data-bs-toggle="modal" data-bs-target="#videoModal{{ videoIndex + 1}}">
+												<i class="bi bi-play-circle"></i>
+												En voir plus ...
+											</button>
+										</div>
+									{% endif %}
+								{% endif %}
+							{% endfor %}
 							<div class="col-3 extremity p-0 d-none d-xxl-flex">
 								<img class="carousel_img w-100" src="{{ asset('img/ODONYMES _Image_Vignette_Page accueil meltingphot_je Filme mon futur métier.png')}}" alt="...">
 							</div>
@@ -104,37 +103,38 @@
 					</div>
 				{% endfor %}
 			</div>
-			{% for video in videos %}
-			<div class="modal fade" id="videoModal{{ loop.index }}" tabindex="-1" aria-labelledby="videoModal{{ loop.index }}Label" aria-hidden="true">
-				<div class="modal-dialog modal-lg modal-dialog-centered">
-				<div class="modal-content">
-					<div class="modal-header">
-					<h5 class="modal-title" id="videoModal{{ loop.index }}Label">{{ video.name }}</h5>
-					<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+
+
+
+				{% for video in videos %}
+					<div class="modal fade" id="videoModal{{ loop.index }}" tabindex="-1" aria-labelledby="videoModal{{ loop.index }}Label" aria-hidden="true">
+						<div class="modal-dialog modal-lg modal-dialog-centered">
+							<div class="modal-content">
+								<div class="modal-header">
+									<h5 class="modal-title" id="videoModal{{ loop.index }}Label">{{ video.name }}</h5>
+									<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+								</div>
+								<div class="modal-body">
+									<div class="embed-responsive embed-responsive-16by9">
+										<iframe class="embed-responsive-item w-100 modal-video" src="{{ video.url }}?rel=0" allowfullscreen allow="autoplay"></iframe>
+									</div>
+								</div>
+							</div>
+						</div>
 					</div>
-					<div class="modal-body">
-					<div class="embed-responsive embed-responsive-16by9">
-						<iframe class="embed-responsive-item w-100 modal-video" src="{{ video.url }}?rel=0" allowfullscreen allow="autoplay"></iframe>
-					</div>
-					</div>
-				</div>
-				</div>
+				{% endfor %}
+
+
+				<button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="prev" style="width: 100px;height:50%; display:flex;align-items:end">
+					<span class="carousel-control-prev-icon" aria-hidden="true"></span>
+					<span class="visually-hidden">Previous</span>
+				</button>
+				<button class="carousel-control-next" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="next" style="width: 100px;height:50%; display:flex;align-items:end">
+					<span class="carousel-control-next-icon" aria-hidden="true"></span>
+					<span class="visually-hidden">Next</span>
+				</button>
 			</div>
-			{% endfor %}
-
-
-			<button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="prev" style="width: 100px;">
-				<span class="carousel-control-prev-icon" aria-hidden="true"></span>
-				<span class="visually-hidden">Previous</span>
-			</button>
-			<button class="carousel-control-next" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="next" style="width: 100px;">
-				<span class="carousel-control-next-icon" aria-hidden="true"></span>
-				<span class="visually-hidden">Next</span>
-			</button>
 		</div>
-
-
-
 
 
 	<div class="d-flex justify-content-center flex-wrap bloc-videos p-1" id="video-container"></div>
@@ -193,66 +193,66 @@
 				<i class="fas fa-phone me-2"></i>06 64 21 93 75</p>
 		</div>
 	</section>
-		<!-- Section: Links  -->
-		<!-- Copyright -->
-		<div class="text-center p-4 fw-bold text-white d-flex flex-column align-items-center" style="background-color: #D00A4B;">
-			<a>Tous droits réservés © 2023 @MeltingPhot</a>
-			<p class="fst-italic fw-light fs-6 text-white copyright-text">En effet, tous les éléments présents sur Internet (textes, images, vidéos, extraits sonores, codes informatiques…)
-																																																																																																																																																																																																																																																																																																																																																																																																																																																sont de facto soumis au droit d’auteur, même si l’accès est libre, gratuit et sans mention particulière.</p>
-		</div>
-		<!-- Copyright -->
+	<!-- Section: Links  -->
+	<!-- Copyright -->
+	<div class="text-center p-4 fw-bold text-white d-flex flex-column align-items-center" style="background-color: #D00A4B;">
+		<a>Tous droits réservés © 2023 @MeltingPhot</a>
+		<p class="fst-italic fw-light fs-6 text-white copyright-text">En effet, tous les éléments présents sur Internet (textes, images, vidéos, extraits sonores, codes informatiques…)
+																																																																																																																																																																																																																																																																																																																																																																																																																																																			sont de facto soumis au droit d’auteur, même si l’accès est libre, gratuit et sans mention particulière.</p>
+	</div>
+	<!-- Copyright -->
 </footer>
 <script>
 	document.getElementById("my-dropdown2").addEventListener("change", function () {
-	var option = this.options[this.selectedIndex];
-	if (option.value == "option-3") {
-	window.location.href = "/actions/2022";
-	}
-	});
+var option = this.options[this.selectedIndex];
+if (option.value == "option-3") {
+window.location.href = "/actions/2022";
+}
+});
 
-	document.getElementById("my-dropdown2").addEventListener("change", function () {
-	var option = this.options[this.selectedIndex];
-	if (option.value == "option-2") {
-	window.location.href = "/actions/2023";
-	}
-	});
-
-
-	// Modal
-	const myModal = document.getElementById('myModal')
-	const myInput = document.getElementById('myInput')
-
-	myModal.addEventListener('shown.bs.modal', () => {
-	myInput.focus()
-	})
+document.getElementById("my-dropdown2").addEventListener("change", function () {
+var option = this.options[this.selectedIndex];
+if (option.value == "option-2") {
+window.location.href = "/actions/2023";
+}
+});
 
 
-	const videos = document.getElementById('video-container');
-	videos.style.display = 'none';
+// Modal
+const myModal = document.getElementById('myModal')
+const myInput = document.getElementById('myInput')
 
-	const link = document.getElementById('video-link');
-	link.addEventListener('click', (event) => {
-	event.preventDefault(); // Prevents navigation to the link
+myModal.addEventListener('shown.bs.modal', () => {
+myInput.focus()
+})
 
-	if (videos.style.display === 'none') {
-	videos.style.display = 'flex'; // Show the videos
-	} else {
-	videos.style.display = 'none'; // Hide the videos
-	}
-	});
 
-	// deleted video
+const videos = document.getElementById('video-container');
+videos.style.display = 'none';
 
-	// Sélectionnez tous les boutons avec la classe 'deleted-video'
-	const deletedVideos = document.querySelectorAll('.deleted-video');
+const link = document.getElementById('video-link');
+link.addEventListener('click', (event) => {
+event.preventDefault(); // Prevents navigation to the link
 
-	// Parcourez chaque bouton et vérifiez le texte à l'intérieur
-	deletedVideos.forEach((button) => {
-	const buttonText = button.innerText.trim();
+if (videos.style.display === 'none') {
+videos.style.display = 'flex'; // Show the videos
+} else {
+videos.style.display = 'none'; // Hide the videos
+}
+});
 
-	// Vérifiez si le texte est "Deleted video"
-	if (buttonText === 'Deleted video') { // Masquez le bouton en ajoutant la classe 'd-none'
-	button.classList.add('d-none');
-	}
-	});
+// deleted video
+
+// Sélectionnez tous les boutons avec la classe 'deleted-video'
+const deletedVideos = document.querySelectorAll('.deleted-video');
+
+// Parcourez chaque bouton et vérifiez le texte à l'intérieur
+deletedVideos.forEach((button) => {
+const buttonText = button.innerText.trim();
+
+// Vérifiez si le texte est "Deleted video"
+if (buttonText === 'Deleted video') { // Masquez le bouton en ajoutant la classe 'd-none'
+button.classList.add('d-none');
+}
+});
 </script>{% endblock %}
