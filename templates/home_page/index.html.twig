@@ -3,243 +3,289 @@
 {% block title %}MeltingPhot !
 {% endblock %}
 {% block javascripts %}
-	{{ parent() }}
+    {{ parent() }}
 
-	<script>
-		const searchIcon = document.querySelector('#search-icon');
-const searchForm = document.querySelector('#search-form');
+  <script>
+    const searchIcon = document.querySelector('#search-icon');
+    const searchForm = document.querySelector('#search-form');
 
-searchIcon.addEventListener('click', () => {
-searchForm.classList.toggle('d-none');
-searchIcon.classList.toggle('d-none')
-});
-	</script>
+    searchIcon.addEventListener('click', () => {
+        searchForm.classList.toggle('d-none');
+        searchIcon.classList.toggle('d-none')
+    });
+
+
+function changeLanguage(language) {
+
+    var flagImage = document.getElementById("flag-image");
+		if (language === 'en') {
+			flagImage.src = "{{ asset('img/unitedkingdom.png') }}";
+		
+		} 
+	}
+
+
+</script>
+
+
 {% endblock %}
+
 
 {% block body %}
 	<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-
 
 
 	<nav class="navbar navbar-expand-lg bg-body-tertiary">
 		<div class="d-flex justy-content-center w-100" id="">
 			<ul class="navbar-nav me-auto mb-2 mb-lg-0 w-100 d-flex justify-content-center align-items-center">
 				<li>
-					<a href="/"></a>
-					<img class="logo me-2" src="{{ asset('img/logo.png')}}" width alt="">
-					</img>
-			
-				</li>
-
-
-			<li class="nav-item me-2 meltingphot">
-				<a class="nav-link active" aria-current="page" href="/">MELTINGPHOT</a>
-			</li>
-			<li class="nav-item me-2">
-				<a class="nav-link" href="/actions">ACTIONS</a>
-			</li>
-			{# <li class="nav-item dropdown me-2">
-				<a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-					POUR QUI ?
-				</a>
-			</li> #}
-			{# <li class="nav-item me-2">
-				<a class="nav-link" href="#">PARTENAIRES</a>
-			</li>
-
-			<li class="nav-item me-2">
-				<a class="nav-link" href="#">NOUS SOUTENIR</a>
-			</li> #}
-
-			<li class="nav-item me-2">
-				<a class="nav-link" href="/contact">CONTACT</a>
-			</li>
-
-			{% if not app.user %}
-				<li class="nav-item me-2">
-					<a class="nav-link" href="/login">
-						<i class="fa-solid fa-user"></i>
+					<a href="/">
+						<img class="logo me-2" src="{{ asset('img/logo.png')}}" width alt=""></img>
 					</a>
-
 				</li>
-			{% endif %}
-			{% if app.user %}
-				{% if 'ROLE_SUPER_ADMIN' in app.user.roles %}
-					<a class="nav-link" href="{{ path('admin_') }}">Ma Page Admin</a>
+
+				<li class="nav-item me-2 meltingphot">
+					<a class="nav-link active" aria-current="page" href="/">MELTINGPHOT</a>
+				</li>
+				<li class="nav-item me-2">
+					<a class="nav-link" href="/actions">ACTIONS</a>
+				</li>
+
+				<li class="nav-item me-2">
+					<a class="nav-link" href="/contact">CONTACT</a>
+				</li>
+
+				{% if not app.user %}
+					<li class="nav-item me-2">
+						<a class="nav-link" href="/login">
+							<i class="fa-solid fa-user"></i>
+						</a>
+
+					</li>
 				{% endif %}
-			{% endif %}
+				{% if app.user %}
+					{% if 'ROLE_SUPER_ADMIN' in app.user.roles %}
+						<a class="nav-link" href="{{ path('admin_') }}">Ma Page Admin</a>
+					{% endif %}
+				{% endif %}
 
-			{% if app.user %}
-				<li class="nav-item me-2">
-					<a class="nav-link" href="/logout">Se déconnecter</a>
-				</li>
-			{% endif %}
-			<div class="d-flex align-items-center">
-				<i id="search-icon" class="fa-solid fa-magnifying-glass mx-3"></i>
-				<form id="search-form" class="d-none">
-					<div class="input-group">
-						<input type="text" class="form-control" placeholder="Rechercher...">
-						<button class="btn btn-primary" type="submit">Rechercher</button>
+				{% if app.user %}
+					<li class="nav-item me-2">
+						<a class="nav-link" href="/logout">Se déconnecter</a>
+					</li>
+				{% endif %}
+				<div class="d-flex align-items-center">
+					<i id="search-icon" class="fa-solid fa-magnifying-glass mx-3"></i>
+					<form id="search-form" class="d-none">
+						<div class="input-group">
+							<input type="text" class="form-control" placeholder="Rechercher...">
+							<button class="btn btn-primary" type="submit">Rechercher</button>
+						</div>
+					</form>
+				</div>
+				{% if app.user %}
+
+
+					<p class="text-end btn btn-warning mt-3">Bienvenue,
+						{{ app.user.username }}
+						!</p>
+
+
+				{% endif %}
+				{% if not app.user %}
+					<li class="nav-item me-2">
+						<a class="nav-link" href="/new-account">S'inscrire</a>
+					</li>
+				{% endif %}
+				<a href="" class='fa-flag-uk'></a>
+
+				<nav class="navbar navbar-expand-lg navbar-light bg-light">
+					<div class="container-fluid">
+						<ul class="navbar-nav">
+							<!-- Icon dropdown -->
+							<li class="nav-item dropdown">
+								<a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+									<img id="flag-image" src="{{ asset('img/drapeau.png') }}" alt="">
+								</a>
+								<ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+									<li id="language-item">
+										<a class="dropdown-item d-flex" id="fr-flag" href="{{ path(app.request.attributes.get('_route'), {'_locale': 'fr'}) }}" onclick="changeLanguage('fr')">
+											<img src="{{ asset('img/drapeau.png') }}" alt="" style="margin-right: 1rem;">Français
+										</a>
+									</li>
+									<li>
+										<hr class="dropdown-divider"/>
+									</li>
+									<li>
+										<a class="dropdown-item d-flex" id="uk-flag" href="{{ path(app.request.attributes.get('_route'), {'_locale': 'en'}) }}" onclick="changeLanguage('en')">
+											<img src="{{ asset('img/unitedkingdom.png') }}" alt="" style="margin-right: 1rem;">English
+										</a>
+									</li>
+								</ul>
+							</li>
+						</ul>
 					</div>
-				</form>
-			</div>
-			{% if app.user %}
+				</nav>
+
+					
+			</ul>
+		</div>
+	</nav>
 			
-
-					<p class="text-end btn btn-warning mt-3">Bienvenue, {{ app.user.username }} !</p>
-
-				
-			{% endif %}
-			{% if not app.user %}
-				<li class="nav-item me-2">
-					<a class="nav-link" href="/new-account">S'inscrire</a>
-				</li>
-			{% endif %}
-
-
-
-			{# <form class="d-flex nav-items me-2 form" role="search">
-				<input class="form-control me-2 search" type="search" placeholder="Ma recherche..." aria-label="Search">
-				<button class="btn btn-outline-success search-btn" type="submit">Rechercher</button>
-			</form>
-
-			<li class="nav-item ">
-				<a id="language-link" class="p-2" href="/en">
-					<img class="flag" src="{{ asset('img/eng.png') }}">
-				</a>
-			</li> 
-
-			<li class="nav-item ms-2">
-				<a id="language-link" class="p-2" href="/fr">
-					<img id="flag" src="{{ asset('img/drapeau.png') }}">
-				</a>
-			</li> #}
-		</ul>
-
-		</div>
-	</nav> 
-
-<section class="main" style="background: #f8f9fa;">
-<section class="know-more">
-	<a href="https://www.youtube.com/@meltingphot" target="_blank" class="btn btn-danger know-more_btn">En (Sa) voir +</a>
-</section>
-
-<section id="parent-article" class="d-flex flex-column parent-article">
-	{# 1er article  #}
-	<article class="d-flex article">
-		<img id="forms-svg" class="article-img1" src="{{asset('img/Image_Vignette_Page accueil meltingphot_je Filme mon futur métier.png')}}" alt="">
-		<div class="bloc_form">
-			<img id="forms-svg2" class="article-img2" src="{{asset('img/Rani_carre.png')}}" alt="">
-		</div>
-		<div class="d-flex flex-column justify-content-center article-box">
-			<div class='article-title'>
-				<span class="numbers">03</span>
-				<h3 class="color1">{{ 'tagline_1.title'|trans({}, 'home') }}</h3>
-			</div>
-			<div class ="block_p_description">
-				<p class="block-article_description">
-					HÉBÉMAG : Découvrir son futur métier en allant à la rencontre des professionnels telle une vraie équipe de journalistes en tournage. Rédiger un magazine sur la thématique du métier envisagé.</p>
-			</div>
-			<div
-				class="bloc1_description2">{# <p class=" block-article_description2">Lorem ipsum dolor sit amet consectetur adipisicing elit. Ea labore nesciunt magnam eveniet accusantium placeat blanditiis et iusto. Tempore, id distinctio, dolorem similique sunt aspernatur, quod maiores incidunt fugiat quidem cupiditate voluptatibus dignissimos voluptatem expedita.</p> #}
-			</div>
-		</div>
-	</article>
-
-	{# 2ème article  #}
-	<article class="d-flex flex-row-reverse mt-4 article2">
-
-		<img id="forms-svg" class="float-end img-article2" src="{{asset('img/ODONYMES _Image_Vignette_Page accueil meltingphot_je Filme mon futur métier.png')}}" style="z-index:1;" alt="">
-
-		<div class="bloc_form">
-			<img id="forms-svg2" class="article-img-milieu" src="{{asset('img/rond.png')}}" alt="">
-		</div>
-
-		<div class="article2-main">
-			<div class="article2-title d-flex flex-column align-items-end">
-				<span class="article2-title-chiffre">02</span>
-				<h3 class="article2-title_nom">ODONYMES</h2>
-			</div>
-
-			<div class="d-flex flex-column article2-box_description">
-				<p class="article2_description">
-					En septembre 2023, dans le cadre des journées du patrimoine, les habitants des prés Saint Jean auront l’honneur de vous faire découvrir l’histoire de leur quartier comme vous ne l’auriez jamais imaginée.</p>
-			</div>
-		</div>
-	</article>
-
-
-	{# 3ème article  #}
-	<article class="d-flex article">
-		<img id="forms-svg" class="article-img1" src="{{asset('img/Je filme mon futur métier Meltingphot_Image_Vignette_Page accueil meltingphot_je Filme mon futur métier.png')}}" alt="">
-		<div class="">
-			<img id="forms-svg2" class="article-img2" src="{{asset('img/Rani_carre.png')}}" alt="">
-		</div>
-		<div class="d-flex flex-column justify-content-center article-box">
-			<div class='article-title'>
-				<span class="numbers">03</span>
-				<h3 class="color1">Projets Multiculutrels</h3>
-			</div>
-			<div>
-				<p class="block-article_description">
-					Des projets culturels d’envergure ayant pour finalité une production audiovisuelle complexe : clip vidéo, court-métrage, film d’animation, exposition interactive, magazine, … et permettant l’apprentissage de disciplines multiples (vidéo, photo, lightpainting, vidéopainting, écriture, danse, graff, stopmotion, montage, chant, musique, prise de son, …)</p>
-			</div>
-			<div
-				class="bloc1_description2">{# <p class=" block-article_description2">Lorem ipsum dolor sit amet consectetur adipisicing elit. Ea labore nesciunt magnam eveniet accusantium placeat blanditiis et iusto. Tempore, id distinctio, dolorem similique sunt aspernatur, quod maiores incidunt fugiat quidem cupiditate voluptatibus dignissimos voluptatem expedita.</p> #}
-			</div>
-		</div>
-	</article>
-</section>
-
-<section class="team">
-	<article style="  align-items: center; display: flex;flex-direction: column;margin-bottom:8rem;">
-		<h2 class="text-center"><span style="font-weight: lighter;">Notre</span> Equipe </h2>
-		<p style="max-width: 550px;text-align: center;margin: 1rem;">Lorem ipsum dolor sit amet consectetur adipisicing elit. 
-		Autem soluta labore veniam rem maiores eos libero eum qui,
-		 est dolorum. Placeat, praesentium ut?</p>
-	</article>
-
+{# <li class="nav-item dropdown me-2">
+			<a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+				POUR QUI ?
+			</a>
+		</li> #}{# <li class="nav-item me-2">
+			<a class="nav-link" href="#">PARTENAIRES</a>
+		</li>
 	
-	<article class='mt-5 shadow-lg' style="display: flex;flex-direction: row;width: 80%; margin: 0 auto;">
-		<div  class="col-3" style="margin-top: -6rem;margin-right: 3rem;margin-left: 3rem;">
-			<img style ="width: 100%;height: 497px;margin-top: 1rem;"src="{{asset("img/employe1.jpeg")}}">
-			<p>nom prenom</p>
-		</div>
-		
-		
-		<div>
-			<div class="mt-5">
-				Lorem, ipsum dolor sit amet consectetur adipisicing elit. Molestias, tempora? Dignissimos incidunt eligendi facilis praesentium quae, quis et, repellat dolore sapiente alias est consequatur quaerat quia quod blanditiis iste ducimus.
-			</div>
-			<div class="mt-5">
-				<i class="fab fa-facebook-f"></i>
-				<i class="fab fa-linkedin"></i>
-				<i class="fab fa-youtube"></i>
-			</div>
-			
-			<div class="d-flex justify-content-center">
-				<div class="col-3">
-					<img class="w-100"src="{{asset("img/employe1.jpeg")}}">
-					<p>nom prenom</p>
-					<p> profession</p>
-				</div>
-				<div class='col-3 ms-3'>
-					<img class="w-100" src="{{asset("img/employe2.jpeg")}}">
-					<p>nom prenom</p>
-					<p> profession</p>
-				</div>
-				<div class='col-3 ms-3'>
-					<img class="w-100" src="{{asset("img/employe3.jpeg")}}">
-					<p>nom prenom</p>
-					<p> profession</p>
-				</div>
-			</div>
-		</div>
-	</article>
-
-</section>
+		<li class="nav-item me-2">
+			<a class="nav-link" href="#">NOUS SOUTENIR</a>
+		</li> #}{# <form class="d-flex nav-items me-2 form" role="search">
+			<input class="form-control me-2 search" type="search" placeholder="Ma recherche..." aria-label="Search">
+			<button class="btn btn-outline-success search-btn" type="submit">Rechercher</button>
+		</form>
+	
+		<li class="nav-item ">
+			<a id="language-link" class="p-2" href="/en">
+				<img class="flag" src="{{ asset('img/eng.png') }}">
+			</a>
+		</li> 
+	
+		<li class="nav-item ms-2">
+			<a id="language-link" class="p-2" href="/fr">
+				<img id="flag" src="{{ asset('img/drapeau.png') }}">
+			</a>
+		</li> #}
 
 
+	<section class="main" style="background: #f8f9fa;">
+		<section class="know-more">
+			<a href="https://www.youtube.com/@meltingphot" target="_blank" class="btn btn-danger know-more_btn">En (Sa) voir +</a>
+		</section>
+
+		<section id="parent-article" class="d-flex flex-column parent-article">
+			{# 1er article  #}
+			<article class="d-flex article">
+				<img id="forms-svg" class="article-img1" src="{{asset('img/Image_Vignette_Page accueil meltingphot_je Filme mon futur métier.png')}}" alt="">
+				<div class="bloc_form">
+					<img id="forms-svg2" class="article-img2" src="{{asset('img/Rani_carre.png')}}" alt="">
+				</div>
+				<div class="d-flex flex-column justify-content-center article-box">
+					<div class='article-title'>
+						<span class="numbers">03</span>
+						<h3 class="color1">{{ 'tagline_1.title'|trans({}, 'home') }}</h3>
+					</div>
+					<div class="block_p_description">
+						<p class="block-article_description">
+							HÉBÉMAG : Découvrir son futur métier en allant à la rencontre des professionnels telle une vraie équipe de journalistes en tournage. Rédiger un magazine sur la thématique du métier envisagé.</p>
+					</div>
+					<div
+						class="bloc1_description2">{# <p class=" block-article_description2">Lorem ipsum dolor sit amet consectetur adipisicing elit. Ea labore nesciunt magnam eveniet accusantium placeat blanditiis et iusto. Tempore, id distinctio, dolorem similique sunt aspernatur, quod maiores incidunt fugiat quidem cupiditate voluptatibus dignissimos voluptatem expedita.</p> #}
+					</div>
+				</div>
+			</article>
+
+			{# 2ème article  #}
+			<article class="d-flex flex-row-reverse mt-4 article2">
+
+				<img id="forms-svg" class="float-end img-article2" src="{{asset('img/ODONYMES _Image_Vignette_Page accueil meltingphot_je Filme mon futur métier.png')}}" style="z-index:1;" alt="">
+
+				<div class="bloc_form">
+					<img id="forms-svg2" class="article-img-milieu" src="{{asset('img/rond.png')}}" alt="">
+				</div>
+
+				<div class="article2-main">
+					<div class="article2-title d-flex flex-column align-items-end">
+						<span class="article2-title-chiffre">02</span>
+						<h3 class="article2-title_nom">ODONYMES</h2>
+					</div>
+
+					<div class="d-flex flex-column article2-box_description">
+						<p class="article2_description">
+							En septembre 2023, dans le cadre des journées du patrimoine, les habitants des prés Saint Jean auront l’honneur de vous faire découvrir l’histoire de leur quartier comme vous ne l’auriez jamais imaginée.</p>
+					</div>
+				</div>
+			</article>
+
+
+			{# 3ème article  #}
+			<article class="d-flex article">
+				<img id="forms-svg" class="article-img1" src="{{asset('img/Je filme mon futur métier Meltingphot_Image_Vignette_Page accueil meltingphot_je Filme mon futur métier.png')}}" alt="">
+				<div class="">
+					<img id="forms-svg2" class="article-img2" src="{{asset('img/Rani_carre.png')}}" alt="">
+				</div>
+				<div class="d-flex flex-column justify-content-center article-box">
+					<div class='article-title'>
+						<span class="numbers">03</span>
+						<h3 class="color1">Projets Multiculutrels</h3>
+					</div>
+					<div>
+						<p class="block-article_description">
+							Des projets culturels d’envergure ayant pour finalité une production audiovisuelle complexe : clip vidéo, court-métrage, film d’animation, exposition interactive, magazine, … et permettant l’apprentissage de disciplines multiples (vidéo, photo, lightpainting, vidéopainting, écriture, danse, graff, stopmotion, montage, chant, musique, prise de son, …)</p>
+					</div>
+					<div
+						class="bloc1_description2">{# <p class=" block-article_description2">Lorem ipsum dolor sit amet consectetur adipisicing elit. Ea labore nesciunt magnam eveniet accusantium placeat blanditiis et iusto. Tempore, id distinctio, dolorem similique sunt aspernatur, quod maiores incidunt fugiat quidem cupiditate voluptatibus dignissimos voluptatem expedita.</p> #}
+					</div>
+				</div>
+			</article>
+		</section>
+	</section>
+
+	<section class="team">
+		<article style="  align-items: center; display: flex;flex-direction: column;margin-bottom:8rem;">
+			<h2 class="text-center team-title">
+				<span style="font-weight: lighter;">Notre</span>
+				Equipe
+			</h2>
+			<p style="max-width: 550px;text-align: center;margin: 1rem;">Lorem ipsum dolor sit amet consectetur adipisicing elit. 
+												Autem soluta labore veniam rem maiores eos libero eum qui,
+												est dolorum. Placeat, praesentium ut?</p>
+		</article>
+
+
+		<article class='mt-5 shadow-lg team-profile'>
+			<div class="col-3" style="margin-top: -6rem;margin-right: 3rem;margin-left: 3rem;">
+				<img style="width: 100%;height: 497px;margin-top: 1rem;" src="{{asset("img/employe1.jpeg")}}">
+				<p>Abdeslam Chaoui</p>
+				<p class="métier">Direction Artistique</p>
+			</div>
+
+
+			<div>
+				<div class="mt-5">
+					Lorem, ipsum dolor sit amet consectetur adipisicing elit. Molestias, tempora? Dignissimos incidunt eligendi facilis praesentium quae, quis et, repellat dolore sapiente alias est consequatur quaerat quia quod blanditiis iste ducimus.
+				</div>
+				<div class="mt-5 d-flex justify-content-end">
+					<i class="fab fa-facebook-f team-social"></i>
+					<i class="fab fa-linkedin team-social"></i>
+					<i class="fab fa-youtube team-social"></i>
+					<i class="fa-brands fa-twitter team-social"></i>
+				</div>
+
+				<div class="d-flex justify-content-center">
+					<div class="col-3">
+						<img class="w-100" src="{{asset("img/employe1.jpeg")}}">
+						<p>Sabrina Fiandaca</p>
+						<p class="métier">Directrice de la Rédaction</p>
+					</div>
+					<div class='col-3 ms-3'>
+						<img class="w-100" src="{{asset("img/employe2.jpeg")}}">
+						<p>Yann Riché</p>
+						<p class="métier">Coaching photo</p>
+
+					</div>
+					<div class='col-3 ms-3'>
+						<img class="w-100" src="{{asset("img/employe3.jpeg")}}">
+						<p>Yamina & Brahim</p>
+						<p class="métier">Photographe Pro</p>
+					</div>
+				</div>
+			</div>
+		</article>
+
+	</section>
 
 
 {# 
@@ -289,14 +335,13 @@ searchIcon.classList.toggle('d-none')
 
 <!-- Footer -->
 	<footer class="text-center text-lg-start bg-light text-muted"> <section class="p-4 border-top">
-		<div
-			class="text-center text-md-start mt-5">
+		<div class="text-center text-md-start mt-5">
 			<!-- Grid row -->
 			<div class="row mt-3 d-flex">
-				<div
-					class="d-flex justify-content-center">
+				<div class="d-flex justify-content-center">
 					<!-- Links -->
 					<img src="{{ asset('img/logo.png')}}" class="fw-bold mb-4"></img>
+				</div>
 			</div>
 			<!-- Grid column -->
 			<div class="d-flex justify-content-center ">
@@ -314,12 +359,11 @@ searchIcon.classList.toggle('d-none')
 					<i class="fab fa-linkedin"></i>
 				</a>
 				{# <a href="" class="me-4 text-reset">
-																																													<i class="fab fa-github"></i>
-																																												</a> #}
+																																																									<i class="fab fa-github"></i>
+																																																								</a> #}
 			</div>
 			<!-- Grid column -->
-			<div
-				class="col-md-4 col-lg-3 col-xl-3 mx-auto mb-md-0 mb-4 contact-2">
+			<div class="col-md-4 col-lg-3 col-xl-3 mx-auto mb-md-0 mb-4 contact-2">
 				<!-- Links -->
 				<p>
 					<i class="fas fa-home me-3"></i>15 Route de bagnols, 30100 Alès</p>
@@ -331,8 +375,7 @@ searchIcon.classList.toggle('d-none')
 			<!-- Grid column -->
 		</div>
 		<!-- Grid row -->
-		<div
-			class="info-contact2 ">
+		<div class="info-contact2 ">
 			<!-- Links -->
 			<p class="ms-3">
 				<i class="fas fa-home me-2"></i>15 Route de bagnols, 30100 Alès</p>
@@ -342,12 +385,16 @@ searchIcon.classList.toggle('d-none')
 			<p class="ms-3">
 				<i class="fas fa-phone me-2"></i>06 64 21 93 75</p>
 		</div>
-	</section>
+	
 	<!-- Section: Links  -->
 	<!-- Copyright -->
 
-	<div class="text-center p-4 fw-bold text-white d-flex flex-column align-items-center" style="background-color: #D00A4B;">Tous droits réservés © 2023 @MeltingPhot</a>
-	<p class="fst-italic fw-light fs-6 text-white copyright-text">
-		En effet, tous les éléments présents sur Internet (textes, images, vidéos, extraits sonores, codes informatiques…)
-																				sont de facto soumis au droit d’auteur, même si l’accès est libre, gratuit et sans mention particulière.</p>
-</div></footer><!-- Footer -->{# js #}</body></html>{% endblock %}
+		<div class="text-center p-4 fw-bold text-white d-flex flex-column align-items-center" style="background-color: #D00A4B;">Tous droits réservés © 2023 @MeltingPhot
+			<p class="fst-italic fw-light fs-6 text-white copyright-text">
+			En effet, tous les éléments présents sur Internet (textes, images, vidéos, extraits sonores, codes informatiques…) sont de facto soumis au droit d’auteur, même si l’accès est libre, gratuit et sans mention particulière.</p>
+		</div>
+	</footer>
+
+</body>
+</html>
+{% endblock %}
