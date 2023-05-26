@@ -18,7 +18,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 class ActionsController extends AbstractController
 {
     #[Route('/actions/{order}/{year}', defaults: ['order' => 'test', 'year' => 'null'], methods: ['GET', 'HEAD'], name: 'app_actions')]
-    public function index(string $order, string $year, EntityManagerInterface $entityManager, Request $request,Category $category = null): Response
+    public function index(?string $order ,?string $year, EntityManagerInterface $entityManager, Request $request,Category $category = null): Response
     {
             // Créez un client API Google
             $client = new Client();
