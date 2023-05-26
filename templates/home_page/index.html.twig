@@ -48,16 +48,16 @@ function changeLanguage(language) {
 					<a class="nav-link active" aria-current="page" href="/">MELTINGPHOT</a>
 				</li>
 				<li class="nav-item me-2">
-					<a class="nav-link" href="/actions">ACTIONS</a>
+					<a class="nav-link" href="{{path('app_actions')}}">ACTIONS</a>
 				</li>
 
 				<li class="nav-item me-2">
-					<a class="nav-link" href="/contact">CONTACT</a>
+					<a class="nav-link" href="{{path('app_contact')}}">CONTACT</a>
 				</li>
 
 				{% if not app.user %}
 					<li class="nav-item me-2">
-						<a class="nav-link" href="/login">
+						<a class="nav-link" href="{{path('app_login')}}">
 							<i class="fa-solid fa-user"></i>
 						</a>
 
@@ -71,7 +71,7 @@ function changeLanguage(language) {
 
 				{% if app.user %}
 					<li class="nav-item me-2">
-						<a class="nav-link" href="/logout">Se déconnecter</a>
+						<a class="nav-link" href="{{path('app_logout')}}">Se déconnecter</a>
 					</li>
 				{% endif %}
 				<div class="d-flex align-items-center">
@@ -94,7 +94,7 @@ function changeLanguage(language) {
 				{% endif %}
 				{% if not app.user %}
 					<li class="nav-item me-2">
-						<a class="nav-link" href="/new-account">S'inscrire</a>
+						<a class="nav-link" href="{{path('app_register')}}">S'inscrire</a>
 					</li>
 				{% endif %}
 				<a href="" class='fa-flag-uk'></a>
