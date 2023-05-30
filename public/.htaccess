@@ -1,6 +1,5 @@
-<Directory /var/www/html/monsite>
-    DirectoryIndex index.php
-</Directory>
+DirectoryIndex index.php
+
 
 <IfModule mod_rewrite.c>
     RewriteEngine On 
