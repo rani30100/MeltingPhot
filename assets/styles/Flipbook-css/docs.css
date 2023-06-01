@@ -5,6 +5,9 @@ body{
 	padding:0;
 	overflow:hidden;
 }
+#flipbook1{
+	background-image: url(../../images/employe1.jpeg);height: 50vh;background-size: contain;background-repeat: no-repeat;border: aqua 2px solid;
+}
 
 #canvas{
 	width: 960px;
