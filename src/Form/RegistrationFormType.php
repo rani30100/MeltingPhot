@@ -12,6 +12,7 @@ use Symfony\Component\Validator\Constraints\Length;
 use Symfony\Component\Validator\Constraints\Unique;
 use Symfony\Component\Validator\Constraints\NotBlank;
 use Symfony\Component\OptionsResolver\OptionsResolver;
+use Symfony\Contracts\Translation\TranslatorInterface;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\Extension\Core\Type\EmailType;
 use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
@@ -19,8 +20,16 @@ use Symfony\Component\Form\Extension\Core\Type\PasswordType;
 
 class RegistrationFormType extends AbstractType
 {
-    public function buildForm(FormBuilderInterface $builder, array $options): void
+    private $translator;
+
+    public function __construct(TranslatorInterface $translator)
     {
+        $this->translator = $translator;
+    }
+
+    public function buildForm(FormBuilderInterface $builder, array $options)
+    {
+        
         $builder
         ->add('username', TextType::class, [
             'label' => 'label.name',
@@ -46,7 +55,10 @@ class RegistrationFormType extends AbstractType
 
             ->add('agreeTerms', CheckboxType::class, [
                 'mapped' => false,
-                'label' => "terms ",
+                'label'=> $this->translator->trans('terms', [], 'register'),
+                'attr' => [
+                    'class' => 'd-flex',
+                ],
                 'constraints' => [
                     new IsTrue([
                         'message' => "Vous devez accepeter les termes d'utilisation.",

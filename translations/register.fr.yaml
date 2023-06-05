@@ -14,8 +14,6 @@
   'password' : "Mot de passe"
   'email' : "Adresse email"
 
-
-
-
+'terms' : "Veuillez accepter les termes d'utilisation. Pour en savoir plus cliquez ici."
 'question':  "Vous avez déjà un compte ?"
 "connect" : "Se connecter ici."

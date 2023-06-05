@@ -14,6 +14,7 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Contracts\Translation\TranslatorInterface;
 use Symfony\Component\Validator\Validator\ValidatorInterface;
+use Doctrine\DBAL\Exception\UniqueConstraintViolationException;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\PasswordHasher\Hasher\UserPasswordHasherInterface;
 use SymfonyCasts\Bundle\VerifyEmail\Exception\VerifyEmailExceptionInterface;
@@ -28,49 +29,58 @@ class RegistrationController extends AbstractController
         $this->emailVerifier = $emailVerifier;
     }
 
-#[Route('/new-account', name: 'app_register')]
-    public function register(Request $request, UserPasswordHasherInterface $userPasswordHasher, UserAuthenticatorInterface $userAuthenticator, AppAuthenticator $authenticator, EntityManagerInterface $entityManager, ValidatorInterface $validator): Response
+    #[Route('/new-account', name: 'app_register')]
+    public function register(Request $request, UserPasswordHasherInterface $userPasswordHasher, UserAuthenticatorInterface $userAuthenticator, AppAuthenticator $authenticator, EntityManagerInterface $entityManager, TranslatorInterface $translator, ValidatorInterface $validator): Response
     {
         $user = new User();
 
         $form = $this->createForm(RegistrationFormType::class, $user);
         $form->handleRequest($request);
+        $errorMessage = '';
 
-        if ($form->isSubmitted()) {
-                // encode the plain password
-                $user->setPassword(
-                    $userPasswordHasher->hashPassword(
-                        $user,
-                        $form->get('password')->getData()
-                    )
-                );
-                $user->setRoles(['ROLE_SUPER_ADMIN']);
+        if ($form->isSubmitted() && $form->isValid()) {
+            // Check if email already exists
+            $existingUser = $entityManager->getRepository(User::class)->findOneBy(['email' => $user->getEmail()]);
+            if ($existingUser) {
+                $errorMessage = 'L\'adresse email existe déjà.';
+                return $this->render('registration/register.html.twig', [
+                    'form' => $form->createView(),
+                    'errorMessage' => $errorMessage,
+                ]);
+            }
 
-                $entityManager->persist($user);
-                $entityManager->flush();
+            // $user->setPassword(
+            //     $userPasswordHasher->hashPassword(
+            //         $user,
+            //         $form->get('password')->getData()
+            //     )
+            // );
 
-                // generate a signed url and email it to the user
-                $this->emailVerifier->sendEmailConfirmation(
-                    'app_verify_email',
-                    $user,
-                    (new TemplatedEmail())
-                        ->from(new Address('raniderradj2@gmail.com', 'MeltingPhot'))
-                        ->to($user->getEmail())
-                        ->subject('Please Confirm your Email')
-                        ->htmlTemplate('registration/confirmation_email.html.twig')
-                );
-                // do anything else you need here, like send an email
+            $user->setRoles(['ROLE_SUPER_ADMIN']);
 
-                return $userAuthenticator->authenticateUser(
-                    $user,
-                    $authenticator,
-                    $request
-                );
+            $entityManager->persist($user);
+            $entityManager->flush();
+
+            $this->emailVerifier->sendEmailConfirmation(
+                'app_verify_email',
+                $user,
+                (new TemplatedEmail())
+                    ->from(new Address('raniderradj2@gmail.com', 'MeltingPhot'))
+                    ->to($user->getEmail())
+                    ->subject('Please Confirm your Email')
+                    ->htmlTemplate('registration/confirmation_email.html.twig')
+            );
+
+            return $userAuthenticator->authenticateUser(
+                $user,
+                $authenticator,
+                $request
+            );
         }
 
         return $this->render('registration/register.html.twig', [
-            'registrationForm' => $form->createView(),
-            'errors' => $errors ?? null, // on transmet les erreurs éventuelles au template
+            'form' => $form->createView(),
+            'errorMessage' => $errorMessage,
         ]);
     }
 
@@ -80,7 +90,6 @@ class RegistrationController extends AbstractController
     {
         $this->denyAccessUnlessGranted('IS_AUTHENTICATED_FULLY');
 
-        // validate email confirmation link, sets User::isVerified=true and persists
         try {
             $this->emailVerifier->handleEmailConfirmation($request, $this->getUser());
         } catch (VerifyEmailExceptionInterface $exception) {
@@ -89,9 +98,30 @@ class RegistrationController extends AbstractController
             return $this->redirectToRoute('app_home_page');
         }
 
-        // @TODO Change the redirect on success and handle or remove the flash message in your templates
         $this->addFlash('success', 'Votre Email a bien été vérifiée.');
 
         return $this->redirectToRoute('app_home_page');
+    }
+
+
+
+    /**
+     * Get the value of translator
+     */
+    public function getTranslator()
+    {
+        return $this->translator;
+    }
+
+    /**
+     * Set the value of translator
+     *
+     * @return  self
+     */
+    public function setTranslator($translator)
+    {
+        $this->translator = $translator;
+
+        return $this;
     }
 }

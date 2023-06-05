@@ -8,13 +8,8 @@
 		<div class="alert alert-danger" role="alert">{{ flash_error }}</div>
 	{% endfor %}
 
-	{% if errors is not null and errors|length > 0 %}
-		<div class="alert alert-danger">
-			{% for error in errors %}
-				{{ error.message }}<br>
-			{% endfor %}
-		</div>
-	{% endif %}
+
+
 
 	{# <section class="vh-100" style="background-color: #eee;">
 		<div class=" h-100">
@@ -28,7 +23,7 @@
 								</div>
 								<div class="col-md-10 col-lg-6 col-xl-5 order-2 order-lg-1 d-flex flex-column align-items-center justify-content-center " style="height: 80vh;">
 									<p class="h1 fs-150 mb-5 mx-1 mx-md-4 mt-4 ">Page d'inscription</p>
-									{{ form_start(registrationForm, {
+									{{ form_start(form, {
                                         'attr': {
                                             'class': 'mx-1 mx-md-4 container'
                                         }
@@ -88,7 +83,8 @@
 			</div>
 		</div>
 	</section> #}
-	
+
+
 
 <body class="bg-white font-family-karla h-screen">
     <div class="w-full flex flex-wrap">
@@ -97,11 +93,15 @@
             <div class="flex justify-center md:justify-start pt-12 md:pl-12 md:-mb-12">
                 <a href="#" class="bg-blue-600 text-white font-bold text-xl p-4" alt="Logo">Logo</a>
             </div>
+         
 
             <div class="flex flex-col justify-center md:justify-start my-auto pt-8 md:pt-0 px-8 md:px-24 lg:px-32">
                 <p class="text-center text-xl ml-4">{{ 'join'|trans({}, 'register') }}</p>
+                {% if errorMessage %}
+                    <div class="alert alert-danger text-center">{{ errorMessage }}</div>
+                {% endif %}
 
-                {{ form_start(registrationForm, {
+                {{ form_start(form, {
                     'attr': {
                         'class': 'flex flex-col pt-3',
                      
@@ -110,18 +110,18 @@
 
                 <div class="flex flex-col">
 					<label for="name" class="text-lg">{{ 'label.name'|trans({}, 'register') }}</label>
-					{{ form_widget(registrationForm.username, {
+					{{ form_widget(form.username, {
 						'attr': {
 							'id': 'name',
 							'placeholder': 'placeholder.name'|trans({}, 'register'),
 							'class': 'shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 mt-1 leading-tight focus:outline-none focus:shadow-outline'
 						}
 					}) }}
-                </div>
+                </div> 
 
                 <div class="flex flex-col pt-4">
 					<label for="email" class="text-lg">{{ 'label.email'|trans({}, 'register') }}</label>
-					{{ form_widget(registrationForm.email, {
+					{{ form_widget(form.email, {
 						'attr': {
 							'id': 'email',
 							'placeholder': 'placeholder.email'|trans({}, 'register'),
@@ -133,7 +133,7 @@
                 <div class="flex flex-col pt-4">
 
 					<label for="password" class="text-lg">{{ 'label.password'|trans({}, 'register') }}</label>
-					{{ form_widget(registrationForm.password, {
+					{{ form_widget(form.password, {
 						'attr': {
 							'id': 'password',
 							'placeholder': 'placeholder.password'|trans({}, 'register'),
@@ -141,27 +141,36 @@
 						}
 					}) }}
                 </div>
-{# 
-                <div class="flex flex-col pt-4">
+
+                {# <div class="flex flex-col pt-4">
                     <label for="confirm-password" class="text-lg">{{ 'label.confirm-password'|trans({}, 'register') }}</label>
-                    {# {{ form_widget(registrationForm.confirmPassword, {
+                    {{ form_widget(form.confirmPassword, {
                         'attr': {
                             'id': 'confirm-password',
                             'placeholder': "{{ 'placeholder.password'|trans({}, 'register') }}",
                             'class': 'shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 mt-1 leading-tight focus:outline-none focus:shadow-outline'
                         }
-                    }) }} 
+                    }) }}  
                 </div> #}
 
                 <div class="flex justify-center mx-4 mb-3 mb-lg-4 m-4">
                     <button type="submit" class="btn btn-primary btn-lg">{{ 'btn.register'|trans({}, 'register')}}</button>
                 </div>
-                {{ form_end(registrationForm) }}
+                 <div class="text-center d-flex">
+                
+                	{{ form_widget(form.agreeTerms, {
+						'attr': {
+							'id': 'terms'
+                            
+						}
+					}) }}
+                </div>
+
+                {{ form_end(form) }}
 
                 <div class="text-center ">
-                    <p>{{ 'question'|trans({}, 'register') }}
-                        <a href="/login" class="underline font-semibold">{{ 'connect'|trans({}, 'register') }}</a>
-                    </p>
+                    <a href="/login" class="underline font-semibold">{{ 'connect'|trans({}, 'register') }}</a>
+                    
                 </div>
             </div>
         </div>

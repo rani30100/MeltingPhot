@@ -24,7 +24,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
 
 
     #[ORM\Column(length: 180, unique: true)]
-    private ?string $email = null;
+    private string $email;
 
     #[ORM\Column(type: 'json')]
     private array $roles = ['ROLE_USER', 'ROLE_ADMIN','ROLE_SUPER_ADMIN'];
@@ -35,7 +35,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
      */
     #[ORM\Column]
     #[Assert\NotBlank]
-    private ?string $password = null;
+    private string $password;
     
     #[ORM\OneToMany(mappedBy: 'user_id', targetEntity: Posts::class, orphanRemoval: true)]
     private Collection $posts;
