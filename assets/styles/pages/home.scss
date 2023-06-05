@@ -23,10 +23,10 @@ body {
     //1er Bloc de page
     .know-more {
 
-        min-height: 318px;
+      
         background-image: url(../../images/channels4_banner.jpg);
         background-repeat: no-repeat;
-        background-size: cover;
+       
         
 
         a {
@@ -387,6 +387,21 @@ swiper-slide iframe {
 
 
 @media screen and (min-width: 360px) and (max-width: 699px) {
+    .navbar-nav {
+        display: none; /* Masquer la liste des éléments de navigation */
+    }
+
+    .navbar-expand-lg .navbar-toggler {
+        display: block; /* Afficher le bouton du menu déroulant */
+    }
+
+    .navbar-collapse {
+        display: none; /* Masquer la zone de contenu du menu déroulant */
+    }
+
+    .navbar-collapse.show {
+        display: block; /* Afficher la zone de contenu du menu déroulant lorsqu'il est ouvert */
+    }
 //1 er article 
     .article{
         flex-direction: column;
@@ -936,6 +951,10 @@ body .parent-article .block-article_description {
     height: 200px !important;
 }
 
+.know-more{
+    min-height: 150px;
+}
+
 }
 
 
@@ -1049,5 +1068,23 @@ body .parent-article .block-article_description {
 @media screen and (min-width:1093px) {
 .article2_description{
  max-width: 393px;   
+}
+}
+
+@media screen and (min-width: 360px) and (max-width:836px) {
+   .know-more{
+    background-size: contain !important;
+   }
+}
+
+@media screen and (min-width: 837px) {
+.know-more{
+    background-size: cover;
+}
+}
+
+@media screen and (min-width: 1620px) {
+.know-more{
+    background-size: 100% 100%;
 }
 }

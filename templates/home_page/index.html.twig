@@ -127,10 +127,8 @@ flagImage.src = "{{ asset('img/unitedkingdom.png') }}";
 				</ul>
 			</div>
 		</nav>
-
-
-	</ul>
-</div></nav>{# <li class="nav-item dropdown me-2">
+	</nav>
+{# <li class="nav-item dropdown me-2">
 				<a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
 					POUR QUI ?
 				</a>
@@ -158,226 +156,190 @@ flagImage.src = "{{ asset('img/unitedkingdom.png') }}";
 			</li> #}
 
 
-<section class="main" style="background: #f8f9fa;"> <section class="know-more">
-	<a href="https://www.youtube.com/@meltingphot" target="_blank" class="btn btn-danger know-more_btn">En (Sa) voir +</a>
-</section>
+<section class="main" style="background: #f8f9fa;">
+	<section class="know-more">
+		<a href="https://www.youtube.com/@meltingphot" target="_blank" class="btn btn-danger know-more_btn">En (Sa) voir +</a>
+	</section>
 
-<section
-	id="parent-article" class="d-flex flex-column parent-article">
-	{# 1er article  #}
-	<article class="d-flex article">
-		<img id="forms-svg" class="article-img1" src="{{asset('img/Image_Vignette_Page accueil meltingphot_je Filme mon futur métier.png')}}" alt="">
-		<div class="bloc_form">
-			<img id="forms-svg2" class="article-img2" src="{{asset('img/Rani_carre.png')}}" alt="">
-		</div>
-		<div class="d-flex flex-column justify-content-center article-box">
-			<div class='article-title'>
+	<section id="parent-article" class="d-flex flex-column parent-article">
+		{# 1er article  #}
+		<article class="d-flex article">
+			<img id="forms-svg" class="article-img1" src="{{asset('img/Image_Vignette_Page accueil meltingphot_je Filme mon futur métier.png')}}" alt="">
+			<div class="bloc_form">
+				<img id="forms-svg2" class="article-img2" src="{{asset('img/Rani_carre.png')}}" alt="">
+			</div>
+			<div class="d-flex flex-column justify-content-center article-box">
+				<div class='article-title'>
+					<span class="numbers">03</span>
+					<h3 class="color1">{{ 'tagline_1.title'|trans({}, 'home') }}</h3>
+				</div>
+				<div class="block_p_description">
+					<p class="block-article_description">
+						HÉBÉMAG : Découvrir son futur métier en allant à la rencontre des professionnels telle une vraie équipe de journalistes en tournage. Rédiger un magazine sur la thématique du métier envisagé.</p>
+				</div>
+				<div
+					class="bloc1_description2">{# <p class=" block-article_description2">Lorem ipsum dolor sit amet consectetur adipisicing elit. Ea labore nesciunt magnam eveniet accusantium placeat blanditiis et iusto. Tempore, id distinctio, dolorem similique sunt aspernatur, quod maiores incidunt fugiat quidem cupiditate voluptatibus dignissimos voluptatem expedita.</p> #}
+				</div>
+			</div>
+		</article>
+
+		{# 2ème article  #}
+		<article class="d-flex flex-row-reverse mt-4 article2">
+
+			<img id="forms-svg" class="float-end img-article2" src="{{asset('img/ODONYMES _Image_Vignette_Page accueil meltingphot_je Filme mon futur métier.png')}}" style="z-index:1;" alt="">
+
+			<div class="bloc_form">
+				<img id="forms-svg2" class="article-img-milieu" src="{{asset('img/rond.png')}}" alt="">
+			</div>
+
+			<div class="article2-main">
+				<div class="article2-title d-flex flex-column align-items-end">
+					<span class="article2-title-chiffre">02</span>
+					<h3 class="article2-title_nom">ODONYMES</h2>
+				</div>
+
+				<div class="d-flex flex-column article2-box_description">
+					<p class="article2_description">
+						En septembre 2023, dans le cadre des journées du patrimoine, les habitants des prés Saint Jean auront l’honneur de vous faire découvrir l’histoire de leur quartier comme vous ne l’auriez jamais imaginée.</p>
+				</div>
+			</div>
+		</article>
+
+
+		{# 3ème article  #}
+		<article class="d-flex article">
+			<img id="forms-svg" class="article-img1" src="{{asset('img/Image_Vignette_Page accueil meltingphot_je Filme mon futur métier.png')}}" alt="">
+			<div class="bloc_form">
+				<img id="forms-svg2" class="article-img2" src="{{asset('img/Rani_carre.png')}}" alt="">
+			</div>
+			<div class="d-flex flex-column justify-content-center article-box">
+				<div class='article-title'>
 				<span class="numbers">03</span>
 				<h3 class="color1">{{ 'tagline_1.title'|trans({}, 'home') }}</h3>
-			</div>
-			<div class="block_p_description">
+				</div>
+				<div class="block_p_description">
 				<p class="block-article_description">
 					HÉBÉMAG : Découvrir son futur métier en allant à la rencontre des professionnels telle une vraie équipe de journalistes en tournage. Rédiger un magazine sur la thématique du métier envisagé.</p>
+				</div>
+				<div class="bloc1_description2">{# <p class=" block-article_description2">Lorem ipsum dolor sit amet consectetur adipisicing elit. Ea labore nesciunt magnam eveniet accusantium placeat blanditiis et iusto. Tempore, id distinctio, dolorem similique sunt aspernatur, quod maiores incidunt fugiat quidem cupiditate voluptatibus dignissimos voluptatem expedita.</p> #}</div>
 			</div>
-			<div
-				class="bloc1_description2">{# <p class=" block-article_description2">Lorem ipsum dolor sit amet consectetur adipisicing elit. Ea labore nesciunt magnam eveniet accusantium placeat blanditiis et iusto. Tempore, id distinctio, dolorem similique sunt aspernatur, quod maiores incidunt fugiat quidem cupiditate voluptatibus dignissimos voluptatem expedita.</p> #}
-			</div>
-		</div>
-	</article>
+		</article>
 
-	{# 2ème article  #}
-	<article class="d-flex flex-row-reverse mt-4 article2">
+	</section>
+</section>
 
-		<img id="forms-svg" class="float-end img-article2" src="{{asset('img/ODONYMES _Image_Vignette_Page accueil meltingphot_je Filme mon futur métier.png')}}" style="z-index:1;" alt="">
-
-		<div class="bloc_form">
-			<img id="forms-svg2" class="article-img-milieu" src="{{asset('img/rond.png')}}" alt="">
-		</div>
-
-		<div class="article2-main">
-			<div class="article2-title d-flex flex-column align-items-end">
-				<span class="article2-title-chiffre">02</span>
-				<h3 class="article2-title_nom">ODONYMES</h2>
-			</div>
-
-			<div class="d-flex flex-column article2-box_description">
-				<p class="article2_description">
-					En septembre 2023, dans le cadre des journées du patrimoine, les habitants des prés Saint Jean auront l’honneur de vous faire découvrir l’histoire de leur quartier comme vous ne l’auriez jamais imaginée.</p>
-			</div>
-		</div>
+<section class="team">
+	<article style="  align-items: center; display: flex;flex-direction: column;margin-bottom:8rem;">
+		<h2 class="text-center team-title">
+			<span style="font-weight: lighter;">Notre</span>
+			Equipe
+		</h2>
+		<p style="max-width: 550px;text-align: center;margin: 1rem;">Lorem ipsum dolor sit amet consectetur adipisicing elit. 
+															Autem soluta labore veniam rem maiores eos libero eum qui,
+															est dolorum. Placeat, praesentium ut?</p>
 	</article>
 
 
-	{# 3ème article  #}
-	<article class="d-flex article">
-		<img id="forms-svg" class="article-img1" src="{{asset('img/Image_Vignette_Page accueil meltingphot_je Filme mon futur métier.png')}}" alt="">
-		<div class="bloc_form">
-			<img id="forms-svg2" class="article-img2" src="{{asset('img/Rani_carre.png')}}" alt="">
-		</div>
-		<div class="d-flex flex-column justify-content-center article-box">
-			<div class='article-title'>
-			<span class="numbers">03</span>
-			<h3 class="color1">{{ 'tagline_1.title'|trans({}, 'home') }}</h3>
-			</div>
-			<div class="block_p_description">
-			<p class="block-article_description">
-				HÉBÉMAG : Découvrir son futur métier en allant à la rencontre des professionnels telle une vraie équipe de journalistes en tournage. Rédiger un magazine sur la thématique du métier envisagé.</p>
-			</div>
-			<div class="bloc1_description2">{# <p class=" block-article_description2">Lorem ipsum dolor sit amet consectetur adipisicing elit. Ea labore nesciunt magnam eveniet accusantium placeat blanditiis et iusto. Tempore, id distinctio, dolorem similique sunt aspernatur, quod maiores incidunt fugiat quidem cupiditate voluptatibus dignissimos voluptatem expedita.</p> #}</div>
-		</div>
-	</article>
-
-</section></section><section class="team">
-<article style="  align-items: center; display: flex;flex-direction: column;margin-bottom:8rem;">
-	<h2 class="text-center team-title">
-		<span style="font-weight: lighter;">Notre</span>
-		Equipe
-	</h2>
-	<p style="max-width: 550px;text-align: center;margin: 1rem;">Lorem ipsum dolor sit amet consectetur adipisicing elit. 
-														Autem soluta labore veniam rem maiores eos libero eum qui,
-														est dolorum. Placeat, praesentium ut?</p>
-</article>
-
-
-<article class='mt-5 shadow-lg team-profile'>
-	<div class="col-3" style="margin-top: -6rem;margin-right: 3rem;margin-left: 3rem;">
-		<img style="width: 100%;height: 497px;margin-top: 1rem;" src="{{asset("img/employe1.jpeg")}}">
-		<p>Abdeslam Chaoui</p>
-		<p class="métier">Direction Artistique</p>
-	</div>
-
-
-	<div>
-		<div class="mt-5">
-			Lorem, ipsum dolor sit amet consectetur adipisicing elit. Molestias, tempora? Dignissimos incidunt eligendi facilis praesentium quae, quis et, repellat dolore sapiente alias est consequatur quaerat quia quod blanditiis iste ducimus.
-		</div>
-		<div class="mt-5 d-flex justify-content-end">
-			<i class="fab fa-facebook-f team-social"></i>
-			<i class="fab fa-linkedin team-social"></i>
-			<i class="fab fa-youtube team-social"></i>
-			<i class="fa-brands fa-twitter team-social"></i>
+	<article class='mt-5 shadow-lg team-profile'>
+		<div class="col-3" style="margin-top: -6rem;margin-right: 3rem;margin-left: 3rem;">
+			<img style="width: 100%;height: 497px;margin-top: 1rem;" src="{{asset("img/employe1.jpeg")}}">
+			<p>Abdeslam Chaoui</p>
+			<p class="métier">Direction Artistique</p>
 		</div>
 
-		<div class="d-flex justify-content-center">
-			<div class="col-3">
-				<img class="w-100" src="{{asset("img/employe1.jpeg")}}">
-				<p>Sabrina Fiandaca</p>
-				<p class="métier">Directrice de la Rédaction</p>
-			</div>
-			<div class='col-3 ms-3'>
-				<img class="w-100" src="{{asset("img/employe2.jpeg")}}">
-				<p>Yann Riché</p>
-				<p class="métier">Coaching photo</p>
 
+		<div>
+			<div class="mt-5">
+				Lorem, ipsum dolor sit amet consectetur adipisicing elit. Molestias, tempora? Dignissimos incidunt eligendi facilis praesentium quae, quis et, repellat dolore sapiente alias est consequatur quaerat quia quod blanditiis iste ducimus.
 			</div>
-			<div class='col-3 ms-3'>
-				<img class="w-100" src="{{asset("img/employe3.jpeg")}}">
-				<p>Yamina & Brahim</p>
-				<p class="métier">Photographe Pro</p>
+			<div class="mt-5 d-flex justify-content-end">
+				<i class="fab fa-facebook-f team-social"></i>
+				<i class="fab fa-linkedin team-social"></i>
+				<i class="fab fa-youtube team-social"></i>
+				<i class="fa-brands fa-twitter team-social"></i>
 			</div>
-		</div>
-	</div>
-</article></section>{# 
-	
-	<section class="d-flex justify-content-center carousel">
-		<div id="carouselExampleIndicators" class="carousel slide">
-			<div class="carousel-indicators">
-				<button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
-				<button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="1" aria-label="Slide 2"></button>
-				<button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="2" aria-label="Slide 3"></button>
-			</div>
-			<div class="carousel-inner">
-				<div class="carousel-item active">
-					<img src="{{asset("img/IMG_Miniature_Meltingphot__Image_Vignette_Page_accueil_meltingphot_je_Filme_mon_futur_metier300_300_px.png")}}" class="d-block " alt="...">
+
+			<div class="d-flex justify-content-center">
+				<div class="col-3">
+					<img class="w-100" src="{{asset("img/employe1.jpeg")}}">
+					<p>Sabrina Fiandaca</p>
+					<p class="métier">Directrice de la Rédaction</p>
 				</div>
-				<div class="carousel-item">
-					<img src="{{asset("img/IMG_Miniature_Meltingphot__Image_Vignette_Page_accueil_meltingphot_je_Filme_mon_futur_metier300_300_px.png")}}" class="d-block " alt="...">
+				<div class='col-3 ms-3'>
+					<img class="w-100" src="{{asset("img/employe2.jpeg")}}">
+					<p>Yann Riché</p>
+					<p class="métier">Coaching photo</p>
+
 				</div>
-				<div class="carousel-item">
-					<img src="{{asset("img/IMG_Miniature_Meltingphot__Image_Vignette_Page_accueil_meltingphot_je_Filme_mon_futur_metier300_300_px.png")}}" class="d-block " alt="...">
+				<div class='col-3 ms-3'>
+					<img class="w-100" src="{{asset("img/employe3.jpeg")}}">
+					<p>Yamina & Brahim</p>
+					<p class="métier">Photographe Pro</p>
 				</div>
 			</div>
-			<button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="prev">
-				<span class="carousel-control-prev-icon" aria-hidden="true"></span>
-				<span class="visually-hidden">Previous</span>
-			</button>
-			<button class="carousel-control-next" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="next">
-				<span class="carousel-control-next-icon" aria-hidden="true"></span>
-				<span class="visually-hidden">Next</span>
-			</button>
 		</div>
-	
-	
-	</section> #}{# Carrousel  5 videos #}{# <div class=" w-100 h-400 bg-white bloc-carrousel">
-			<div class="row d-flex justify-content-center">
-				<div class="col-2 columns1"></div>
-				<div class="col-2 columns2"></div>
-				<div class="col-2 columns3"></div>
-				<div class="col-2 columns4"></div>
-				<div class="col-2 columns5"></div>
-				</div>
+	</article>	
+</section>
+
+<footer class="text-center text-lg-start bg-light text-muted">
+ 	<section class="border-top">
+		<div class="text-center text-md-start mt-5">
+			<!-- Grid row -->
+			<div class="row mt-3 d-flex">
+				<div class="d-flex justify-content-center">
+					<!-- Links -->
+					<img src="{{ asset('img/logo.png')}}" class="fw-bold mb-4"></img>
 			</div>
-		</div> #}<!-- Footer -->
-<footer class="text-center text-lg-start bg-light text-muted"> <section class="p-4 border-top">
-	<div
-		class="text-center text-md-start mt-5">
+		</div>
+		<!-- Grid column -->
+		<div class="d-flex justify-content-center ">
+			<p class="text-contact">MELTINGPHOT est un acteur important sur le territoire en mennant des projets d'éducations par l'image auprès des associations, collectivités et entreprises.</p>
+		</div>
+		<div class="d-flex justify-content-center mb-3">
+			<a href="https://www.facebook.com/MeltingPhot/?locale=fr_FR" target="_blank" class="me-4 text-reset">
+				<i class="fab fa-facebook-f"></i>
+			</a>
+
+			<a href="https://www.instagram.com/meltingphot/?hl=fr" target="_blank" class="me-4 text-reset">
+				<i class="fab fa-instagram"></i>
+			</a>
+			<a href="https://www.linkedin.com/company/meltingphot" target="_blank" class="me-4 text-reset">
+				<i class="fab fa-linkedin"></i>
+			</a>																																																		</a> #}
+		</div>
+		<!-- Grid column -->
+		<div class="col-md-4 col-lg-3 col-xl-3 mx-auto mb-md-0 mb-4 contact-2">
+			<!-- Links -->
+			<p>
+				<i class="fas fa-home me-3"></i>15 Route de bagnols, 30100 Alès</p>
+			<p>
+				<i class="fas fa-envelope me-3"></i>info@example.com</p>
+			<p>
+				<i class="fas fa-phone me-3"></i>06 64 21 93 75</p>
+		</div>
+
 		<!-- Grid row -->
-		<div class="row mt-3 d-flex">
-			<div
-				class="d-flex justify-content-center">
-				<!-- Links -->
-				<img src="{{ asset('img/logo.png')}}" class="fw-bold mb-4"></img>
+		<div class="info-contact2 ">
+			<!-- Links -->
+			<p class="ms-3">
+				<i class="fas fa-home me-2"></i>15 Route de bagnols, 30100 Alès</p>
+			<p class="ms-3">
+				<i class="fas fa-envelope me-2"></i>info@example.com</p>
+			<!-- Copyright -->
+			<p class="ms-3">
+				<i class="fas fa-phone me-2"></i>06 64 21 93 75</p>
 		</div>
-	</div>
-	<!-- Grid column -->
-	<div class="d-flex justify-content-center ">
-		<p class="text-contact">MELTINGPHOT est un acteur important sur le territoire en mennant des projets d'éducations par l'image auprès des associations, collectivités et entreprises.</p>
-	</div>
-	<div class="d-flex justify-content-center mb-3">
-		<a href="https://www.facebook.com/MeltingPhot/?locale=fr_FR" target="_blank" class="me-4 text-reset">
-			<i class="fab fa-facebook-f"></i>
-		</a>
 
-		<a href="https://www.instagram.com/meltingphot/?hl=fr" target="_blank" class="me-4 text-reset">
-			<i class="fab fa-instagram"></i>
-		</a>
-		<a href="https://www.linkedin.com/company/meltingphot" target="_blank" class="me-4 text-reset">
-			<i class="fab fa-linkedin"></i>
-		</a>
-		{# <a href="" class="me-4 text-reset">
-																																																											<i class="fab fa-github"></i>
-																																																										</a> #}
-	</div>
-	<!-- Grid column -->
-	<div
-		class="col-md-4 col-lg-3 col-xl-3 mx-auto mb-md-0 mb-4 contact-2">
-		<!-- Links -->
-		<p>
-			<i class="fas fa-home me-3"></i>15 Route de bagnols, 30100 Alès</p>
-		<p>
-			<i class="fas fa-envelope me-3"></i>info@example.com</p>
-		<p>
-			<i class="fas fa-phone me-3"></i>06 64 21 93 75</p>
-	</div>
-	<!-- Grid column -->
-</div>
-<!-- Grid row -->
-<div
-	class="info-contact2 ">
-	<!-- Links -->
-	<p class="ms-3">
-		<i class="fas fa-home me-2"></i>15 Route de bagnols, 30100 Alès</p>
-	<p class="ms-3">
-		<i class="fas fa-envelope me-2"></i>info@example.com</p>
-	<!-- Copyright -->
-	<p class="ms-3">
-		<i class="fas fa-phone me-2"></i>06 64 21 93 75</p>
-</div>
+		<!-- Section: Links  -->
+		<!-- Copyright -->
 
-<!-- Section: Links  -->
-<!-- Copyright -->
+		<div class="text-center p-4 fw-bold text-white d-flex flex-column align-items-center" style="background-color: #D00A4B;">
+			Tous droits réservés © 2023 @MeltingPhot
+			<p class="fst-italic fw-light fs-6 text-white copyright-text">
+				En effet, tous les éléments présents sur Internet (textes, images, vidéos, extraits sonores, codes informatiques…) sont de
+				facto soumis au droit d’auteur, même si l’accès est libre, gratuit et sans mention particulière.</p>
+		</div>
+	</section>
+</footer>
 
-<div class="text-center p-4 fw-bold text-white d-flex flex-column align-items-center" style="background-color: #D00A4B;">Tous droits réservés © 2023 @MeltingPhot
-	<p class="fst-italic fw-light fs-6 text-white copyright-text">
-		En effet, tous les éléments présents sur Internet (textes, images, vidéos, extraits sonores, codes informatiques…) sont de facto soumis au droit d’auteur, même si l’accès est libre, gratuit et sans mention particulière.</p>
-</div></footer></body></html>{% endblock %}
+{% endblock %}
