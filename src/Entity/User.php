@@ -15,20 +15,16 @@ use Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface;
 #[ORM\Entity(repositoryClass: UserRepository::class)]
 class User implements UserInterface, PasswordAuthenticatedUserInterface
 {
-
-// Table User dans la base de donnée
     #[ORM\Id]
     #[ORM\GeneratedValue]
     #[ORM\Column(type: 'integer')]
     private ?int $id = null;
 
-
     #[ORM\Column(length: 180, unique: true)]
     private string $email;
 
     #[ORM\Column(type: 'json')]
-    private array $roles = ['ROLE_USER', 'ROLE_ADMIN','ROLE_SUPER_ADMIN'];
-    
+    private array $roles = ['ROLE_USER', 'ROLE_ADMIN', 'ROLE_SUPER_ADMIN'];
 
     /**
      * @var string The hashed password
@@ -36,13 +32,13 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     #[ORM\Column]
     #[Assert\NotBlank]
     private string $password;
-    
-    #[ORM\OneToMany(mappedBy: 'user_id', targetEntity: Posts::class, orphanRemoval: true)]
-    private Collection $posts;
 
     #[ORM\Column]
     private $username;
-    
+
+    #[ORM\OneToMany(mappedBy: 'user_id', targetEntity: Posts::class, orphanRemoval: true)]
+    private Collection $posts;
+
     #[ORM\ManyToMany(targetEntity: Newsletter::class, mappedBy: 'user_id')]
     private Collection $newsletters;
 
@@ -67,11 +63,6 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     {
         return $this->id;
     }
-    public function __toString(): string
-    {
-        return $this->email;
-    }
-    
 
     public function getEmail(): ?string
     {
@@ -97,19 +88,11 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
         return $this;
     }
 
-    /**
-     * A visual identifier that represents this user.
-     *
-     * @see UserInterface
-     */
     public function getUserIdentifier(): string
     {
         return (string) $this->email;
     }
 
-    /**
-     * @see UserInterface
-     */
     public function getRoles(): array
     {
         $roles = $this->roles;
@@ -126,11 +109,6 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
         return $this;
     }
 
-    /**
-     * @see PasswordAuthenticatedUserInterface
-     */
-
-
     public function getPassword(): string
     {
         return $this->password;
@@ -143,18 +121,12 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
         return $this;
     }
 
-    /**
-     * @see UserInterface
-     */
     public function eraseCredentials()
     {
         // If you store any temporary, sensitive data on the user, clear it here
         // $this->plainPassword = null;
     }
 
-    /**
-     * @return Collection<int, Posts>
-     */
     public function getPosts(): Collection
     {
         return $this->posts;
@@ -182,9 +154,6 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
         return $this;
     }
 
-    /**
-     * @return Collection<int, Newsletter>
-     */
     public function getNewsletters(): Collection
     {
         return $this->newsletters;
@@ -209,9 +178,6 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
         return $this;
     }
 
-    /**
-     * @return Collection<int, Video>
-     */
     public function getCreatedAt(): Collection
     {
         return $this->created_at;
@@ -239,9 +205,6 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
         return $this;
     }
 
-    /**
-     * @return Collection<int, Image>
-     */
     public function getImages(): Collection
     {
         return $this->images;
@@ -281,7 +244,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
         return $this;
     }
 
-// Contraintes de Validation
+    // Contraintes de Validation
     #[Assert\Callback]
     public function validateUsername(ExecutionContextInterface $context, $payload)
     {
@@ -303,6 +266,17 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
                 ->addViolation();
         }
 
+        // Check for numbers only at the end of the username
+        if (!preg_match('/^[a-zA-Z]+[0-9]*$/', $this->username)) {
+            $context->buildViolation("Les seuls chiffres du nom d'utilisateur doivent être à la fin. Aucun caractère spécial.")
+                ->atPath('username')
+                ->addViolation();
+        }
+    }
+}
+
+
+
         // Check for alphanumeric characters only
         // if (!ctype_alnum($this->username)) {
         //     $context->buildViolation("Le nom d'utilisateur ne peut utiliser que des chiffres et lettres.")
@@ -311,13 +285,6 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
         // }
 
 
-        // Check for numbers only at the end of the username
-        if (!preg_match('/^[a-zA-Z]+[0-9]*$/', $this->username)) {
-            $context->buildViolation("Les seuls chiffres du nom d'utilisateur doivent être à la fin. Aucun caractère spécial.")
-                ->atPath('username')
-                ->addViolation();
-        }
-
         // // Check for minimum length of the username
         // if (strlen($this->username) < 2) {
         //     $context->buildViolation("Le nom d'utilisateur doit comporter au moins {{ limit }} caractères.")
@@ -325,6 +292,3 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
         //         ->setParameter('{{ limit }}', 2)
         //         ->addViolation();
         // }
-    }
-
-}

@@ -49,12 +49,12 @@ class RegistrationController extends AbstractController
                 ]);
             }
 
-            // $user->setPassword(
-            //     $userPasswordHasher->hashPassword(
-            //         $user,
-            //         $form->get('password')->getData()
-            //     )
-            // );
+            $user->setPassword(
+                $userPasswordHasher->hashPassword(
+                    $user,
+                    $form->get('password')->getData()
+                )
+            );
 
             $user->setRoles(['ROLE_SUPER_ADMIN']);
 

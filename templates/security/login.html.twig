@@ -3,6 +3,10 @@
 {% block title %}Log in!{% endblock %}
 
 {% block body %}
+
+<a href="/">Accueil</a>
+<a href="/new-account">inscription</a>
+
 <div class="w-full flex flex-wrap">
     <!-- Section de connexion -->
     <div class="w-full md:w-1/2 flex flex-col">
@@ -64,32 +68,28 @@
                 <div class="text-center pt-12 pb-12">
                     <p>Vous n'avez pas de compte ? <a href="/new-account" class="underline font-semibold">S'inscrire ici !</a></p>
                 </div>
-				<script> 
-				 	// Récupérer le formulaire de connexion
-				/ 	const loginForm = document.querySelector('#login-form');
+				 <script>
+        // Récupérer le formulaire de connexion
+        const loginForm = document.querySelector('#login-form');
 
-				 	// Ajouter un écouteur d'événement pour la soumission du formulaire
-					loginForm.addEventListener('submit', function(event) {
-				 		event.preventDefault(); // Empêcher le comportement par défaut du formulaire (rechargement de la page)
+        // Ajouter un écouteur d'événement pour la soumission du formulaire
+        loginForm.addEventListener('submit', function(event) {
+           // Empêcher le comportement par défaut du formulaire (rechargement de la page)
+  			event.preventDefault();             // Récupérer la valeur du champ de mot de passe
+            const passwordField = document.querySelector('#password');
+            const password = passwordField.value;
 
-				 		// Récupérer la valeur du champ de mot de passe
-				 		const passwordField = document.querySelector('#password');
-				 		const password = passwordField.value;
+            // Récupérer la valeur du champ d'e-mail
+            const emailField = document.querySelector('#email');
+            const email = emailField.value;
 
-				 		// Envoyer une requête AJAX au serveur
-				 		const xhr = new XMLHttpRequest();
-				 		xhr.open('POST', loginForm.action);
-				 		xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
-				 		xhr.onload = function() {
-				 			if (xhr.status === 200) {
-				 				console.log('Mot de passe soumis :', password);
-				 				// ... traiter la réponse du serveur si nécessaire ...
-				 			}
-				 		};
-				 		xhr.send(new URLSearchParams(new FormData(loginForm)).toString());
-				 	});
-				 </script>
+            // Afficher les valeurs dans la console
+            console.log('E-mail soumis:', email); 
+            console.log('Mot de passe soumis:', password);
 
+            // Envoyer une requête AJAX au serveur si nécessaire
+        });
+    </script>
             </form>
         </div>
     </div>
