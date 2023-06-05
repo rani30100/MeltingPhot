@@ -212,7 +212,7 @@ body {
 
         margin-left: 6rem;
         text-align: justify;
-        align-self: end;
+    
 
 
 
@@ -441,8 +441,9 @@ swiper-slide iframe {
         align-self: baseline !important;
         text-align: justify;
         width: 93% !important;
-        margin: 1rem;
+        margin: 1rem !important;
         max-width: 500px !important;
+      
     }
     .article2-title-chiffre {
         text-align: left;
@@ -597,7 +598,6 @@ swiper-slide iframe {
         .article2-title_nom {
             font-size: large;
             margin-right: 119px;
-            margin-top: 7px;
         }
    
         .blocYTB {
@@ -857,6 +857,9 @@ body .parent-article .block-article_description {
     .carousel-inner .carousel-item>div:first-child {
         display: block;
     }
+    .article-img-milieu{
+        display: none;
+    }
 }
 
 .carousel-inner .carousel-item.active,
@@ -901,7 +904,7 @@ body .parent-article .block-article_description {
     width: 200px;
     height: 200px;
   }
-}
+
 .article2_description
 {
     max-width: 350px;
@@ -923,13 +926,17 @@ body .parent-article .block-article_description {
 }
 .article-box{
     margin-left: 2rem;
-}article-img-
+}
 
 .article-img2{
     display: none;
 }
+.article-img1{
+    width: 200px;
+    height: 200px !important;
+}
 
-
+}
 
 
 
@@ -1014,6 +1021,7 @@ body .parent-article .block-article_description {
 .article2_description{
     margin-right: 6rem !important;
     margin-top: 1rem;
+    min-width: 300px;
 }
 .color1{
     margin-left: 1rem;
@@ -1023,7 +1031,23 @@ body .parent-article .block-article_description {
 .article-title{
     margin-top: 4rem;
 }
-article3-title{
-    margin-top: 8rem;
+.article-box{
+    margin-left: 2rem !important;
+    margin-top: -2rem !important;
+}
+
+
+}
+
+@media screen and (min-width: 993px) and (max-width:1092px) {
+.block-article_description{
+    width: 300px !important;
+
+}
+}
+
+@media screen and (min-width:1093px) {
+.article2_description{
+ max-width: 393px;   
 }
 }
