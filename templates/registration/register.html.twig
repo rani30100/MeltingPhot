@@ -8,7 +8,173 @@
 		<div class="alert alert-danger" role="alert">{{ flash_error }}</div>
 	{% endfor %}
 
-<a href="/">Accueil</a>
+
+<body class="bg-white font-family-karla h-screen">
+    <div class="w-full flex flex-wrap">
+        <!-- Register Section -->
+        <div class="w-full md:w-1/2 flex flex-col">
+            <div class="flex justify-center md:justify-start pt-12 md:pl-12 md:-mb-12" style="justify-content: space-between;display: flex !important;">
+                <img src="{{asset('img/logo.png')}}" alt="" srcset="">
+                <nav class="navbar navbar-expand-lg navbar-light">
+                    <div class="container-fluid">
+                        <ul class="navbar-nav">
+                            <!-- Icon dropdown -->
+                            <li class="nav-item dropdown">
+                                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                    <img id="flag-image" src="{{ asset('img/drapeau.png') }}" alt="">
+                                </a>
+                                <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                    <li id="language-item">
+                                        <a class="dropdown-item d-flex" id="fr-flag" href="{{ path(app.request.attributes.get('_route'), {'_locale': 'fr'}) }}" onclick="changeLanguage('fr')">
+                                            <img src="{{ asset('img/drapeau.png') }}" alt="" style="margin-right: 1rem;">Français
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <hr class="dropdown-divider"/>
+                                    </li>
+                                    <li>
+                                        <a class="dropdown-item d-flex" id="uk-flag" href="{{ path(app.request.attributes.get('_route'), {'_locale': 'en'}) }}" onclick="changeLanguage('en')">
+                                            <img src="{{ asset('img/unitedkingdom.png') }}" alt="" style="margin-right: 1rem;">English
+                                        </a>
+                                    </li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </div>
+                </nav>
+            </div>
+         
+
+            <div class="flex flex-col justify-center md:justify-start my-auto pt-8 md:pt-0 px-8 md:px-24 lg:px-32">
+                <p class="text-center text-xl ml-4">{{ 'join'|trans({}, 'register') }}</p>
+
+{% if form.password.vars.errors|length > 0 %}
+    <div class="alert alert-danger">
+        {% set firstError = form.password.vars.errors[0] %}
+        {% set translatedMessage = firstError.message|trans({}, 'register') %}
+        {{ translatedMessage }}<br>
+    </div>
+{% endif %}
+
+  
+
+
+                {{ form_start(form, {
+                    'attr': {
+                        'class': 'flex flex-col pt-3',
+                     
+                    }
+                }) }}
+
+                <div class="flex flex-col">
+					<label for="name" class="text-lg" style="margin-left: 2rem;">{{ 'label.name'|trans({}, 'register') }}</label>
+                    <div class="d-flex">
+                       
+					{{ form_widget(form.username, {
+						'attr': {
+							'id': 'name',
+							'placeholder': 'placeholder.name'|trans({}, 'register'),
+							'class': 'shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 mt-1 leading-tight focus:outline-none focus:shadow-outline',
+                            'style': 'max-width: 688px;'
+                    	}
+					}) }}
+                </div> 
+                    </div>
+
+                <div class="flex flex-col pt-4">
+					<label for="email" class="text-lg"style="margin-left: 2rem;">{{ 'label.email'|trans({}, 'register') }}</label>
+                    <div class="d-flex">
+                      
+                        {{ form_widget(form.email, {
+                            'attr': {
+                                'id': 'email',
+                                'placeholder': 'placeholder.email'|trans({}, 'register'),
+                                'class': 'shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 mt-1 leading-tight focus:outline-none focus:shadow-outline',
+                                'style': 'max-width: 688px;'
+                            }
+                        }) }}
+                    </div>
+                </div>
+                <div class="flex flex-col pt-4">
+                    <label for="password" class="text-lg" style="margin-left: 2rem;">{{ 'label.password'|trans({}, 'register') }}</label>
+                    <div class="input-with-icon d-flex">
+
+                        {{ form_widget(form.password, {
+                            'attr': {
+                                'type': 'password',
+                                'placeholder': 'placeholder.password'|trans({}, 'register'),
+                                'id': 'password',
+                                'class': 'shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 mt-1 leading-tight focus:outline-none focus:shadow-outline'
+                            }
+                        }) }}
+                        <i class="bi bi-eye-slash"style="align-self: center;position: relative;left: -28px;" id="togglePassword"></i>
+                    </div>
+                </div>
+
+
+
+                {# <div class="flex flex-col pt-4">
+                    <label for="confirm-password" class="text-lg">{{ 'label.confirm-password'|trans({}, 'register') }}</label>
+                    {{ form_widget(form.confirmPassword, {
+                        'attr': {
+                            'id': 'confirm-password',
+                            'placeholder': "{{ 'placeholder.password'|trans({}, 'register') }}",
+                            'class': 'shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 mt-1 leading-tight focus:outline-none focus:shadow-outline'
+                        }
+                    }) }}  
+                </div> #}
+
+                <div class="flex justify-center mx-4 mb-3 mb-lg-4 m-4">
+                    <button type="submit" class="btn btn-primary btn-lg">{{ 'btn.register'|trans({}, 'register')}}</button>
+                </div>
+                 <div class="text-center d-flex">
+                
+                	{{ form_widget(form.agreeTerms, {
+						'attr': {
+							'id': 'terms'
+                            
+						}
+					}) }}
+                </div>
+
+                {{ form_end(form) }}
+
+                <div class="text-center ">
+                    <a href="/login" class="underline font-semibold">{{ 'connect'|trans({}, 'register') }}</a>
+                    
+                </div>
+            </div>
+        </div>
+
+        <!-- Image Section -->
+        <div class="w-1/2 shadow-2xl">
+            <img class="object-cover w-full h-screen hidden md:block" src="https://source.unsplash.com/IXUM4cJynP0" alt="Background" />
+        </div>
+    </div>
+</body>
+<script>
+    const togglePassword = document.querySelector("#togglePassword");
+    const password = document.querySelector("#registration_form_password");
+
+    togglePassword.addEventListener("click", function () {
+
+        const type = password.getAttribute("type");
+        if (type === "password") {
+            password.setAttribute("type", "text");
+            this.classList.remove("bi-eye-slash");
+            this.classList.add("bi-eye");
+            console.log("passwordType")
+        } else {
+            password.setAttribute("type", "password");
+            this.classList.remove("bi-eye");
+            this.classList.add("bi-eye-slash");
+        }
+    });
+</script>
+
+{% endblock %}
+
+
 
 
 	{# <section class="vh-100" style="background-color: #eee;">
@@ -84,103 +250,14 @@
 		</div>
 	</section> #}
 
-
-
-<body class="bg-white font-family-karla h-screen">
-    <div class="w-full flex flex-wrap">
-        <!-- Register Section -->
-        <div class="w-full md:w-1/2 flex flex-col">
-            <div class="flex justify-center md:justify-start pt-12 md:pl-12 md:-mb-12">
-                <a href="#" class="bg-blue-600 text-white font-bold text-xl p-4" alt="Logo">Logo</a>
-            </div>
-         
-
-            <div class="flex flex-col justify-center md:justify-start my-auto pt-8 md:pt-0 px-8 md:px-24 lg:px-32">
-                <p class="text-center text-xl ml-4">{{ 'join'|trans({}, 'register') }}</p>
-                {% if errorMessage %}
+                  
+                {# {% if errorMessage %}
                     <div class="alert alert-danger text-center">{{ errorMessage }}</div>
                 {% endif %}
-
-                {{ form_start(form, {
-                    'attr': {
-                        'class': 'flex flex-col pt-3',
-                     
-                    }
-                }) }}
-
-                <div class="flex flex-col">
-					<label for="name" class="text-lg">{{ 'label.name'|trans({}, 'register') }}</label>
-					{{ form_widget(form.username, {
-						'attr': {
-							'id': 'name',
-							'placeholder': 'placeholder.name'|trans({}, 'register'),
-							'class': 'shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 mt-1 leading-tight focus:outline-none focus:shadow-outline'
-						}
-					}) }}
-                </div> 
-
-                <div class="flex flex-col pt-4">
-					<label for="email" class="text-lg">{{ 'label.email'|trans({}, 'register') }}</label>
-					{{ form_widget(form.email, {
-						'attr': {
-							'id': 'email',
-							'placeholder': 'placeholder.email'|trans({}, 'register'),
-							'class': 'shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 mt-1 leading-tight focus:outline-none focus:shadow-outline'
-						}
-					}) }}
-                </div>
-
-                <div class="flex flex-col pt-4">
-
-					<label for="password" class="text-lg">{{ 'label.password'|trans({}, 'register') }}</label>
-					{{ form_widget(form.password, {
-						'attr': {
-							'id': 'password',
-							'placeholder': 'placeholder.password'|trans({}, 'register'),
-							'class': 'shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 mt-1 leading-tight focus:outline-none focus:shadow-outline'
-						}
-					}) }}
-                </div>
-
-                {# <div class="flex flex-col pt-4">
-                    <label for="confirm-password" class="text-lg">{{ 'label.confirm-password'|trans({}, 'register') }}</label>
-                    {{ form_widget(form.confirmPassword, {
-                        'attr': {
-                            'id': 'confirm-password',
-                            'placeholder': "{{ 'placeholder.password'|trans({}, 'register') }}",
-                            'class': 'shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 mt-1 leading-tight focus:outline-none focus:shadow-outline'
-                        }
-                    }) }}  
-                </div> #}
-
-                <div class="flex justify-center mx-4 mb-3 mb-lg-4 m-4">
-                    <button type="submit" class="btn btn-primary btn-lg">{{ 'btn.register'|trans({}, 'register')}}</button>
-                </div>
-                 <div class="text-center d-flex">
-                
-                	{{ form_widget(form.agreeTerms, {
-						'attr': {
-							'id': 'terms'
-                            
-						}
-					}) }}
-                </div>
-
-                {{ form_end(form) }}
-
-                <div class="text-center ">
-                    <a href="/login" class="underline font-semibold">{{ 'connect'|trans({}, 'register') }}</a>
-                    
-                </div>
-            </div>
-        </div>
-
-        <!-- Image Section -->
-        <div class="w-1/2 shadow-2xl">
-            <img class="object-cover w-full h-screen hidden md:block" src="https://source.unsplash.com/IXUM4cJynP0" alt="Background" />
-        </div>
-    </div>
-</body>
-
-
-{% endblock %}
+                {% if form_errors(form) %}
+                    <div class="alert alert-danger">
+                        {% for error in form_errors(form) %}
+                            {{ error.message }}<br>
+                        {% endfor %}
+                    </div>
+                {% endif %} #}
