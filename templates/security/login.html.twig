@@ -49,20 +49,20 @@
 				</div> #}
 
                <div class="form-group d-block">
-					<label for="email" class="text-lg"  required autofocus>Email ou Pseudo</label>
-					<input type="email" id="email" name="username" placeholder="your@email.com"
-					class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 mt-1 leading-tight focus:outline-none focus:shadow-outline">
+					<label for="inputEmail" class="text-lg"  required autofocus>Email ou Pseudo</label>
+			<input type="email" value="{{ last_username }}" name="email" id="inputEmail" class="form-control w-50" autocomplete="email" required autofocus>
 				</div>
 
 
                 <div class="form-group d-block pt-4">
-                    <label for="password" class="text-lg" >Mot de Passe</label>
-                    <input type="password" id="password" name="password" placeholder="Password"class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 mt-1 leading-tight focus:outline-none focus:shadow-outline">
+                    <label for="inputPassword" class="text-lg" >Mot de Passe</label>
+			<input type="password" name="password" id="inputPassword" class="form-control w-50" autocomplete="current-password" required>
                 </div>
 
+            	<input type="hidden" name="_csrf_token" value="{{ csrf_token('authenticate')|e('html_attr') }}">
+            
                 <input type="submit" value="Se connecter" class="bg-black text-white font-bold text-lg hover:bg-gray-700 p-2 mt-8">
 				
-			<input type="hidden" name="_csrf_token" value="{{ csrf_token('authenticate')|e('html_attr') }}">
 
 
                 <div class="text-center pt-12 pb-12">
@@ -75,7 +75,7 @@
         // Ajouter un écouteur d'événement pour la soumission du formulaire
         loginForm.addEventListener('submit', function(event) {
            // Empêcher le comportement par défaut du formulaire (rechargement de la page)
-  			event.preventDefault();             // Récupérer la valeur du champ de mot de passe
+             // Récupérer la valeur du champ de mot de passe
             const passwordField = document.querySelector('#password');
             const password = passwordField.value;
 
