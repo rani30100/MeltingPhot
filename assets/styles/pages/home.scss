@@ -356,7 +356,7 @@ swiper-slide iframe {
     margin-bottom: 5rem;
     display: flex;
     flex-direction: row;
-    width: 80%; 
+    width: 70%; 
     margin: 0 auto 10rem;
 }
 
@@ -902,6 +902,12 @@ body .parent-article .block-article_description {
     transform: translateX(0);
 }
 
+@media screen and (max-width:969px) {
+.info-contact2{
+    display: none;
+}
+}
+
 @media screen and (min-width: 700px) and (max-width:991px) {
 
 .article2-main{
@@ -1087,4 +1093,22 @@ body .parent-article .block-article_description {
 .know-more{
     background-size: 100% 100%;
 }
+  
+  .hover-animation {
+    animation-name: hoverEffect;
+    animation-duration: 1s;
+    animation-timing-function: ease-in-out;
+  }
+  
+}
+
+
+  
+  .employeeImage{
+border-radius: 50%;
+  }
+
+.employee3:hover
+{
+  background-color: rgb(248, 0, 77);;
 }

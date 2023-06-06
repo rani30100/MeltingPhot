@@ -2,6 +2,7 @@
 
 {% block title %}MeltingPhot !
 {% endblock %}
+
 {% block javascripts %}
 	{{ parent() }}
 
@@ -23,6 +24,45 @@ flagImage.src = "{{ asset('img/unitedkingdom.png') }}";
 
 }
 }
+const directeur = document.querySelector("#directeur");
+const employee1 = document.querySelector("#employee1");
+const employee2 = document.querySelector("#employee2");
+const employee3 = document.querySelector("#employee3");
+const employeeImage = document.querySelector("#employeeImage");
+
+// Par défaut, celle du directeur
+document.addEventListener("DOMContentLoaded", function() {
+  var employeeQuote = document.querySelector("#employeeQuote");
+  employeeQuote.textContent = "Citation du directeur";
+});
+
+// Écouter l'événement de clic sur les employés
+directeur.addEventListener("click", function() {
+  updateEmployeeImageAndQuote("{{asset('img/employe1.jpeg')}}", "Citation du directeur");
+  animateEmployeeImage();
+});
+
+employee1.addEventListener("click", function() {
+  updateEmployeeImageAndQuote("{{asset('img/employe1.jpeg')}}", "Citation de l'employé 1");
+  animateEmployeeImage();
+});
+
+employee2.addEventListener("click", function() {
+  updateEmployeeImageAndQuote("{{asset('img/employe2.jpeg')}}", "Citation de l'employé 2");
+  animateEmployeeImage();
+});
+
+employee3.addEventListener("click", function() {
+  updateEmployeeImageAndQuote("{{asset('img/employe3.jpeg')}}", "Citation de l'employé 3");
+  animateEmployeeImage();
+});
+
+// Fonction pour mettre à jour l'image et la citation
+function updateEmployeeImageAndQuote(imageSrc, quote) {
+  employeeImage.src = imageSrc;
+  document.querySelector("#employeeQuote").textContent = quote;
+}
+
 	</script>
 
 
@@ -240,45 +280,46 @@ flagImage.src = "{{ asset('img/unitedkingdom.png') }}";
 	</article>
 
 
-	<article class='mt-5 shadow-lg team-profile'>
-		<div class="col-3" style="margin-top: -6rem;margin-right: 3rem;margin-left: 3rem;">
-			<img style="width: 100%;height: 497px;margin-top: 1rem;" src="{{asset("img/employe1.jpeg")}}">
-			<p>Abdeslam Chaoui</p>
-			<p class="métier">Direction Artistique</p>
-		</div>
+	<article class="mt-5 shadow-lg team-profile bg-light">
+  <div id="directeur" class="col-3 employee3" style="margin-right: 3rem;margin-left: 3rem;align-self:center;">
+    <img  id="employeeImage"class="employeeImage directeur" src="{{asset("img/employe1.jpeg")}}">
+    <p>Abdeslam Chaoui</p>
+    <p class="métier">Direction Artistique</p>
+  </div>
 
+  <!-- Ajouter un id pour l'image et la citation de l'employé -->
+  <div>
+    <div id="employeeQuote" class="mt-5">
 
-		<div>
-			<div class="mt-5">
-				Lorem, ipsum dolor sit amet consectetur adipisicing elit. Molestias, tempora? Dignissimos incidunt eligendi facilis praesentium quae, quis et, repellat dolore sapiente alias est consequatur quaerat quia quod blanditiis iste ducimus.
-			</div>
-			<div class="mt-5 d-flex justify-content-end">
-				<i class="fab fa-facebook-f team-social"></i>
-				<i class="fab fa-linkedin team-social"></i>
-				<i class="fab fa-youtube team-social"></i>
-				<i class="fa-brands fa-twitter team-social"></i>
-			</div>
+    </div>
+    <div class="mt-5 d-flex justify-content-end">
+      <i class="fab fa-facebook-f team-social"></i>
+      <i class="fab fa-linkedin team-social"></i>
+      <i class="fab fa-youtube team-social"></i>
+      <i class="fa-brands fa-twitter team-social"></i>
+    </div>
 
-			<div class="d-flex justify-content-center">
-				<div class="col-3">
-					<img class="w-100" src="{{asset("img/employe1.jpeg")}}">
-					<p>Sabrina Fiandaca</p>
-					<p class="métier">Directrice de la Rédaction</p>
-				</div>
-				<div class='col-3 ms-3'>
-					<img class="w-100" src="{{asset("img/employe2.jpeg")}}">
-					<p>Yann Riché</p>
-					<p class="métier">Coaching photo</p>
+    <div class="d-flex justify-content-center">
+      <!-- Ajouter des id pour chaque employé -->
+      <div id="employee1" class="employee3">
+        <img class="w-100 employeeImage employee1" src="{{asset("img/employe1.jpeg")}}">
+        <p>Sabrina Fiandaca</p>
+        <p class="métier">Directrice de la Rédaction</p>
+      </div>
+      <div id="employee2" class="ms-3 employee3">
+        <img id="employeeImage" class="w-100 employeeImage employee2" src="{{asset("img/employe2.jpeg")}}">
+        <p>Yann Riché</p>
+        <p class="métier">Coaching photo</p>
+      </div>
+      <div id="employee3" class="ms-3 employee3">
+        <img id="employeeImage" class="w-100 employeeImage " src="{{asset("img/employe3.jpeg")}}">
+        <p>Yamina & Brahim</p>
+        <p class="métier">Photographe Pro</p>
+      </div>
+    </div>
+  </div>
+</article>
 
-				</div>
-				<div class='col-3 ms-3'>
-					<img class="w-100" src="{{asset("img/employe3.jpeg")}}">
-					<p>Yamina & Brahim</p>
-					<p class="métier">Photographe Pro</p>
-				</div>
-			</div>
-		</div>
-	</article>	
 </section>
 
 <footer class="text-center text-lg-start bg-light text-muted">
@@ -305,7 +346,7 @@ flagImage.src = "{{ asset('img/unitedkingdom.png') }}";
 			</a>
 			<a href="https://www.linkedin.com/company/meltingphot" target="_blank" class="me-4 text-reset">
 				<i class="fab fa-linkedin"></i>
-			</a>																																																		</a> #}
+			</a>
 		</div>
 		<!-- Grid column -->
 		<div class="col-md-4 col-lg-3 col-xl-3 mx-auto mb-md-0 mb-4 contact-2">
