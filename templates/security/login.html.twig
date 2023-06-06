@@ -1,49 +1,102 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Log in!
-{% endblock %}
+{% block title %}Log in!{% endblock %}
 
 {% block body %}
-	<form method="post" action="{{ path('app_login') }}">
-		{% if error %}
-			<div class="alert alert-danger">{{ error.messageKey|trans(error.messageData, 'security') }}</div>
-		{% endif %}
 
-		{% if app.user %}
-			<div class="mb-3">
-				You are logged in as
-				{{ app.user.userIdentifier }},
-				<a href="{{ path('app_logout') }}">Logout</a>
-			</div>
-		{% endif %}
+<a href="/">Accueil</a>
+<a href="/new-account">inscription</a>
 
-		<h1 class="h3 mb-3 font-weight-normal text-center pt-5 ">Se connecter</h1>
-		<div class="d-flex flex-column align-items-center">
-			<label for="inputEmail" class="w-50">Email</label>
+<div class="w-full flex flex-wrap">
+    <!-- Section de connexion -->
+    <div class="w-full md:w-1/2 flex flex-col">
+        <div class="flex justify-center md:justify-start pt-12 md:pl-12 md:-mb-12">
+            <a href="/" class="bg-black text-white font-bold text-xl p-4" alt="Logo">Logo</a>
+        </div>
+
+        <div class="flex flex-col justify-center md:justify-start my-auto pt-8 md:pt-0 px-8 md:px-24 lg:px-32">
+            <p class="text-center text-3xl">Welcome.</p>
+
+            <form method="post" id='login-form'action="{{ path('app_login') }}" class="flex flex-col pt-3">
+                {% if error %}
+                 	 <div class="alert alert-danger">{{ error|trans({}, 'security') }}</div>
+                {% endif %}
+
+				{% for flashMessage in app.session.flashBag.get('danger') %}
+					<div class="alert alert-danger">
+						{{ flashMessage }}
+					</div>
+				{% endfor %}
+				{% if app.request.method == 'POST' %}
+					{% if user is not null %}
+						<div class="alert alert-success">
+							Adresse e-mail disponible !
+						</div>
+					{% endif %}
+				{% endif %}
+
+                {% if app.user %}
+                    <div class="mb-3">
+                        You are logged in as {{ app.user.userIdentifier }},
+                        <a href="{{ path('app_logout') }}">Logout</a>
+                    </div>
+                {% endif %}
+				
+				{# <div class="form-group d-block">
+					<label for="username" class="text-lg">Username</label>
+					<input type="text" id="username" name="_username" placeholder="Your username"
+						class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 mt-1 leading-tight focus:outline-none focus:shadow-outline">
+				</div> #}
+
+               <div class="form-group d-block">
+					<label for="inputEmail" class="text-lg"  required autofocus>Email ou Pseudo</label>
 			<input type="email" value="{{ last_username }}" name="email" id="inputEmail" class="form-control w-50" autocomplete="email" required autofocus>
-		</div>
-		<div class="d-flex flex-column align-items-center">
-			<label for="inputPassword" class="w-50">Password</label>
+				</div>
+
+
+                <div class="form-group d-block pt-4">
+                    <label for="inputPassword" class="text-lg" >Mot de Passe</label>
 			<input type="password" name="password" id="inputPassword" class="form-control w-50" autocomplete="current-password" required>
-		</div>
+                </div>
 
-		<input
-		type="hidden" name="_csrf_token" value="{{ csrf_token('authenticate') }}">
+            	<input type="hidden" name="_csrf_token" value="{{ csrf_token('authenticate')|e('html_attr') }}">
+            
+                <input type="submit" value="Se connecter" class="bg-black text-white font-bold text-lg hover:bg-gray-700 p-2 mt-8">
+				
 
-		{#
-						        Uncomment this section and add a remember_me option below your firewall to activate remember me functionality.
-						        See https://symfony.com/doc/current/security/remember_me.html
-						    #}
-		<div class="checkbox mb-3 d-flex justify-content-center ">
-			<label class="w-50">
-				<input type="checkbox" name="_remember_me">
-				Se souvenir de moi 
-			</label>
-		</div>
-		<div class="d-flex justify-content-center ">
-			<button class="btn btn-lg btn-primary" type="submit">
-				Sign in
-			</button>
-		</div>
-	</form>
+
+                <div class="text-center pt-12 pb-12">
+                    <p>Vous n'avez pas de compte ? <a href="/new-account" class="underline font-semibold">S'inscrire ici !</a></p>
+                </div>
+				 <script>
+        // Récupérer le formulaire de connexion
+        const loginForm = document.querySelector('#login-form');
+
+        // Ajouter un écouteur d'événement pour la soumission du formulaire
+        loginForm.addEventListener('submit', function(event) {
+           // Empêcher le comportement par défaut du formulaire (rechargement de la page)
+             // Récupérer la valeur du champ de mot de passe
+            const passwordField = document.querySelector('#password');
+            const password = passwordField.value;
+
+            // Récupérer la valeur du champ d'e-mail
+            const emailField = document.querySelector('#email');
+            const email = emailField.value;
+
+            // Afficher les valeurs dans la console
+            console.log('E-mail soumis:', email); 
+            console.log('Mot de passe soumis:', password);
+
+            // Envoyer une requête AJAX au serveur si nécessaire
+        });
+    </script>
+            </form>
+        </div>
+    </div>
+
+    <!-- Section d'image -->
+    <div class="w-1/2 shadow-2xl">
+        <img class="object-cover w-full h-screen hidden md:block" src="https://source.unsplash.com/IXUM4cJynP0" alt="Background" />
+    </div>
+</div>
 {% endblock %}
