@@ -4,6 +4,9 @@
 
 {% block body %}
 
+<body style="rgba(var(--bs-white-rgb), var(--bs-bg-opacity)) !important">
+    
+
 <a href="/">Accueil</a>
 <a href="/new-account">inscription</a>
 
@@ -49,14 +52,14 @@
 				</div> #}
 
                <div class="form-group d-block">
-					<label for="inputEmail" class="text-lg"  required autofocus>Email ou Pseudo</label>
-			<input type="email" value="{{ last_username }}" name="email" id="inputEmail" class="form-control w-50" autocomplete="email" required autofocus>
+					<label for="inputEmail" class="text-lg"  required autofocus>Email</label>
+			<input type="email" value="{{ last_username }}" name="email" id="inputEmail" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 mt-1 leading-tight focus:outline-none focus:shadow-outline" autocomplete="email" required autofocus>
 				</div>
 
 
                 <div class="form-group d-block pt-4">
                     <label for="inputPassword" class="text-lg" >Mot de Passe</label>
-			<input type="password" name="password" id="inputPassword" class="form-control w-50" autocomplete="current-password" required>
+			<input type="password" name="password" id="inputPassword" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 mt-1 leading-tight focus:outline-none focus:shadow-outline" autocomplete="current-password" required>
                 </div>
 
             	<input type="hidden" name="_csrf_token" value="{{ csrf_token('authenticate')|e('html_attr') }}">
@@ -68,6 +71,18 @@
                 <div class="text-center pt-12 pb-12">
                     <p>Vous n'avez pas de compte ? <a href="/new-account" class="underline font-semibold">S'inscrire ici !</a></p>
                 </div>
+
+            </form>
+        </div>
+    </div>
+
+    <!-- Section d'image -->
+    <div class="w-1/2 shadow-2xl">
+        <img class="object-cover w-full h-screen hidden md:block" src="https://source.unsplash.com/IXUM4cJynP0" alt="Background" />
+    </div>
+</div>
+</body>
+
 				 <script>
         // Récupérer le formulaire de connexion
         const loginForm = document.querySelector('#login-form');
@@ -90,13 +105,4 @@
             // Envoyer une requête AJAX au serveur si nécessaire
         });
     </script>
-            </form>
-        </div>
-    </div>
-
-    <!-- Section d'image -->
-    <div class="w-1/2 shadow-2xl">
-        <img class="object-cover w-full h-screen hidden md:block" src="https://source.unsplash.com/IXUM4cJynP0" alt="Background" />
-    </div>
-</div>
 {% endblock %}
