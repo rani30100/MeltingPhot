@@ -7,8 +7,19 @@
 	{{ parent() }}
 	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/js/bootstrap.bundle.min.js"></script>
 	<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-
-
+	<script>
+	document.addEventListener('DOMContentLoaded', function() {
+	var flagImageFr = document.getElementById("flag-imagefr");
+	var flagImageUk = document.getElementById("flag-imageuk");
+	var locale = "{{ app.request.attributes.get('_locale') }}";
+	
+	if (locale === 'fr') {
+		flagImageUk.style.display = "none";
+	} else if (locale === 'en') {
+		flagImageFr.style.display = "none";
+	}
+	});
+	</script>
 
 {% endblock %}
 {% block stylesheet %}
@@ -87,7 +98,8 @@
 					<!-- Icon dropdown -->
 					<li class="nav-item dropdown">
 						<a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-							<img id="flag-image" src="{{ asset('img/drapeau.png') }}" alt="">
+							<img id="flag-imagefr" src="{{ asset('img/drapeau.png') }}" alt="">
+							<img id="flag-imageuk" src="{{ asset('img/unitedkingdom.png') }}" alt="">
 						</a>
 						<ul class="dropdown-menu" aria-labelledby="navbarDropdown">
 							<li id="language-item">
