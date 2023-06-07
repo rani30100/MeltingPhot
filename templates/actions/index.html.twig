@@ -131,72 +131,77 @@ searchIcon.classList.toggle('d-none')
 		</div>
 		<p class="col-lg-8 mt-5 m-lg-0 text-justify">Lorem, ipsum dolor sit amet consectetur adipisicing elit. Ipsam voluptate quidem ullam beatae vero excepturi fuga deserunt aperiam. Eius repudiandae laborum accusantium voluptatem illum odio impedit delectus expedita beatae laboriosam!</p>
 	</div>
-</article></section><div class="d-flex flex-column align-items-center justify-content-center bloc-filtres carousel-container">
-<h2 for="my-dropdown" class="text-center fw-light">NOS
-	<span class="fw-bold">ACTIONS D'EDUCATION
-	</span>PAR L'IMAGE</h2>
+</article>
+</section>
 
-<div
-	class="d-flex flex-wrap align-items-center justify-content-center ">
-	{# quand je clique sur le filme mon futur metier affiche les videos correspondantes a cette categorie  #}
-	<a href="{{ path('app_actions', { 'order': 'test', 'year': 'null', 'category': 'Je_Filme_Mon_Futur_Métier' }) }}" class="btn col-6 col-sm-2" id="video-link">Je Filme mon futur métier</a>
-	<button class="btn col-6 col-sm-2">Odonymes</button>
-	<button class="btn col-6 col-sm-2 ">Les Critiques pétillantes</button>
-	<button class="btn col-6 col-sm-2 ">Parole Public</button>
-	<button class="btn col-6 col-sm-2 ">Les Vitrines des Cévennes</button>
-</div>
+<div class="d-flex flex-column align-items-center justify-content-center bloc-filtres carousel-container">
+	<h2 for="my-dropdown" class="text-center fw-light">NOS
+		<span class="fw-bold">ACTIONS D'EDUCATION
+		</span>PAR L'IMAGE</h2>
 
-<div id="carouselExampleIndicators" class="carousel-actions slide">
-  <div class="carousel-inner">
-    {% for i in 0..(videos|length / 2 - 1) %}
-      <div class="carousel-item {% if i == 0 %}active{% endif %}" style="height: 700px;">
-        <div class="d-flex w-100 justify-content-center">
-          <div class="col-3 extremity p-0 d-none d-xxl-flex">
-            <img class="carousel_img w-100" src="{{ asset('img/ODONYMES _Image_Vignette_Page accueil meltingphot_je Filme mon futur métier.png')}}" alt="...">
-          </div>
-          {% for j in 0..1 %}
-            {% set videoIndex = i * 2 + j %}
-            {% if videoIndex < videos|length %}
-              {% if loop.index == 1 %}
-                <div class="bloc-img-btn col-4 col-sm-6 col-md-6 d-flex p-0 img-1">
-                  <img class="carousel_img w-100" src="{{ asset('img/Je filme mon futur métier Meltingphot_Image_Vignette_Page accueil meltingphot_je Filme mon futur métier.png')}}" alt="...">
-                  <button type="button" class="btn btn-primary videos-btn deleted-video btn-1" data-bs-toggle="modal" data-bs-target="#videoModal{{ videoIndex + 1}}">
-                    <i class="bi bi-play-circle"></i>
-                    En voir plus ...
-                  </button>
-                </div>
-              {% elseif loop.index == 2 %}
-                <div class="bloc-img-btn col-4 col-sm-6 col-md-6 d-flex p-0 img-2">
-                  <img class="carousel_img w-100" src="{{ asset('img/Je filme mon futur métier Meltingphot_Image_Vignette_Page accueil meltingphot_je Filme mon futur métier.png')}}" alt="...">
-                  <button type="button" class="btn btn-primary videos-btn deleted-video btn-2" data-bs-toggle="modal" data-bs-target="#videoModal{{ videoIndex + 1}}">
-                    <i class="bi bi-play-circle"></i>
-                    En voir plus ...
-                  </button>
-                </div>
-              {% endif %}
-            {% endif %}
-          {% endfor %}
-          <div class="col-3 extremity p-0 d-none d-xxl-flex">
-            <img class="carousel_img w-100" src="{{ asset('img/ODONYMES _Image_Vignette_Page accueil meltingphot_je Filme mon futur métier.png')}}" alt="...">
-          </div>
-        </div>
-      </div>
-    {% endfor %}
-    <div class="carousel-indicators">
-      {% for j in 0..(videos|length / 2 - 1) %}
-        <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="{{ j }}" {% if j == 0 %} class="active" aria-current="true" {% endif %} aria-label="Slide {{ j+1 }}"></button>
-      {% endfor %}
-    </div>
-    <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="prev">
-      <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-      <span class="visually-hidden">Previous</span>
-    </button>
-    <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="next">
-      <span class="carousel-control-next-icon" aria-hidden="true"></span>
-      <span class="visually-hidden">Next</span>
-    </button>
-  </div>
-</div>
+	<div class="d-flex flex-wrap align-items-center justify-content-center ">
+		{# quand je clique sur le filme mon futur metier affiche les videos correspondantes a cette categorie  #}
+		<a href="{{ path('app_actions', { 'order': 'test', 'year': 'null', 'category': 'Je_Filme_Mon_Futur_Métier' }) }}" class="btn col-6 col-sm-2" id="video-link">Je Filme mon futur métier</a>
+		<button class="btn col-6 col-sm-2">Odonymes</button>
+		<button class="btn col-6 col-sm-2 ">Les Critiques pétillantes</button>
+		<button class="btn col-6 col-sm-2 ">Parole Public</button>
+		<button class="btn col-6 col-sm-2 ">Les Vitrines des Cévennes</button>
+	</div>
+
+	<div id="carouselExampleIndicators" class="carousel-actions slide">
+		<div class="carousel-inner">
+			{% for i in 0..(videos|length / 2 - 1) %}
+			<div class="carousel-item {% if i == 0 %}active{% endif %}" style="height: 700px;">
+				<div class="d-flex w-100 justify-content-center">
+					<div class="col-3 extremity p-0 d-none d-xxl-flex">
+						<img class="carousel_img w-100" src="{{ asset('img/ODONYMES _Image_Vignette_Page accueil meltingphot_je Filme mon futur métier.png')}}" alt="...">
+					</div>
+					{% for j in 0..1 %}
+						{% set videoIndex = i * 2 + j %}
+						{% if videoIndex < videos|length %}
+						{% if loop.index == 1 %}
+							<div class="bloc-img-btn col-4 col-sm-6 col-md-6 d-flex p-0 img-1">
+							<img class="carousel_img w-100" src="{{ asset('img/Je filme mon futur métier Meltingphot_Image_Vignette_Page accueil meltingphot_je Filme mon futur métier.png')}}" alt="...">
+							<button type="button" class="btn btn-primary videos-btn deleted-video btn-1" data-bs-toggle="modal" data-bs-target="#videoModal{{ videoIndex + 1}}">
+								<i class="bi bi-play-circle"></i>
+								En voir plus ...
+							</button>
+							</div>
+						{% elseif loop.index == 2 %}
+							<div class="bloc-img-btn col-4 col-sm-6 col-md-6 d-flex p-0 img-2">
+							<img class="carousel_img w-100" src="{{ asset('img/Je filme mon futur métier Meltingphot_Image_Vignette_Page accueil meltingphot_je Filme mon futur métier.png')}}" alt="...">
+							<button type="button" class="btn btn-primary videos-btn deleted-video btn-2" data-bs-toggle="modal" data-bs-target="#videoModal{{ videoIndex + 1}}">
+								<i class="bi bi-play-circle"></i>
+								En voir plus ...
+							</button>
+							</div>
+						{% endif %}
+						{% endif %}
+					{% endfor %}
+					<div class="col-3 extremity p-0 d-none d-xxl-flex">
+						<img class="carousel_img w-100" src="{{ asset('img/ODONYMES _Image_Vignette_Page accueil meltingphot_je Filme mon futur métier.png')}}" alt="...">
+					</div>
+				</div>
+			</div>
+			{% endfor %}
+				<div class="carousel-indicators">
+					{% for j in 0..(videos|length / 2 - 1) %}
+						<button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="{{ j }}" {% if j == 0 %} class="active" aria-current="true" {% endif %} aria-label="Slide {{ j+1 }}"></button>
+					{% endfor %}
+				</div>
+
+				<button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="prev">
+				<span class="carousel-control-prev-icon" aria-hidden="true"></span>
+				<span class="visually-hidden">Previous</span>
+				</button>
+				
+				<button class="carousel-control-next" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="next">
+				<span class="carousel-control-next-icon" aria-hidden="true"></span>
+				<span class="visually-hidden">Next</span>
+				</button>
+			
+		</div>
+	</div>
 
 
 {% for video in videos %}
