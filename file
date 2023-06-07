@@ -1,0 +1,16 @@
+document.addEventListener('DOMContentLoaded', function() {
+  var flagImageFr = document.getElementById("flag-imagefr");
+  var flagImageUk = document.getElementById("flag-imageuk");
+  var locale = "{{ app.request.attributes.get('_locale') }}";
+  
+  if (locale === 'fr') {
+    flagImageUk.style.display = "none";
+  } else if (locale === 'en') {
+    flagImageFr.style.display = "none";
+  }
+});
+
+<a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+<img id="flag-imagefr" src="{{ asset('img/drapeau.png') }}" alt="">
+<img id="flag-imageuk" src="{{ asset('img/unitedkingdom.png') }}" alt="">
+</a>
