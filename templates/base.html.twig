@@ -38,6 +38,37 @@
 		<script src="https://kit.fontawesome.com/b82551dea9.js" crossorigin="anonymous"></script>
 		<script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha384-MYlYNqEg0lVW1UxP29iWJeZM2K/G1NnIZdNtT3DuyCf7RJaOfbTilGhTAcPZ4yK6" crossorigin="anonymous"></script>
 		<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-ACs9bww+NR5TUVY3qjpa4im08UzQvbiLK/xlPkAz7I2cX5xSpdYo7QMaSxcJfzNQ" crossorigin="anonymous"></script>
+			
+		<script>
+		document.addEventListener('DOMContentLoaded', function() {
+		var flagImageFr = document.getElementById("flag-imagefr");
+		var flagImageUk = document.getElementById("flag-imageuk");
+		var locale = "{{ app.request.attributes.get('_locale') }}";
+		
+		if (locale === 'fr') {
+			flagImageUk.style.display = "none";
+		} else if (locale === 'en') {
+			flagImageFr.style.display = "none";
+		}
+		});
+		</script>
+		<script src="js/modernizr.custom.js"></script>
 
+		<script>document.addEventListener("DOMContentLoaded", function () {
+		var carouselTemoignages = document.querySelector("#carouselTemoignages");
+
+		carouselTemoignages.addEventListener("slide.bs.carousel", function () {
+			var activeItem = this.querySelector(".carousel-item.active");
+
+			activeItem.classList.add("fade-out");
+		});
+
+		carouselTemoignages.addEventListener("slid.bs.carousel", function () {
+			var activeItem = this.querySelector(".carousel-item.active");
+
+			activeItem.classList.remove("fade-out");
+		});
+		});
+		</script>
 	{% endblock %}
 </html>
