@@ -3,6 +3,7 @@
 namespace App\Form;
 
 use App\Entity\User;
+use App\Form\EyeWrapperType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\Validator\Constraints\Email;
@@ -61,7 +62,7 @@ class RegistrationFormType extends AbstractType
                 ],
                 'constraints' => [
                     new IsTrue([
-                        'message' => "Vous devez accepeter les termes d'utilisation.",
+                        'message' => $this->translator->trans('Please check this box.', [], 'register'),
                     ]),
                 ],
             ])
@@ -78,12 +79,11 @@ class RegistrationFormType extends AbstractType
                     ]),
                     new Length([
                         'min' => 6,
-                        'minMessage' => 'Your password should be at least {{ limit }} characters',
+                        'minMessage' => $this->translator->trans('Your password should be at least {{ limit }} characters', ['{{ limit }}' => 6], 'register'),
                         'max' => 4096,
                     ]),
                 ],
             ]);
-            
     }
 
     public function configureOptions(OptionsResolver $resolver): void

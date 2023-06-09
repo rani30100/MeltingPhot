@@ -66,6 +66,14 @@ label[for="contact_piege"] {
 .grecaptcha-badge {
     visibility: hidden;
 }
+
+.employee3{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+}
+
 @media (max-width: 1000px) {
 	.bloc-adress {
         flex-direction: column;

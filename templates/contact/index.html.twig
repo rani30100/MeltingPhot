@@ -2,6 +2,7 @@
 
 {% block title %}MeltingPhot !
 {% endblock %}
+
 {% block javascripts %}
 	{{ parent() }}
 
@@ -13,50 +14,142 @@ searchIcon.addEventListener('click', () => {
 searchForm.classList.toggle('d-none');
 searchIcon.classList.toggle('d-none')
 });
-	</script>
+	
+</script>
+
+
+	
+<script>
+  const directeur = document.querySelector("#directeur");
+  const employee1 = document.querySelector("#employee1");
+  const employee2 = document.querySelector("#employee2");
+  const employee3 = document.querySelector("#employee3");
+  const employeeImage1 = document.querySelector("#employeeImage1");
+  const employeeImage2 = document.querySelector("#employeeImage2");
+  const employeeImage3 = document.querySelector("#employeeImage3");
+  const employeeImage4 = document.querySelector("#employeeImage4");
+
+  let employee1Info = {
+    image: "{{asset('img/Contact/Abdeslam.png')}}",
+    quote: "Citation du directeur",
+    name: "Abdeslam Chaoui",
+    job: "Direction Artistique",
+    socialMedia: '<i class="fab fa-facebook-f team-social"></i><i class="fab fa-instagram team-social"></i>',
+  };
+
+  let employee2Info = {
+    image: "{{asset('img/Contact/employe1.jpeg')}}",
+    quote: "Citation de l'employé 1",
+    name: "Sabrina Fiandaca",
+    job: "Directrice de la Rédaction",
+    socialMedia: '<i class="fab fa-facebook-f team-social"></i><i class="fab fa-instagram team-social"></i>',
+  };
+
+  let employee3Info = {
+    image: "{{asset('img/Contact/employe2.jpeg')}}",
+    quote: "Citation de l'employé 2",
+    name: "Yann Riché",
+    job: "Coaching Photo",
+    socialMedia: '<i class="fab fa-facebook-f team-social"></i><i class="fab fa-instagram team-social"></i>',
+  };
+
+  // Par défaut, celle du directeur
+  document.addEventListener("DOMContentLoaded", function() {
+    updateEmployeeImageAndQuote(
+      employee1Info.image,
+      employee1Info.quote,
+      employee1Info.name,
+      employee1Info.job,
+      employee1Info.socialMedia
+    );
+  });
+
+  // Écouter l'événement de clic sur les employés
+  directeur.addEventListener("click", function() {
+    swapEmployeeInfo(employee1Info, employee2Info);
+  });
+
+  employee1.addEventListener("click", function() {
+    swapEmployeeInfo(employee2Info, employee1Info);
+  });
+
+  employee2.addEventListener("click", function() {
+    swapEmployeeInfo(employee3Info, employee2Info);
+  });
+
+  employee3.addEventListener("click", function() {
+    swapEmployeeInfo(employee1Info, employee3Info);
+  });
+
+  // Fonction pour mettre à jour l'image et la citation
+  function updateEmployeeImageAndQuote(imageSrc, quote, name, job, socialMedia) {
+    employeeImage1.src = imageSrc;
+    document.querySelector("#employeeQuote").textContent = quote;
+    document.querySelector(".employeeName").textContent = name;
+    document.querySelector(".employeeJob").textContent = job;
+    // document.querySelector("#employeeSocialMedia1").innerHTML = socialMedia;
+  }
+
+  // Fonction pour échanger les informations entre les employés
+  function swapEmployeeInfo(employeeInfo1, employeeInfo2) {
+    let tempImage = employeeInfo1.image;
+    let tempQuote = employeeInfo1.quote;
+    let tempName = employeeInfo1.name;
+    let tempJob = employeeInfo1.job;
+    // let tempSocialMedia = employeeInfo1.socialMedia;
+
+    employeeInfo1.image = employeeInfo2.image;
+    employeeInfo1.quote = employeeInfo2.quote;
+    employeeInfo1.name = employeeInfo2.name;
+    employeeInfo1.job = employeeInfo2.job;
+    employeeInfo1.socialMedia = employeeInfo2.socialMedia;
+
+    employeeInfo2.image = tempImage;
+    employeeInfo2.quote = tempQuote;
+    employeeInfo2.name = tempName;
+    employeeInfo2.job = tempJob;
+    employeeInfo2.socialMedia = tempSocialMedia;
+
+    updateEmployeeImageAndQuote(
+      employeeInfo1.image,
+      employeeInfo1.quote,
+      employeeInfo1.name,
+      employeeInfo1.job,
+      employeeInfo1.socialMedia
+    );
+  }
+</script>
 {% endblock %}
 
 {% block body %}
 
-
-	<nav class="navbar navbar-expand-lg bg-body-tertiary">
-		<div class="d-flex justy-content-center w-100" id="">
+{# Navbar #}
+<section class="nav-main">
+	<nav class="navbar navbar-expand-lg bg-body-tertiary" id="navbar-hover">
+		<div class="d-flex justy-content-center w-100">
 			<ul class="navbar-nav me-auto mb-2 mb-lg-0 w-100 d-flex justify-content-center align-items-center">
 				<li>
-					<a href="/"></a>
-					<img class="logo me-2" src="{{ asset('img/logo.png')}}" width alt="">
+					<a href="/">
+						<img class="logo me-2" src="{{ asset('img/logo.png')}}" width alt=""></img>
 				</li>
-			</img>
-
+			</a>
 		</li>
-
 
 		<li class="nav-item me-2 meltingphot">
-			<a class="nav-link active" aria-current="page" href="/">MELTINGPHOT</a>
+			<a class="nav-link" aria-current="page" href="/">MELTINGPHOT</a>
 		</li>
 		<li class="nav-item me-2">
-			<a class="nav-link" href="/actions">ACTIONS</a>
+			<a class="nav-link" href="{{ path("app_actions")}}">ACTIONS</a>
 		</li>
-		{# <li class="nav-item dropdown me-2">
-						<a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-							POUR QUI ?
-						</a>
-					</li> #}
-		{# <li class="nav-item me-2">
-						<a class="nav-link" href="#">PARTENAIRES</a>
-					</li>
-		
-					<li class="nav-item me-2">
-						<a class="nav-link" href="#">NOUS SOUTENIR</a>
-					</li> #}
+
 
 		<li class="nav-item me-2">
-			<a class="nav-link" href="/contact">CONTACT</a>
+			<a class="nav-link" href="{{path('app_contact')}}">CONTACT</a>
 		</li>
 
 		{% if not app.user %}
 			<li class="nav-item me-2">
-				<a class="nav-link" href="/login">
+				<a class="nav-link" href="{{path('app_login')}}">
 					<i class="fa-solid fa-user"></i>
 				</a>
 
@@ -70,7 +163,7 @@ searchIcon.classList.toggle('d-none')
 
 		{% if app.user %}
 			<li class="nav-item me-2">
-				<a class="nav-link" href="/logout">Se déconnecter</a>
+				<a class="nav-link" href="{{path('app_logout')}}">Se déconnecter</a>
 			</li>
 		{% endif %}
 		<div class="d-flex align-items-center">
@@ -83,43 +176,125 @@ searchIcon.classList.toggle('d-none')
 			</form>
 		</div>
 		{% if app.user %}
-
-
-			<p class="text-end btn btn-warning mt-3">Bienvenue,
-				{{ app.user.username }}
-				!</p>
-
-
+			<p class="text-end btn btn-warning mt-3">Bienvenue,{{ app.user.username }}!</p>
 		{% endif %}
+
 		{% if not app.user %}
 			<li class="nav-item me-2">
-				<a class="nav-link" href="/new-account">S'inscrire</a>
+				<a class="nav-link" href="{{path('app_register')}}">S'inscrire</a>
 			</li>
 		{% endif %}
-
-
-		{# <form class="d-flex nav-items me-2 form" role="search">
-						<input class="form-control me-2 search" type="search" placeholder="Ma recherche..." aria-label="Search">
-						<button class="btn btn-outline-success search-btn" type="submit">Rechercher</button>
-					</form>
-		
-					<li class="nav-item ">
-						<a id="language-link" class="p-2" href="/en">
-							<img class="flag" src="{{ asset('img/eng.png') }}">
+	</nav>
+	   {# <nav class="navbar navbar-expand-lg navbar-light">
+			<div class="container-fluid">
+				<ul class="navbar-nav">
+					<!-- Icon dropdown -->
+					<li class="nav-item dropdown">
+						<a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+							<img id="flag-image" src="{{ asset('img/drapeau.png') }}" alt="">
 						</a>
-					</li> 
-		
-					<li class="nav-item ms-2">
-						<a id="language-link" class="p-2" href="/fr">
-							<img id="flag" src="{{ asset('img/drapeau.png') }}">
-						</a>
-					</li> #}
-	</ul>
+						<ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+							<li id="language-item">
+								<a class="dropdown-item d-flex" id="fr-flag" href="{{ path(app.request.attributes.get('_route'), {'_locale': 'fr'}) }}" onclick="changeLanguage('fr')">
+									<img src="{{ asset('img/drapeau.png') }}" alt="" style="margin-right: 1rem;">Français
+								</a>
+							</li>
+							<li>
+								<hr class="dropdown-divider"/>
+							</li>
+							<li>
+								<a class="dropdown-item d-flex" id="uk-flag" href="{{ path(app.request.attributes.get('_route'), {'_locale': 'en'}) }}" onclick="changeLanguage('en')">
+									<img src="{{ asset('img/unitedkingdom.png') }}" alt="" style="margin-right: 1rem;">English
+								</a>
+							</li>
+						</ul>
+					</li>
+				</ul>
+			</div>
+		</nav> #}
+	
+</section>
 
-</div></nav><body>
 
 
-<iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2863.7722805166513!2d4.101080076874332!3d44.12931897108358!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x12b4425109d4d983%3A0x365da74f82b38f13!2s15%20Rte%20de%20Bagnols%2C%2030100%20Al%C3%A8s!5e0!3m2!1sfr!2sfr!4v1681739820341!5m2!1sfr!2sfr" width="100%" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+<section class="team">
+	<article style="  align-items: center; display: flex;flex-direction: column;margin-bottom:8rem;">
+		<h2 class="text-center team-title">
+			<span style="font-weight: lighter;">Notre</span>
+			Equipe
+		</h2>
+		<p style="max-width: 550px;text-align: center;margin: 1rem;">Lorem ipsum dolor sit amet consectetur adipisicing elit. 
+															Autem soluta labore veniam rem maiores eos libero eum qui,
+															est dolorum. Placeat, praesentium ut?</p>
+	</article>
+
+
+	<article class="mt-5 shadow-lg team-profile bg-light">
+  <div id="directeur" class="col-3 employee3" style="margin-right: 3rem;margin-left: 3rem;align-self:center;">
+    <img id="employeeImage1" class="employeeImage directeur" src="{{asset("img/Contact/Abdeslam.png")}}">
+    <p id="employeeName1" class="employeeName">Abdeslam Chaoui</p>
+    <div class="d-flex flex-column">
+      <p id="employeeJob1" class="métier employeeJob">Direction Artistique</p>
+      <div id="employeeSocialMedia1" class="d-flex flex-row" style="margin-top: -1rem;margin-bottom: 1rem;justify-content: center;">
+        <i class="fab fa-facebook-f team-social"></i>
+        <i class="fab fa-instagram team-social"></i>
+      </div>
+    </div>
+  </div>
+
+  <div>
+    <div id="employeeQuote" class="mt-5"></div>
+
+    <div class="mt-5 d-flex justify-content-end">
+      <i class="fab fa-facebook-f team-social"></i>
+      <i class="fab fa-linkedin team-social"></i>
+      <i class="fab fa-youtube team-social"></i>
+      <i class="fa-brands fa-twitter team-social"></i>
+    </div>
+
+    <div class="d-flex justify-content-center">
+      <div id="employee1" class="employee3">
+        <img id="employeeImage2" class="w-100 employeeImage employee1" src="{{asset("img/Contact/employe1.jpeg")}}">
+        <p id="employeeName2" class="employeeName">Sabrina Fiandaca</p>
+        <div class="d-flex flex-column">
+          <p id="employeeJob2" class="métier employeeJob">Directrice de la Rédaction</p>
+          <div id="employeeSocialMedia2" class="d-flex flex-row" style="margin-top: -1rem;margin-bottom: 1rem;justify-content: center;">
+            <i class="fab fa-facebook-f team-social"></i>
+            <i class="fab fa-instagram team-social"></i>
+          </div>
+        </div>
+      </div>
+
+      <div id="employee2" class="ms-3 employee3">
+        <img id="employeeImage3" class="w-100 employeeImage employee2" src="{{asset("img/Contact/employe2.jpeg")}}">
+        <p id="employeeName3" class="employeeName">Yann Riché</p>
+        <div class="d-flex flex-column">
+          <p id="employeeJob3" class="métier employeeJob">Coaching Photo</p>
+          <div id="employeeSocialMedia3" class="d-flex flex-row" style="margin-top: -1rem;margin-bottom: 1rem;justify-content: center;">
+            <i class="fab fa-facebook-f team-social"></i>
+            <i class="fab fa-instagram team-social"></i>
+          </div>
+        </div>
+      </div>
+
+      <div id="employee3" class="ms-3 employee3">
+        <img id="employeeImage4" class="w-100 employeeImage" src="{{asset("img/Contact/employe3.jpeg")}}">
+        <p id="employeeName4" class="employeeName">Yamina & Brahim</p>
+        <div class="d-flex flex-column">
+          <p id="employeeJob4" class="métier employeeJob">Photographe Pro</p>
+          <div id="employeeSocialMedia4" class="d-flex flex-row" style="margin-top: -1rem;margin-bottom: 1rem;justify-content: center;">
+            <i class="fab fa-facebook-f team-social "></i>
+            <i class="fab fa-instagram team-social"></i>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</article>
+
+
+</section>
+
 <section>
 	{% set successMessages = app.flashes('success') %}
 	{% if successMessages is not empty %}
@@ -189,6 +364,9 @@ searchIcon.classList.toggle('d-none')
 	{{ form_label(form.piege, null, {'label_attr': {'style': 'display:none;'}}) }}
 
 	{{ form_end(form) }}
+
+	<iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2863.7722805166513!2d4.101080076874332!3d44.12931897108358!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x12b4425109d4d983%3A0x365da74f82b38f13!2s15%20Rte%20de%20Bagnols%2C%2030100%20Al%C3%A8s!5e0!3m2!1sfr!2sfr!4v1681739820341!5m2!1sfr!2sfr" width="100%" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+
 
 
 	<!-- Footer -->

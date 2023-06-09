@@ -14,6 +14,10 @@
   'password' : "Mot de passe"
   'email' : "Adresse email"
 
+'Your password should be at least {{ limit }} characters' : 'Le mot de passe doit contenir au minimum {{ limit }} caractères'
 'terms' : "Veuillez accepter les termes d'utilisation. Pour en savoir plus cliquez ici."
 'question':  "Vous avez déjà un compte ?"
 "connect" : "Se connecter ici."
+
+'error' :
+  'message': 'Le mot de passe doit contenir au minimum {{ limit }} caractères'

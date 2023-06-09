@@ -24,8 +24,9 @@ searchIcon.classList.toggle('d-none')
 
 	{# Navbar #}
 
-	<nav class="navbar navbar-expand-lg bg-body-tertiary">
-		<div class="d-flex justy-content-center w-100" id="">
+<section class="nav-main">
+	<nav class="navbar navbar-expand-lg bg-body-tertiary" id="navbar-hover">
+		<div class="d-flex justy-content-center w-100">
 			<ul class="navbar-nav me-auto mb-2 mb-lg-0 w-100 d-flex justify-content-center align-items-center">
 				<li>
 					<a href="/">
@@ -34,33 +35,21 @@ searchIcon.classList.toggle('d-none')
 			</a>
 		</li>
 
-
 		<li class="nav-item me-2 meltingphot">
-			<a class="nav-link active" aria-current="page" href="/">MELTINGPHOT</a>
+			<a class="nav-link" aria-current="page" href="/">MELTINGPHOT</a>
 		</li>
 		<li class="nav-item me-2">
-			<a class="nav-link" href="/actions">ACTIONS</a>
+			<a class="nav-link" href="{{ path("app_actions")}}">ACTIONS</a>
 		</li>
-		{# <li class="nav-item dropdown me-2">
-							<a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-								POUR QUI ?
-							</a>
-						</li> #}
-		{# <li class="nav-item me-2">
-							<a class="nav-link" href="#">PARTENAIRES</a>
-						</li>
-		
-						<li class="nav-item me-2">
-							<a class="nav-link" href="#">NOUS SOUTENIR</a>
-						</li> #}
+
 
 		<li class="nav-item me-2">
-			<a class="nav-link" href="/contact">CONTACT</a>
+			<a class="nav-link" href="{{path('app_contact')}}">CONTACT</a>
 		</li>
 
 		{% if not app.user %}
 			<li class="nav-item me-2">
-				<a class="nav-link" href="/login">
+				<a class="nav-link" href="{{path('app_login')}}">
 					<i class="fa-solid fa-user"></i>
 				</a>
 
@@ -74,7 +63,7 @@ searchIcon.classList.toggle('d-none')
 
 		{% if app.user %}
 			<li class="nav-item me-2">
-				<a class="nav-link" href="/logout">Se déconnecter</a>
+				<a class="nav-link" href="{{path('app_logout')}}">Se déconnecter</a>
 			</li>
 		{% endif %}
 		<div class="d-flex align-items-center">
@@ -87,36 +76,49 @@ searchIcon.classList.toggle('d-none')
 			</form>
 		</div>
 		{% if app.user %}
-			<p class="text-end btn btn-warning mt-3">Bienvenue,
-				{{ app.user.username }}
-				!</p>
+			<p class="text-end btn btn-warning mt-3">Bienvenue,{{ app.user.username }}!</p>
 		{% endif %}
 
 		{% if not app.user %}
 			<li class="nav-item me-2">
-				<a class="nav-link" href="/new-account">S'inscrire</a>
+				<a class="nav-link" href="{{path('app_register')}}">S'inscrire</a>
 			</li>
 		{% endif %}
+	</nav>
+	   {# <nav class="navbar navbar-expand-lg navbar-light">
+			<div class="container-fluid">
+				<ul class="navbar-nav">
+					<!-- Icon dropdown -->
+					<li class="nav-item dropdown">
+						<a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+							<img id="flag-image" src="{{ asset('img/drapeau.png') }}" alt="">
+						</a>
+						<ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+							<li id="language-item">
+								<a class="dropdown-item d-flex" id="fr-flag" href="{{ path(app.request.attributes.get('_route'), {'_locale': 'fr'}) }}" onclick="changeLanguage('fr')">
+									<img src="{{ asset('img/drapeau.png') }}" alt="" style="margin-right: 1rem;">Français
+								</a>
+							</li>
+							<li>
+								<hr class="dropdown-divider"/>
+							</li>
+							<li>
+								<a class="dropdown-item d-flex" id="uk-flag" href="{{ path(app.request.attributes.get('_route'), {'_locale': 'en'}) }}" onclick="changeLanguage('en')">
+									<img src="{{ asset('img/unitedkingdom.png') }}" alt="" style="margin-right: 1rem;">English
+								</a>
+							</li>
+						</ul>
+					</li>
+				</ul>
+			</div>
+		</nav> #}
+	
+</section>
 
 
-		{# <form class="d-flex nav-items me-2 form" role="search">
-							<input class="form-control me-2 search" type="search" placeholder="Ma recherche..." aria-label="Search">
-							<button class="btn btn-outline-success search-btn" type="submit">Rechercher</button>
-						</form>
-		
-						<li class="nav-item ">
-							<a id="language-link" class="p-2" href="/en">
-								<img class="flag" src="{{ asset('img/eng.png') }}">
-							</a>
-						</li> 
-		
-						<li class="nav-item ms-2">
-							<a id="language-link" class="p-2" href="/fr">
-								<img id="flag" src="{{ asset('img/drapeau.png') }}">
-							</a>
-						</li> #}
-	</ul>
-</div></nav><section class="actions-bandeau w-100 bg-secondary-subtle h-400 d-flex flex-column justify-content-center align-items-center p-1">
+
+
+<section class="actions-bandeau w-100 bg-secondary-subtle h-400 d-flex flex-column justify-content-center align-items-center p-1">
 <article class="actions-bloc">
 	<div class="container d-lg-flex flex-lg-row justify-content-lg-center align-items-lg-center">
 		<div class="col-lg-4">
@@ -131,72 +133,77 @@ searchIcon.classList.toggle('d-none')
 		</div>
 		<p class="col-lg-8 mt-5 m-lg-0 text-justify">Lorem, ipsum dolor sit amet consectetur adipisicing elit. Ipsam voluptate quidem ullam beatae vero excepturi fuga deserunt aperiam. Eius repudiandae laborum accusantium voluptatem illum odio impedit delectus expedita beatae laboriosam!</p>
 	</div>
-</article></section><div class="d-flex flex-column align-items-center justify-content-center bloc-filtres carousel-container">
-<h2 for="my-dropdown" class="text-center fw-light">NOS
-	<span class="fw-bold">ACTIONS D'EDUCATION
-	</span>PAR L'IMAGE</h2>
+</article>
+</section>
 
-<div
-	class="d-flex flex-wrap align-items-center justify-content-center ">
-	{# quand je clique sur le filme mon futur metier affiche les videos correspondantes a cette categorie  #}
-	<a href="{{ path('app_actions', { 'order': 'test', 'year': 'null', 'category': 'Je_Filme_Mon_Futur_Métier' }) }}" class="btn col-6 col-sm-2" id="video-link">Je Filme mon futur métier</a>
-	<button class="btn col-6 col-sm-2">Odonymes</button>
-	<button class="btn col-6 col-sm-2 ">Les Critiques pétillantes</button>
-	<button class="btn col-6 col-sm-2 ">Parole Public</button>
-	<button class="btn col-6 col-sm-2 ">Les Vitrines des Cévennes</button>
-</div>
+<div class="d-flex flex-column align-items-center justify-content-center bloc-filtres carousel-container">
+	<h2 for="my-dropdown" class="text-center fw-light">NOS
+		<span class="fw-bold">ACTIONS D'EDUCATION
+		</span>PAR L'IMAGE</h2>
 
-<div id="carouselExampleIndicators" class="carousel-actions slide">
-  <div class="carousel-inner">
-    {% for i in 0..(videos|length / 2 - 1) %}
-      <div class="carousel-item {% if i == 0 %}active{% endif %}" style="height: 700px;">
-        <div class="d-flex w-100 justify-content-center">
-          <div class="col-3 extremity p-0 d-none d-xxl-flex">
-            <img class="carousel_img w-100" src="{{ asset('img/ODONYMES _Image_Vignette_Page accueil meltingphot_je Filme mon futur métier.png')}}" alt="...">
-          </div>
-          {% for j in 0..1 %}
-            {% set videoIndex = i * 2 + j %}
-            {% if videoIndex < videos|length %}
-              {% if loop.index == 1 %}
-                <div class="bloc-img-btn col-4 col-sm-6 col-md-6 d-flex p-0 img-1">
-                  <img class="carousel_img w-100" src="{{ asset('img/Je filme mon futur métier Meltingphot_Image_Vignette_Page accueil meltingphot_je Filme mon futur métier.png')}}" alt="...">
-                  <button type="button" class="btn btn-primary videos-btn deleted-video btn-1" data-bs-toggle="modal" data-bs-target="#videoModal{{ videoIndex + 1}}">
-                    <i class="bi bi-play-circle"></i>
-                    En voir plus ...
-                  </button>
-                </div>
-              {% elseif loop.index == 2 %}
-                <div class="bloc-img-btn col-4 col-sm-6 col-md-6 d-flex p-0 img-2">
-                  <img class="carousel_img w-100" src="{{ asset('img/Je filme mon futur métier Meltingphot_Image_Vignette_Page accueil meltingphot_je Filme mon futur métier.png')}}" alt="...">
-                  <button type="button" class="btn btn-primary videos-btn deleted-video btn-2" data-bs-toggle="modal" data-bs-target="#videoModal{{ videoIndex + 1}}">
-                    <i class="bi bi-play-circle"></i>
-                    En voir plus ...
-                  </button>
-                </div>
-              {% endif %}
-            {% endif %}
-          {% endfor %}
-          <div class="col-3 extremity p-0 d-none d-xxl-flex">
-            <img class="carousel_img w-100" src="{{ asset('img/ODONYMES _Image_Vignette_Page accueil meltingphot_je Filme mon futur métier.png')}}" alt="...">
-          </div>
-        </div>
-      </div>
-    {% endfor %}
-    <div class="carousel-indicators">
-      {% for j in 0..(videos|length / 2 - 1) %}
-        <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="{{ j }}" {% if j == 0 %} class="active" aria-current="true" {% endif %} aria-label="Slide {{ j+1 }}"></button>
-      {% endfor %}
-    </div>
-    <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="prev">
-      <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-      <span class="visually-hidden">Previous</span>
-    </button>
-    <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="next">
-      <span class="carousel-control-next-icon" aria-hidden="true"></span>
-      <span class="visually-hidden">Next</span>
-    </button>
-  </div>
-</div>
+	<div class="d-flex flex-wrap align-items-center justify-content-center ">
+		{# quand je clique sur le filme mon futur metier affiche les videos correspondantes a cette categorie  #}
+		<a href="{{ path('app_actions', { 'order': 'test', 'year': 'null', 'category': 'Je_Filme_Mon_Futur_Métier' }) }}" class="btn col-6 col-sm-2" id="video-link">Je Filme mon futur métier</a>
+		<button class="btn col-6 col-sm-2">Odonymes</button>
+		<button class="btn col-6 col-sm-2 ">Les Critiques pétillantes</button>
+		<button class="btn col-6 col-sm-2 ">Parole Public</button>
+		<button class="btn col-6 col-sm-2 ">Les Vitrines des Cévennes</button>
+	</div>
+
+	<div id="carouselExampleIndicators" class="carousel-actions slide">
+		<div class="carousel-inner">
+			{% for i in 0..(videos|length / 2 - 1) %}
+			<div class="carousel-item {% if i == 0 %}active{% endif %}" style="height: 700px;">
+				<div class="d-flex w-100 justify-content-center">
+					<div class="col-3 extremity p-0 d-none d-xxl-flex">
+						<img class="carousel_img w-100" src="{{ asset('img/ODONYMES _Image_Vignette_Page accueil meltingphot_je Filme mon futur métier.png')}}" alt="...">
+					</div>
+					{% for j in 0..1 %}
+						{% set videoIndex = i * 2 + j %}
+						{% if videoIndex < videos|length %}
+						{% if loop.index == 1 %}
+							<div class="bloc-img-btn col-4 col-sm-6 col-md-6 d-flex p-0 img-1">
+							<img class="carousel_img w-100" src="{{ asset('img/Je filme mon futur métier Meltingphot_Image_Vignette_Page accueil meltingphot_je Filme mon futur métier.png')}}" alt="...">
+							<button type="button" class="btn btn-primary videos-btn deleted-video btn-1" data-bs-toggle="modal" data-bs-target="#videoModal{{ videoIndex + 1}}">
+								<i class="bi bi-play-circle"></i>
+								En voir plus ...
+							</button>
+							</div>
+						{% elseif loop.index == 2 %}
+							<div class="bloc-img-btn col-4 col-sm-6 col-md-6 d-flex p-0 img-2">
+							<img class="carousel_img w-100" src="{{ asset('img/Je filme mon futur métier Meltingphot_Image_Vignette_Page accueil meltingphot_je Filme mon futur métier.png')}}" alt="...">
+							<button type="button" class="btn btn-primary videos-btn deleted-video btn-2" data-bs-toggle="modal" data-bs-target="#videoModal{{ videoIndex + 1}}">
+								<i class="bi bi-play-circle"></i>
+								En voir plus ...
+							</button>
+							</div>
+						{% endif %}
+						{% endif %}
+					{% endfor %}
+					<div class="col-3 extremity p-0 d-none d-xxl-flex">
+						<img class="carousel_img w-100" src="{{ asset('img/ODONYMES _Image_Vignette_Page accueil meltingphot_je Filme mon futur métier.png')}}" alt="...">
+					</div>
+				</div>
+			</div>
+			{% endfor %}
+				<div class="carousel-indicators">
+					{% for j in 0..(videos|length / 2 - 1) %}
+						<button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="{{ j }}" {% if j == 0 %} class="active" aria-current="true" {% endif %} aria-label="Slide {{ j+1 }}"></button>
+					{% endfor %}
+				</div>
+
+				<button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="prev">
+				<span class="carousel-control-prev-icon" aria-hidden="true"></span>
+				<span class="visually-hidden">Previous</span>
+				</button>
+				
+				<button class="carousel-control-next" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="next">
+				<span class="carousel-control-next-icon" aria-hidden="true"></span>
+				<span class="visually-hidden">Next</span>
+				</button>
+			
+		</div>
+	</div>
 
 
 {% for video in videos %}
