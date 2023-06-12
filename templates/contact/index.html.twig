@@ -204,8 +204,11 @@ searchIcon.classList.toggle('d-none')
       <div class="d-flex flex-column">
         <p id="employeeJob" class="métier employeeJob">Direction Artistique</p>
         <div id="employeeSocialMedia1" class="d-flex flex-row" style="margin-top: -1rem; margin-bottom: 1rem; justify-content: center;">
-          <i class="fab fa-facebook-f team-social"></i>
-          <i class="fab fa-instagram team-social"></i>
+         <a href="https://www.facebook.com/"target="_blank">
+			<i class="fab fa-facebook-f team-social btn"></i>
+		</a>
+
+          <i class="fab fa-instagram team-social btn"></i>
         </div>
       </div>
     
@@ -220,47 +223,71 @@ searchIcon.classList.toggle('d-none')
         <i class="fa-brands fa-twitter team-social"></i>
       </div>
 
-      <div class="d-flex justify-content-center">
-        <div id="employee1" class="employee3">
-          <img id="employeeImage1" class="w-100 employeeImage employee1" src="{{ asset('img/Contact/employe1.jpeg') }}"style="width:300px !important;height: 293px;object-fit: cover;">
-          <p id="employeeName1" class="employeeName">Sabrina Fiandaca</p>
-          <div class="d-flex flex-column">
-            <p id="employeeJob1" class="métier employeeJob">Directrice de la Rédaction</p>
-            <div id="employeeSocialMedia1" class="d-flex flex-row" style="margin-top: -1rem; margin-bottom: 1rem; justify-content: center;">
-              <i class="fab fa-facebook-f team-social"></i>
-              <i class="fab fa-instagram team-social"></i>
-            </div>
-          </div>
-          <div id="employeeQuote1" class="mt-5 d-none"></div>
-        </div>
+	<div id="employeeCarousel" class="carousel slide">
+		<div class="carousel-inner">
+			<div class="carousel-item active">
+			<div class="d-flex justify-content-center">
+				<div id="employee1" class="employee3">
+				<img id="employeeImage1" class="w-100 employeeImage employee1" src="{{ asset('img/Contact/employe1.jpeg') }}" style="width: 300px !important; height: 293px; object-fit: cover;">
+				<p id="employeeName1" class="employeeName">Sabrina Fiandaca</p>
+				<div class="d-flex flex-column">
+					<p id="employeeJob1" class="métier employeeJob">Directrice de la Rédaction</p>
+					<div id="employeeSocialMedia1" class="d-flex flex-row" style="margin-top: -1rem; margin-bottom: 1rem; justify-content: center;">
+					<a href="https://www.facebook.com/"target="_blank">
+						<i class="fab fa-facebook-f team-social btn"></i>
+					</a>
+						<i class="fab fa-instagram team-social btn"></i>
+					</div>
+				</div>
+				<div id="employeeQuote1" class="mt-5 d-none"></div>
+				</div>
+					<div class="d-flex justify-content-center">
+						<div id="employee2" class="ms-3 employee3">
+						<img id="employeeImage2" class="w-100 employeeImage employee2" src="{{ asset('img/Contact/employe2.jpeg') }}" style="width: 300px !important; height: 293px; object-fit: cover;">
+						<p id="employeeName2" class="employeeName">Yann Riché</p>
+						<div class="d-flex flex-column">
+							<p id="employeeJob2" class="métier employeeJob">Coaching Photo</p>
+							<div id="employeeSocialMedia2" class="d-flex flex-row" style="margin-top: -1rem; margin-bottom: 1rem; justify-content: center;">
+								<a href="https://www.facebook.com/"target="_blank">
+									<i class="fab fa-facebook-f team-social btn"></i>
+								</a>
+								<i class="fab fa-instagram team-social btn"></i>
+							</div>
+						</div>
+						<div id="employeeQuote2" class="mt-5 d-none"></div>
+						</div>
+					</div>
+					<div class="d-flex justify-content-center">
+						<div id="employee3" class="ms-3 employee3">
+						<img id="employeeImage3" class="w-100 employeeImage" src="{{ asset('img/Contact/employe3.jpeg') }}" style="width: 300px !important; height: 293px; object-fit: cover;">
+						<p id="employeeName3" class="employeeName">Yamina & Brahim</p>
+						<div class="d-flex flex-column">
+							<p id="employeeJob3" class="métier employeeJob">Photographe Pro</p>
+							<div id="employeeSocialMedia3" class="d-flex flex-row" style="margin-top: -1rem; margin-bottom: 1rem; justify-content: center;">
+								<a href="https://www.facebook.com/"target="_blank">
+									<i class="fab fa-facebook-f team-social btn"></i>
+								</a>
+								<i class="fab fa-instagram team-social btn"></i>
+							</div>
+						</div>
+						<div id="employeeQuote3" class="mt-5 d-none"></div>
+						</div>
+					</div>
+			</div>
+			</div>
+	
+			
 
-        <div id="employee2" class="ms-3 employee3">
-          <img id="employeeImage2" class="w-100 employeeImage employee2" src="{{ asset('img/Contact/employe2.jpeg') }}"style="width:300px !important;height: 293px;object-fit: cover;">
-          <p id="employeeName2" class="employeeName">Yann Riché</p>
-          <div class="d-flex flex-column">
-            <p id="employeeJob2" class="métier employeeJob">Coaching Photo</p>
-            <div id="employeeSocialMedia2" class="d-flex flex-row" style="margin-top: -1rem; margin-bottom: 1rem; justify-content: center;">
-              <i class="fab fa-facebook-f team-social"></i>
-              <i class="fab fa-instagram team-social"></i>
-            </div>
-          </div>
-          <div id="employeeQuote2" class="mt-5 d-none"></div>
-        </div>
+	<button class="carousel-control-prev" type="button" data-bs-target="#employeeCarousel" data-bs-slide="prev">
+		<span class="carousel-control-prev-icon" aria-hidden="true"></span>
+		<span class="visually-hidden">Previous</span>
+	</button>
+	<button class="carousel-control-next" type="button" data-bs-target="#employeeCarousel" data-bs-slide="next">
+		<span class="carousel-control-next-icon" aria-hidden="true"></span>
+		<span class="visually-hidden">Next</span>
+	</button>
+	</div>
 
-        <div id="employee3" class="ms-3 employee3">
-          <img id="employeeImage3" class="w-100 employeeImage" src="{{ asset('img/Contact/employe3.jpeg') }}"style="width:300px !important;height: 293px;object-fit: cover;">
-          <p id="employeeName3" class="employeeName">Yamina & Brahim</p>
-          <div class="d-flex flex-column">
-            <p id="employeeJob3" class="métier employeeJob">Photographe Pro</p>
-            <div id="employeeSocialMedia3" class="d-flex flex-row" style="margin-top: -1rem; margin-bottom: 1rem; justify-content: center;">
-              <i class="fab fa-facebook-f team-social"></i>
-              <i class="fab fa-instagram team-social"></i>
-            </div>
-          </div>
-          <div id="employeeQuote3" class="mt-5 d-none"></div>
-        </div>
-      </div>
-    </div>
   </article>
 </section>
 
