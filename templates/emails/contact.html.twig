@@ -1,9 +1,35 @@
 
-{# La forme du mail qui sera envoyé  #}
+
+{% block styles %}
+  <style>
+    .contact-message {
+      background-color: #f9f9f9;
+      border: 1px solid #ddd;
+      padding: 20px;
+      margin-bottom: 20px;
+    }
+
+    .contact-message h2 {
+      font-size: 24px;
+      margin-bottom: 10px;
+    }
+
+    .contact-message p {
+      margin-bottom: 5px;
+    }
+
+    .contact-message strong {
+      font-weight: bold;
+    }
+  </style>
+{% endblock %}
 
 {% block body %}
-    <p>Nom : {{ message.getNom() }}</p>
-    <p>Email : {{ message.getEmail() }}</p>
-    <p>Sujet : {{ message.getSubject() }}</p>
-    <p>Message : {{ message.getMessage() }}</p>
+  <div class="contact-message">
+    <h2>Message de la part de {{ message.getNom() }}</h2>
+    <p><strong>Nom :</strong> {{ message.getNom() }}</p>
+    <p><strong>Email :</strong> {{ message.getEmail() }}</p>
+    <p><strong>Sujet :</strong> {{ message.getSubject() }}</p>
+    <p><strong>Message :</strong> {{ message.getMessage() }}</p>
+  </div>
 {% endblock %}

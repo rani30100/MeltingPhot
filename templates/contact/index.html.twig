@@ -18,107 +18,6 @@ searchIcon.classList.toggle('d-none')
 </script>
 
 
-	
-<script>
-  const directeur = document.querySelector("#directeur");
-  const employee1 = document.querySelector("#employee1");
-  const employee2 = document.querySelector("#employee2");
-  const employee3 = document.querySelector("#employee3");
-  const employeeImage1 = document.querySelector("#employeeImage1");
-  const employeeImage2 = document.querySelector("#employeeImage2");
-  const employeeImage3 = document.querySelector("#employeeImage3");
-  const employeeImage4 = document.querySelector("#employeeImage4");
-
-  let employee1Info = {
-    image: "{{asset('img/Contact/Abdeslam.png')}}",
-    quote: "Citation du directeur",
-    name: "Abdeslam Chaoui",
-    job: "Direction Artistique",
-    socialMedia: '<i class="fab fa-facebook-f team-social"></i><i class="fab fa-instagram team-social"></i>',
-  };
-
-  let employee2Info = {
-    image: "{{asset('img/Contact/employe1.jpeg')}}",
-    quote: "Citation de l'employé 1",
-    name: "Sabrina Fiandaca",
-    job: "Directrice de la Rédaction",
-    socialMedia: '<i class="fab fa-facebook-f team-social"></i><i class="fab fa-instagram team-social"></i>',
-  };
-
-  let employee3Info = {
-    image: "{{asset('img/Contact/employe2.jpeg')}}",
-    quote: "Citation de l'employé 2",
-    name: "Yann Riché",
-    job: "Coaching Photo",
-    socialMedia: '<i class="fab fa-facebook-f team-social"></i><i class="fab fa-instagram team-social"></i>',
-  };
-
-  // Par défaut, celle du directeur
-  document.addEventListener("DOMContentLoaded", function() {
-    updateEmployeeImageAndQuote(
-      employee1Info.image,
-      employee1Info.quote,
-      employee1Info.name,
-      employee1Info.job,
-      employee1Info.socialMedia
-    );
-  });
-
-  // Écouter l'événement de clic sur les employés
-  directeur.addEventListener("click", function() {
-    swapEmployeeInfo(employee1Info, employee2Info);
-  });
-
-  employee1.addEventListener("click", function() {
-    swapEmployeeInfo(employee2Info, employee1Info);
-  });
-
-  employee2.addEventListener("click", function() {
-    swapEmployeeInfo(employee3Info, employee2Info);
-  });
-
-  employee3.addEventListener("click", function() {
-    swapEmployeeInfo(employee1Info, employee3Info);
-  });
-
-  // Fonction pour mettre à jour l'image et la citation
-  function updateEmployeeImageAndQuote(imageSrc, quote, name, job, socialMedia) {
-    employeeImage1.src = imageSrc;
-    document.querySelector("#employeeQuote").textContent = quote;
-    document.querySelector(".employeeName").textContent = name;
-    document.querySelector(".employeeJob").textContent = job;
-    // document.querySelector("#employeeSocialMedia1").innerHTML = socialMedia;
-  }
-
-  // Fonction pour échanger les informations entre les employés
-  function swapEmployeeInfo(employeeInfo1, employeeInfo2) {
-    let tempImage = employeeInfo1.image;
-    let tempQuote = employeeInfo1.quote;
-    let tempName = employeeInfo1.name;
-    let tempJob = employeeInfo1.job;
-    // let tempSocialMedia = employeeInfo1.socialMedia;
-
-    employeeInfo1.image = employeeInfo2.image;
-    employeeInfo1.quote = employeeInfo2.quote;
-    employeeInfo1.name = employeeInfo2.name;
-    employeeInfo1.job = employeeInfo2.job;
-    employeeInfo1.socialMedia = employeeInfo2.socialMedia;
-
-    employeeInfo2.image = tempImage;
-    employeeInfo2.quote = tempQuote;
-    employeeInfo2.name = tempName;
-    employeeInfo2.job = tempJob;
-    employeeInfo2.socialMedia = tempSocialMedia;
-
-    updateEmployeeImageAndQuote(
-      employeeInfo1.image,
-      employeeInfo1.quote,
-      employeeInfo1.name,
-      employeeInfo1.job,
-      employeeInfo1.socialMedia
-    );
-  }
-</script>
 {% endblock %}
 
 {% block body %}
@@ -288,94 +187,188 @@ searchIcon.classList.toggle('d-none')
 </div>
 
 
-
 <section class="team">
-	<article style="  align-items: center; display: flex;flex-direction: column;margin-bottom:8rem;">
-		<h2 class="text-center team-title">
-			<span style="font-weight: lighter;">Notre</span>
-			Equipe
-		</h2>
-		<p style="max-width: 550px;text-align: center;margin: 1rem;">Lorem ipsum dolor sit amet consectetur adipisicing elit. 
-															Autem soluta labore veniam rem maiores eos libero eum qui,
-															est dolorum. Placeat, praesentium ut?</p>
-	</article>
+  <article style="align-items: center; display: flex; flex-direction: column; margin-bottom: 8rem;">
+    <h2 class="text-center team-title">
+      <span style="font-weight: lighter;">Notre</span>
+      Equipe
+    </h2>
+    <p style="max-width: 550px; text-align: center; margin: 1rem;">Lorem ipsum dolor sit amet consectetur adipisicing elit. Autem soluta labore veniam rem maiores eos libero eum qui, est dolorum. Placeat, praesentium ut?</p>
+  </article>
 
+  <article class="mt-5 shadow-lg team-profile bg-light">
 
-	<article class="mt-5 shadow-lg team-profile bg-light">
-  <div id="directeur" class="col-3 employee3" style="margin-right: 3rem;margin-left: 3rem;align-self:center;">
-    <img id="employeeImage1" class="employeeImage directeur" src="{{asset("img/Contact/Abdeslam.png")}}">
-    <p id="employeeName1" class="employeeName">Abdeslam Chaoui</p>
-    <div class="d-flex flex-column">
-      <p id="employeeJob1" class="métier employeeJob">Direction Artistique</p>
-      <div id="employeeSocialMedia1" class="d-flex flex-row" style="margin-top: -1rem;margin-bottom: 1rem;justify-content: center;">
+    <div id="directeur" class="col-3 employee3" style="margin-right: 3rem; margin-left: 3rem; align-self: center;">
+      <img id="employeeImage" class="employeeImage directeur" src="{{ asset('img/Contact/Abdeslam.png') }}"style="width: 300px !important;height:400px;object-fit: contain;">
+      <p id="employeeName" class="employeeName">Abdeslam Chaoui</p>
+      <div class="d-flex flex-column">
+        <p id="employeeJob" class="métier employeeJob">Direction Artistique</p>
+        <div id="employeeSocialMedia1" class="d-flex flex-row" style="margin-top: -1rem; margin-bottom: 1rem; justify-content: center;">
+          <i class="fab fa-facebook-f team-social"></i>
+          <i class="fab fa-instagram team-social"></i>
+        </div>
+      </div>
+    
+    </div>
+
+    <div>
+  <div id="employeeQuote" class="mt-5"></div>   
+     <div class="mt-5 d-flex justify-content-end">
         <i class="fab fa-facebook-f team-social"></i>
-        <i class="fab fa-instagram team-social"></i>
+        <i class="fab fa-linkedin team-social"></i>
+        <i class="fab fa-youtube team-social"></i>
+        <i class="fa-brands fa-twitter team-social"></i>
       </div>
-    </div>
-  </div>
 
-  <div>
-    <div id="employeeQuote" class="mt-5"></div>
-
-    <div class="mt-5 d-flex justify-content-end">
-      <i class="fab fa-facebook-f team-social"></i>
-      <i class="fab fa-linkedin team-social"></i>
-      <i class="fab fa-youtube team-social"></i>
-      <i class="fa-brands fa-twitter team-social"></i>
-    </div>
-
-    <div class="d-flex justify-content-center">
-      <div id="employee1" class="employee3">
-        <img id="employeeImage2" class="w-100 employeeImage employee1" src="{{asset("img/Contact/employe1.jpeg")}}">
-        <p id="employeeName2" class="employeeName">Sabrina Fiandaca</p>
-        <div class="d-flex flex-column">
-          <p id="employeeJob2" class="métier employeeJob">Directrice de la Rédaction</p>
-          <div id="employeeSocialMedia2" class="d-flex flex-row" style="margin-top: -1rem;margin-bottom: 1rem;justify-content: center;">
-            <i class="fab fa-facebook-f team-social"></i>
-            <i class="fab fa-instagram team-social"></i>
+      <div class="d-flex justify-content-center">
+        <div id="employee1" class="employee3">
+          <img id="employeeImage1" class="w-100 employeeImage employee1" src="{{ asset('img/Contact/employe1.jpeg') }}"style="width:300px !important;height: 293px;object-fit: cover;">
+          <p id="employeeName1" class="employeeName">Sabrina Fiandaca</p>
+          <div class="d-flex flex-column">
+            <p id="employeeJob1" class="métier employeeJob">Directrice de la Rédaction</p>
+            <div id="employeeSocialMedia1" class="d-flex flex-row" style="margin-top: -1rem; margin-bottom: 1rem; justify-content: center;">
+              <i class="fab fa-facebook-f team-social"></i>
+              <i class="fab fa-instagram team-social"></i>
+            </div>
           </div>
+          <div id="employeeQuote1" class="mt-5 d-none"></div>
         </div>
-      </div>
 
-      <div id="employee2" class="ms-3 employee3">
-        <img id="employeeImage3" class="w-100 employeeImage employee2" src="{{asset("img/Contact/employe2.jpeg")}}">
-        <p id="employeeName3" class="employeeName">Yann Riché</p>
-        <div class="d-flex flex-column">
-          <p id="employeeJob3" class="métier employeeJob">Coaching Photo</p>
-          <div id="employeeSocialMedia3" class="d-flex flex-row" style="margin-top: -1rem;margin-bottom: 1rem;justify-content: center;">
-            <i class="fab fa-facebook-f team-social"></i>
-            <i class="fab fa-instagram team-social"></i>
+        <div id="employee2" class="ms-3 employee3">
+          <img id="employeeImage2" class="w-100 employeeImage employee2" src="{{ asset('img/Contact/employe2.jpeg') }}"style="width:300px !important;height: 293px;object-fit: cover;">
+          <p id="employeeName2" class="employeeName">Yann Riché</p>
+          <div class="d-flex flex-column">
+            <p id="employeeJob2" class="métier employeeJob">Coaching Photo</p>
+            <div id="employeeSocialMedia2" class="d-flex flex-row" style="margin-top: -1rem; margin-bottom: 1rem; justify-content: center;">
+              <i class="fab fa-facebook-f team-social"></i>
+              <i class="fab fa-instagram team-social"></i>
+            </div>
           </div>
+          <div id="employeeQuote2" class="mt-5 d-none"></div>
         </div>
-      </div>
 
-      <div id="employee3" class="ms-3 employee3">
-        <img id="employeeImage4" class="w-100 employeeImage" src="{{asset("img/Contact/employe3.jpeg")}}">
-        <p id="employeeName4" class="employeeName">Yamina & Brahim</p>
-        <div class="d-flex flex-column">
-          <p id="employeeJob4" class="métier employeeJob">Photographe Pro</p>
-          <div id="employeeSocialMedia4" class="d-flex flex-row" style="margin-top: -1rem;margin-bottom: 1rem;justify-content: center;">
-            <i class="fab fa-facebook-f team-social "></i>
-            <i class="fab fa-instagram team-social"></i>
+        <div id="employee3" class="ms-3 employee3">
+          <img id="employeeImage3" class="w-100 employeeImage" src="{{ asset('img/Contact/employe3.jpeg') }}"style="width:300px !important;height: 293px;object-fit: cover;">
+          <p id="employeeName3" class="employeeName">Yamina & Brahim</p>
+          <div class="d-flex flex-column">
+            <p id="employeeJob3" class="métier employeeJob">Photographe Pro</p>
+            <div id="employeeSocialMedia3" class="d-flex flex-row" style="margin-top: -1rem; margin-bottom: 1rem; justify-content: center;">
+              <i class="fab fa-facebook-f team-social"></i>
+              <i class="fab fa-instagram team-social"></i>
+            </div>
           </div>
+          <div id="employeeQuote3" class="mt-5 d-none"></div>
         </div>
       </div>
     </div>
-  </div>
-</article>
-
-
+  </article>
 </section>
 
+<script>
+// Récupérer les éléments des employés
+const employee1 = document.getElementById('employee1');
+const employee2 = document.getElementById('employee2');
+const employee3 = document.getElementById('employee3');
+
+// Récupérer les éléments des citations
+const employeeQuote1 = document.getElementById('employeeQuote1');
+const employeeQuote2 = document.getElementById('employeeQuote2');
+const employeeQuote3 = document.getElementById('employeeQuote3');
+
+// Fonction pour afficher ou masquer les citations en fonction de l'employé cliqué
+function toggleQuotes(employee, employeeQuote) {
+  employee.addEventListener('click', () => {
+    if (employeeQuote.style.display === 'none') {
+      employeeQuote.style.display = 'block';
+    } else {
+      employeeQuote.style.display = 'none';
+    }
+  });
+}
+
+// Appeler la fonction pour chaque employé
+toggleQuotes(employee1, employeeQuote1);
+toggleQuotes(employee2, employeeQuote2);
+toggleQuotes(employee3, employeeQuote3);
+
+// Fonction pour changer les informations
+function changerInformations(employeId) {
+  // Récupérer les éléments du directeur
+  const directeurImage = document.getElementById('employeeImage');
+  const directeurNom = document.getElementById('employeeName');
+  const directeurJob = document.getElementById('employeeJob');
+  const directeurQuote = document.getElementById('employeeQuote');
+  const directeurSocialMedia = document.getElementById('employeeSocialMedia1');
+
+  // Récupérer les éléments de l'employé cliqué
+  const employeImage = document.getElementById('employeeImage' + employeId);
+  const employeNom = document.getElementById('employeeName' + employeId);
+  const employeJob = document.getElementById('employeeJob' + employeId);
+  const employeQuote = document.getElementById('employeeQuote' + employeId);
+  const employeSocialMedia = document.getElementById('employeeSocialMedia' + employeId);
+
+  // Sauvegarder les informations du directeur
+  const directeurImageSrc = directeurImage.src;
+  const directeurNomText = directeurNom.textContent;
+  const directeurJobText = directeurJob.textContent;
+  const directeurQuoteText = directeurQuote.innerHTML;
+  const directeurSocialMediaHTML = directeurSocialMedia.innerHTML;
+
+  // Changer les informations du directeur avec celles de l'employé
+  directeurImage.src = employeImage.src;
+  directeurNom.textContent = employeNom.textContent;
+  directeurJob.textContent = employeJob.textContent;
+  directeurQuote.innerHTML = employeQuote.innerHTML;
+  directeurSocialMedia.innerHTML = employeSocialMedia.innerHTML;
+
+  // Changer les informations de l'employé avec celles du directeur
+  employeImage.src = directeurImageSrc;
+  employeNom.textContent = directeurNomText;
+  employeJob.textContent = directeurJobText;
+  employeQuote.innerHTML = directeurQuoteText;
+  employeSocialMedia.innerHTML = directeurSocialMediaHTML;
+}
+
+// Ajouter des écouteurs d'événements sur les employés
+var employe1 = document.getElementById('employee1');
+employe1.addEventListener('click', function() {
+  changerInformations('1');
+});
+
+var employe2 = document.getElementById('employee2');
+employe2.addEventListener('click', function() {
+  changerInformations('2');
+});
+
+var employe3 = document.getElementById('employee3');
+employe3.addEventListener('click', function() {
+  changerInformations('3');
+});
+
+// Assigner les citations aux employés
+const citationDirecteur = "Citation Directeur.";
+const citationEmploye1 = "Citation Employée 1";
+const citationEmploye2 = "Citation Employée 2";
+const citationEmploye3 = "Citation Employée 3";
+
+document.getElementById('employeeQuote').innerText = citationDirecteur;
+document.getElementById('employeeQuote1').innerText = citationEmploye1;
+document.getElementById('employeeQuote2').innerText = citationEmploye2;
+document.getElementById('employeeQuote3').innerText = citationEmploye3;
+</script>
+
+
+
 <section>
-	{% set successMessages = app.flashes('success') %}
-	{% if successMessages is not empty %}
-		<div class="alert alert-success text-center d-flex justify-content-center rounded" style="margin: 0 auto;font-size:larger;" role="alert">
-			{{ successMessages[0] }}
-		</div>
-	{% endif %}
+	
 
 	<div class="bloc-contact">
+		{% set successMessages = app.flashes('success') %}
+		{% if successMessages is not empty %}
+			<div class="alert alert-success text-center d-flex justify-content-center rounded" style="margin: 0 auto;font-size:larger;" role="alert">
+				{{ successMessages[0] }}
+			</div>
+		{% endif %}
 		<h1 class="fw-bolder text-center">Pour nous contacter c'est simple !</h1>
 		<p class="text-center">Vous avez un projet d'éducation ou de valorisation par l'image et souhaitez en discutez, vous êtes au bon endroit !</p>
 	</div>
@@ -415,27 +408,28 @@ searchIcon.classList.toggle('d-none')
 
 	{{ form_start(form, {'attr': {'class': 'contact-form'}}) }}
 	<div class="contact-NES">
-		{{ form_row(form.Nom, {'attr': {'class': 'contact-input','placeholder': 'Nom'}}) }}
+		{{ form_row(form.Nom, {'attr': {'class': 'shadow contact-input','placeholder': 'Nom'}}) }}
 		<label for=""></label>
 
-		{{ form_row(form.email, {'attr': {'class': 'contact-input', 'placeholder': 'Email'}}) }}
+		{{ form_row(form.email, {'attr': {'class': 'shadow contact-input', 'placeholder': 'Email'}}) }}
 		<label for=""></label>
 
-		{{ form_row(form.Subject, {'attr': {'class': 'contact-input','placeholder': 'Sujets'}}) }}
+		{{ form_row(form.Subject, {'attr': {'class': 'shadow contact-input','placeholder': 'Sujets'}}) }}
 		<label for=""></label>
 	</div>
 	<div class="content-message">
-		{{ form_row(form.Message, {'attr': {'class': 'message contact-input', 'placeholder': 'Message'}}) }}
-		<label for=""></label>
+		{{ form_row(form.Message, {'attr': {'class': 'shadow message contact-input', 'placeholder': 'Message'}}) }}
 	</div>
 
 	<div class="d-flex justify-content-center mt-3">
-		{{form_row(form.submit,{'attr': {'class': 'mt-5 btn send-btn btn-outline-success'
+		{{form_row(form.submit,{'attr': {'class': 'mt-5 btn send-btn btn btn-outline-dark'
             }})}}
 	</div>
+
 	{{ form_label(form.piege, null, {'label_attr': {'style': 'display:none;'}}) }}
 
 	{{ form_end(form) }}
+
 
 	<iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2863.7722805166513!2d4.101080076874332!3d44.12931897108358!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x12b4425109d4d983%3A0x365da74f82b38f13!2s15%20Rte%20de%20Bagnols%2C%2030100%20Al%C3%A8s!5e0!3m2!1sfr!2sfr!4v1681739820341!5m2!1sfr!2sfr" width="100%" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
 

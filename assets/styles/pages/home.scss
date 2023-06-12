@@ -842,33 +842,9 @@ body .parent-article .block-article_description {
 
 //PageContact 
 
-.contact-input {
-    border-top: none;
-    border-left: none;
-    border-right: none;
-    background-color: #f0f0f0;
-    padding: 10px 0;
-    border-bottom: 1px solid #666;
-    font-size: 14px;
-    width: 300px;
-    margin-right: 2rem;
-    outline: none;
-    transition: border-color .2s;
 
 
-    &:active,
-    &:focus {
-        border-bottom-color: black;
-        border-bottom-width: 3px !important;
-    }
-}
 
-.contact-Message {
-    width: 50%;
-    margin-top: 40px;
-    padding-bottom: 91px;
-
-    }
     @media screen and (min-width: 360px) and (max-width:938px) {
 
     .rubriques-filter-tab{
@@ -893,7 +869,7 @@ body .parent-article .block-article_description {
             height: 300px;
         }
 
-        body .article2-img2 {
+        .article2-img2 {
             width: 300px;
             height: 300px;
             object-fit: contain;
@@ -901,21 +877,6 @@ body .parent-article .block-article_description {
             z-index: -1;
         }
 
-        .video-ordi {
-            display: flex;
-            flex-direction: row;
-            justify-content: space-around;
-            margin-bottom: 12rem;
-        }
-
-        .labelYtb {
-
-            max-width: 370px;
-        }
-
-        .info-contact2 {
-            display: flex;
-        }
 
 
         .parent-article {
@@ -925,28 +886,7 @@ body .parent-article .block-article_description {
             margin-top: 5rem;
             margin-bottom: 5rem;
         }
-
-
-
-        //Footer
-        .contact-2 {
-            display: none;
-        }
-
-        // Page contact ordi
-        .content-message {
-            display: flex;
-            justify-content: center;
-
-            textarea {
-                margin-top: 30px;
-                width: 750px;
-                height: 110px;
-            }
-        }
     }
-
-
 
 
     @media screen and (min-width: 360px) and (max-width:991px) {
