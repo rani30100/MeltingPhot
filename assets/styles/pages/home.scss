@@ -297,13 +297,18 @@ body {
 	margin-top:5rem;
 	margin-bottom:5rem;
     height:58vh;
-    min-height: 400px;
     background-color: black;
     .temoignages-of{
         margin-bottom: 4px !important;
     }
 }
 
+@media (orientation: landscape) {
+    .temoignages {
+      height: 100%;
+    }
+  }
+  
 .carousel-indicators .active {
   background-color: #f8004d;
 
