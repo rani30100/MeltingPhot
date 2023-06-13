@@ -186,9 +186,8 @@ searchIcon.classList.toggle('d-none')
   </div>
 </div>
 
-
-<section class="team">
-  <article style="align-items: center; display: flex; flex-direction: column; margin-bottom: 8rem;">
+<section class="team d-flex flex-column align-items-center" style="margin:1rem">
+  <article class="d-flex flex-column align-items-center"style="margin-bottom: 2rem;margin-top:2rem">
     <h2 class="text-center team-title">
       <span style="font-weight: lighter;">Notre</span>
       Equipe
@@ -196,199 +195,284 @@ searchIcon.classList.toggle('d-none')
     <p style="max-width: 550px; text-align: center; margin: 1rem;">Lorem ipsum dolor sit amet consectetur adipisicing elit. Autem soluta labore veniam rem maiores eos libero eum qui, est dolorum. Placeat, praesentium ut?</p>
   </article>
 
-  <article class="mt-5 shadow-lg team-profile bg-light">
+  <article class="mt-5 shadow-lg d-flex bg-light">
 
-    <div id="directeur" class="col-3 employee3" style="margin-right: 3rem; margin-left: 3rem; align-self: center;">
-      <img id="employeeImage" class="employeeImage directeur" src="{{ asset('img/Contact/Abdeslam.png') }}"style="width: 300px !important;height:400px;object-fit: contain;">
-      <p id="employeeName" class="employeeName">Abdeslam Chaoui</p>
-      <div class="d-flex flex-column">
+    <div id="directeur" class="col-3 employee3" style="margin-right: 1rem; margin-left: 1rem; align-self: center;">
+      <img id="employeeImage" class="employeeImage directeur" src="{{ asset('img/Contact/Abdeslam.png') }}" style="width: 300px !important; height: 400px; object-fit: contain;">
+      <div class="d-flex flex-column align-items-center">
+        <p id="employeeName" class="employeeName">Abdeslam Chaoui</p>
         <p id="employeeJob" class="métier employeeJob">Direction Artistique</p>
-        <div id="employeeSocialMedia1" class="d-flex flex-row" style="margin-top: -1rem; margin-bottom: 1rem; justify-content: center;">
-         <a href="https://www.facebook.com/"target="_blank">
-			<i class="fab fa-facebook-f team-social btn"></i>
-		</a>
-
+        <div id="employeeSocialMedia1" class="d-flex flex-row" style="justify-content: center;">
+          <a href="https://www.facebook.com/" target="_blank">
+            <i class="fab fa-facebook-f team-social btn"></i>
+          </a>
           <i class="fab fa-instagram team-social btn"></i>
         </div>
       </div>
-    
     </div>
 
     <div>
-  <div id="employeeQuote" class="mt-5"></div>   
-     <div class="mt-5 d-flex justify-content-end">
+      <div id="employeeQuote" class="mt-5"></div>
+      <div class="mt-5 d-flex justify-content-center">
         <i class="fab fa-facebook-f team-social"></i>
         <i class="fab fa-linkedin team-social"></i>
         <i class="fab fa-youtube team-social"></i>
         <i class="fa-brands fa-twitter team-social"></i>
       </div>
 
-	<div id="employeeCarousel" class="carousel slide">
-		<div class="carousel-inner">
-			<div class="carousel-item active">
-			<div class="d-flex justify-content-center">
-				<div id="employee1" class="employee3">
-				<img id="employeeImage1" class="w-100 employeeImage employee1" src="{{ asset('img/Contact/employe1.jpeg') }}" style="width: 300px !important; height: 293px; object-fit: cover;">
-				<p id="employeeName1" class="employeeName">Sabrina Fiandaca</p>
-				<div class="d-flex flex-column">
-					<p id="employeeJob1" class="métier employeeJob">Directrice de la Rédaction</p>
-					<div id="employeeSocialMedia1" class="d-flex flex-row" style="margin-top: -1rem; margin-bottom: 1rem; justify-content: center;">
-					<a href="https://www.facebook.com/"target="_blank">
-						<i class="fab fa-facebook-f team-social btn"></i>
-					</a>
-						<i class="fab fa-instagram team-social btn"></i>
-					</div>
-				</div>
-				<div id="employeeQuote1" class="mt-5 d-none"></div>
-				</div>
-					<div class="d-flex justify-content-center">
-						<div id="employee2" class="ms-3 employee3">
-						<img id="employeeImage2" class="w-100 employeeImage employee2" src="{{ asset('img/Contact/employe2.jpeg') }}" style="width: 300px !important; height: 293px; object-fit: cover;">
-						<p id="employeeName2" class="employeeName">Yann Riché</p>
-						<div class="d-flex flex-column">
-							<p id="employeeJob2" class="métier employeeJob">Coaching Photo</p>
-							<div id="employeeSocialMedia2" class="d-flex flex-row" style="margin-top: -1rem; margin-bottom: 1rem; justify-content: center;">
-								<a href="https://www.facebook.com/"target="_blank">
-									<i class="fab fa-facebook-f team-social btn"></i>
-								</a>
-								<i class="fab fa-instagram team-social btn"></i>
-							</div>
-						</div>
-						<div id="employeeQuote2" class="mt-5 d-none"></div>
-						</div>
-					</div>
-					<div class="d-flex justify-content-center">
-						<div id="employee3" class="ms-3 employee3">
-						<img id="employeeImage3" class="w-100 employeeImage" src="{{ asset('img/Contact/employe3.jpeg') }}" style="width: 300px !important; height: 293px; object-fit: cover;">
-						<p id="employeeName3" class="employeeName">Yamina & Brahim</p>
-						<div class="d-flex flex-column">
-							<p id="employeeJob3" class="métier employeeJob">Photographe Pro</p>
-							<div id="employeeSocialMedia3" class="d-flex flex-row" style="margin-top: -1rem; margin-bottom: 1rem; justify-content: center;">
-								<a href="https://www.facebook.com/"target="_blank">
-									<i class="fab fa-facebook-f team-social btn"></i>
-								</a>
-								<i class="fab fa-instagram team-social btn"></i>
-							</div>
-						</div>
-						<div id="employeeQuote3" class="mt-5 d-none"></div>
-						</div>
-					</div>
-			</div>
-			</div>
-	
-			
+      <div id="employeeCarousel" class="carousel slide">
+        <div class="carousel-inner">
+          <div class="carousel-item active">
+            <div class="d-flex justify-content-center">
+              <div id="employee1" class="employee3">
+                <img id="employeeImage1" class="w-100 employeeImage employee1" src="{{ asset('img/Contact/employe1.jpeg') }}" style="max-width:300px">
+                <div class="d-flex flex-column align-items-center">
+                  <p id="employeeName1" class="employeeName">Sabrina Fiandaca</p>
+                  <p id="employeeJob1" class="métier employeeJob">Directrice de la Rédaction</p>
+                  <div id="employeeSocialMedia1" class="d-flex flex-row" style="justify-content: center;">
+                    <a href="https://www.facebook.com/" target="_blank">
+                      <i class="fab fa-facebook-f team-social btn"></i>
+                    </a>
+                    <i class="fab fa-instagram team-social btn"></i>
+                  </div>
+                </div>
+                <div id="employeeQuote1" class="mt-5 d-none"></div>
+              </div>
+              <div class="d-flex justify-content-center">
+                <div id="employee2" class="ms-3 employee3">
+                  <img id="employeeImage2" class="w-100 employeeImage employee2" src="{{ asset('img/Contact/employe2.jpeg') }}"style="max-width:300px" >
+                  <div class="d-flex flex-column align-items-center">
+                    <p id="employeeName2" class="employeeName">Yann Riché</p>
+                    <p id="employeeJob2" class="métier employeeJob">Coaching Photo</p>
+                    <div id="employeeSocialMedia2" class="d-flex flex-row" style="justify-content: center;">
+                      <a href="https://www.facebook.com/" target="_blank">
+                        <i class="fab fa-facebook-f team-social btn"></i>
+                      </a>
+                      <i class="fab fa-instagram team-social btn"></i>
+                    </div>
+                  </div>
+                  <div id="employeeQuote2" class="mt-5 d-none"></div>
+                </div>
+              </div>
+              <div class="d-flex justify-content-center">
+                <div id="employee3" class="ms-3 employee3">
+                  <img id="employeeImage3" class="w-100 employeeImage" src="{{ asset('img/Contact/employe3.jpeg') }}"style="max-width:300px" >
+                  <div class="d-flex flex-column align-items-center">
+                    <p id="employeeName3" class="employeeName">Yamina & Brahim</p>
+                    <p id="employeeJob3" class="métier employeeJob">Photographe Pro</p>
+                    <div id="employeeSocialMedia3" class="d-flex flex-row" style="justify-content: center;">
+                      <a href="https://www.facebook.com/" target="_blank">
+                        <i class="fab fa-facebook-f team-social btn"></i>
+                      </a>
+                      <i class="fab fa-instagram team-social btn"></i>
+                    </div>
+                  </div>
+                  <div id="employeeQuote3" class="mt-5 d-none"></div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
 
-	<button class="carousel-control-prev" type="button" data-bs-target="#employeeCarousel" data-bs-slide="prev">
-		<span class="carousel-control-prev-icon" aria-hidden="true"></span>
-		<span class="visually-hidden">Previous</span>
-	</button>
-	<button class="carousel-control-next" type="button" data-bs-target="#employeeCarousel" data-bs-slide="next">
-		<span class="carousel-control-next-icon" aria-hidden="true"></span>
-		<span class="visually-hidden">Next</span>
-	</button>
-	</div>
+        <button class="carousel-control-prev" type="button" data-bs-target="#employeeCarousel" data-bs-slide="prev"style="height: 30px;top: 142px;width: 50px;">
+          <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+          <span class="visually-hidden">Previous</span>
+        </button>
+        <button class="carousel-control-next" type="button" data-bs-target="#employeeCarousel" data-bs-slide="next"style="width: 50px;height: 30px;top: 142px;">
+          <span class="carousel-control-next-icon" aria-hidden="true"></span>
+          <span class="visually-hidden">Next</span>
+        </button>
+      </div>
 
+    </div>
   </article>
 </section>
 
 <script>
-// Récupérer les éléments des employés
-const employee1 = document.getElementById('employee1');
-const employee2 = document.getElementById('employee2');
-const employee3 = document.getElementById('employee3');
+  // Récupérer les éléments des employés
+  const employee1 = document.getElementById('employee1');
+  const employee2 = document.getElementById('employee2');
+  const employee3 = document.getElementById('employee3');
 
-// Récupérer les éléments des citations
-const employeeQuote1 = document.getElementById('employeeQuote1');
-const employeeQuote2 = document.getElementById('employeeQuote2');
-const employeeQuote3 = document.getElementById('employeeQuote3');
+  // Récupérer les éléments des citations
+  const employeeQuote1 = document.getElementById('employeeQuote1');
+  const employeeQuote2 = document.getElementById('employeeQuote2');
+  const employeeQuote3 = document.getElementById('employeeQuote3');
 
-// Fonction pour afficher ou masquer les citations en fonction de l'employé cliqué
-function toggleQuotes(employee, employeeQuote) {
-  employee.addEventListener('click', () => {
-    if (employeeQuote.style.display === 'none') {
-      employeeQuote.style.display = 'block';
-    } else {
-      employeeQuote.style.display = 'none';
-    }
+  // Fonction pour afficher ou masquer les citations en fonction de l'employé cliqué
+  function toggleQuotes(employee, employeeQuote) {
+    employee.addEventListener('click', () => {
+      if (employeeQuote.style.display === 'none') {
+        employeeQuote.style.display = 'block';
+      } else {
+        employeeQuote.style.display = 'none';
+      }
+    });
+  }
+
+  // Appeler la fonction pour chaque employé
+  toggleQuotes(employee1, employeeQuote1);
+  toggleQuotes(employee2, employeeQuote2);
+  toggleQuotes(employee3, employeeQuote3);
+
+  // Fonction pour changer les informations
+  function changerInformations(employeId) {
+    // Récupérer les éléments du directeur
+    const directeurImage = document.getElementById('employeeImage');
+    const directeurNom = document.getElementById('employeeName');
+    const directeurJob = document.getElementById('employeeJob');
+    const directeurQuote = document.getElementById('employeeQuote');
+    const directeurSocialMedia = document.getElementById('employeeSocialMedia1');
+
+    // Récupérer les éléments de l'employé cliqué
+    const employeImage = document.getElementById('employeeImage' + employeId);
+    const employeNom = document.getElementById('employeeName' + employeId);
+    const employeJob = document.getElementById('employeeJob' + employeId);
+    const employeQuote = document.getElementById('employeeQuote' + employeId);
+    const employeSocialMedia = document.getElementById('employeeSocialMedia' + employeId);
+
+    // Sauvegarder les informations du directeur
+    const directeurImageSrc = directeurImage.src;
+    const directeurNomText = directeurNom.textContent;
+    const directeurJobText = directeurJob.textContent;
+    const directeurQuoteText = directeurQuote.innerHTML;
+    const directeurSocialMediaHTML = directeurSocialMedia.innerHTML;
+
+    // Changer les informations du directeur avec celles de l'employé
+    directeurImage.src = employeImage.src;
+    directeurNom.textContent = employeNom.textContent;
+    directeurJob.textContent = employeJob.textContent;
+    directeurQuote.innerHTML = employeQuote.innerHTML;
+    directeurSocialMedia.innerHTML = employeSocialMedia.innerHTML;
+
+    // Changer les informations de l'employé avec celles du directeur
+    employeImage.src = directeurImageSrc;
+    employeNom.textContent = directeurNomText;
+    employeJob.textContent = directeurJobText;
+    employeQuote.innerHTML = directeurQuoteText;
+    employeSocialMedia.innerHTML = directeurSocialMediaHTML;
+  }
+
+  // Ajouter des écouteurs d'événements sur les employés
+  var employe1 = document.getElementById('employee1');
+  employe1.addEventListener('click', function() {
+    changerInformations('1');
   });
-}
 
-// Appeler la fonction pour chaque employé
-toggleQuotes(employee1, employeeQuote1);
-toggleQuotes(employee2, employeeQuote2);
-toggleQuotes(employee3, employeeQuote3);
+  var employe2 = document.getElementById('employee2');
+  employe2.addEventListener('click', function() {
+    changerInformations('2');
+  });
 
-// Fonction pour changer les informations
-function changerInformations(employeId) {
-  // Récupérer les éléments du directeur
-  const directeurImage = document.getElementById('employeeImage');
-  const directeurNom = document.getElementById('employeeName');
-  const directeurJob = document.getElementById('employeeJob');
-  const directeurQuote = document.getElementById('employeeQuote');
-  const directeurSocialMedia = document.getElementById('employeeSocialMedia1');
+  var employe3 = document.getElementById('employee3');
+  employe3.addEventListener('click', function() {
+    changerInformations('3');
+  });
 
-  // Récupérer les éléments de l'employé cliqué
-  const employeImage = document.getElementById('employeeImage' + employeId);
-  const employeNom = document.getElementById('employeeName' + employeId);
-  const employeJob = document.getElementById('employeeJob' + employeId);
-  const employeQuote = document.getElementById('employeeQuote' + employeId);
-  const employeSocialMedia = document.getElementById('employeeSocialMedia' + employeId);
+  // Assigner les citations aux employés
+  const citationDirecteur = "Citation Directeur.";
+  const citationEmploye1 = "Citation Employée 1";
+  const citationEmploye2 = "Citation Employée 2";
+  const citationEmploye3 = "Citation Employée 3";
 
-  // Sauvegarder les informations du directeur
-  const directeurImageSrc = directeurImage.src;
-  const directeurNomText = directeurNom.textContent;
-  const directeurJobText = directeurJob.textContent;
-  const directeurQuoteText = directeurQuote.innerHTML;
-  const directeurSocialMediaHTML = directeurSocialMedia.innerHTML;
-
-  // Changer les informations du directeur avec celles de l'employé
-  directeurImage.src = employeImage.src;
-  directeurNom.textContent = employeNom.textContent;
-  directeurJob.textContent = employeJob.textContent;
-  directeurQuote.innerHTML = employeQuote.innerHTML;
-  directeurSocialMedia.innerHTML = employeSocialMedia.innerHTML;
-
-  // Changer les informations de l'employé avec celles du directeur
-  employeImage.src = directeurImageSrc;
-  employeNom.textContent = directeurNomText;
-  employeJob.textContent = directeurJobText;
-  employeQuote.innerHTML = directeurQuoteText;
-  employeSocialMedia.innerHTML = directeurSocialMediaHTML;
-}
-
-// Ajouter des écouteurs d'événements sur les employés
-var employe1 = document.getElementById('employee1');
-employe1.addEventListener('click', function() {
-  changerInformations('1');
-});
-
-var employe2 = document.getElementById('employee2');
-employe2.addEventListener('click', function() {
-  changerInformations('2');
-});
-
-var employe3 = document.getElementById('employee3');
-employe3.addEventListener('click', function() {
-  changerInformations('3');
-});
-
-// Assigner les citations aux employés
-const citationDirecteur = "Citation Directeur.";
-const citationEmploye1 = "Citation Employée 1";
-const citationEmploye2 = "Citation Employée 2";
-const citationEmploye3 = "Citation Employée 3";
-
-document.getElementById('employeeQuote').innerText = citationDirecteur;
-document.getElementById('employeeQuote1').innerText = citationEmploye1;
-document.getElementById('employeeQuote2').innerText = citationEmploye2;
-document.getElementById('employeeQuote3').innerText = citationEmploye3;
+  document.getElementById('employeeQuote').innerText = citationDirecteur;
+  document.getElementById('employeeQuote1').innerText = citationEmploye1;
+  document.getElementById('employeeQuote2').innerText = citationEmploye2;
+  document.getElementById('employeeQuote3').innerText = citationEmploye3;
 </script>
+
+<section class="team-mobile">
+  <article style="align-items: center; display: flex; flex-direction: column; margin-bottom: 2rem;margin-top:2rem">
+    <h2 class="text-center team-title">
+      <span style="font-weight: lighter;">Notre</span>
+      Equipe
+    </h2>
+    <p style="max-width: 550px; text-align: center; margin: 1rem;">Lorem ipsum dolor sit amet consectetur adipisicing elit. Autem soluta labore veniam rem maiores eos libero eum qui, est dolorum. Placeat, praesentium ut?</p>
+  </article>
+
+	<section class="">
+		<article class="mt-5 shadow-lg bg-light p-3">
+			<div id="directeur" class="d-flex flex-column align-items-center">
+			<img src="{{ asset('img/Contact/Abdeslam.png') }}" style="width:250px;" alt="Abdeslam Chaoui">
+			<p id="employeeName" class="text-center mt-3 fw-bold">Abdeslam Chaoui</p>
+			<div class="text-center">
+				<p id="employeeJob">Direction Artistique</p>
+				<div id="social-media" class="mt-3">
+				<a href="https://www.facebook.com/" target="_blank" class="text-decoration-none">
+					<i class="fab fa-facebook-f team-social btn"></i>
+				</a>
+				<i class="fab fa-instagram team-social btn"></i>
+				</div>
+			</div>
+			</div>
+		</article>
+
+
+
+		<article class="mt-5 shadow-lg bg-light p-3">
+			<div class="employee-item d-flex justify-content-center flex-column align-items-center">
+			<img src="{{ asset('img/Contact/employe1.jpeg') }}" style="width:250px;" alt="Sabrina Fiandaca">
+				<div class="text-center">
+					<p id="employeeName1" class="text-center mt-3 fw-bold">Sabrina Fiandaca</p>
+					<div class="text-center">
+					<p id="employeeJob1">Directrice de la Rédaction</p>
+					<div id="social-media1" class="mt-3">
+						<a href="https://www.facebook.com/" target="_blank" class="text-decoration-none">
+						<i class="fab fa-facebook-f team-social btn"></i>
+						</a>
+						<i class="fab fa-instagram team-social btn"></i>
+					</div>
+				</div>
+				<p id="employeeQuote1" class="d-none">Citation Employée 1</p>
+			</div>
+		</article>
+
+		<article class="mt-5 shadow-lg bg-light p-3">
+			<div class="employee-item d-flex justify-content-center flex-column align-items-center">
+			<img src="{{ asset('img/Contact/employe2.jpeg') }}"style="width:250px;" alt="Yann Riché">
+				<div class="text-center">
+					<p id="employeeName2" class="text-center mt-3 fw-bold">Yann Riché</p>
+					<div class="text-center">
+						<p id="employeeJob2">Coaching Photo</p>
+						<div id="employeeQuote2" class="mt-5 d-none"></div>
+						<div id="social-media2" class="mt-3">
+							<a href="https://www.facebook.com/" target="_blank" class="text-decoration-none">
+							<i class="fab fa-facebook-f team-social btn"></i>
+							</a>
+							<i class="fab fa-instagram team-social btn"></i>
+						</div>
+					</div>
+					<p id="employeeQuote2" class="d-none">Citation Employée 2</p>
+				</div>
+			</div>
+		</article>
+
+
+		<article class="mt-5 shadow-lg bg-light p-3">
+			<div class="employee-item d-flex justify-content-center flex-column align-items-center">
+			<img src="{{ asset('img/Contact/employe3.jpeg') }}" style="width:250px;" alt="Yamina & Brahim">
+				<div class="text-center">
+					<p id="employeeName3" class="text-center mt-3 fw-bold">Yamina & Brahim</p>
+					<div class="text-center">
+					<p id="employeeJob3">Photographe Pro</p>
+					<div id="social-media3" class="mt-3">
+						<a href="https://www.facebook.com/" target="_blank" class="text-decoration-none">
+						<i class="fab fa-facebook-f team-social btn"></i>
+						</a>
+						<i class="fab fa-instagram team-social btn"></i>
+					</div>
+					</div>
+					<p id="employeeQuote3" class="d-none">Citation Employée 3</p>
+				</div>
+			</div>
+		</article>
+	</section>
+</section>
+
 
 
 
 <section>
-	
-
 	<div class="bloc-contact">
 		{% set successMessages = app.flashes('success') %}
 		{% if successMessages is not empty %}
@@ -415,18 +499,18 @@ document.getElementById('employeeQuote3').innerText = citationEmploye3;
 		<div class="bloc-adress_social">
 			<h4 class="fw-bold text-decoration-underline">Social
 			</h4>
-			<div class="d-flex flex-row">
+			<div class="d-flex flex-row mt-2">
 				<a href="https://www.facebook.com/MeltingPhot/?locale=fr_FR" class="me-4 text-reset">
-					<i class="fab fa-facebook-f"></i>
+					<i class="fab fa-facebook-f fa-lg"></i>
 				</a>
 				<a href="https://twitter.com/melting_phot?lang=fr" class="me-4 text-reset">
-					<i class="fab fa-twitter"></i>
+					<i class="fab fa-twitter fa-lg"></i>
 				</a>
 				<a href="https://www.instagram.com/meltingphot/?hl=fr" class="me-4 text-reset">
-					<i class="fab fa-instagram"></i>
+					<i class="fab fa-instagram fa-lg"></i>
 				</a>
 				<a href="https://www.linkedin.com/company/meltingphot" class="me-4 text-reset">
-					<i class="fab fa-linkedin"></i>
+					<i class="fab fa-linkedin fa-lg"></i>
 				</a>
 			</div>
 		</div>
@@ -497,8 +581,7 @@ document.getElementById('employeeQuote3').innerText = citationEmploye3;
 												</a> #}
 				</div>
 				<!-- Grid column -->
-				<div
-					class="col-md-4 col-lg-3 col-xl-3 mx-auto mb-md-0 mb-4 contact-2">
+				<div class="col-md-4 col-lg-3 col-xl-3 mx-auto mb-md-0 mb-4 contact-2">
 					<!-- Links -->
 					<p>
 						<i class="fas fa-home me-3"></i>15 Route de bagnols, 30100 Alès</p>
