@@ -8,15 +8,7 @@
 {% block javascripts %}
 	{{ parent() }}
 
-	<script>
-		const searchIcon = document.querySelector('#search-icon');
-const searchForm = document.querySelector('#search-form');
 
-searchIcon.addEventListener('click', () => {
-searchForm.classList.toggle('d-none');
-searchIcon.classList.toggle('d-none')
-});
-	</script>
 	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/js/bootstrap.bundle.min.js"></script>
 {% endblock %}
 
@@ -191,38 +183,41 @@ searchIcon.classList.toggle('d-none')
 
 
 <section class="actions-bandeau w-100 bg-secondary-subtle h-400 d-flex flex-column justify-content-center align-items-center p-1">
-<article class="actions-bloc">
-	<div class="container d-lg-flex flex-lg-row justify-content-lg-center align-items-lg-center">
-		<div class="col-lg-4">
-			<h1>Nos Actions</h1>
-			<div class="d-flex flex-row justify-content-around align-items-center actions-bandeau_sous-titre m-auto">
-				<div class="actions-bandeau_trait"></div>
-				<div>
-					<span class="color-grey">MeltingPhot/</span>
-					<span class="color1">Vidéos</span>
+	<article class="actions-bloc">
+		<div class="container d-lg-flex flex-lg-row justify-content-lg-center align-items-lg-center">
+			<div class="col-lg-4">
+				<h1>Nos Actions</h1>
+				<div class="d-flex flex-row justify-content-around align-items-center actions-bandeau_sous-titre m-auto">
+					<div class="actions-bandeau_trait"></div>
+					<div>
+						<span class="color-grey">MeltingPhot/</span>
+						<span class="color1">Vidéos</span>
+					</div>
 				</div>
 			</div>
+			<p class="col-lg-8 mt-5 m-lg-0 text-justify">Lorem, ipsum dolor sit amet consectetur adipisicing elit. Ipsam voluptate quidem ullam beatae vero excepturi fuga deserunt aperiam. Eius repudiandae laborum accusantium voluptatem illum odio impedit delectus expedita beatae laboriosam!</p>
 		</div>
-		<p class="col-lg-8 mt-5 m-lg-0 text-justify">Lorem, ipsum dolor sit amet consectetur adipisicing elit. Ipsam voluptate quidem ullam beatae vero excepturi fuga deserunt aperiam. Eius repudiandae laborum accusantium voluptatem illum odio impedit delectus expedita beatae laboriosam!</p>
-	</div>
-</article>
+	</article>
 </section>
 
-<div class="d-flex flex-column align-items-center justify-content-center bloc-filtres carousel-container">
+<div class="d-flex flex-column align-items-center justify-content-center bloc-filtres carousel-container mb-5">
 	<h2 for="my-dropdown" class="text-center fw-light">NOS
-		<span class="fw-bold">ACTIONS D'EDUCATION
-		</span>PAR L'IMAGE</h2>
-
-	<div class="d-flex flex-wrap align-items-center justify-content-center ">
+		<span class="fw-bold">ACTIONS
+	</h2>
+	<h2>
+	D'EDUCATION 
+		<span class="text-center fw-light">PAR L'IMAGE</span>
+	 </h2>
+	<div class="d-flex flex-wrap align-items-center justify-content-center mb-3 ">
 		{# quand je clique sur le filme mon futur metier affiche les videos correspondantes a cette categorie  #}
-		<a href="{{ path('app_actions', { 'order': 'test', 'year': 'null', 'category': 'Je_Filme_Mon_Futur_Métier' }) }}" class="btn col-6 col-sm-2" id="video-link">Je Filme mon futur métier</a>
-		<button class="btn col-6 col-sm-2">Odonymes</button>
-		<button class="btn col-6 col-sm-2 ">Les Critiques pétillantes</button>
-		<button class="btn col-6 col-sm-2 ">Parole Public</button>
-		<button class="btn col-6 col-sm-2 ">Les Vitrines des Cévennes</button>
+		<a href="{{ path('app_actions', { 'order': 'test', 'year': 'null', 'category': 'Je_Filme_Mon_Futur_Métier' }) }}" class="btn col-6 col-sm-2 filter-tab" id="video-link">Je Filme mon futur métier</a>
+		<button class="btn col-6 col-sm-2 filter-tab">Odonymes</button>
+		<button class="btn col-6 col-sm-2 filter-tab ">Les Critiques pétillantes</button>
+		<button class="btn col-6 col-sm-2 filter-tab ">Parole Public</button>
+		<button class="btn col-6 col-sm-2 filter-tab ">Les Vitrines des Cévennes</button>
 	</div>
 
-	<div id="carouselExampleIndicators" class="carousel-actions slide">
+	<div id="carouselIndicators" class="carousel-actions slide">
 		<div class="carousel-inner">
 			{% for i in 0..(videos|length / 2 - 1) %}
 			<div class="carousel-item {% if i == 0 %}active{% endif %}" style="height: 700px;">
@@ -260,22 +255,62 @@ searchIcon.classList.toggle('d-none')
 			{% endfor %}
 				<div class="carousel-indicators">
 					{% for j in 0..(videos|length / 2 - 1) %}
-						<button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="{{ j }}" {% if j == 0 %} class="active" aria-current="true" {% endif %} aria-label="Slide {{ j+1 }}"></button>
+						<button type="button" data-bs-target="#carouselIndicators" data-bs-slide-to="{{ j }}" {% if j == 0 %} class="active" aria-current="true" {% endif %} aria-label="Slide {{ j+1 }}"></button>
 					{% endfor %}
 				</div>
 
-				<button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="prev">
+				<button class="carousel-control-prev" type="button" data-bs-target="#carouselIndicators" data-bs-slide="prev">
 				<span class="carousel-control-prev-icon" aria-hidden="true"></span>
 				<span class="visually-hidden">Previous</span>
 				</button>
 				
-				<button class="carousel-control-next" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="next">
+				<button class="carousel-control-next" type="button" data-bs-target="#carouselIndicators" data-bs-slide="next">
 				<span class="carousel-control-next-icon" aria-hidden="true"></span>
 				<span class="visually-hidden">Next</span>
 				</button>
 			
 		</div>
 	</div>
+
+<div id="carouselIndicatorsMobile" class="carousel-actions slide mobile-carousel-Actions mb-5">
+  <div class="carousel-inner">
+    {% for i in 0..(videos|length - 1) %}
+      {% set videoIndex = loop.index0 %}
+      {% if videoIndex < videos|length %}
+        <div class="carousel-item {% if i == 0 %}active{% endif %}" style="height: 400px;">
+          <div class="d-flex w-100 justify-content-center">
+            <div class="col-12 col-sm-8 col-md-6 extremity p-0">
+              <img class="carousel_img" style="margin:0 auto;" src="{{ asset('img/Home/Je filme mon futur métier Meltingphot_Image_Vignette_Page accueil meltingphot_je Filme mon futur métier.png')}}" alt="...">
+				<div class="w-full d-flex justify-content-center ">
+				<button type="button" class="btn btn-primary btn-{{ loop.index }}" data-bs-toggle="modal" data-bs-target="#videoModal{{ videoIndex + 1 }}" style="height:50px; margin-top:-6rem">
+					<i class="bi bi-play-circle"></i>
+					En voir plus ...
+				</button>
+				</div>
+            </div>
+          </div>
+        </div>
+      {% endif %}
+    {% endfor %}
+
+	
+    <div class="carousel-indicators">
+      {% for j in 0..(videos|length - 1) %}
+        <button type="button" data-bs-target="#carouselIndicatorsMobile" data-bs-slide-to="{{ j }}" {% if j == 0 %}class="active" aria-current="true"{% endif %} aria-label="Slide {{ j + 1 }}"></button>
+      {% endfor %}
+    </div>
+
+    <button class="carousel-control-prev mobile-prev" type="button" data-bs-target="#carouselIndicatorsMobile">
+      <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+      <span class="visually-hidden">Previous</span>
+    </button>
+
+    <button class="carousel-control-next mobile-next" type="button" data-bs-target="#carouselIndicatorsMobile">
+      <span class="carousel-control-next-icon" aria-hidden="true"></span>
+      <span class="visually-hidden">Next</span>
+    </button>
+  </div>
+</div>
 
 
 {% for video in videos %}
@@ -349,77 +384,14 @@ searchIcon.classList.toggle('d-none')
 		<i class="fas fa-envelope me-2"></i>info@example.com</p>
 	<p class="ms-3">
 		<i class="fas fa-phone me-2"></i>06 64 21 93 75</p>
-</div></section><!-- Section: Links  --><!-- Copyright --><div class="text-center p-4 fw-bold text-white d-flex flex-column align-items-center" style="background-color: #D00A4B;">
+</div>
+</section><!-- Section: Links  --><!-- Copyright -->
+<div class="text-center p-4 fw-bold text-white d-flex flex-column align-items-center" style="background-color: #D00A4B;">
 <a>Tous droits réservés © 2023 @MeltingPhot</a>
 <p class="fst-italic fw-light fs-6 text-white copyright-text">En effet, tous les éléments présents sur Internet (textes, images, vidéos, extraits sonores, codes informatiques…)
-																																																																																																																																																																																																																																																																																																																																																																																																																																																				sont de facto soumis au droit d’auteur, même si l’accès est libre, gratuit et sans mention particulière.</p></div><!-- Copyright --></footer><script>const btn = document.querySelector('#bouton');
-
-btn.addEventListener("click", [console.console.log('ca marche');]);
-
-document.getElementById("my-dropdown2").addEventListener("change", function () {
-var option = this.options[this.selectedIndex];
-if (option.value == "option-3") {
-window.location.href = "/actions/2022";
-}
-});
-
-document.getElementById("my-dropdown2").addEventListener("change", function () {
-var option = this.options[this.selectedIndex];
-if (option.value == "option-2") {
-window.location.href = "/actions/2023";
-}
-});
+sont de facto soumis au droit d’auteur, même si l’accès est libre, gratuit et sans mention particulière.</p>
+</div><!-- Copyright -->
+</footer>
 
 
-// Modal
-const myModal = document.getElementById('myModal')
-const myInput = document.getElementById('myInput')
-
-myModal.addEventListener('shown.bs.modal', () => {
-myInput.focus()
-})
-
-
-const videos = document.getElementById('video-container');
-videos.style.display = 'none';
-
-const link = document.getElementById('video-link');
-link.addEventListener('click', (event) => {
-event.preventDefault(); // Prevents navigation to the link
-
-if (videos.style.display === 'none') {
-videos.style.display = 'flex'; // Show the videos
-} else {
-videos.style.display = 'none'; // Hide the videos
-}
-});
-
-// deleted video
-
-// Sélectionnez tous les boutons avec la classe 'deleted-video'
-const deletedVideos = document.querySelectorAll('.deleted-video');
-
-// Parcourez chaque bouton et vérifiez le texte à l'intérieur
-deletedVideos.forEach((button) => {
-const buttonText = button.innerText.trim();
-
-// Vérifiez si le texte est "Deleted video"
-if (buttonText === 'Deleted video') { // Masquez le bouton en ajoutant la classe 'd-none'
-button.classList.add('d-none');
-}
-});</script><script>document.addEventListener('DOMContentLoaded', function () {
-var carousel = document.getElementById('carouselExampleIndicators');
-var carouselInstance = new bootstrap.Carousel(carousel);
-
-var nextButton = document.querySelector('.carousel-control-next');
-nextButton.addEventListener('click', function () {
-carouselInstance.next();
-});
-});</script>
-
-  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-
-  <!-- Include Bootstrap JS -->
-  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
-  
 {% endblock %}

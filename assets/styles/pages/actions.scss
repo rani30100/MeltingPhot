@@ -220,9 +220,9 @@ background-color: rgb(230, 230, 230);
 .videos-btn{
     height: 50px;
     z-index: 1;
-    margin-left: -8rem;
+    margin-left: -9rem;
     align-self: flex-end;
-    margin-bottom: 1rem;
+    margin-bottom: 2rem;
 }
 
 
@@ -240,5 +240,21 @@ background-color: rgb(230, 230, 230);
 		flex-basis: 100%;
 		max-width: 100%;
 	}
+
 }
 
+  
+@media (min-width: 360px)and (max-width:699px) {
+    #carouselIndicators{
+        display: none !important;
+    }
+
+    
+}
+@media (min-width: 700px) {
+    #carouselIndicatorsMobile{
+        display: none !important;
+    }
+
+    
+}
