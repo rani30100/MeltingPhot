@@ -115,9 +115,9 @@ class Video
         return $this->Image;
     }
 
-    public function setImage(?string $videoImage): self
+    public function setImage(?string $Image): self
     {
-        $this->Image = $videoImage;
+        $this->Image = $Image;
 
         return $this;
     }

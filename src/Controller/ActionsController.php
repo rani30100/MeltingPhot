@@ -52,7 +52,17 @@ class ActionsController extends AbstractController
                     $video = new Video();
                     $video->setName($videoData['snippet']['title']);
                     $video->setUrl('https://www.youtube.com/embed/' . $videoData['snippet']['resourceId']['videoId']);
-                    $video->setCreatedAt(new DateTimeImmutable($videoData['snippet']['publishedAt']));
+                    $video->setCreatedAt(new DateTimeImmutable($videoData['snippet']['publishedAt']));     
+                
+                      
+                    $index = key($videos1);
+                    // Récupérer l'URL ou le chemin d'accès de l'image associée à la vidéo
+                    $imagePath = '' . $index . '.jpg'; // Remplacez par l'URL ou le chemin d'accès approprié
+
+                    // Assigner le chemin d'accès de l'image à la propriété Image de l'objet Video
+                    $video->setImage($imagePath);
+                    
+                    next($videos1);
                     // Je définis la catégorie pour les videos 
                     $category = $entityManager->getRepository(Category::class)->find(2);
                     $video->setCategory($category);

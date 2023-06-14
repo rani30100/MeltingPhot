@@ -218,98 +218,108 @@
 	</div>
 
 	<div id="carouselIndicators" class="carousel-actions slide">
-		<div class="carousel-inner">
-			{% for i in 0..(videos|length / 2 - 1) %}
-			<div class="carousel-item {% if i == 0 %}active{% endif %}" style="height: 700px;">
-				<div class="d-flex w-100 justify-content-center">
-					<div class="col-3 extremity p-0 d-none d-xxl-flex">
-						<img class="carousel_img w-100" src="{{ asset('img/ODONYMES _Image_Vignette_Page accueil meltingphot_je Filme mon futur métier.png')}}" alt="...">
-					</div>
-					{% for j in 0..1 %}
-						{% set videoIndex = i * 2 + j %}
-						{% if videoIndex < videos|length %}
-						{% if loop.index == 1 %}
-							<div class="bloc-img-btn col-4 col-sm-6 col-md-6 d-flex p-0 img-1">
-							<img class="carousel_img w-100" src="{{ asset('img/Home/Je filme mon futur métier Meltingphot_Image_Vignette_Page accueil meltingphot_je Filme mon futur métier.png')}}" alt="...">
-							<button type="button" class="btn btn-primary videos-btn deleted-video btn-1" data-bs-toggle="modal" data-bs-target="#videoModal{{ videoIndex + 1}}">
-								<i class="bi bi-play-circle"></i>
-								En voir plus ...
-							</button>
-							</div>
-						{% elseif loop.index == 2 %}
-							<div class="bloc-img-btn col-4 col-sm-6 col-md-6 d-flex p-0 img-2">
-							<img class="carousel_img w-100" src="{{ asset('img/Home/Je filme mon futur métier Meltingphot_Image_Vignette_Page accueil meltingphot_je Filme mon futur métier.png')}}" alt="...">
-							<button type="button" class="btn btn-primary videos-btn deleted-video btn-2" data-bs-toggle="modal" data-bs-target="#videoModal{{ videoIndex + 1}}">
-								<i class="bi bi-play-circle"></i>
-								En voir plus ...
-							</button>
-							</div>
-						{% endif %}
-						{% endif %}
-					{% endfor %}
-					<div class="col-3 extremity p-0 d-none d-xxl-flex">
-						<img class="carousel_img w-100" src="{{ asset('img/ODONYMES _Image_Vignette_Page accueil meltingphot_je Filme mon futur métier.png')}}" alt="...">
-					</div>
-				</div>
-			</div>
-			{% endfor %}
-				<div class="carousel-indicators">
-					{% for j in 0..(videos|length / 2 - 1) %}
-						<button type="button" data-bs-target="#carouselIndicators" data-bs-slide-to="{{ j }}" {% if j == 0 %} class="active" aria-current="true" {% endif %} aria-label="Slide {{ j+1 }}"></button>
-					{% endfor %}
-				</div>
+    <div class="carousel-inner">
+        {% for i in 0..(videos|length / 2 - 1) %}
+            <div class="carousel-item {% if i == 0 %}active{% endif %}" style="height: 700px;">
+                <div class="d-flex w-100 justify-content-center">
+                    <div class="col-3 extremity p-0 d-none d-xxl-flex">
+                        <img class="carousel_img w-100" src="{{ asset('img/ODONYMES _Image_Vignette_Page accueil meltingphot_je Filme mon futur métier.png')}}" alt="...">
+                    </div>
+                    {% for j in 0..1 %}
+                        {% set videoIndex = i * 2 + j %}
+                        {% if videoIndex < videos|length %}
+                            {% set video = videos[videoIndex] %}
+                            {% if loop.index == 1 %}
+								<div class="bloc-img-btn col-4 col-sm-6 col-md-6 d-flex p-0 img-1">
+									{% if video.getImage() %}
+										<img src="{{ asset('uploads/videos/images/' ~ video.getImage()) }}" alt="Video Image">
+									{% else %}
+										<p>No image available</p>
+									{% endif %}
+                                    <button type="button" class="btn btn-primary videos-btn deleted-video btn-1" data-bs-toggle="modal" data-bs-target="#videoModal{{ videoIndex + 1 }}">
+                                        <i class="bi bi-play-circle"></i>
+                                        En voir plus ...
+                                    </button>
+                                </div>
+                            {% elseif loop.index == 2 %}
+                                <div class="bloc-img-btn col-4 col-sm-6 col-md-6 d-flex p-0 img-2">
+								<img class="carousel_img w-100" src="{{ asset('uploads/videos/images/' ~ video.getImage()) | raw }}" alt="...">
+                                    <button type="button" class="btn btn-primary videos-btn deleted-video btn-2" data-bs-toggle="modal" data-bs-target="#videoModal{{ videoIndex + 1 }}">
+                                        <i class="bi bi-play-circle"></i>
+                                        En voir plus ...
+                                    </button>
+                                </div>
+                            {% endif %}
+                        {% endif %}
+                    {% endfor %}
+                    <div class="col-3 extremity p-0 d-none d-xxl-flex">
+                        <img class="carousel_img w-100" src="{{ asset('img/ODONYMES _Image_Vignette_Page accueil meltingphot_je Filme mon futur métier.png')}}" alt="...">
+                    </div>
+                </div>
+            </div>
+        {% endfor %}
+        
+        <div class="carousel-indicators">
+            {% for j in 0..(videos|length / 2 - 1) %}
+                <button type="button" data-bs-target="#carouselIndicators" data-bs-slide-to="{{ j }}" {% if j == 0 %} class="active" aria-current="true" {% endif %} aria-label="Slide {{ j+1 }}"></button>
+            {% endfor %}
+        </div>
 
-				<button class="carousel-control-prev" type="button" data-bs-target="#carouselIndicators" data-bs-slide="prev">
-				<span class="carousel-control-prev-icon" aria-hidden="true"></span>
-				<span class="visually-hidden">Previous</span>
-				</button>
-				
-				<button class="carousel-control-next" type="button" data-bs-target="#carouselIndicators" data-bs-slide="next">
-				<span class="carousel-control-next-icon" aria-hidden="true"></span>
-				<span class="visually-hidden">Next</span>
-				</button>
-			
-		</div>
-	</div>
+        <button class="carousel-control-prev" type="button" data-bs-target="#carouselIndicators" data-bs-slide="prev">
+            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Previous</span>
+        </button>
+                
+        <button class="carousel-control-next" type="button" data-bs-target="#carouselIndicators" data-bs-slide="next">
+            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Next</span>
+        </button>
+    </div>
+</div>
 
 <div id="carouselIndicatorsMobile" class="carousel-actions slide mobile-carousel-Actions mb-5">
-  <div class="carousel-inner">
-    {% for i in 0..(videos|length - 1) %}
-      {% set videoIndex = loop.index0 %}
-      {% if videoIndex < videos|length %}
-        <div class="carousel-item {% if i == 0 %}active{% endif %}" style="height: 400px;">
-          <div class="d-flex w-100 justify-content-center">
-            <div class="col-12 col-sm-8 col-md-6 extremity p-0">
-              <img class="carousel_img" style="margin:0 auto;" src="{{ asset('img/Home/Je filme mon futur métier Meltingphot_Image_Vignette_Page accueil meltingphot_je Filme mon futur métier.png')}}" alt="...">
-				<div class="w-full d-flex justify-content-center ">
-				<button type="button" class="btn btn-primary btn-{{ loop.index }}" data-bs-toggle="modal" data-bs-target="#videoModal{{ videoIndex + 1 }}" style="height:50px; margin-top:-6rem">
-					<i class="bi bi-play-circle"></i>
-					En voir plus ...
-				</button>
+	<div class="carousel-inner">
+		{% for i in 0..(videos|length - 1) %}
+			{% set videoIndex = loop.index0 %}
+			{% if videoIndex < videos|length %}
+				<div class="carousel-item {% if i == 0 %}active{% endif %}" style="height: 400px;">
+					<div class="d-flex w-100 justify-content-center">
+						<div class="col-12 col-sm-8 col-md-6 extremity p-0">
+							{% set video = videos[videoIndex] %}
+							{% if video.getImage() %}
+								<img class="carousel_img" style="margin:0 auto;" src="{{ asset('uploads/videos/images/' ~ video.getImage()) }}" alt="Video Image">
+							{% else %}
+								<p>No image available</p>
+							{% endif %}
+							<div class="w-full d-flex justify-content-center ">
+								<button type="button" class="btn btn-primary btn-{{ loop.index }}" data-bs-toggle="modal" data-bs-target="#videoModal{{ videoIndex + 1 }}" style="height:50px; margin-top:-6rem">
+									<i class="bi bi-play-circle"></i>
+									En voir plus ...
+								</button>
+							</div>
+						</div>
+					</div>
 				</div>
-            </div>
-          </div>
-        </div>
-      {% endif %}
-    {% endfor %}
+			{% endif %}
+		{% endfor %}
 
-	
-    <div class="carousel-indicators">
-      {% for j in 0..(videos|length - 1) %}
-        <button type="button" data-bs-target="#carouselIndicatorsMobile" data-bs-slide-to="{{ j }}" {% if j == 0 %}class="active" aria-current="true"{% endif %} aria-label="Slide {{ j + 1 }}"></button>
-      {% endfor %}
-    </div>
 
-    <button class="carousel-control-prev mobile-prev" type="button" data-bs-target="#carouselIndicatorsMobile">
-      <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-      <span class="visually-hidden">Previous</span>
-    </button>
+		<div class="carousel-indicators">
+			{% for j in 0..(videos|length - 1) %}
+			<button type="button" data-bs-target="#carouselIndicatorsMobile" data-bs-slide-to="{{ j }}" {% if j == 0 %}class="active" aria-current="true"{% endif %} aria-label="Slide {{ j + 1 }}"></button>
+			{% endfor %}
+		</div>
 
-    <button class="carousel-control-next mobile-next" type="button" data-bs-target="#carouselIndicatorsMobile">
-      <span class="carousel-control-next-icon" aria-hidden="true"></span>
-      <span class="visually-hidden">Next</span>
-    </button>
-  </div>
+		<button class="carousel-control-prev mobile-prev" type="button" data-bs-target="#carouselIndicatorsMobile">
+			<span class="carousel-control-prev-icon" aria-hidden="true"></span>
+			<span class="visually-hidden">Previous</span>
+		</button>
+
+		<button class="carousel-control-next mobile-next" type="button" data-bs-target="#carouselIndicatorsMobile">
+			<span class="carousel-control-next-icon" aria-hidden="true"></span>
+			<span class="visually-hidden">Next</span>
+		</button>
+	</div>
 </div>
 
 
