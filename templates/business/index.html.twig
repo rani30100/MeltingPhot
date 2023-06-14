@@ -1,0 +1,10 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>Statistiques du site</h1>
+
+    <p>Nombre d'utilisateurs : {{ stats.users }}</p>
+    <p>Nombre de sessions : {{ stats.sessions }}</p>
+    <p>Nombre de pages vues : {{ stats.pageviews }}</p>
+
+{% endblock %}

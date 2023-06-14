@@ -92,7 +92,17 @@
 				carouselInstanceMobile.prev();
 				});
 			});
+
+				//google analytique
+				window.dataLayer = window.dataLayer || [];
+				function gtag(){dataLayer.push(arguments);}
+				gtag('js', new Date());
+
+				gtag('config', 'G-TB0K54FEJ4');
+
 		</script>
+		
+		<script async src="https://www.googletagmanager.com/gtag/js?id=G-TB0K54FEJ4"></script>
 
 	{% endblock %}
 </html>

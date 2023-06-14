@@ -18,6 +18,7 @@ use EasyCorp\Bundle\EasyAdminBundle\Config\Dashboard;
 use Symfony\Component\Security\Http\Attribute\IsGranted;
 use EasyCorp\Bundle\EasyAdminBundle\Router\AdminUrlGenerator;
 use EasyCorp\Bundle\EasyAdminBundle\Controller\AbstractDashboardController;
+use Google\Service\MyBusinessLodging\Business;
 use Symfony\Component\HttpFoundation\RequestStack;
 
 class DashboardController extends AbstractDashboardController
@@ -86,7 +87,7 @@ class DashboardController extends AbstractDashboardController
         // ->setAction(Crud::PAGE_NEW);
 
         yield MenuItem::section('Statistiques');
-        yield MenuItem::linktoRoute('Mes Stats', 'fa fa-chart-bar', 'admin_business_stats');
+        yield MenuItem::linktoRoute('Mes Stats', 'fa fa-chart-bar', Business::class);
         //     // yield MenuItem::linkToCrud('The Label', 'fas fa-list', EntityClass::class);
         //     yield MenuItem::linkToDashboard('Dashboard', 'fa fa-home');
 
