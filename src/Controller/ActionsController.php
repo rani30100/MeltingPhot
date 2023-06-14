@@ -54,7 +54,7 @@ class ActionsController extends AbstractController
                     $video->setUrl('https://www.youtube.com/embed/' . $videoData['snippet']['resourceId']['videoId']);
                     $video->setCreatedAt(new DateTimeImmutable($videoData['snippet']['publishedAt']));     
                 
-                      
+                    //Pour determiner la 1ere video 
                     $index = key($videos1);
                     // Récupérer l'URL ou le chemin d'accès de l'image associée à la vidéo
                     $imagePath = '' . $index . '.jpg'; // Remplacez par l'URL ou le chemin d'accès approprié
