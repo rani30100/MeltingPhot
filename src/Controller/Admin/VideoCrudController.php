@@ -29,8 +29,8 @@ class VideoCrudController extends AbstractCrudController
             DateTimeField::new('created_at')->onlyOnIndex(),
             TextField::new('url'),
             AssociationField::new('category')->autocomplete(),
-            ImageField::new('videoImage')
-            ->setLabel('Images')
+            ImageField::new('Image')
+            ->setLabel('Image')
             ->setBasePath('/uploads/videos/images') // Chemin de base pour afficher les images
             ->setUploadDir('public/uploads/videos/images') // Dossier de destination pour enregistrer les images
             ->setUploadedFileNamePattern('[randomhash].[extension]') // Modèle de nom de fichier pour les images téléchargées
