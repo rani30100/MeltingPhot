@@ -259,10 +259,14 @@ body {
     text-decoration: none;
     color: gray;
     font-weight: bolder;
-    
-    
+
+    &:hover{
+        color:black !important;
+
+    }
   
   }
+  
 
   
   .filter-tab::before,
@@ -302,6 +306,8 @@ body {
         margin-bottom: 4px !important;
     }
 }
+
+
 
 @media (orientation: landscape) {
     .temoignages {

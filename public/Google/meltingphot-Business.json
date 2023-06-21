@@ -1,13 +1,7 @@
-{
-  "type": "service_account",
-  "project_id": "meltingphot-1681824188370",
-  "private_key_id": "af0143eaf9749ebf77252ccf3e1e61743881eaab",
-  "private_key": "-----BEGIN PRIVATE KEY-----\nMIIEvwIBADANBgkqhkiG9w0BAQEFAASCBKkwggSlAgEAAoIBAQDwMAy7K6gJBs8h\nsvCHF8hrEfrsREg34AzSMmatzK6ZTota+FRqsfBFxODfBx+pnKeEUaiHZ2kz65Hv\nh+J461n6tGdVkrmAVVOugJ1YIGeFKu6Z2ye46tg12q95faBSadVp0MCMDr7WfHJN\nCs2kSXMG6ZRaL48w/bihv8rQtQtnUstaBcvRkPQQq48CH9QCVOiFgwudKutLjNEl\nPSinh2FzFH5viEmwRZXojKUNDa6gNb5OlY16At2FXbGXAGu28OesXGsN+YVx9uZd\nE9q6R9wuOCS1RtjDdN1H32cm6W5FSQdZeMp+DSQJqm27zaLn2pK4zXzRUhn3e//j\n3wMMgvHlAgMBAAECggEAEtBYtvKQ+4AGioe3MoXI46YpZwdkNsg8iNx80YFWbdjK\nrqoEBsWAYh6tVJr8vm7wajtxPYX6ph/+MuqMcVdSGYK3E2tmT2ifoOwfJw+GvFYk\nEXYqst/mZrWGCDiwbbQvjNXWt0HSbf+afnFpsUQ1l+WFAtl12GsPYtAgpV+BEKsz\nPK5s0YuehzkbIua/H9S4KRsHZeXh8gEcwPPXpVQXWjJ6Uz8TmBWW4v9WxuNfWquJ\nGP+h3cI4U8sP0hnQCul3ejgsBb3eOiFP8IURFZ0JAKvxOJmKbuvFjoAq36xDh7dR\nGuBd+M7lU0x41oqefAOjujYpdnD4PG/yHTBDio0X8QKBgQD4S7iWuTlUlaLJbyw2\nvY53FsLfql4gi1Dqv+PgxA3hIYkbCPOJL5oMOlQcHEYllNW5dt3NJYv/m61kdMHN\nwIq/uWOADbdxEZO59/WeBIJ4b5T0Ws8EaNSV4l+M0ekMwC61tq/5EfV7cAJ9Cxx0\n8uBxTMTiyWt7gQZuL6/O7S94TQKBgQD3o+yJjIOac6Wj4zIl7e/b/ESfTEZnd+WW\n875Vnmt6q0QzKqtAKHGKzFrn1DjmOLxpc17xNN5KM5/QZ44gDuixQLW7p7jXz7Ej\nrSciK8dnTMpXTHElPh2zBioimXbO+3ktfxrb/FGZYXB6xoL//xgdSlP4IKn4VJbn\nWKgl8aor+QKBgQC2nbKIoHhK/rc4odyJ8ka6zfHL4RjTpMOBtFpcsLVolGqriJzd\nlDYfsjK0bhMlht7eRk+Bl5DtEUmo7bqwomEp+6bzwqLdtUjKaVWrv7NZ8u9B/Rvv\nKU7ZYiJWhvh52UtBeLjaXlwHSm16HFb0qMFsc0MHbY7wyge5uLb8YTQdrQKBgQCj\nrtAL4rqh/kq/1s4wz+K47zeUa2Alx9QTQKzP/tRf0pBTmaJz18ekzIpRra6mTV4L\n/VwF5sH/HbxGjgwdGH2pm3IDxUqiKv+U60Bwj6tPliwwI7Ctwy7yQ+LZ18H18bYY\n4mioe1CcJxGntUqlVsFjqttxqHVwVMkhxTHvUpr+UQKBgQDtUEJoo16H182vJDI2\nPNKhrukz2SuFg4mc2CrZfCW6hUywQsZMGiq4KPT/rDauifzVTVWCcXXXYAWDunVc\nl7ca3Ul07LqZmX0yy1Pt45DgFgw9EmZ5PPDjhslhRF5aMJ9I+Jw9ko1hpAXRAGKi\n8t41OS7/P9erfPpckbbsHs+p5A==\n-----END PRIVATE KEY-----\n",
-  "client_email": "meltingphot@meltingphot-1681824188370.iam.gserviceaccount.com",
-  "client_id": "114487782764811340779",
-  "auth_uri": "https://accounts.google.com/o/oauth2/auth",
-  "token_uri": "https://oauth2.googleapis.com/token",
-  "auth_provider_x509_cert_url": "https://www.googleapis.com/oauth2/v1/certs",
-  "client_x509_cert_url": "https://www.googleapis.com/robot/v1/metadata/x509/meltingphot%40meltingphot-1681824188370.iam.gserviceaccount.com",
-  "universe_domain": "googleapis.com"
-}
+{"web":{"client_id":"1057014466483-03ds915upccmgn1j1rurnro1v555p409.apps.googleusercontent.com",
+  "project_id":"meltingphot-1681824188370",
+  "auth_uri":"https://accounts.google.com/o/oauth2/auth",
+  "token_uri":"https://oauth2.googleapis.com/token",
+  "auth_provider_x509_cert_url":"https://www.googleapis.com/oauth2/v1/certs",
+  "client_secret":"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",
+  "redirect_uris":["https://www.meltingphot.org"]}}
