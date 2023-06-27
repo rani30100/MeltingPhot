@@ -79,7 +79,7 @@ document.addEventListener('DOMContentLoaded', function() {
     });
 
         //google analytique
-        window.dataLayer = window.dataLayer || [];zzz
+        window.dataLayer = window.dataLayer || [];
         function gtag(){dataLayer.push(arguments);}
         gtag('js', new Date());
 

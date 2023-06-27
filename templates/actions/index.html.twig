@@ -7,6 +7,8 @@
 {% endblock %}
 {% block javascripts %}
 	{{ parent() }}
+	<script src="{{ asset('js/component/navbar.js') }}"></script>
+
 
 
 	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/js/bootstrap.bundle.min.js"></script>
@@ -108,17 +110,17 @@
 			</div>
 		</nav> #}
 </section>
-
 <nav class="navbar nav-phone navbar-dark bg-red-500">
-  <div class="container-fluid">
-    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarToggleExternalContent" aria-controls="navbarToggleExternalContent" aria-expanded="false" aria-label="Toggle navigation">
-      <span class="navbar-toggler-icon"></span>
-    </button>
-  </div>
-</nav>
-<div class="collapse shadow nav-phone" id="navbarToggleExternalContent" data-bs-theme="dark">
-  <div class=" p-4">
-  <ul class="navbar-nav nav-phone-content me-auto mb-2 mb-lg-0 w-100 d-flex justify-content-center align-items-center">
+		<div class="container-fluid">
+			<button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarToggleExternalContent" aria-controls="navbarToggleExternalContent" aria-expanded="false" aria-label="Toggle navigation">
+				<span class="navbar-toggler-icon"></span>
+			</button>
+		</div>
+	</nav>
+
+	<div class="shadow nav-phone collapse" id="navbarToggleExternalContent" data-bs-theme="dark">
+		<div class=" p-4">
+			<ul class="navbar-nav nav-phone-content me-auto mb-2 mb-lg-0 w-100 d-flex justify-content-center align-items-center">
 				<li class="">
 					<a href="/">
 						<img class="logo me-2" id="logo-MeltingPhot"src="{{ asset('img/logo.png')}}" width alt=""></img>
@@ -129,12 +131,12 @@
 					<a class="nav-link" aria-current="page" href="/">MELTINGPHOT</a>
 				</li>
 				<li class="nav-item me-2">
-					<a class="nav-link" href="{{ path("app_actions")}}">ACTIONS</a>
+					<a class="nav-link" href="{{ path("app_actions")}}">Nos Actions</a>
 				</li>
 
 
 				<li class="nav-item me-2">
-					<a class="nav-link" href="{{path('app_contact')}}">CONTACT</a>
+					<a class="nav-link" href="{{path('app_contact')}}">Nous Contacter</a>
 				</li>
 
 				{% if not app.user %}
@@ -175,9 +177,8 @@
 					</li>
 				{% endif %}
 			<ul>
-  </div>
-</div>
-
+		</div>
+	</div>
 
 
 
@@ -292,7 +293,7 @@
 								<p>No image available</p>
 							{% endif %}
 							<div class="w-full d-flex justify-content-center ">
-								<button type="button" class="btn btn-primary btn-{{ loop.index }}" data-bs-toggle="modal" data-bs-target="#videoModal{{ videoIndex + 1 }}" style="height:50px; margin-top:-6rem">
+								<button type="button" class="btn btn-primary btn-{{ loop.index }}" data-bs-toggle="modal" data-bs-target="#videoModal{{ videoIndex + 1 }}" data-video-id="{{ video.id }}" style="height:50px; margin-top:-6rem">
 									<i class="bi bi-play-circle"></i>
 									En voir plus +
 								</button>
@@ -341,6 +342,29 @@
 	</div>
 {% endfor %}
 </div>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        var videoButtons = document.querySelectorAll('.videos-btn');
+
+        videoButtons.forEach(function(button) {
+            button.addEventListener('click', function() {
+                var videoId = button.dataset.videoId;
+                var modalBody = button.closest('.modal').querySelector('.modal-body');
+
+                var iframe = document.createElement('iframe');
+                iframe.className = 'embed-responsive-item w-100 modal-video';
+                iframe.src = 'https://www.youtube.com/embed/' + videoId + '?rel=0';
+                iframe.allowfullscreen = true;
+                iframe.allow = 'autoplay';
+
+                modalBody.innerHTML = '';
+                modalBody.appendChild(iframe);
+            });
+        });
+    });
+</script>
+
 {# <div class="d-flex justify-content-center flex-wrap bloc-videos p-1" id="video-container"></div> #}
 
 <footer class="text-center text-lg-start bg-light text-muted w-100">

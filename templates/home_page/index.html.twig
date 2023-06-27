@@ -5,65 +5,10 @@
 
 {% block javascripts %}
 	{{ parent() }}
-<script src="js/modernizr.custom.js"></script>
-
-		<script>document.addEventListener("DOMContentLoaded", function () {
-		var carouselTemoignages = document.querySelector("#carouselTemoignages");
-
-		carouselTemoignages.addEventListener("slide.bs.carousel", function () {
-			var activeItem = this.querySelector(".carousel-item.active");
-
-			activeItem.classList.add("fade-out");
-		});
-
-		carouselTemoignages.addEventListener("slid.bs.carousel", function () {
-			var activeItem = this.querySelector(".carousel-item.active");
-
-			activeItem.classList.remove("fade-out");
-		});
-		});
-		</script>
-
-
-
-<script>
-// Récupérer tous les éléments d'article
-const articles = document.querySelectorAll('.parent-article article');
-
-// Fonction de détection du scroll
-function handleScroll() {
-  // Parcourir tous les articles
-  articles.forEach((article, index) => {
-    // Récupérer la position de l'article par rapport à la fenêtre
-    const rect = article.getBoundingClientRect();
-
-    // Calculer le point de déclenchement de l'animation (ajuster la valeur si nécessaire)
-    const triggerPoint = window.innerHeight * 1.0;
-
-    // Vérifier si l'article est visible dans la fenêtre
-    if (rect.top < triggerPoint && rect.bottom >= 0) {
-      // Vérifier si l'article a déjà été animé
-      if (!article.classList.contains('slide-in-left') && !article.classList.contains('slide-in-right')) {
-        // Ajouter la classe pour déclencher l'animation en fonction de l'index
-        if (index === 0 || index === 2) {
-          article.classList.add('slide-in-left');
-        } else if (index === 1) {
-          article.classList.add('slide-in-right');
-        }
-      }
-    } else {
-      // Réinitialiser l'animation lorsque l'article n'est pas visible
-      article.classList.remove('slide-in-left');
-      article.classList.remove('slide-in-right');
-    }
-  });
-}
-
-// Ajouter l'écouteur d'événement pour détecter le scroll
-window.addEventListener('scroll', handleScroll);
-</script>
-
-
+	<script src="{{ asset('js/component/navbar.js') }}"></script>
+	<script src="{{ asset('js/home/articles.js') }}"></script>
+	<script src="{{ asset('js/home/commentary.js') }}"></script>
+	<script src="js/modernizr.custom.js"></script>
 
 {% endblock %}
 {% block stylesheet %}
@@ -236,27 +181,7 @@ window.addEventListener('scroll', handleScroll);
 			<ul>
 		</div>
 	</div>
-<script>
-  document.addEventListener("DOMContentLoaded", function() {
-    let navbarContent = document.getElementById('navbarToggleExternalContent');
-    let navbarToggler = document.querySelector('.navbar-toggler');
-    let isNavbarVisible = false;
 
-    navbarToggler.addEventListener('click', function() {
-      if (!isNavbarVisible) {
-        navbarContent.classList.add('show');
-        isNavbarVisible = true;
-      } else {
-        navbarContent.classList.remove('show');
-        isNavbarVisible = false;
-      }
-    });
-  });
-</script>
-
-
-
-	
 	{# <li class="nav-item dropdown me-2">
 							<a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
 								POUR QUI ?
@@ -613,16 +538,15 @@ window.addEventListener('scroll', handleScroll);
 		</section>
 
 	<footer class="text-center text-lg-start bg-light text-muted">
-		<section class="border-top">
-			<div
-				class="text-center text-md-start mt-5">
-				<!-- Grid row -->
-				<div class="row mt-3 d-flex">
-					<div
-						class="d-flex justify-content-center">
-						<!-- Links -->
-						<img src="{{ asset('img/logo.png')}}" class="fw-bold mb-4"></img>
-				</div>
+		<section class="border-top ">
+			
+			<div>
+				<img src="/img/Point.png" alt="" style="position: absolute;height: 267px;width: 100%;opacity: 0.4;">
+					<div class="row mt-3 mb-3 d-flex">
+						<div class="d-flex justify-content-center">
+							<img src="/img/logo.png" class="fw-bold mb-4" style="z-index: 1;">
+						</div>
+					</div>
 			</div>
 			<!-- Grid column -->
 			<div class="d-flex justify-content-center ">
@@ -652,6 +576,7 @@ window.addEventListener('scroll', handleScroll);
 					<i class="fas fa-phone me-3"></i>06 64 21 93 75</p>
 			</div>
 
+
 			<!-- Grid row -->
 			<div
 				class="info-contact2 ">
@@ -668,12 +593,13 @@ window.addEventListener('scroll', handleScroll);
 			<!-- Section: Links  -->
 			<!-- Copyright -->
 
+			</div>
+
 			<div class="text-center p-4 fw-bold text-white d-flex flex-column align-items-center" style="background-color: #D00A4B;">
 				Tous droits réservés © 2023 @MeltingPhot
 				<p class="fst-italic fw-light fs-6 text-white copyright-text">
 					En effet, tous les éléments présents sur Internet (textes, images, vidéos, extraits sonores, codes informatiques…) sont de
 																			facto soumis au droit d’auteur, même si l’accès est libre, gratuit et sans mention particulière.</p>
-			</div>
 		</section>
 	</footer>
 
