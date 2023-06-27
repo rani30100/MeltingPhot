@@ -167,16 +167,17 @@ window.addEventListener('scroll', handleScroll);
 		</nav> #}
 </section>
 
-<nav class="navbar nav-phone navbar-dark bg-red-500">
-  <div class="container-fluid">
-    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarToggleExternalContent" aria-controls="navbarToggleExternalContent" aria-expanded="false" aria-label="Toggle navigation">
-      <span class="navbar-toggler-icon"></span>
-    </button>
-  </div>
-</nav>
-<div class="collapse shadow nav-phone" id="navbarToggleExternalContent" data-bs-theme="dark">
-  <div class=" p-4">
-  <ul class="navbar-nav nav-phone-content me-auto mb-2 mb-lg-0 w-100 d-flex justify-content-center align-items-center">
+	<nav class="navbar nav-phone navbar-dark bg-red-500">
+		<div class="container-fluid">
+			<button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarToggleExternalContent" aria-controls="navbarToggleExternalContent" aria-expanded="false" aria-label="Toggle navigation">
+				<span class="navbar-toggler-icon"></span>
+			</button>
+		</div>
+	</nav>
+
+	<div class="shadow nav-phone" id="navbarToggleExternalContent" data-bs-theme="dark">
+		<div class=" p-4">
+			<ul class="navbar-nav nav-phone-content me-auto mb-2 mb-lg-0 w-100 d-flex justify-content-center align-items-center">
 				<li class="">
 					<a href="/">
 						<img class="logo me-2" id="logo-MeltingPhot"src="{{ asset('img/logo.png')}}" width alt=""></img>
@@ -187,12 +188,12 @@ window.addEventListener('scroll', handleScroll);
 					<a class="nav-link" aria-current="page" href="/">MELTINGPHOT</a>
 				</li>
 				<li class="nav-item me-2">
-					<a class="nav-link" href="{{ path("app_actions")}}">ACTIONS</a>
+					<a class="nav-link" href="{{ path("app_actions")}}">Nos Actions</a>
 				</li>
 
 
 				<li class="nav-item me-2">
-					<a class="nav-link" href="{{path('app_contact')}}">CONTACT</a>
+					<a class="nav-link" href="{{path('app_contact')}}">Nous Contacter</a>
 				</li>
 
 				{% if not app.user %}
@@ -233,8 +234,24 @@ window.addEventListener('scroll', handleScroll);
 					</li>
 				{% endif %}
 			<ul>
-  </div>
-</div>
+		</div>
+	</div>
+<script>
+  var navbarContent = document.getElementById('navbarToggleExternalContent');
+  var navbarToggler = document.querySelector('.navbar-toggler');
+  var isNavbarVisible = false;
+
+  navbarToggler.addEventListener('click', function() {
+    if (!isNavbarVisible) {
+      navbarContent.classList.add('show');
+      isNavbarVisible = true;
+    } else {
+      navbarContent.classList.remove('show');
+      isNavbarVisible = false;
+    }
+  });
+</script>
+
 
 	
 	{# <li class="nav-item dropdown me-2">

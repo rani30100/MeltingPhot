@@ -316,6 +316,26 @@ body {
     font-size: 4rem;
 }
 
+
+.navbar.nav-phone {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 999;
+  }
+  
+#navbarToggleExternalContent{
+    z-index: 1;
+    position: fixed;
+    background: aliceblue;
+    width: 100%;
+}
+
+.carousel-control-prev,.carousel-control-next,.carousel-indicators{
+    z-index: 0;
+}
+
 @media (orientation: landscape) {
     .temoignages,.partenaire-pc {
       height: 60vh;
@@ -591,6 +611,7 @@ body {
         .parent-article {
             margin-left: 0;
             margin-right: 0;
+            margin-top: 2rem !important;
 
         }
 
@@ -1350,9 +1371,6 @@ body .parent-article .block-article_description {
         }
     }
     
-    #navbarToggleExternalContent{
-        height: 100vh;
-    }
     
     .parent-article article {
         opacity: 0;
