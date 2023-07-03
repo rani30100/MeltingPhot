@@ -11,40 +11,6 @@
 {% block javascripts %}
 	{{ parent() }}
 
-    <script src="path/to/chartjs/dist/chart.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/hammerjs@2.0.8"></script>
-    <script src="path/to/chartjs-plugin-zoom/dist/chartjs-plugin-zoom.min.js"></script>
-    <script>
-        const config = {
-  type: 'line',
-  data: {
-    labels: ['January', 'February', 'March', 'April', 'May', 'June', 'July'],
-    datasets: [{
-      label: 'My First Dataset',
-      data: [65, 59, 80, 81, 56, 55, 40],
-      fill: false,
-      borderColor: 'rgb(75, 192, 192)',
-      tension: 0.1
-    }]
-  },
-  options: {
-    plugins: {
-      zoom: {
-        zoom: {
-          wheel: {
-            enabled: true,
-          },
-          pinch: {
-            enabled: true
-          },
-          mode: 'xy',
-        }
-      }
-    }
-  }
-};
-    </script>
-
 
       <script src="{{ asset('js/flipbook/main.js') }}"></script>
 
@@ -167,6 +133,8 @@ i {
     z-index: 1;
 }
 
+
+
  @media (min-width: 360px) and (max-width:669px) {
 
     .paper{
@@ -182,7 +150,7 @@ i {
         width:67% !important;
     }
     .book{
-        width: 535px;
+        width: 615px;
     }
     .flip-btn{
         margin-top: -350px !important;
@@ -197,9 +165,16 @@ i {
     
  }
 
+ @media (min-width: 1200px)  {
+    .book{
+        width: 1200px;
+    }
+    
+ }
+
 </style>
 
-<div class="d-flex align-items-center flex column">
+<div id="zoom" class="d-flex align-items-center flex column ">
    
 
 
