@@ -14,8 +14,7 @@ class OrangeController extends AbstractController
       
 
         $jsFiles = [
-            'http://127.0.0.1:8000/js/flipbook/lib/turn.js',
-            'http://127.0.0.1:8000/js/flipbook/lib/zoom.min.js',
+            
             'http://127.0.0.1:8000/js/flipbook/magazine.js',
         ];
         $cssFiles = [
