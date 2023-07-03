@@ -2,6 +2,20 @@
     const prevBtn = document.querySelector(".prev-btn-flip");
     const nextBtn = document.querySelector(".next-btn-flip");
     const book = document.querySelector(".book");
+
+    function isMobileDevice() {
+        const mobileDeviceRegex = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini|Samsung|Huawei/i;
+        return mobileDeviceRegex.test(navigator.userAgent);
+      }
+      
+      function enableMobileZoom() {
+        if (isMobileDevice()) {
+          // Désactiver la réaction tactile par défaut
+          book.style.touchAction = "none";
+          // Activer le zoom par pincement
+          book.style.pinchZoom = "zoom";
+        }
+      }
   
     const paper1 = document.querySelector(".p1");
     const paper2 = document.querySelector(".p2");
@@ -81,13 +95,7 @@
         currentLocation--;
       }
       
-      function zoom(scale) {
-        document.body.style.transform = "scale(" + scale + ")";
-        document.body.style.transformOrigin = "top left";
-        document.body.style.width = (100 / scale) + "%";
-        document.body.style.height = (100 / scale) + "%";
-    };
-    zoom(1.25);
+ 
       
     }
 
