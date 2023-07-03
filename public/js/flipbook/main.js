@@ -7,29 +7,6 @@
     const paper3 = document.querySelector(".p3");
   
 
-    // Sélectionnez l'élément sur lequel vous souhaitez activer le zoom par pincement
-const zoomElement = document.getElementById("zoom");
-
-// Créez une instance de Hammer.js pour l'élément sélectionné
-const hammer = new Hammer(zoomElement);
-
-// Ajoutez un gestionnaire pour le geste de pincement
-hammer.get("pinch").set({ enable: true });
-
-// Définissez les gestionnaires d'événements pour le geste de pincement
-hammer.on("pinchstart pinchmove", function (event) {
-  // Accédez à l'échelle du pincement
-  const scale = event.scale;
-
-  // Appliquez le zoom à l'élément en utilisant l'échelle
-  zoomElement.style.transform = `scale(${scale})`;
-});
-
-// Réinitialisez le zoom lorsque le geste de pincement est terminé
-hammer.on("pinchend", function () {
-  zoomElement.style.transform = "scale(1)";
-});
-
     // Event Listener
     prevBtn.addEventListener("click", goPrevPage);
     nextBtn.addEventListener("click", goNextPage);
