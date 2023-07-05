@@ -1,0 +1,15 @@
+.errorPage {
+  height: 50vh;
+}
+
+.error404 {
+  height: 50vh;
+}
+
+.error404-title {
+  padding-top: 4rem;
+}
+
+.img-error404 {
+  background-image: url("/var/www/html/Projet-MeltingPhot/public/img/error404.jpg");
+}/*# sourceMappingURL=error.css.map */

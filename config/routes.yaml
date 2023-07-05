@@ -18,4 +18,8 @@ kernel:
     resource: App\Kernel
     type: attribute
 
+when@dev:
+    _errors:
+        resource: '@FrameworkBundle/Resources/config/routing/errors.xml'
+        prefix:   /_error
 
