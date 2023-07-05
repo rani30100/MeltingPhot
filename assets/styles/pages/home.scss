@@ -99,8 +99,11 @@ body {
         }
 
         .article-title {
-            margin-top: 6rem;
+            margin-top: 8rem;
             // margin-left: -184px;
+        }
+        .article-title3 {
+            margin-top: 6rem;
         }
 
         #forms-svg {
@@ -1087,7 +1090,7 @@ body .parent-article .block-article_description {
         width: 100%;
     }
     .article2-title{
-        margin-top: 4rem;
+        margin-top: 6rem;
         margin-right: -1rem;
     }
     .article2-title_nom{
@@ -1107,7 +1110,7 @@ body .parent-article .block-article_description {
     }
     
     .article2_description{
-        margin-right: 6rem !important;
+        margin-right: 70px !important;
         margin-top: 1rem;
         min-width: 300px;
     }
@@ -1208,7 +1211,7 @@ body .parent-article .block-article_description {
     
     @media screen and (min-width:1093px) {
         .article2_description{
-        max-width: 393px;   
+        width: 393px;   
         }
     }
     
