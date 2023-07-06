@@ -6,12 +6,6 @@
 {% block javascripts %}
 	{{ parent() }}
 	<script src="{{ asset('js/component/navbar.js') }}"></script>
-	<script src="{{ asset('js/home/articles.js') }}"></script>
-	<script src="{{ asset('js/home/commentary.js') }}"></script>
-	<script src="{{ asset('js/flipbook/magazine.js') }}"></script>
-	<script src="{{ asset('js/flipbook/extras/jquery.min.1.7.js') }}"></script>
-	<script src="{{ asset('js/flipbook/extras/modernizr.2.5.3.min.js') }}"></script>
-	<script src="{{ asset('js/flipbook/lib/hash.js') }}"></script>
 
 
 {% endblock %}
@@ -175,7 +169,7 @@
 					</form>
 				</div>
 				{% if app.user %}
-					<p class="text-end btn btn-warning mt-3">Bienvenue {{ app.user.username }}!</p>
+					<p class="text-end btn btn-warning mt-3">Bienvenue,{{ app.user.username }}!</p>
 				{% endif %}
 
 				{% if not app.user %}
@@ -187,17 +181,49 @@
 		</div>
 	</div>
 
+	{# <li class="nav-item dropdown me-2">
+							<a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+								POUR QUI ?
+							</a>
+						</li> #}
+	{# <li class="nav-item me-2">
+							<a class="nav-link" href="#">PARTENAIRES</a>
+						</li>
+					
+						<li class="nav-item me-2">
+							<a class="nav-link" href="#">NOUS SOUTENIR</a>
+						</li> #}
+	{# <form class="d-flex nav-items me-2 form" role="search">
+							<input class="form-control me-2 search" type="search" placeholder="Ma recherche..." aria-label="Search">
+							<button class="btn btn-outline-success search-btn" type="submit">Rechercher</button>
+						</form>
+					
+						<li class="nav-item ">
+							<a id="language-link" class="p-2" href="/en">
+								<img class="flag" src="{{ asset('img/eng.png') }}">
+							</a>
+						</li> 
+					
+						<li class="nav-item ms-2">
+							<a id="language-link" class="p-2" href="/fr">
+								<img id="flag" src="{{ asset('img/drapeau.png') }}">
+							</a>
+						</li> #}
+
     <div class="error-pages">
         <div id="notfound">
             <div class="notfound">
                 <div class="notfound-404">
-                    <h3>Access Denied !</h3>
-                    <h1><span>4</span><span>0</span><span>3</span></h1>
+                    <h3>Oops! Something went wrong</h3>
+                    <h1><span>5</span><span>0</span><span>0</span></h1>
                 </div>
-                <h2> Oops, You don't have permission to access this page.</h2>
+               <h2>We apologize, but an internal server error occurred.</h2>
             </div>
         </div>
     </div>
+
+
+
 
 	<footer class="text-center text-lg-start bg-light text-muted">
 		<section class="border-top ">

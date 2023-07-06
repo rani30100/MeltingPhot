@@ -87,7 +87,7 @@ class DashboardController extends AbstractDashboardController
         // ->setAction(Crud::PAGE_NEW);
 
         yield MenuItem::section('Statistiques');
-        yield MenuItem::linktoRoute('Mes Stats', 'fa fa-chart-bar', Business::class);
+        yield MenuItem::linkToUrl('Mes Stats', 'fa fa-chart-bar', '/business');
         //     // yield MenuItem::linkToCrud('The Label', 'fas fa-list', EntityClass::class);
         //     yield MenuItem::linkToDashboard('Dashboard', 'fa fa-home');
 

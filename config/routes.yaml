@@ -23,3 +23,14 @@ when@dev:
         resource: '@FrameworkBundle/Resources/config/routing/errors.xml'
         prefix:   /_error
 
+error_403:
+    path: /_error/403
+    controller: App\Controller\ErrorController::error403
+
+error_404:
+    path: /_error/404
+    controller: App\Controller\ErrorController::error404
+
+error_500:
+    path: /_error/500
+    controller: App\Controller\ErrorController::error500
