@@ -23,7 +23,7 @@ class ActionsController extends AbstractController
             // Créez un client API Google
             $client = new Client();
             $client->setApplicationName('MeltingPhot');
-            $client->setDeveloperKey('AIzaSyDSrLD28H3nq5c6Mu4vD2UjAkD4clurAw4');
+            $client->setDeveloperKey('AIzaSyDNbPQ6M-fqyLQCyRNtkdJuhIdLDS1CoP4');
 
             // Créez un objet pour l'API YouTube Data
             $youtube = new \Google\Service\YouTube($client);
