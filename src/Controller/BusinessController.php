@@ -6,16 +6,21 @@ use Google\Service\Analytics;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\Dotenv\Dotenv;
+
 
 class BusinessController extends AbstractController
 {
     #[Route('/business', name: 'app_business')]
     public function index(): Response
     {
+       $googleCredentialsPath = realpath($this->getParameter('kernel.project_dir') . '/config/google_credentials.json');
+
+
         // Instantiate the Google\Client
         $client = new Client();
         // Set the path to the JSON file containing the credentials
-        $client->setAuthConfig('/var/www/html/Projet-MeltingPhot/config/google_credentials.json');
+        $client->setAuthConfig($googleCredentialsPath);
         
         // Authorize the client
         $client->setScopes([

@@ -27,4 +27,6 @@ DirectoryIndex index.php
     
 
     php_flag allow_url_include off
+    php_value upload_max_filesize 300M
+    php_value post_max_size 300M
 </IfModule>

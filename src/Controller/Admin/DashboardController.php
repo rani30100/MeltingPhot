@@ -3,23 +3,24 @@
 namespace App\Controller\Admin;
 
 //J'appelle les entity pour les liens
+use App\Entity\Ebook;
 use App\Entity\Image;
 use App\Entity\Posts;
 use App\Entity\Video;
 use App\Entity\Category;
-use App\Entity\Newsletter;
 
+use App\Entity\Newsletter;
 use App\Controller\Admin\UserCrudController;
 use Symfony\Component\Security\Core\Security;
+use Google\Service\MyBusinessLodging\Business;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Component\HttpFoundation\RequestStack;
 use EasyCorp\Bundle\EasyAdminBundle\Config\MenuItem;
 use EasyCorp\Bundle\EasyAdminBundle\Config\Dashboard;
 use Symfony\Component\Security\Http\Attribute\IsGranted;
 use EasyCorp\Bundle\EasyAdminBundle\Router\AdminUrlGenerator;
 use EasyCorp\Bundle\EasyAdminBundle\Controller\AbstractDashboardController;
-use Google\Service\MyBusinessLodging\Business;
-use Symfony\Component\HttpFoundation\RequestStack;
 
 class DashboardController extends AbstractDashboardController
 {
@@ -92,10 +93,11 @@ class DashboardController extends AbstractDashboardController
         //     yield MenuItem::linkToDashboard('Dashboard', 'fa fa-home');
 
         yield MenuItem::section("J'ajoute des éléments");
+        yield MenuItem::linkToCrud('Post', 'fa fa-pencil-alt', Posts::class);
         yield MenuItem::linkToCrud('Catégorie', 'fa-regular fa-circle-plus', Category::class);
         yield MenuItem::linkToCrud('Image', 'fa-regular fa-image', Image::class);
         yield MenuItem::linkToCrud('Vidéo', 'fa-light fa-video', Video::class);
-        yield MenuItem::linkToCrud('Post', 'fa fa-pencil-alt', Posts::class);
+        yield MenuItem::linkToCrud('Mes Livres Numériques', 'fa fa-pencil-alt',Ebook::class);
         //     yield MenuItem::linkToCrud('Blog Posts', 'fa fa-file-text', PostsCrudController::class);
 
         //     yield MenuItem::section('Users');

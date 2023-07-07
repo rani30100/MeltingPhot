@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "e95430bcb893e15448ab16aa2b58d4e9",
+    "content-hash": "ecf7b5cdaf3df8c04f9c78741d2a8a9e",
     "packages": [
         {
             "name": "composer/installers",
@@ -1538,16 +1538,16 @@
         },
         {
             "name": "easycorp/easyadmin-bundle",
-            "version": "v4.6.4",
+            "version": "v4.7.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/EasyCorp/EasyAdminBundle.git",
-                "reference": "4a1fee0a4f598c1a2b909eeb5f280789926d747a"
+                "reference": "17562010c5c7d160a5059c7f70b2c7e03f149d40"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/EasyCorp/EasyAdminBundle/zipball/4a1fee0a4f598c1a2b909eeb5f280789926d747a",
-                "reference": "4a1fee0a4f598c1a2b909eeb5f280789926d747a",
+                "url": "https://api.github.com/repos/EasyCorp/EasyAdminBundle/zipball/17562010c5c7d160a5059c7f70b2c7e03f149d40",
+                "reference": "17562010c5c7d160a5059c7f70b2c7e03f149d40",
                 "shasum": ""
             },
             "require": {
@@ -1586,6 +1586,7 @@
                 "psr/log": "^1.0",
                 "symfony/browser-kit": "^5.4|^6.0",
                 "symfony/css-selector": "^5.4|^6.0",
+                "symfony/debug-bundle": "^5.4|^6.0",
                 "symfony/dom-crawler": "^5.4|^6.0",
                 "symfony/phpunit-bridge": "^5.4|^6.0"
             },
@@ -1619,7 +1620,7 @@
             ],
             "support": {
                 "issues": "https://github.com/EasyCorp/EasyAdminBundle/issues",
-                "source": "https://github.com/EasyCorp/EasyAdminBundle/tree/v4.6.4"
+                "source": "https://github.com/EasyCorp/EasyAdminBundle/tree/v4.7.0"
             },
             "funding": [
                 {
@@ -1627,7 +1628,7 @@
                     "type": "github"
                 }
             ],
-            "time": "2023-05-03T18:05:00+00:00"
+            "time": "2023-06-26T18:40:07+00:00"
         },
         {
             "name": "egulias/email-validator",
@@ -8455,6 +8456,85 @@
                 }
             ],
             "time": "2023-04-11T13:01:48+00:00"
+        },
+        {
+            "name": "symfony/ux-dropzone",
+            "version": "v2.10.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/symfony/ux-dropzone.git",
+                "reference": "3b8e5cf6c54081b0bc2c850cbcaa537acb14b7bd"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/symfony/ux-dropzone/zipball/3b8e5cf6c54081b0bc2c850cbcaa537acb14b7bd",
+                "reference": "3b8e5cf6c54081b0bc2c850cbcaa537acb14b7bd",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=8.1",
+                "symfony/config": "^5.4|^6.0",
+                "symfony/dependency-injection": "^5.4|^6.0",
+                "symfony/form": "^5.4|^6.0",
+                "symfony/http-kernel": "^5.4|^6.0",
+                "symfony/options-resolver": "^5.4|^6.0"
+            },
+            "require-dev": {
+                "symfony/framework-bundle": "^5.4|^6.0",
+                "symfony/phpunit-bridge": "^5.4|^6.0",
+                "symfony/twig-bundle": "^5.4|^6.0",
+                "symfony/var-dumper": "^5.4|^6.0",
+                "twig/twig": "^2.14.7|^3.0.4"
+            },
+            "type": "symfony-bundle",
+            "extra": {
+                "thanks": {
+                    "name": "symfony/ux",
+                    "url": "https://github.com/symfony/ux"
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Symfony\\UX\\Dropzone\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Titouan Galopin",
+                    "email": "galopintitouan@gmail.com"
+                },
+                {
+                    "name": "Symfony Community",
+                    "homepage": "https://symfony.com/contributors"
+                }
+            ],
+            "description": "File input dropzones for Symfony Forms",
+            "homepage": "https://symfony.com",
+            "keywords": [
+                "symfony-ux"
+            ],
+            "support": {
+                "source": "https://github.com/symfony/ux-dropzone/tree/v2.10.0"
+            },
+            "funding": [
+                {
+                    "url": "https://symfony.com/sponsor",
+                    "type": "custom"
+                },
+                {
+                    "url": "https://github.com/fabpot",
+                    "type": "github"
+                },
+                {
+                    "url": "https://tidelift.com/funding/github/packagist/symfony/symfony",
+                    "type": "tidelift"
+                }
+            ],
+            "time": "2023-06-19T13:59:38+00:00"
         },
         {
             "name": "symfony/validator",
