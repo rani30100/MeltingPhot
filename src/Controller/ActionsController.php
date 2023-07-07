@@ -16,23 +16,10 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
 class ActionsController extends AbstractController
 {
-    #[Route('/actions/{category}', defaults: ['category' => null], methods: ['GET', 'HEAD'], name: 'app_actions')]
+    #[Route('/actions/{category}', defaults: ['category' => 'Je_Filme_Mon_Futur_Métier'], methods: ['GET', 'HEAD'], name: 'app_actions')]
     public function index(string $category = null, EntityManagerInterface $entityManager, CacheInterface $cache): Response
     {
-        $videos = [];
-
-        if ($category === null) {
-            $categories = $entityManager->getRepository(Category::class)->findAll();
-    
-            foreach ($categories as $category) {
-                $categoryVideos = $category->getVideos();
-    
-                if (!empty($categoryVideos)) {
-                    $videos = array_merge($videos, $categoryVideos->toArray());
-                    break; // Stop after retrieving videos from the first category with videos
-                }
-            }
-        } elseif ($category === 'Je_Filme_Mon_Futur_Métier') {
+        if ($category === 'Je_Filme_Mon_Futur_Métier') {
             $videos = $cache->get('playlist_videos', function (ItemInterface $item) use ($entityManager) {
                 // Create a Google API client
                 $client = new Client();
