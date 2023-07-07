@@ -125,7 +125,16 @@
 		</div>
 	</nav>
 
-	<div class="shadow nav-phone collapse" id="navbarToggleExternalContent" data-bs-theme="dark">
+
+<nav class="navbar nav-phone navbar-dark bg-red-500">
+		<div class="container-fluid">
+			<button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarToggleExternalContent" aria-controls="navbarToggleExternalContent" aria-expanded="false" aria-label="Toggle navigation">
+				<span class="navbar-toggler-icon"></span>
+			</button>
+		</div>
+	</nav>
+
+	<div class="shadow nav-phone collapse navbarToggleExternalContent" data-bs-theme="dark">
 		<div class=" p-4">
 			<ul class="navbar-nav nav-phone-content me-auto mb-2 mb-lg-0 w-100 d-flex justify-content-center align-items-center">
 				<li class="">
@@ -175,7 +184,7 @@
 					</form>
 				</div>
 				{% if app.user %}
-					<p class="text-end btn btn-warning mt-3">Bienvenue {{ app.user.username }}!</p>
+					<p class="text-end btn btn-warning mt-3">Bienvenue,{{ app.user.username }}!</p>
 				{% endif %}
 
 				{% if not app.user %}
@@ -186,6 +195,7 @@
 			<ul>
 		</div>
 	</div>
+
 
     <div class="error-pages">
         <div id="notfound">

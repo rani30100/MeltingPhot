@@ -1,5 +1,5 @@
   document.addEventListener("DOMContentLoaded", function() {
-    let navbarContent = document.getElementById('navbarToggleExternalContent');
+    let navbarContent = document.querySelector('.navbarToggleExternalContent');
     let navbarToggler = document.querySelector('.navbar-toggler');
     let isNavbarVisible = false;
 
