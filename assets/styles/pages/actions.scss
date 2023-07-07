@@ -230,6 +230,17 @@ height: 300px;
 width: 380px;
 }
 
+.modal{
+    width: 95% !important;
+}
+.modal-video{
+    padding: 0px !important;
+    height: 445px !important;
+}
+.modal-body{
+    padding: 0px !important;
+
+}
 
   
 @media (max-width: 700px) {
@@ -253,13 +264,63 @@ width: 380px;
     #carouselIndicators{
         display: none !important;
     }
-
     
 }
+
+
+@media screen and (min-width: 360px) and (max-width:992px) {
+
+    .partenaire-pc {
+        display: none !important;
+    }
+    .partenaire-tab{
+        padding: 2rem;
+        margin-top: 3rem;
+    }
+    .partenaire-title{
+        font-size: 3rem;
+    }
+    .partenaire-p{
+        width:90% !important;
+    }
+
+    .know-more {
+        display: none;
+    }
+    .nav-main{
+        display: none;
+    }
+    .nav-phone-content{
+    
+        li{
+            margin: 1rem;
+            width: 100% !important;
+            display: flex;
+            justify-content: center;
+    
+            &:hover{
+                background-color: rgb(121, 121, 161);
+            }
+            &:first-child{
+                &:hover{
+                    background-color: none;
+                }
+            }
+        }
+    }
+    #logo-MeltingPhot{
+        background-color: none;
+    }
+}
+
 @media (min-width: 700px) {
     #carouselIndicatorsMobile{
         display: none !important;
     }
 
-    
+    @media (min-width: 576px) {
+        modal-dialog {
+            max-width: 90% !important;
+        }
+    }
 }

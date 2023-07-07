@@ -221,25 +221,30 @@
 		</article>
 	</section>
 
-	<div class="d-flex flex-column align-items-center justify-content-center bloc-filtres carousel-container mb-5">
-		<h2 for="my-dropdown" class="text-center fw-light">NOS
-			<span class="fw-bold">ACTIONS
+	<div class="d-flex flex-column align-items-center justify-content-center bloc-filtres mb-5">
+		<div style="height: 40vh;"class="shadow" >
+			<div style="background-color: #0000004f;">
+			<h2 for="my-dropdown" class="text-center fw-light">NOS
+				<span class="fw-bold">ACTIONS
 			</h2>
-			<h2>
+			<h2 class="text-center">
 				D'EDUCATION
 				<span class="text-center fw-light">PAR L'IMAGE</span>
 			</h2>
-			<div class="d-flex flex-wrap align-items-center justify-content-center mb-3 ">
-				{# quand je clique sur le filme mon futur metier affiche les videos correspondantes a cette categorie  #}
-				<a href="{{ path('app_actions', {'category': 'Je_Filme_Mon_Futur_Métier'}) }}" class="btn col-6 col-sm-2 filter-tab" id="video-link">Je Filme mon futur métier</a>
-				<a href="{{ path('app_actions', {'category':'Odonymes'}) }}" class="btn col-6 col-sm-2 filter-tab">Odonymes</a>
-				<a href="{{ path('app_actions', {'category':'Les_Critiques_pétillantes'}) }}" class="btn col-6 col-sm-2 filter-tab">Les Critiques pétillantes</a>
-				<a href="{{ path('app_actions', {'category':'Parole_Public'}) }}" class="btn col-6 col-sm-2 filter-tab">Parole Public</a>
-				<a href="{{ path('app_actions', {'category':'Les_Vitrines_des_Cévènnes'}) }}" class="btn col-6 col-sm-2 filter-tab">Les Vitrines des Cévènnes</a>
 			</div>
+				<div class="d-flex flex-wrap align-items-center justify-content-center mb-3 ">
+					{# quand je clique sur le filme mon futur metier affiche les videos correspondantes a cette categorie  #}
+					<a href="{{ path('app_actions', {'category': 'Je_Filme_Mon_Futur_Métier'}) }}" class="btn col-6 col-sm-2 filter-tab" id="video-link">Je Filme mon futur métier</a>
+					<a href="{{ path('app_actions', {'category':'Odonymes'}) }}" class="btn col-6 col-sm-2 filter-tab">Odonymes</a>
+					<a href="{{ path('app_actions', {'category':'Les_Critiques_pétillantes'}) }}" class="btn col-6 col-sm-2 filter-tab">Les Critiques pétillantes</a>
+					<a href="{{ path('app_actions', {'category':'Parole_Public'}) }}" class="btn col-6 col-sm-2 filter-tab">Parole Public</a>
+					<a href="{{ path('app_actions', {'category':'Les_Vitrines_des_Cévènnes'}) }}" class="btn col-6 col-sm-2 filter-tab">Les Vitrines des Cévènnes</a>
+				</div>
 
 
-                    <p>No video Found</p>
+				<p class="text-center"style="font-size: 50px;">No video Found</p>
+	
+		</div>
 
 
 

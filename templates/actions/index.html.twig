@@ -8,33 +8,24 @@
 {% block javascripts %}
 	{{ parent() }}
 	<script src="{{ asset('js/component/navbar.js') }}"></script>
-
-	<script src="https://cdn.jsdelivr.net/npm/intersection-observer@1.0.0/dist/intersection-observer.min.js"></script>
-	<script>
-		document.addEventListener('DOMContentLoaded', function() {
-			const lazyVideos = document.querySelectorAll('.lazy-video');
-
-			const observer = new IntersectionObserver((entries, observer) => {
-				entries.forEach(entry => {
-					if (entry.isIntersecting) {
-						const video = entry.target;
-						const src = video.getAttribute('data-src');
-
-						video.src = src;
-						observer.unobserve(video);
-					}
-				});
-			});
-
-			lazyVideos.forEach(video => {
-				observer.observe(video);
-			});
-		});
-	</script>
-
-
-
+	<script src="{{ asset('js/lazy-video/lazy-video.js') }}"></script>
 	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/js/bootstrap.bundle.min.js"></script>
+	<script>  document.addEventListener("DOMContentLoaded", function() {
+    let navbarContent = document.getElementById('navbarToggleExternalContent');
+    let navbarToggler = document.querySelector('.navbar-toggler');
+    let isNavbarVisible = false;
+
+    navbarToggler.addEventListener('click', function() {
+      if (!isNavbarVisible) {
+        navbarContent.classList.add('show');
+        isNavbarVisible = true;
+      } else {
+        navbarContent.classList.remove('show');
+        isNavbarVisible = false;
+      }
+    });
+  });
+</script>
 {% endblock %}
 
 {% block body %}
@@ -132,7 +123,7 @@
 					</div>
 				</nav> #}
 	</section>
-	<nav class="navbar nav-phone navbar-dark bg-red-500">
+<nav class="navbar nav-phone navbar-dark bg-red-500">
 		<div class="container-fluid">
 			<button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarToggleExternalContent" aria-controls="navbarToggleExternalContent" aria-expanded="false" aria-label="Toggle navigation">
 				<span class="navbar-toggler-icon"></span>
@@ -145,62 +136,63 @@
 			<ul class="navbar-nav nav-phone-content me-auto mb-2 mb-lg-0 w-100 d-flex justify-content-center align-items-center">
 				<li class="">
 					<a href="/">
-						<img class="logo me-2" id="logo-MeltingPhot" src="{{ asset('img/logo.png')}}" width alt=""></img>
+						<img class="logo me-2" id="logo-MeltingPhot"src="{{ asset('img/logo.png')}}" width alt=""></img>
+					</a>
 				</li>
-			</a>
-		</li>
 
-		<li class="nav-item me-2 meltingphot">
-			<a class="nav-link" aria-current="page" href="/">MELTINGPHOT</a>
-		</li>
-		<li class="nav-item me-2">
-			<a class="nav-link" href="{{ path("app_actions")}}">Nos Actions</a>
-		</li>
+				<li class="nav-item me-2 meltingphot">
+					<a class="nav-link" aria-current="page" href="/">MELTINGPHOT</a>
+				</li>
+				<li class="nav-item me-2">
+					<a class="nav-link" href="{{ path("app_actions")}}">Nos Actions</a>
+				</li>
 
 
-		<li class="nav-item me-2">
-			<a class="nav-link" href="{{path('app_contact')}}">Nous Contacter</a>
-		</li>
+				<li class="nav-item me-2">
+					<a class="nav-link" href="{{path('app_contact')}}">Nous Contacter</a>
+				</li>
 
-		{% if not app.user %}
-			<li class="nav-item me-2">
-				<a class="nav-link" href="{{path('app_login')}}">
-					<i class="fa-solid fa-user hi-icon hi-icon-user"></i>
-				</a>
+				{% if not app.user %}
+					<li class="nav-item me-2">
+						<a class="nav-link" href="{{path('app_login')}}">
+							<i class="fa-solid fa-user hi-icon hi-icon-user"></i>
+						</a>
 
-			</li>
-		{% endif %}
-		{% if app.user %}
-			{% if 'ROLE_SUPER_ADMIN' in app.user.roles %}
-				<a class="nav-link" href="{{ path('admin_') }}">Ma Page Admin</a>
-			{% endif %}
-		{% endif %}
+					</li>
+				{% endif %}
+				{% if app.user %}
+					{% if 'ROLE_SUPER_ADMIN' in app.user.roles %}
+						<a class="nav-link" href="{{ path('admin_') }}">Ma Page Admin</a>
+					{% endif %}
+				{% endif %}
 
-		{% if app.user %}
-			<li class="nav-item me-2">
-				<a class="nav-link" href="{{path('app_logout')}}">Se déconnecter</a>
-			</li>
-		{% endif %}
-		<div class="d-flex align-items-center">
-			<i id="search-icon" class="fa-solid fa-magnifying-glass mx-3"></i>
-			<form id="search-form" class="d-none">
-				<div class="input-group">
-					<input type="text" class="form-control" placeholder="Rechercher...">
-					<button class="btn btn-primary" type="submit">Rechercher</button>
+				{% if app.user %}
+					<li class="nav-item me-2">
+						<a class="nav-link" href="{{path('app_logout')}}">Se déconnecter</a>
+					</li>
+				{% endif %}
+				<div class="d-flex align-items-center">
+					<i id="search-icon" class="fa-solid fa-magnifying-glass mx-3"></i>
+					<form id="search-form" class="d-none">
+						<div class="input-group">
+							<input type="text" class="form-control" placeholder="Rechercher...">
+							<button class="btn btn-primary" type="submit">Rechercher</button>
+						</div>
+					</form>
 				</div>
-			</form>
-		</div>
-		{% if app.user %}
-			<p class="text-end btn btn-warning mt-3">Bienvenue,{{ app.user.username }}!</p>
-		{% endif %}
+				{% if app.user %}
+					<p class="text-end btn btn-warning mt-3">Bienvenue,{{ app.user.username }}!</p>
+				{% endif %}
 
-		{% if not app.user %}
-			<li class="nav-item me-2">
-				<a class="nav-link" href="{{path('app_register')}}">S'inscrire</a>
-			</li>
-		{% endif %}
-		<ul></div>
+				{% if not app.user %}
+					<li class="nav-item me-2">
+						<a class="nav-link" href="{{path('app_register')}}">S'inscrire</a>
+					</li>
+				{% endif %}
+			<ul>
+		</div>
 	</div>
+
 
 
 	<section class="actions-bandeau w-100 bg-secondary-subtle h-400 d-flex flex-column justify-content-center align-items-center p-1">
@@ -222,172 +214,175 @@
 	</section>
 
 	<div class="d-flex flex-column align-items-center justify-content-center bloc-filtres carousel-container mb-5">
-		<h2 for="my-dropdown" class="text-center fw-light">NOS
-			<span class="fw-bold">ACTIONS
+		<div>
+			<dir>
+			<h2 for="my-dropdown" class="text-center fw-light">NOS
+				<span class="fw-bold">ACTIONS
 			</h2>
-			<h2>
-				D'EDUCATION
+			<h2 class="text-center">D'EDUCATION
 				<span class="text-center fw-light">PAR L'IMAGE</span>
 			</h2>
-			<div class="d-flex flex-wrap align-items-center justify-content-center mb-3 ">
-				{# quand je clique sur le filme mon futur metier affiche les videos correspondantes a cette categorie  #}
-				<a href="{{ path('app_actions', {'category': 'Je_Filme_Mon_Futur_Métier'}) }}" class="btn col-6 col-sm-2 filter-tab" id="video-link">Je Filme mon futur métier</a>
-				<a href="{{ path('app_actions', {'category':'Odonymes'}) }}" class="btn col-6 col-sm-2 filter-tab">Odonymes</a>
-				<a href="{{ path('app_actions', {'category':'Les_Critiques_pétillantes'}) }}" class="btn col-6 col-sm-2 filter-tab">Les Critiques pétillantes</a>
-				<a href="{{ path('app_actions', {'category':'Parole_Public'}) }}" class="btn col-6 col-sm-2 filter-tab">Parole Public</a>
-				<a href="{{ path('app_actions', {'category':'Les_Vitrines_des_Cévènnes'}) }}" class="btn col-6 col-sm-2 filter-tab">Les Vitrines des Cévènnes</a>
-			</div>
-
-
-	
-
-			<div id="carouselIndicators" class="carousel slide w-100" data-bs-interval="false">
-				<div class="carousel-inner d-flex">
-					{% for i in 0..(videos|length / 6 - 1) %}
-					<div class="carousel-item {% if i == 0 %}active{% endif %}">
-						<div class="d-flex flex-row justify-content-center"style="margin: 0 auto;width: 95%;">
-							{% for j in 0..5 %}
-							{% set imageIndex = i * 6 + j %}
-								{% if imageIndex < videos|length %}
-								{% set video = videos[imageIndex] %}
-								{% set isFirstVideo = j == 0 %}
-								{% set isSecondVideo = j == 1 %}
-								{% set isThirdVideo = j == 2 %}
-								{% set isFourthVideo = j == 3 %}
-								{% set isFifthVideo = j == 4 %}
-								{% set isLastVideo = j == 5 %}
-
-									{% if isSecondVideo %}
-										<div class="video-group">
-									{% endif %}
-
-									{% if isFourthVideo %}
-										<div class="video-group2">
-									{% endif %}
-
-									<div class=" ">
-										<div class="h-100">
-											{% if video.getImage() %}
-											<img src="{{ asset(video.getImage()) }}" class="h-100  {% if isFirstVideo %}first-video{% elseif isLastVideo %}last-video{% endif %}" alt="Video Image" data-bs-toggle="modal" data-bs-target="#videoModal{{ imageIndex + 1 }}">
-											{% else %}
-											<p>No image available</p>
-											{% endif %}
-
-											{% if isSecondVideo and isThirdVideo %}
-												<div class="video-group {% if isSecondVideo %}second-video{% elseif isThirdVideo %}third-video{% endif %}">
-												</div>
-											{% endif %}
-										</div>
-									</div>
-
-									{% if isThirdVideo %}
-										</div>
-									{% endif %}
-									
-
-									{% if isFifthVideo  %}
-										</div>
-									{% endif %}
-									
-									
-								{% endif %}
-							{% endfor %}
-						</div>
-					</div>
-					{% endfor %}
+			</dir>
+				<div class="d-flex flex-wrap align-items-center justify-content-center mb-3 ">
+					{# quand je clique sur le filme mon futur metier affiche les videos correspondantes a cette categorie  #}
+					<a href="{{ path('app_actions', {'category': 'Je_Filme_Mon_Futur_Métier'}) }}" class="btn col-6 col-sm-2 filter-tab" id="video-link">Je Filme mon futur métier</a>
+					<a href="{{ path('app_actions', {'category':'Odonymes'}) }}" class="btn col-6 col-sm-2 filter-tab">Odonymes</a>
+					<a href="{{ path('app_actions', {'category':'Les_Critiques_pétillantes'}) }}" class="btn col-6 col-sm-2 filter-tab">Les Critiques pétillantes</a>
+					<a href="{{ path('app_actions', {'category':'Parole_Public'}) }}" class="btn col-6 col-sm-2 filter-tab">Parole Public</a>
+					<a href="{{ path('app_actions', {'category':'Les_Vitrines_des_Cévènnes'}) }}" class="btn col-6 col-sm-2 filter-tab">Les Vitrines des Cévènnes</a>
 				</div>
 
-				<!-- Boutons de contrôle du carrousel -->
-				
-				<ol class="carousel-indicators">
-					{% for i in 0..(videos|length / 6 - 1) %}
-						<li data-bs-target="#carouselIndicators" data-bs-slide-to="{{ i }}" {% if i == 0 %}class="active"{% endif %}></li>
-					{% endfor %}
-				</ol>
 
-				<!-- Indicateurs du carrousel -->
-				
-				<div class="carousel-pagination">
-					<button class="carousel-control-prev carousel-fade" type="button" data-bs-target="#carouselIndicators" data-bs-slide="prev">
+		
+
+				<div id="carouselIndicators" class="carousel slide w-100" data-bs-interval="false">
+					<div class="carousel-inner d-flex">
+						{% for i in 0..(videos|length / 6 - 1) %}
+						<div class="carousel-item {% if i == 0 %}active{% endif %}">
+							<div class="d-flex flex-row justify-content-center"style="margin: 0 auto;width: 95%;">
+								{% for j in 0..5 %}
+								{% set imageIndex = i * 6 + j %}
+									{% if imageIndex < videos|length %}
+									{% set video = videos[imageIndex] %}
+									{% set isFirstVideo = j == 0 %}
+									{% set isSecondVideo = j == 1 %}
+									{% set isThirdVideo = j == 2 %}
+									{% set isFourthVideo = j == 3 %}
+									{% set isFifthVideo = j == 4 %}
+									{% set isLastVideo = j == 5 %}
+
+										{% if isSecondVideo %}
+											<div class="video-group">
+										{% endif %}
+
+										{% if isFourthVideo %}
+											<div class="video-group2">
+										{% endif %}
+
+										<div class=" ">
+											<div class="h-100">
+												{% if video.getImage() %}
+												<img src="{{ asset(video.getImage()) }}" class="h-100  {% if isFirstVideo %}first-video{% elseif isLastVideo %}last-video{% endif %}" alt="Video Image" data-bs-toggle="modal" data-bs-target="#videoModal{{ imageIndex + 1 }}">
+												{% else %}
+												<p>No image available</p>
+												{% endif %}
+
+												{% if isSecondVideo and isThirdVideo %}
+													<div class="video-group {% if isSecondVideo %}second-video{% elseif isThirdVideo %}third-video{% endif %}">
+													</div>
+												{% endif %}
+											</div>
+										</div>
+
+										{% if isThirdVideo %}
+											</div>
+										{% endif %}
+										
+
+										{% if isFifthVideo  %}
+											</div>
+										{% endif %}
+										
+										
+									{% endif %}
+								{% endfor %}
+							</div>
+						</div>
+						{% endfor %}
+					</div>
+
+					<!-- Boutons de contrôle du carrousel -->
+					
+					<ol class="carousel-indicators">
+						{% for i in 0..(videos|length / 6 - 1) %}
+							<li data-bs-target="#carouselIndicators" data-bs-slide-to="{{ i }}" {% if i == 0 %}class="active"{% endif %}></li>
+						{% endfor %}
+					</ol>
+
+					<!-- Indicateurs du carrousel -->
+					
+					<div class="carousel-pagination">
+						<button class="carousel-control-prev carousel-fade" type="button" data-bs-target="#carouselIndicators" data-bs-slide="prev">
+							<span class="carousel-control-prev-icon" aria-hidden="true"></span>
+							<span class="visually-hidden">Previous</span>
+						</button>
+						<button class="carousel-control-next carousel-fade" type="button" data-bs-target="#carouselIndicators" data-bs-slide="next">
+							<span class="carousel-control-next-icon" aria-hidden="true"></span>
+							<span class="visually-hidden">Next</span>
+						</button>
+					</div>
+				</div>
+		
+
+
+
+
+
+			<div id="carouselIndicatorsMobile" class="carousel-actions slide mobile-carousel-Actions mb-5">
+				<div class="carousel-inner">
+					{% for i in 0..(videos|length - 1) %}
+						{% set videoIndex = loop.index0 %}
+						{% if videoIndex < videos|length %}
+							<div class="carousel-item {% if i == 0 %}active{% endif %}" style="height: 400px;">
+								<div class="d-flex w-100 justify-content-center">
+									<div class="">
+										{% set video = videos[videoIndex] %}
+										{% if video.getImage() %}
+											<img class="carousel_img" style="margin:0 auto;" src="{{ asset('' ~ video.getImage()) }}" alt="Video Image">
+										{% else %}
+											<p>No image available</p>
+										{% endif %}
+										<div class="w-full d-flex justify-content-center ">
+											<button type="button" class="btn btn-primary btn-{{ loop.index }}" data-bs-toggle="modal" data-bs-target="#videoModal{{ videoIndex + 1 }}" data-video-id="{{ video.id }}" style="height:50px; margin-top:-6rem">
+												<i class="bi bi-play-circle"></i>
+												En voir plus +
+											</button>
+										</div>
+									</div>
+								</div>
+							</div>
+						{% endif %}
+					{% endfor %}
+
+
+					<div class="carousel-indicators">
+						{% for j in 0..(videos|length - 1) %}
+							<button type="button" data-bs-target="#carouselIndicatorsMobile" data-bs-slide-to="{{ j }}" {% if j == 0 %} class="active" aria-current="true" {% endif %} aria-label="Slide {{ j + 1 }}"></button>
+						{% endfor %}
+					</div>
+
+					<button class="carousel-control-prev mobile-prev" type="button" data-bs-target="#carouselIndicatorsMobile">
 						<span class="carousel-control-prev-icon" aria-hidden="true"></span>
 						<span class="visually-hidden">Previous</span>
 					</button>
-					<button class="carousel-control-next carousel-fade" type="button" data-bs-target="#carouselIndicators" data-bs-slide="next">
+
+					<button class="carousel-control-next mobile-next" type="button" data-bs-target="#carouselIndicatorsMobile">
 						<span class="carousel-control-next-icon" aria-hidden="true"></span>
 						<span class="visually-hidden">Next</span>
 					</button>
 				</div>
 			</div>
-	
 
 
-
-
-
-		<div id="carouselIndicatorsMobile" class="carousel-actions slide mobile-carousel-Actions mb-5">
-			<div class="carousel-inner">
-				{% for i in 0..(videos|length - 1) %}
-					{% set videoIndex = loop.index0 %}
-					{% if videoIndex < videos|length %}
-						<div class="carousel-item {% if i == 0 %}active{% endif %}" style="height: 400px;">
-							<div class="d-flex w-100 justify-content-center">
-								<div class="">
-									{% set video = videos[videoIndex] %}
-									{% if video.getImage() %}
-										<img class="carousel_img" style="margin:0 auto;" src="{{ asset('' ~ video.getImage()) }}" alt="Video Image">
-									{% else %}
-										<p>No image available</p>
-									{% endif %}
-									<div class="w-full d-flex justify-content-center ">
-										<button type="button" class="btn btn-primary btn-{{ loop.index }}" data-bs-toggle="modal" data-bs-target="#videoModal{{ videoIndex + 1 }}" data-video-id="{{ video.id }}" style="height:50px; margin-top:-6rem">
-											<i class="bi bi-play-circle"></i>
-											En voir plus +
-										</button>
-									</div>
-								</div>
+			{% for video in videos %}
+				<div class="modal fade" id="videoModal{{ loop.index }}" tabindex="-1" aria-labelledby="videoModal{{ loop.index }}Label" aria-hidden="true">
+					<div class="modal-dialog modal-lg modal-dialog-centered">
+						<div class="modal-content">
+							<div class="modal-header bg-dark white-text">
+								<h5 class="modal-title" id="videoModal{{ loop.index }}Label">{{ video.name }}</h5>
+								<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
 							</div>
-						</div>
-					{% endif %}
-				{% endfor %}
-
-
-				<div class="carousel-indicators">
-					{% for j in 0..(videos|length - 1) %}
-						<button type="button" data-bs-target="#carouselIndicatorsMobile" data-bs-slide-to="{{ j }}" {% if j == 0 %} class="active" aria-current="true" {% endif %} aria-label="Slide {{ j + 1 }}"></button>
-					{% endfor %}
-				</div>
-
-				<button class="carousel-control-prev mobile-prev" type="button" data-bs-target="#carouselIndicatorsMobile">
-					<span class="carousel-control-prev-icon" aria-hidden="true"></span>
-					<span class="visually-hidden">Previous</span>
-				</button>
-
-				<button class="carousel-control-next mobile-next" type="button" data-bs-target="#carouselIndicatorsMobile">
-					<span class="carousel-control-next-icon" aria-hidden="true"></span>
-					<span class="visually-hidden">Next</span>
-				</button>
-			</div>
-		</div>
-
-
-		{% for video in videos %}
-			<div class="modal fade" id="videoModal{{ loop.index }}" tabindex="-1" aria-labelledby="videoModal{{ loop.index }}Label" aria-hidden="true">
-				<div class="modal-dialog modal-lg modal-dialog-centered">
-					<div class="modal-content">
-						<div class="modal-header">
-							<h5 class="modal-title" id="videoModal{{ loop.index }}Label">{{ video.name }}</h5>
-							<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-						</div>
-						<div class="modal-body">
-							<div class="embed-responsive embed-responsive-16by9">
-								<iframe class="embed-responsive-item w-100 modal-video" src="{{ video.url }}?rel=0" allowfullscreen allow="autoplay"></iframe>
+							<div class="modal-body">
+								<div class="embed-responsive embed-responsive-16by9">
+									<iframe class="embed-responsive-item w-100 modal-video lazy-video" data-src="{{ video.url }}?rel=0" allowfullscreen allow="autoplay"></iframe>
+								</div>
 							</div>
 						</div>
 					</div>
 				</div>
-			</div>
-		{% endfor %}
-	
+			{% endfor %}
+		
+		</div>
 
 		<section class="partenaire-pc d-flex align-items-center shadow-lg">
 			<div class="w-50 Pc">
@@ -452,27 +447,6 @@
 		</section>
 
 
-		<script>
-			document.addEventListener('DOMContentLoaded', function () {
-var videoButtons = document.querySelectorAll('.videos-btn');
-
-videoButtons.forEach(function (button) {
-button.addEventListener('click', function () {
-var videoId = button.dataset.videoId;
-var modalBody = button.closest('.modal').querySelector('.modal-body');
-
-var iframe = document.createElement('iframe');
-iframe.className = 'embed-responsive-item w-100 modal-video';
-iframe.src = 'https://www.youtube.com/embed/' + videoId + '?rel=0';
-iframe.allowfullscreen = true;
-iframe.allow = 'autoplay';
-
-modalBody.innerHTML = '';
-modalBody.appendChild(iframe);
-});
-});
-});
-		</script>
 
 		{# <div class="d-flex justify-content-center flex-wrap bloc-videos p-1" id="video-container"></div> #}
 

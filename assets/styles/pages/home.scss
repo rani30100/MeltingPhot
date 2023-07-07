@@ -867,50 +867,6 @@ body .parent-article .block-article_description {
     }
 
 
-    @media screen and (min-width: 360px) and (max-width:992px) {
-
-        .partenaire-pc {
-            display: none !important;
-        }
-        .partenaire-tab{
-            padding: 2rem;
-        }
-        .partenaire-title{
-            font-size: 3rem;
-        }
-        .partenaire-p{
-            width:90% !important;
-        }
-
-        .know-more {
-            display: none;
-        }
-        .nav-main{
-            display: none;
-        }
-        .nav-phone-content{
-        
-            li{
-                margin: 1rem;
-                width: 100% !important;
-                display: flex;
-                justify-content: center;
-        
-                &:hover{
-                    background-color: rgb(121, 121, 161);
-                }
-                &:first-child{
-                    &:hover{
-                        background-color: none;
-                    }
-                }
-            }
-        }
-        #logo-MeltingPhot{
-            background-color: none;
-        }
-    }
-    
     @media (max-width: 767px) {
     
     
