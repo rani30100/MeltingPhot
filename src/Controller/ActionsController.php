@@ -9,76 +9,78 @@ use App\Entity\Category;
 use Google\Service\YouTube;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Contracts\Cache\ItemInterface;
-use Symfony\Component\HttpFoundation\Request;
+use Symfony\Contracts\Cache\CacheInterface;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
-use Symfony\Component\Cache\Adapter\FilesystemAdapter;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
 class ActionsController extends AbstractController
 {
-    #[Route('/actions/{order}/{year}', defaults: ['order' => 'test', 'year' => 'null'], methods: ['GET', 'HEAD'], name: 'app_actions')]
-    public function index(?string $order ,?string $year, EntityManagerInterface $entityManager, Request $request,Category $category = null): Response
+    #[Route('/actions/{category}', defaults: ['category' => null], methods: ['GET', 'HEAD'], name: 'app_actions')]
+    public function index(string $category = null, EntityManagerInterface $entityManager, CacheInterface $cache): Response
     {
-            // Créez un client API Google
-            $client = new Client();
-            $client->setApplicationName('MeltingPhot');
-            $client->setDeveloperKey('AIzaSyDNbPQ6M-fqyLQCyRNtkdJuhIdLDS1CoP4');
+        if ($category === 'Je_Filme_Mon_Futur_Métier') {
+            $videos = $cache->get('playlist_videos', function (ItemInterface $item) use ($entityManager) {
+                // Create a Google API client
+                $client = new Client();
+                $client->setApplicationName('MeltingPhot');
+                $client->setDeveloperKey('AIzaSyDNbPQ6M-fqyLQCyRNtkdJuhIdLDS1CoP4');
 
-            // Créez un objet pour l'API YouTube Data
-            $youtube = new \Google\Service\YouTube($client);
+                // Create an object for the YouTube Data API
+                $youtube = new YouTube($client);
 
-            // Récupérez la liste des vidéos de la playlist Je film mon futur métier
-            $playlistMonfuturmétier = $youtube->playlistItems->listPlaylistItems('snippet', array(
-                'playlistId' => 'PLU8CGazlBJAsyM9QsrvGUK3SIDpUHngJl',
-                'maxResults' => 50,
-                'part' => 'snippet,status',
-            ));
+                // Retrieve the list of videos from the playlist "Je film mon futur métier"
+                $playlistMonFuturMetier = $youtube->playlistItems->listPlaylistItems('snippet', [
+                    'playlistId' => 'PLU8CGazlBJAsyM9QsrvGUK3SIDpUHngJl',
+                    'maxResults' => 50,
+                    'part' => 'snippet,status',
+                ]);
 
-            $filteredPlaylistItems = [];
+                $filteredPlaylistItems = [];
 
-            foreach ($playlistMonfuturmétier->getItems() as $item) {
-                $status = $item->getStatus()->getPrivacyStatus();
-                if ($status === 'public' || $status === 'private') {
-                    $filteredPlaylistItems[] = $item;
+                foreach ($playlistMonFuturMetier->getItems() as $item) {
+                    $status = $item->getStatus()->getPrivacyStatus();
+                    if ($status === 'public' || $status === 'private') {
+                        $filteredPlaylistItems[] = $item;
+                    }
                 }
-            }
-            $videos1 = $playlistMonfuturmétier->getItems();
-         
 
-            $videoEntities = [];
-           
-                foreach ($videos1 as $videoData) {
-                    $video = new Video();
-                    $video->setName($videoData['snippet']['title']);
-                    $video->setUrl('https://www.youtube.com/embed/' . $videoData['snippet']['resourceId']['videoId']);
-                    $video->setCreatedAt(new DateTimeImmutable($videoData['snippet']['publishedAt']));     
+                $videos = [];
+                $imageIndex = 0; // Initial index for the images
                 
-                    //Pour determiner la 1ere video 
-                    $index = key($videos1);
-                    // Récupérer l'URL ou le chemin d'accès de l'image associée à la vidéo
-                    $imagePath = '' . $index . '.jpg'; // Remplacez par l'URL ou le chemin d'accès approprié
-
-                    // Assigner le chemin d'accès de l'image à la propriété Image de l'objet Video
-                    $video->setImage($imagePath);
-                    
-                    next($videos1);
-                    // Je définis la catégorie pour les videos 
-                    $category = $entityManager->getRepository(Category::class)->find(2);
-                    $video->setCategory($category);
-
-                    $entityManager->persist($video);
-                    $videoEntities[] = $video;
+                foreach ($playlistMonFuturMetier->getItems() as $item) {
+                    $status = $item->getStatus()->getPrivacyStatus();
+                    if ($status === 'public' || $status === 'private') {
+                        $video = new Video();
+                        $video->setName($item->getSnippet()->getTitle());
+                        $video->setUrl('https://www.youtube.com/embed/' . $item->getSnippet()->getResourceId()->getVideoId());
+                        $video->setCreatedAt(new DateTimeImmutable($item->getSnippet()->getPublishedAt()));
                 
+                        $category = $entityManager->getRepository(Category::class)->find(2);
+                        $video->setCategory($category);
+                
+                        $entityManager->persist($video);
+                        $videos[] = $video;
+                
+                        // Assign the image path based on the image index
+                        $imagePath = '/img/videos/' . $imageIndex . '.jpg';
+                        $video->setImage($imagePath);
+
+                
+                        $imageIndex++; // Increment the image index for the next video
+                    }
                 }
-                $entityManager->flush(); 
-        
-            
+
+                $entityManager->flush();
+
+                return $videos;
+            });
+
             return $this->render('actions/index.html.twig', [
-                'controller_name' => 'ActionsController',
-                'videos' => $videoEntities
+                'videos' => $videos,
             ]);
-            
-    }
+        }
 
+        return $this->render('actions/no_videos.html.twig');
+    }
 }
