@@ -1,5 +1,7 @@
 easy_admin:
     entities:
+        Ebook:
+            class: App\Entity\Ebook
         Image:
             class: App\Entity\Image
             form:

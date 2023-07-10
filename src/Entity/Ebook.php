@@ -1,12 +1,12 @@
 <?php
-
 namespace App\Entity;
 
 use App\Repository\EbookRepository;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
 use Vich\UploaderBundle\Mapping\Annotation as Vich;
-use Symfony\Component\HttpFoundation\File\File;
+use Symfony\Component\Validator\Constraints\File;
+use Vich\UploaderBundle\Entity\File as EmbeddedFile;
 
 #[ORM\Entity(repositoryClass: EbookRepository::class)]
 #[Vich\Uploadable]
@@ -26,15 +26,13 @@ class Ebook
     #[ORM\Column(type: Types::TEXT)]
     private ?string $description = null;
 
-    
-    #[ORM\Column(length: 255)]
+    #[ORM\Column(type: 'string', nullable: true)]
+    #[Vich\UploadableField(mapping: 'ebook_files', fileNameProperty: 'file')]
     private ?string $file = null;
     
-    #[Vich\UploadableField(mapping:"ebook_files", fileNameProperty:"file")]
-    private $ebookFile;
+    private $ebook;
 
-    #[ORM\Column(nullable: true)]
-    private ?\DateTimeImmutable $updatedAt = null;
+
 
     public function getId(): ?int
     {
@@ -89,19 +87,9 @@ class Ebook
         return $this;
     }
 
-
-    public function setEbook(string $ebookFile): self
+    public function getEbook()
     {
-        $this->ebookFile = $ebookFile;
-    
-        if (null !== $ebookFile) {
-            // Il est nécessaire qu'au moins un champ change si vous utilisez Doctrine,
-            // sinon les écouteurs d'événements ne seront pas appelés et le fichier sera perdu
-            $this->updatedAt = new \DateTimeImmutable();
-        }
-    
-        return $this;
+        return $this->ebook;
     }
     
-
 }

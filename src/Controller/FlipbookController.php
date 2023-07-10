@@ -8,10 +8,10 @@ use Symfony\Component\Routing\Annotation\Route;
 
 class FlipbookController extends AbstractController
 {
-    #[Route('/flipbook', name: 'app_flipbook')]
+    #[Route('/flipbook/Hébémag', name: 'app_flipbook')]
     public function index(): Response
     {
-        return $this->render('flipbook/index.html.twig', [
+        return $this->render('Flipbook-hébémag/index.html.twig', [
             'controller_name' => 'FlipbookController',
         ]);
     }

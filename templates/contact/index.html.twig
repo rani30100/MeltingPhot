@@ -22,17 +22,10 @@ searchIcon.classList.toggle('d-none')
 
 {% block body %}
 
-{# Navbar #}
-<section class="nav-main">
+<section class="nav-main"style="background-color: #D00A4B;">
 	<nav class="navbar navbar-expand-lg bg-body-tertiary" id="navbar-hover">
 		<div class="d-flex justy-content-center w-100">
 			<ul class="navbar-nav me-auto mb-2 mb-lg-0 w-100 d-flex justify-content-center align-items-center">
-				<li>
-					<a href="/">
-						<img class="logo me-2" src="{{ asset('img/logo.png')}}" width alt=""></img>
-					</a>
-				</li>
-
 				<li class="nav-item me-2 meltingphot">
 					<a class="nav-link" aria-current="page" href="/">MELTINGPHOT</a>
 				</li>
@@ -79,15 +72,15 @@ searchIcon.classList.toggle('d-none')
 
 				{% if not app.user %}
 					<li class="nav-item me-2">
-						<a class="nav-link" href="{{path('app_register')}}">S'inscrire</a>
+						<a class="nav-link" href="{{path('app_register')}}">S'INSCRIRE</a>
 					</li>
 				{% endif %}
-			<ul>
+			
+			<div>
+				<p style="margin-bottom: 0px">V1</p>
+			</div>
 		</div>
 	</nav>
-
-
-
 	  {# <nav class="navbar navbar-expand-lg navbar-light">
 			<div class="container-fluid">
 				<ul class="navbar-nav">
@@ -117,7 +110,7 @@ searchIcon.classList.toggle('d-none')
 		</nav> #}
 </section>
 
-<nav class="navbar nav-phone navbar-dark bg-red-500">
+	<nav class="navbar nav-phone navbar-dark bg-red-500">
 		<div class="container-fluid">
 			<button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarToggleExternalContent" aria-controls="navbarToggleExternalContent" aria-expanded="false" aria-label="Toggle navigation">
 				<span class="navbar-toggler-icon"></span>
@@ -125,9 +118,9 @@ searchIcon.classList.toggle('d-none')
 		</div>
 	</nav>
 
-	<div class="shadow nav-phone collapse navbarToggleExternalContent" data-bs-theme="dark">
+	<div id="navbarToggleExternalContent" class="shadow nav-phone collapse navbarToggleExternalContent" data-bs-theme="dark">
 		<div class=" p-4">
-			<ul class="navbar-nav nav-phone-content me-auto mb-2 mb-lg-0 w-100 d-flex justify-content-center align-items-center">
+			<ul class="navbar-nav nav-phone-content me-auto mb-2 mt-3 mb-lg-0 w-100 d-flex justify-content-center align-items-center">
 				<li class="">
 					<a href="/">
 						<img class="logo me-2" id="logo-MeltingPhot"src="{{ asset('img/logo.png')}}" width alt=""></img>
@@ -189,7 +182,13 @@ searchIcon.classList.toggle('d-none')
 
 
 	<section class="team d-flex flex-column align-items-center" style="margin:1rem">
-		<article class="d-flex flex-column align-items-center"style="margin-bottom: 2rem;margin-top:2rem">
+		<article class="d-flex flex-column align-items-center"style="margin-bottom: 2rem;margin-top:5rem">
+			{% set successMessages = app.flashes('success') %}
+			{% if successMessages is not empty %}
+				<div class="alert alert-success text-center d-flex justify-content-center rounded w-100" style="font-size:larger;" role="alert">
+					{{ successMessages[0] }}
+				</div>
+			{% endif %}
 			<h2 class="text-center team-title">
 				<span style="font-weight: lighter;">Notre</span>
 				Equipe
@@ -291,7 +290,13 @@ searchIcon.classList.toggle('d-none')
 
 
 	<section class="team-mobile">
-		<article style="align-items: center; display: flex; flex-direction: column; margin-bottom: 2rem;margin-top:2rem">
+		<article style="align-items: center; display: flex; flex-direction: column; margin-bottom: 2rem;margin-top:5rem">
+			{% set successMessages = app.flashes('success') %}
+			{% if successMessages is not empty %}
+				<div class="alert alert-success text-center d-flex justify-content-center rounded" style="margin: 0 auto;font-size:larger;" role="alert">
+					{{ successMessages[0] }}
+				</div>
+			{% endif %}
 			<h2 class="text-center team-title">
 			<span style="font-weight: lighter;">Notre</span>
 			Equipe
@@ -384,12 +389,6 @@ searchIcon.classList.toggle('d-none')
 
 	<section>
 		<div class="bloc-contact">
-			{% set successMessages = app.flashes('success') %}
-			{% if successMessages is not empty %}
-				<div class="alert alert-success text-center d-flex justify-content-center rounded" style="margin: 0 auto;font-size:larger;" role="alert">
-					{{ successMessages[0] }}
-				</div>
-			{% endif %}
 			<h1 class="fw-bolder text-center">Pour nous contacter c'est simple !</h1>
 			<p class="text-center">Vous avez un projet d'éducation ou de valorisation par l'image et souhaitez en discutez, vous êtes au bon endroit !</p>
 		</div>

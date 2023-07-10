@@ -12,34 +12,51 @@
 {% block javascripts %}
 	{{ parent() }}
     <script src="https://cdnjs.cloudflare.com/ajax/libs/hammer.js/2.0.8/hammer.js"></script>
-
     <script src="{{ asset('js/flipbook/main.js') }}"></script>
+    <script src="{{ asset('js/flipbook/.js') }}"></script>
 
-    {% for jsFile in jsFiles %}
-        <script src="{{ jsFile }}"></script>
-    {% endfor %}
+<script>
 
-   <script>
-        document.addEventListener("DOMContentLoaded", function() {
-            var image = document.querySelector(".img");
-            var isActive = false;
+    document.addEventListener("DOMContentLoaded", function() {
+    var book = document.querySelector(".book");
+    var isActive = false;
+    var doubleTapTimeout;
+    var isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
 
-            image.addEventListener("dblclick", function() {
-                if (isActive) {
-                    image.classList.remove("active");
-                    isActive = false;
-                } else {
-                    image.classList.add("active");
-                    isActive = true;
-                }
-            });
+    if (isMobile) {
+        var hammer = new Hammer(book);
+
+        hammer.get('pinch').set({ enable: true });
+        hammer.on('pinch', function(event) {
+            if (event.scale > 1) {
+                book.classList.add("active");
+            } else {
+                book.classList.remove("active");
+            }
         });
-    </script>
-    
-      {% for jsFile in jsFiles %}
-        <script src="{{ jsFile }}"></script>
-    {% endfor %}
+    } else {
+        book.addEventListener("click", function() {
+            if (doubleTapTimeout) {
+                clearTimeout(doubleTapTimeout);
+                doubleTapTimeout = null;
+                isActive = true;
+                book.classList.add("active");
+            } else {
+                doubleClickTimeout = setTimeout(function() {
+                    doubleClickTimeout = null;
+                    if (!isActive) {
+                        book.classList.remove("active");
+                    }
+                    isActive = false;
+                }, 300);
+            }
+        });
+    }
+});
+</script>
 
+
+   
 {% endblock %}
 
 {% block body %}
@@ -51,7 +68,6 @@
 }
 
 body {
-    height: 100vh;
     display: flex;
     flex-direction:column;
     font-family: sans-serif;
@@ -152,22 +168,6 @@ button:hover i {
 }
 
 
- .zoomed-image {
-            position: absolute;
-            z-index: 9999;
-            width: 200%; /* Ajustez la taille du zoom selon vos besoins */
-            height: 200%;
-            left: -50%;
-            top: -50%;
-            opacity: 0;
-            transition: opacity 0.3s ease-in-out;
-        }
-        
-        .zoomed-image.active {
-            opacity: 1;
-        }
-
-
  @media (min-width: 360px) and (max-width:669px) {
 
     .paper{
@@ -175,6 +175,9 @@ button:hover i {
     }
     .flip-btn{
         width:280px;
+    }
+    .mon-livre{
+        margin-top:10rem !important;
     }
  }
 
@@ -383,16 +386,17 @@ max-width: 1300Px;
 
 
             <!-- Book -->
-        <div class ="book"style="transform: translateX(25%);"> 
+       <div class="book" style="transform: translateX(25%);" id="book-container">
+
             <!-- Paper 1 -->
                 <div class="paper p1">
                     <div class="front">
-                        <div id="f1" class="front-content">
+                        <div id="f1" class="front-content ">
                             <img  class="img" src="{{asset('img/pages/1.png')}}" alt="">     
                         </div>
                     </div>
                     <div class="back">
-                        <div id="b1" class="back-content">
+                        <div id="b1" class="back-content ">
                             <img class="img" src="{{asset('img/pages/2.png')}}" alt="">    
                     </div>
                     </div>
@@ -400,25 +404,25 @@ max-width: 1300Px;
                 <!-- Paper 2 -->
                 <div class="paper p2">
                     <div class="front">
-                        <div id="f2" class="front-content">    
+                        <div id="f2" class="front-content  ">    
                         <img class="img" src="{{asset('img/pages/3.png')}}" alt="">   
             </div>
                     </div>
                     <div class="back">
-                        <div id="b2" class="back-content">
+                        <div id="b2" class="back-content ">
                             <img class="img" src="{{asset('img/pages/4.png')}}" alt="">        
                         </div>
                     </div>
                 </div>
                 <!-- Paper 3 -->
-                <div class="paper p3">
+                <div class="paper p3 ">
                     <div class="front">
-                        <div id="f3" class="front-content">
+                        <div id="f3" class="front-content ">
                         <img class="img" src="{{asset('img/pages/5.png')}}" alt="">  
                         </div>
                     </div>
                     <div class="back">
-                        <div id="b3" class="back-content">
+                        <div id="b3" class="back-content ">
                             <img class="img" src="{{asset('img/pages/5.png')}}" alt="">  
                         </div>
                     </div>
@@ -435,7 +439,7 @@ max-width: 1300Px;
             </div>
         </div>
 
-
+    <i class="fas btn fa-search zoom-icon loupe"></i>
 </section>
 
     

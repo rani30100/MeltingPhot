@@ -242,6 +242,9 @@ width: 380px;
 
 }
 
+.carousel-inner .carousel-item {
+    display: none;
+  }
   
 @media (max-width: 700px) {
 	.carousel-inner .carousel-item {
@@ -264,6 +267,7 @@ width: 380px;
     #carouselIndicators{
         display: none !important;
     }
+
     
 }
 
@@ -310,6 +314,10 @@ width: 380px;
     }
     #logo-MeltingPhot{
         background-color: none;
+    }
+
+    .actions-bloc-title{
+        margin-top: 5rem;
     }
 }
 

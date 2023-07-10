@@ -34,3 +34,6 @@ error_404:
 error_500:
     path: /_error/500
     controller: App\Controller\ErrorController::error500
+
+
+
