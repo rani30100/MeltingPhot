@@ -17,64 +17,64 @@
 {% block body %}
 
 	<section class="nav-main"style="background-color: #D00A4B;">
-	<nav class="navbar navbar-expand-lg bg-body-tertiary" id="navbar-hover">
-		<div class="d-flex justy-content-center w-100">
-			<ul class="navbar-nav me-auto mb-2 mb-lg-0 w-100 d-flex justify-content-center align-items-center">
-				<li class="nav-item me-2 meltingphot">
-					<a class="nav-link" aria-current="page" href="/">MELTINGPHOT</a>
-				</li>
-				<li class="nav-item me-2">
-					<a class="nav-link" href="{{ path("app_actions")}}">ACTIONS</a>
-				</li>
-
-
-				<li class="nav-item me-2">
-					<a class="nav-link" href="{{path('app_contact')}}">CONTACT</a>
-				</li>
-
-				{% if not app.user %}
-					<li class="nav-item me-2">
-						<a class="nav-link" href="{{path('app_login')}}">
-							<i class="fa-solid fa-user hi-icon hi-icon-user"></i>
-						</a>
-
+		<nav class="navbar navbar-expand-lg bg-body-tertiary" id="navbar-hover">
+			<div class="d-flex justy-content-center w-100">
+				<ul class="navbar-nav me-auto mb-2 mb-lg-0 w-100 d-flex justify-content-center align-items-center">
+					<li class="nav-item me-2 meltingphot">
+						<a class="nav-link" aria-current="page" href="/">MELTINGPHOT</a>
 					</li>
-				{% endif %}
-				{% if app.user %}
-					{% if 'ROLE_SUPER_ADMIN' in app.user.roles %}
-						<a class="nav-link" href="{{ path('admin_') }}">Ma Page Admin</a>
+					<li class="nav-item me-2">
+						<a class="nav-link" href="{{ path("app_actions")}}">ACTIONS</a>
+					</li>
+
+
+					<li class="nav-item me-2">
+						<a class="nav-link" href="{{path('app_contact')}}">CONTACT</a>
+					</li>
+
+					{% if not app.user %}
+						<li class="nav-item me-2">
+							<a class="nav-link" href="{{path('app_login')}}">
+								<i class="fa-solid fa-user hi-icon hi-icon-user"></i>
+							</a>
+
+						</li>
 					{% endif %}
-				{% endif %}
+					{% if app.user %}
+						{% if 'ROLE_SUPER_ADMIN' in app.user.roles %}
+							<a class="nav-link" href="{{ path('admin_') }}">Ma Page Admin</a>
+						{% endif %}
+					{% endif %}
 
-				{% if app.user %}
-					<li class="nav-item me-2">
-						<a class="nav-link" href="{{path('app_logout')}}">Se déconnecter</a>
-					</li>
-				{% endif %}
-				<div class="d-flex align-items-center">
-					<i id="search-icon" class="fa-solid fa-magnifying-glass mx-3"></i>
-					<form id="search-form" class="d-none">
-						<div class="input-group">
-							<input type="text" class="form-control" placeholder="Rechercher...">
-							<button class="btn btn-primary" type="submit">Rechercher</button>
-						</div>
-					</form>
+					{% if app.user %}
+						<li class="nav-item me-2">
+							<a class="nav-link" href="{{path('app_logout')}}">Se déconnecter</a>
+						</li>
+					{% endif %}
+					<div class="d-flex align-items-center">
+						<i id="search-icon" class="fa-solid fa-magnifying-glass mx-3"></i>
+						<form id="search-form" class="d-none">
+							<div class="input-group">
+								<input type="text" class="form-control" placeholder="Rechercher...">
+								<button class="btn btn-primary" type="submit">Rechercher</button>
+							</div>
+						</form>
+					</div>
+					{% if app.user %}
+						<p class="text-end btn btn-warning mt-3">Bienvenue {{ app.user.username }}!</p>
+					{% endif %}
+
+					{% if not app.user %}
+						<li class="nav-item me-2">
+							<a class="nav-link" href="{{path('app_register')}}">S'INSCRIRE</a>
+						</li>
+					{% endif %}
+				
+				<div>
+					<p style="margin-bottom: 0px">V1</p>
 				</div>
-				{% if app.user %}
-					<p class="text-end btn btn-warning mt-3">Bienvenue {{ app.user.username }}!</p>
-				{% endif %}
-
-				{% if not app.user %}
-					<li class="nav-item me-2">
-						<a class="nav-link" href="{{path('app_register')}}">S'INSCRIRE</a>
-					</li>
-				{% endif %}
-			
-			<div>
-				<p style="margin-bottom: 0px">V1</p>
 			</div>
-		</div>
-	</nav>
+		</nav>
 	  {# <nav class="navbar navbar-expand-lg navbar-light">
 			<div class="container-fluid">
 				<ul class="navbar-nav">
@@ -102,7 +102,6 @@
 				</ul>
 			</div>
 		</nav> #}
-</section>
 
 	
 	
@@ -176,6 +175,7 @@
 			<ul>
 		</div>
 	</div>
+</section>
 
 
 	<section class="actions-bandeau w-100 bg-secondary-subtle h-400 d-flex flex-column justify-content-center align-items-center p-1">
@@ -197,7 +197,7 @@
 	</section>
 
 	<div class="d-flex flex-column align-items-center justify-content-center bloc-filtres carousel-container mb-5">
-		<div>
+		<div class='pc-actions'>
 			<div>
 			<h2 for="my-dropdown" class="text-center fw-light">NOS
 				<span class="fw-bold">ACTIONS
