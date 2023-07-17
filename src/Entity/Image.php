@@ -2,6 +2,7 @@
 
 namespace App\Entity;
 
+use DateTime;
 use Vich\UploadableField;
 use Doctrine\ORM\Mapping as ORM;
 use App\Repository\ImageRepository;
@@ -21,15 +22,21 @@ class Image
 
     
     #[ORM\Column(type:"string", length:255)]
-    #[Vich\UploadableField(mapping: 'image_path', fileNameProperty: 'path')]
+    #[Vich\UploadableField(mapping: 'image_upload', fileNameProperty: 'path')]
     private ?string $path = null;
 
 
     #[ORM\ManyToOne(inversedBy: 'images')]
     private ?User $user_id = null;
+    
+    #[ORM\Column(type: 'datetime')]
+    private ?DateTime $created_at;
+    
 
-    #[ORM\Column]
-    private ?\DateTimeImmutable $created_at = null;
+    public function __construct()
+{
+    $this->created_at = new \DateTime();
+}
 
     public function getId(): ?int
     {
@@ -72,12 +79,12 @@ class Image
         return $this;
     }
 
-    public function getCreatedAt(): ?\DateTimeImmutable
+    public function getCreatedAt(): ?\DateTime
     {
         return $this->created_at;
     }
 
-    public function setCreatedAt(\DateTimeImmutable $created_at): self
+    public function setCreatedAt(\DateTime $created_at): self
     {
         $this->created_at = $created_at;
 

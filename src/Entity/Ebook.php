@@ -1,12 +1,13 @@
 <?php
 namespace App\Entity;
 
-use App\Repository\EbookRepository;
+use Symfony\Component\Validator\Constraints\All;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
+use App\Repository\EbookRepository;
 use Vich\UploaderBundle\Mapping\Annotation as Vich;
-use Symfony\Component\Validator\Constraints\File;
-use Vich\UploaderBundle\Entity\File as EmbeddedFile;
+use Symfony\Component\HttpFoundation\File\File;
+use Symfony\Component\HttpFoundation\File\UploadedFile;
 
 #[ORM\Entity(repositoryClass: EbookRepository::class)]
 #[Vich\Uploadable]
@@ -26,13 +27,41 @@ class Ebook
     #[ORM\Column(type: Types::TEXT)]
     private ?string $description = null;
 
-    #[ORM\Column(type: 'string', nullable: true)]
+    #[ORM\Column(type: 'json')]
     #[Vich\UploadableField(mapping: 'ebook_files', fileNameProperty: 'file')]
-    private ?string $file = null;
-    
-    private $ebook;
+    private ?File $file ;
 
+    // #[ORM\Column(type: 'string', length: 255, nullable: true)]
+    // private ?string $filePath = null;
 
+    // // Getter et Setter pour la propriété $filePath
+    // public function getFilePath(): ?string
+    // {
+    //     return $this->filePath;
+    // }
+
+    // public function setFilePath(?string $filePath): self
+    // {
+    //     $this->filePath = $filePath;
+    //     return $this;
+    // }
+
+    // Getter et Setter pour la propriété $file
+    public function getFile(): ?File
+    {
+        return $this->file;
+    }
+
+    public function setFile(?File $file = null): self
+    {
+        $this->file = $file;
+        if ($file) {
+            // Mettez à jour la propriété "updatedAt" ou effectuez d'autres opérations liées au téléchargement du fichier
+        }
+        return $this;
+    }
+
+    // Autres getters et setters...
 
     public function getId(): ?int
     {
@@ -47,7 +76,6 @@ class Ebook
     public function setTitle(string $title): self
     {
         $this->title = $title;
-
         return $this;
     }
 
@@ -59,7 +87,6 @@ class Ebook
     public function setAuthor(string $author): self
     {
         $this->author = $author;
-
         return $this;
     }
 
@@ -71,25 +98,6 @@ class Ebook
     public function setDescription(string $description): self
     {
         $this->description = $description;
-
         return $this;
     }
-
-    public function getFile(): ?string
-    {
-        return $this->file;
-    }
-
-    public function setFile(string $file): self
-    {
-        $this->file = $file;
-
-        return $this;
-    }
-
-    public function getEbook()
-    {
-        return $this->ebook;
-    }
-    
 }
