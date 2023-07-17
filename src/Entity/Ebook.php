@@ -27,10 +27,11 @@ class Ebook
     #[ORM\Column(type: Types::TEXT)]
     private ?string $description = null;
 
-    #[ORM\Column(type: 'json')]
+    #[ORM\Column(type: 'string', nullable: true)]
+    private ?string $file = null;
+    
     #[Vich\UploadableField(mapping: 'ebook_files', fileNameProperty: 'file')]
-    private ?File $file ;
-
+    private ?File $fileObj = null;
     // #[ORM\Column(type: 'string', length: 255, nullable: true)]
     // private ?string $filePath = null;
 
@@ -47,12 +48,12 @@ class Ebook
     // }
 
     // Getter et Setter pour la propriété $file
-    public function getFile(): ?File
+    public function getFile(): ?string
     {
         return $this->file;
     }
 
-    public function setFile(?File $file = null): self
+    public function setFileObj(?File $file = null): self
     {
         $this->file = $file;
         if ($file) {
@@ -99,5 +100,25 @@ class Ebook
     {
         $this->description = $description;
         return $this;
+    }
+
+    /**
+     * Set the value of file
+     *
+     * @return  self
+     */ 
+    public function setFile($file)
+    {
+        $this->file = $file;
+
+        return $this;
+    }
+
+    /**
+     * Get the value of fileObj
+     */ 
+    public function getFileObj()
+    {
+        return $this->fileObj;
     }
 }
