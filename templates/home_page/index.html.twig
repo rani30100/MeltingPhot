@@ -327,7 +327,7 @@ Ils sont acteurs de chaque rencontre en réalisant des interviews, des reportage
 		</div>
 
 
-		<div id="carouselExample" class="carousel display: flex;align-items: center;margin-left: 0px !important;adow rounded " data-bs-interval="6000">
+		<div id="carouselExample" class="carousel display: flex;align-items: center;" data-bs-interval="6000">
 			<div class="carousel-inner">
 				<div class="carousel-item active justify-content-center ">
 					<div class="row row-cols-1 row-cols-md-3 row-cols-xl-5">
@@ -516,32 +516,50 @@ Ils sont acteurs de chaque rencontre en réalisant des interviews, des reportage
 		</section>
 
 		<section class="partenaire-tab d-flex flex-column">
-			<div class="w-full d-flex ">
-				<div class="d-flex flex-column align-items-center">
-					<h3 class="partenaire-title"><span class="fw-light">Nos</span> Partenaires</h3>
-					<p class="partenaire-p">Lorem ipsum dolor sit amet consectetur adipisicing elit. Accusamus saepe magni vel cum dolores quasi veniam nisi, laboriosam distinctio, laborum voluptas dolor repellat quis consequatur nulla ad, qui ut vitae.</p>
-					<button class="btn btn-outline-danger">Vous avez aussi votre Place avec NOUS!</button>
-				</div>
-			</div>
-			<div class="w-full">
-				<div class="w-full d-flex flex-wrap justify-content-left">
-					<img style="height:80px; margin-left:2rem; margin-top:1rem"src="{{ asset('img/partenaires/AESIO.png') }}" alt="">
-			
-					<img style="height:80px; margin-left:2rem; margin-top:1rem"src="{{ asset('img/partenaires/ALES.png') }}" alt="">
-			
-					<img style="height:80px; margin-left:2rem; margin-top:1rem"src="{{ asset('img/partenaires/ANCT.png') }}" alt="">
+    <div class="w-full d-flex">
+        <div class="d-flex flex-column align-items-center">
+            <h3 class="partenaire-title"><span class="fw-light">Nos</span> Partenaires</h3>
+            <p class="partenaire-p">Lorem ipsum dolor sit amet consectetur adipisicing elit. Accusamus saepe magni vel cum dolores quasi veniam nisi, laboriosam distinctio, laborum voluptas dolor repellat quis consequatur nulla ad, qui ut vitae.</p>
+            <button class="btn btn-outline-danger">Vous avez aussi votre Place avec NOUS!</button>
+        </div>
+    </div>
+    <div class="w-full">
+        <div id="carouselExampleIndicators" class="carousel slide" data-bs-ride="carousel">
+            <div class="carousel-inner">
+                <div class="carousel-item active">
+                    <img src="{{ asset('img/partenaires/AESIO.png') }}" alt="">
+                </div>
+                <div class="carousel-item">
+                    <img src="{{ asset('img/partenaires/ALES.png') }}" alt="">
+                </div>
+                <div class="carousel-item">
+                    <img src="{{ asset('img/partenaires/ANCT.png') }}" alt="">
+                </div>
+                <div class="carousel-item">
+                    <img src="{{ asset('img/partenaires/FDVA.png') }}" alt="">
+                </div>
+                <div class="carousel-item">
+                    <img src="{{ asset('img/partenaires/GARD.jpg') }}" alt="">
+                </div>
+                <div class="carousel-item">
+                    <img src="{{ asset('img/partenaires/LEADER.png') }}" alt="">
+                </div>
+                <div class="carousel-item">
+                    <img src="{{ asset('img/partenaires/OCCI.png') }}" alt="">
+                </div>
+            </div>
+            <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="prev">
+                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                <span class="visually-hidden">Previous</span>
+            </button>
+            <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="next">
+                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                <span class="visually-hidden">Next</span>
+            </button>
+        </div>
+    </div>
+</section>
 
-					<img style="height:80px; margin-left:2rem; margin-top:1rem"src="{{ asset('img/partenaires/FDVA.png') }}" alt="">
-			
-					<img style="height:80px; margin-left:2rem; margin-top:1rem"src="{{ asset('img/partenaires/GARD.jpg') }}" alt="">
-
-					<img style="height:80px; margin-left:2rem; margin-top:1rem"src="{{ asset('img/partenaires/LEADER.png') }}" alt="">
-
-					<img style="height:80px; margin-left:2rem; margin-top:1rem"src="{{ asset('img/partenaires/OCCI.png') }}" alt="">
-				</div>
-			
-			</div>
-		</section>
 
 
 
