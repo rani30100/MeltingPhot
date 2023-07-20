@@ -20,6 +20,7 @@
         "phpstan/phpdoc-parser": "^1.18",
         "sensio/framework-extra-bundle": "^6.1",
         "setasign/fpdi": "^2.3",
+        "setasign/fpdi-tcpdf": "^2.3",
         "symfony/asset": "6.2.*",
         "symfony/cache": "6.2.*",
         "symfony/console": "6.2.*",

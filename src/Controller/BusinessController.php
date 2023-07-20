@@ -14,13 +14,13 @@ class BusinessController extends AbstractController
     #[Route('/business', name: 'app_business')]
     public function index(): Response
     {
-       $googleCredentialsPath = realpath($this->getParameter('kernel.project_dir') . '/config/google_credentials.json');
+        $KEY_FILE_LOCATION = '/var/www/html/Projet-MeltingPhot/vendor/google/google_credentials.json';
 
 
         // Instantiate the Google\Client
         $client = new Client();
         // Set the path to the JSON file containing the credentials
-        $client->setAuthConfig($googleCredentialsPath);
+        $client->setAuthConfig($KEY_FILE_LOCATION);
         
         // Authorize the client
         $client->setScopes([
@@ -32,7 +32,7 @@ class BusinessController extends AbstractController
         
         // Make a request to retrieve the analytics data
         $analyticsData = $analyticsService->data_ga->get(
-            'ga:5770624721', // Replace with your Google Analytics View ID
+            'G-XLMQDM4797', // Replace with your Google Analytics View ID
             '2023-07-01',   // Start date
             '2023-07-31',   // End date
             'ga:users,ga:sessions,ga:pageviews' // Metrics to retrieve
