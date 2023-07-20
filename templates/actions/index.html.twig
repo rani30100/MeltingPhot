@@ -226,32 +226,43 @@
 							<div class="d-flex flex-row justify-content-center"style="margin: 0 auto;width: 95%;">
 								{% for j in 0..5 %}
 								{% set imageIndex = i * 6 + j %}
+								<!-- On calcule l'index de l'image actuelle dans la liste des vidéos. -->
 									{% if imageIndex < videos|length %}
+									<!-- Vérifie si l'index de l'image est valide (inférieur à la longueur totale des vidéos). -->
+
 									{% set video = videos[imageIndex] %}
+									<!-- On assigne la vidéo correspondant à l'index 'imageIndex' à la variable 'video'. -->
+
 									{% set isFirstVideo = j == 0 %}
 									{% set isSecondVideo = j == 1 %}
 									{% set isThirdVideo = j == 2 %}
 									{% set isFourthVideo = j == 3 %}
 									{% set isFifthVideo = j == 4 %}
 									{% set isLastVideo = j == 5 %}
+									<!-- On définit des variables booléennes pour indiquer la position de la vidéo actuelle dans l'itération. -->
 
 										{% if isSecondVideo %}
+										<!-- Si c'est la deuxième vidéo, on ouvre une nouvelle div avec la classe 'video-group'. -->
 											<div class="video-group">
 										{% endif %}
 
 										{% if isFourthVideo %}
+										<!-- Si c'est la quatrième vidéo, on ouvre une nouvelle div avec la classe 'video-group2'. -->
 											<div class="video-group2">
 										{% endif %}
 
-										<div class=" ">
+										<div class="groupe ">
+										<!-- On ouvre une div pour contenir chaque élément vidéo. -->
 											<div class="h-100">
 												{% if video.getImage() %}
+												<!-- On vérifie si la vidéo possède une image associée. -->
 												<img src="{{ asset(video.getImage()) }}" class="h-100  {% if isFirstVideo %}first-video{% elseif isLastVideo %}last-video{% endif %}" alt="Video Image" data-bs-toggle="modal" data-bs-target="#videoModal{{ imageIndex + 1 }}">
 												{% else %}
 												<p>No image available</p>
 												{% endif %}
 
 												{% if isSecondVideo and isThirdVideo %}
+												<!-- Si c'est la deuxième et la troisième vidéo, on ouvre une nouvelle div avec la classe 'video-group' à l'intérieur de cette div. -->
 													<div class="video-group {% if isSecondVideo %}second-video{% elseif isThirdVideo %}third-video{% endif %}">
 													</div>
 												{% endif %}
@@ -259,11 +270,13 @@
 										</div>
 
 										{% if isThirdVideo %}
+										<!-- Si c'est la troisième vidéo, on ferme la div 'video-group'. -->
 											</div>
 										{% endif %}
 										
 
 										{% if isFifthVideo  %}
+										<!-- Si c'est la cinquième vidéo, on ferme la div 'video-group2'. -->
 											</div>
 										{% endif %}
 										
