@@ -55,11 +55,12 @@
 						<i id="search-icon" class="fa-solid fa-magnifying-glass mx-3"></i>
 						<form id="search-form" class="d-none">
 							<div class="input-group">
-								<input type="text" class="form-control" id="search-input" placeholder="Rechercher...">
-								<button class="btn btn-primary" type="submit">Rechercher</button>
+								<input id="search-input" type="text" class="form-control" placeholder="Rechercher...">
+								<button id="search-button" class="btn btn-primary" type="button">Rechercher</button>
 							</div>
 						</form>
 					</div>
+
 					{% if app.user %}
 						<p class="text-end btn btn-warning mt-3">Bienvenue {{ app.user.username }}!</p>
 					{% endif %}
@@ -77,27 +78,22 @@
 		</nav>
 	</section>
 
-
+	
 <script>
-    const searchIcon = document.getElementById("search-icon");
-    const searchForm = document.getElementById("search-form");
-
-    searchIcon.addEventListener("click", function () {
-        // Affiche ou masque le formulaire de recherche lors du clic sur l'icône de recherche
-        searchForm.classList.toggle("d-none");
-    });
-
-    searchForm.addEventListener("submit", function (event) {
-        event.preventDefault(); // Empêche la soumission du formulaire
-
+ // Ajoute un écouteur d'événement "click" au bouton de recherche
+    document.getElementById("search-button").addEventListener("click", function () {
         // Récupère le terme de recherche saisi par l'utilisateur
         const searchTerm = document.getElementById("search-input").value.trim();
 
         // Redirige l'utilisateur vers la page de résultats de recherche avec le terme de recherche comme paramètre dans l'URL
         window.location.href = "{{ path('app_search_results') }}?q=" + encodeURIComponent(searchTerm);
     });
-</script>
 
+    document.getElementById("search-icon").addEventListener("click", function () {
+        // Supprime la classe "d-none" du formulaire de recherche pour l'afficher
+        document.getElementById("search-form").classList.remove("d-none");
+    });
+</script>
 
 	  {# <nav class="navbar navbar-expand-lg navbar-light">
 			<div class="container-fluid">

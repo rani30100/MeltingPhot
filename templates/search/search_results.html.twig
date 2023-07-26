@@ -190,7 +190,7 @@
 			</div>
 		</div>
 	</nav>
-    <section class="h-50">
+    <section class="">
 
    <h1>Résultats de la recherche pour "{{ query }}" :</h1>
 {% if results %}
@@ -207,7 +207,11 @@
 
             {# N'affichez pas le titre si c'est une vidéo #}
             {% if result.path is defined %}
-                <li>{{ result.title }}</li>
+                
+                <li>
+                    <img src="{{ asset('uploads/' ~ result.path) }}" alt="{{ result.title }}" style="width: 150px; height: 150px;">
+                </li>
+                
             {% endif %}
             
             {# Affichez l'image uniquement si c'est une image #}
@@ -222,6 +226,13 @@
     <p>Aucun résultat trouvé.</p>
 {% endif %}
 
+    <h2>Faire une nouvelle Recherche ?</h2>
+    <form id="search-form2" action="{{ path('app_search_results') }}" method="GET">
+        <div class="input-group">
+            <input type="text" class="form-control" name="q" placeholder="Rechercher...">
+            <button class="btn btn-primary" type="submit">Rechercher</button>
+        </div>
+    </form>
 
 
 

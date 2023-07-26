@@ -70,7 +70,7 @@ class ActionsController extends AbstractController
                         $videos[] = $video;
 
                          // Get the thumbnail URL using the video ID
-                        $thumbnailUrl = $this->getImage($videoId);
+                        $thumbnailUrl = $this->getImage($item->getSnippet()->getResourceId()->getVideoId());
                         $video->setImage($thumbnailUrl);
                 
                         // Assign the image path based on the image index
@@ -94,8 +94,28 @@ class ActionsController extends AbstractController
 
         return $this->render('actions/no_videos.html.twig');
     }
- 
+    private function getImage(string $videoId): ?string
+    {
+        $client = new Client();
+        $client->setApplicationName('MeltingPhot');
+        $client->setDeveloperKey('AIzaSyDNbPQ6M-fqyLQCyRNtkdJuhIdLDS1CoP4');
 
+        $youtube = new YouTube($client);
 
+        // Retrieve video details, including the thumbnail URL
+        $videoDetails = $youtube->videos->listVideos('snippet', [
+            'id' => $videoId,
+            'part' => 'snippet',
+        ]);
 
+        if ($videoDetails->getItems()) {
+            return $videoDetails->getItems()[0]->getSnippet()->getThumbnails()->getDefault()->getUrl();
+        }
+
+        return null;
+    }
 }
+
+
+
+
