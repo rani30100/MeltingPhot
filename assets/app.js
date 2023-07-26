@@ -25,24 +25,3 @@ require('bootstrap');
 //     $('[data-toggle="popover"]').popover();
 // });
 
-// All NavSearchBar ---------------------------------------------------------------------------------------------------------------
-
-const searchIcon = document.getElementsByClassName("search-icon");
-const searchForm = document.getElementsByClassName("search-form");
-
-searchIcon.addEventListener("click", function () {
-    // Affiche ou masque le formulaire de recherche lors du clic sur l'icône de recherche
-    searchForm.classList.toggle("d-none");
-    console.log('heyeef')
-});
-
-searchForm.addEventListener("submit", function (event) {
-    event.preventDefault(); // Empêche la soumission du formulaire
-
-    // Récupère le terme de recherche saisi par l'utilisateur
-    const searchTerm = document.getElementById("search-input").value.trim();
-
-    // Redirige l'utilisateur vers la page de résultats de recherche avec le terme de recherche comme paramètre dans l'URL
-    window.location.href = "{{ path('app_search_results') }}?q=" + encodeURIComponent(searchTerm);
-});
-// ---------------------------------------------------------------------------------------------------------------------------------

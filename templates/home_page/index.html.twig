@@ -13,6 +13,8 @@
 	<script src="{{ asset('js/flipbook/extras/modernizr.2.5.3.min.js') }}"></script>
 	<script src="{{ asset('js/flipbook/lib/hash.js') }}"></script>
 	<script src="{{ asset('js/home/carousel-effect.js') }}"></script>
+	<script src="{{ asset('js/searchBar/searchBar.js') }}"></script>
+
 	
 
 {% endblock %}
@@ -23,66 +25,69 @@
 
 
 {% block body %}
-
-<section class="nav-main"style="background-color: #D00A4B;">
-	<nav class="navbar navbar-expand-lg bg-body-tertiary" id="navbar-hover">
-		<div class="d-flex justy-content-center w-100">
-			<ul class="navbar-nav me-auto mb-2 mb-lg-0 w-100 d-flex justify-content-center align-items-center">
-				<li class="nav-item me-2 meltingphot">
-					<a class="nav-link" aria-current="page" href="/">MELTINGPHOT</a>
-				</li>
-				<li class="nav-item me-2">
-					<a class="nav-link" href="{{ path("app_actions")}}">ACTIONS</a>
-				</li>
-
-
-				<li class="nav-item me-2">
-					<a class="nav-link" href="{{path('app_contact')}}">CONTACT</a>
-				</li>
-
-				{% if not app.user %}
-					<li class="nav-item me-2">
-						<a class="nav-link" href="{{path('app_login')}}">
-							<i class="fa-solid fa-user hi-icon hi-icon-user"></i>
-						</a>
-
+	<section class="nav-main"style="background-color: #D00A4B;">
+		<nav class="navbar navbar-expand-lg bg-body-tertiary" id="navbar-hover">
+			<div class="d-flex justy-content-center w-100">
+				<ul class="navbar-nav me-auto mb-2 mb-lg-0 w-100 d-flex justify-content-center align-items-center">
+					<li class="nav-item me-2 meltingphot">
+						<a class="nav-link" aria-current="page" href="/">MELTINGPHOT</a>
 					</li>
-				{% endif %}
-				{% if app.user %}
-					{% if 'ROLE_SUPER_ADMIN' in app.user.roles %}
-						<a class="nav-link" href="{{ path('admin_') }}">Ma Page Admin</a>
+					<li class="nav-item me-2">
+						<a class="nav-link" href="{{ path("app_actions")}}">ACTIONS</a>
+					</li>
+
+
+					<li class="nav-item me-2">
+						<a class="nav-link" href="{{path('app_contact')}}">CONTACT</a>
+					</li>
+
+					{% if not app.user %}
+						<li class="nav-item me-2">
+							<a class="nav-link" href="{{path('app_login')}}">
+								<i class="fa-solid fa-user hi-icon hi-icon-user"></i>
+							</a>
+
+						</li>
 					{% endif %}
-				{% endif %}
+					{% if app.user %}
+						{% if 'ROLE_SUPER_ADMIN' in app.user.roles %}
+							<a class="nav-link" href="{{ path('admin_') }}">Ma Page Admin</a>
+						{% endif %}
+					{% endif %}
 
-				{% if app.user %}
-					<li class="nav-item me-2">
-						<a class="nav-link" href="{{path('app_logout')}}">Se déconnecter</a>
-					</li>
-				{% endif %}
-				<div class="d-flex align-items-center">
-					<i id="search-icon" class="fa-solid fa-magnifying-glass mx-3"></i>
-					<form id="search-form" class="d-none">
-						<div class="input-group">
-							<input type="text" class="form-control" placeholder="Rechercher...">
-							<button class="btn btn-primary" type="submit">Rechercher</button>
-						</div>
-					</form>
+					{% if app.user %}
+						<li class="nav-item me-2">
+							<a class="nav-link" href="{{path('app_logout')}}">Se déconnecter</a>
+						</li>
+					{% endif %}
+						<div class="d-flex align-items-center">
+						<i id="search-icon" class="fa-solid fa-magnifying-glass mx-3"></i>
+						<form id="search-form" class="d-none">
+							<div class="input-group">
+								<input type="text" class="form-control" id="search-input" placeholder="Rechercher...">
+								<button class="btn btn-primary" type="submit">Rechercher</button>
+							</div>
+						</form>
+					</div>
+
+
+					{% if app.user %}
+						<p class="text-end btn btn-warning mt-3">Bienvenue {{ app.user.username }}!</p>
+					{% endif %}
+
+					{% if not app.user %}
+						<li class="nav-item me-2">
+							<a class="nav-link" href="{{path('app_register')}}">S'INSCRIRE</a>
+						</li>
+					{% endif %}
+				
+				<div>
+					<p style="margin-bottom: 0px">V1</p>
 				</div>
-				{% if app.user %}
-					<p class="text-end btn btn-warning mt-3">Bienvenue {{ app.user.username }}!</p>
-				{% endif %}
-
-				{% if not app.user %}
-					<li class="nav-item me-2">
-						<a class="nav-link" href="{{path('app_register')}}">S'INSCRIRE</a>
-					</li>
-				{% endif %}
-			
-			<div>
-				<p style="margin-bottom: 0px">V1</p>
 			</div>
-		</div>
-	</nav>
+		</nav>
+	</section>
+
 	  {# <nav class="navbar navbar-expand-lg navbar-light">
 			<div class="container-fluid">
 				<ul class="navbar-nav">
@@ -165,7 +170,8 @@
 					<i id="search-icon" class="fa-solid fa-magnifying-glass mx-3"></i>
 					<form id="search-form" class="d-none">
 						<div class="input-group">
-							<input type="text" class="form-control" placeholder="Rechercher...">
+							<input type="text" class="form-control" placeholder="{{ 'search'|trans({}, 'messages') }}"
+>
 							<button class="btn btn-primary" type="submit">Rechercher</button>
 						</div>
 					</form>
@@ -231,12 +237,11 @@
 				<div class="d-flex flex-column justify-content-center article-box ">
 					<div class='article-title '>
 						<span class="numbers">01</span>
-						<h3 class="color1">{{ 'tagline_1.title'|trans({}, 'home') }}</h3>
+						<h3 class="color1">{{ 'article1.title'|trans({}, 'home') }}</h3>
 					</div>
 					<div class="block_p_description ">
 						<p class="block-article_description">
-							 Une initiative unique qui permet aux jeunes collégiens et lycéens de découvrir différents métiers et de participer à leur orientation professionnelle.
-Ils sont acteurs de chaque rencontre en réalisant des interviews, des reportages et des magazines pour mieux comprendre les différents métiers tout en apprenant les codes et méthodes de travails jouirnalistiques, photographique, et de vidéaste pro.
+						{{ 'article1.description'|trans({}, 'home') }}	
 						</p>
 					</div>
 					<div
@@ -261,7 +266,7 @@ Ils sont acteurs de chaque rencontre en réalisant des interviews, des reportage
 
 					<div class="d-flex flex-column article2-box_description slide-in-right">
 						<p class="article2_description">
-							"Les odonymes" est une action visant à initier et à former le public des quartiers en priorité à l'image, à la création graphique et à l'informatique pour leur permettre de s'approprier l'histoire des noms de plaque de rues de leur quartier. Ils peuvent ainsi en apprendre davantage sur l'histoire de leur quartier et de leur ville. Le projet se termine par une exposition à ciel ouvert lors de la journée du patrimoine sur Alès.
+						{{ 'article2.description'|trans({}, 'home') }}
 						</p>
 					</div>
 				</div>
@@ -277,11 +282,11 @@ Ils sont acteurs de chaque rencontre en réalisant des interviews, des reportage
 				<div class="d-flex flex-column justify-content-center article-box">
 					<div class='article-title3'>
 						<span class="numbers">03</span>
-						<h3 class="color1 ">PROJETS MULTICULTURELS</h3>
+						<h3 class="color1 ">{{ 'article3.title'|trans({}, 'home') }}</h3>
 					</div>
 					<div class="block_p_description slide-in-left">
 						<p class="block-article_description">
-							HÉBÉMAG : Découvrir son futur métier en allant à la rencontre des professionnels telle une vraie équipe de journalistes en tournage. Rédiger un magazine sur la thématique du métier envisagé.</p>
+						{{ 'article3.description'|trans({}, 'home') }}</h3>
 					</div>
 					<div class="bloc1_description2">{# <p class=" block-article_description2">Lorem ipsum dolor sit amet consectetur adipisicing elit. Ea labore nesciunt magnam eveniet accusantium placeat blanditiis et iusto. Tempore, id distinctio, dolorem similique sunt aspernatur, quod maiores incidunt fugiat quidem cupiditate voluptatibus dignissimos voluptatem expedita.</p> #}</div>
 				</div>
