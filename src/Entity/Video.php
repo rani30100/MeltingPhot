@@ -54,9 +54,9 @@ class Video
         return $this->title;
     }
 
-    public function setTitle(string $name): self
+    public function setTitle(string $title): self
     {
-        $this->name = $title;
+        $this->title = $title;
 
         return $this;
     }
