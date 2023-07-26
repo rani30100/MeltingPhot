@@ -1,12 +1,13 @@
 <?php
 namespace App\Entity;
 
-use Symfony\Component\Validator\Constraints\All;
+use DateTimeImmutable;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
 use App\Repository\EbookRepository;
-use Vich\UploaderBundle\Mapping\Annotation as Vich;
 use Symfony\Component\HttpFoundation\File\File;
+use Symfony\Component\Validator\Constraints\All;
+use Vich\UploaderBundle\Mapping\Annotation as Vich;
 use Symfony\Component\HttpFoundation\File\UploadedFile;
 
 #[ORM\Entity(repositoryClass: EbookRepository::class)]
@@ -27,42 +28,13 @@ class Ebook
     #[ORM\Column(type: Types::TEXT)]
     private ?string $description = null;
 
-    #[ORM\Column(type: 'string', nullable: true)]
-    private ?string $file = null;
     
-    #[Vich\UploadableField(mapping: 'ebook_files', fileNameProperty: 'file')]
-    private ?File $fileObj = null;
-    // #[ORM\Column(type: 'string', length: 255, nullable: true)]
-    // private ?string $filePath = null;
+    #[ORM\Column(length: 255 , nullable: true)]
+    private ? string $pdf =null;
+    #[Vich\UploadableField(mapping: 'ebook_files', fileNameProperty: 'pdf')]
+    private ?File $pdfFile = null;
+    
 
-    // // Getter et Setter pour la propriété $filePath
-    // public function getFilePath(): ?string
-    // {
-    //     return $this->filePath;
-    // }
-
-    // public function setFilePath(?string $filePath): self
-    // {
-    //     $this->filePath = $filePath;
-    //     return $this;
-    // }
-
-    // Getter et Setter pour la propriété $file
-    public function getFile(): ?string
-    {
-        return $this->file;
-    }
-
-    public function setFileObj(?File $file = null): self
-    {
-        $this->file = $file;
-        if ($file) {
-            // Mettez à jour la propriété "updatedAt" ou effectuez d'autres opérations liées au téléchargement du fichier
-        }
-        return $this;
-    }
-
-    // Autres getters et setters...
 
     public function getId(): ?int
     {
@@ -102,23 +74,46 @@ class Ebook
         return $this;
     }
 
+
+
+ 
     /**
-     * Set the value of file
+     * Get the value of pdf
+     */ 
+    public function getPdf()
+    {
+        return $this->pdf;
+    }
+
+    /**
+     * Set the value of pdf
      *
      * @return  self
      */ 
-    public function setFile($file)
+    public function setPdf($pdf)
     {
-        $this->file = $file;
+        $this->pdf = $pdf;
 
         return $this;
     }
 
     /**
-     * Get the value of fileObj
+     * Get the value of pdfFile
      */ 
-    public function getFileObj()
+    public function getPdfFile()
     {
-        return $this->fileObj;
+        return $this->pdfFile;
+    }
+
+    /**
+     * Set the value of pdfFile
+     *
+     * @return  self
+     */ 
+    public function setPdfFile($pdfFile)
+    {
+        $this->pdfFile = $pdfFile;
+
+        return $this;
     }
 }

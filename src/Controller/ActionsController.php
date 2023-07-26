@@ -7,9 +7,16 @@ use App\Entity\Video;
 use DateTimeImmutable;
 use App\Entity\Category;
 use Google\Service\YouTube;
+use Doctrine\ORM\EntityManager;
+use App\Repository\EbookRepository;
+use App\Repository\ImageRepository;
+use App\Repository\PostsRepository;
+use App\Repository\VideoRepository;
+use Doctrine\DBAL\Driver\Connection;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Contracts\Cache\ItemInterface;
 use Symfony\Contracts\Cache\CacheInterface;
+use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -52,7 +59,7 @@ class ActionsController extends AbstractController
                     $status = $item->getStatus()->getPrivacyStatus();
                     if ($status === 'public' || $status === 'private') {
                         $video = new Video();
-                        $video->setName($item->getSnippet()->getTitle());
+                        $video->setTitle($item->getSnippet()->getTitle());
                         $video->setUrl('https://www.youtube.com/embed/' . $item->getSnippet()->getResourceId()->getVideoId());
                         $video->setCreatedAt(new DateTimeImmutable($item->getSnippet()->getPublishedAt()));
                 
@@ -61,6 +68,10 @@ class ActionsController extends AbstractController
                 
                         $entityManager->persist($video);
                         $videos[] = $video;
+
+                         // Get the thumbnail URL using the video ID
+                        $thumbnailUrl = $this->getImage($videoId);
+                        $video->setImage($thumbnailUrl);
                 
                         // Assign the image path based on the image index
                         $imagePath = '/img/videos/' . $imageIndex . '.jpg';
@@ -83,4 +94,8 @@ class ActionsController extends AbstractController
 
         return $this->render('actions/no_videos.html.twig');
     }
+ 
+
+
+
 }

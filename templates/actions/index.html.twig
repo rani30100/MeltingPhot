@@ -55,7 +55,7 @@
 						<i id="search-icon" class="fa-solid fa-magnifying-glass mx-3"></i>
 						<form id="search-form" class="d-none">
 							<div class="input-group">
-								<input type="text" class="form-control" placeholder="Rechercher...">
+								<input type="text" class="form-control" id="search-input" placeholder="Rechercher...">
 								<button class="btn btn-primary" type="submit">Rechercher</button>
 							</div>
 						</form>
@@ -76,6 +76,28 @@
 			</div>
 		</nav>
 	</section>
+
+
+<script>
+    const searchIcon = document.getElementById("search-icon");
+    const searchForm = document.getElementById("search-form");
+
+    searchIcon.addEventListener("click", function () {
+        // Affiche ou masque le formulaire de recherche lors du clic sur l'icône de recherche
+        searchForm.classList.toggle("d-none");
+    });
+
+    searchForm.addEventListener("submit", function (event) {
+        event.preventDefault(); // Empêche la soumission du formulaire
+
+        // Récupère le terme de recherche saisi par l'utilisateur
+        const searchTerm = document.getElementById("search-input").value.trim();
+
+        // Redirige l'utilisateur vers la page de résultats de recherche avec le terme de recherche comme paramètre dans l'URL
+        window.location.href = "{{ path('app_search_results') }}?q=" + encodeURIComponent(searchTerm);
+    });
+</script>
+
 
 	  {# <nav class="navbar navbar-expand-lg navbar-light">
 			<div class="container-fluid">
@@ -183,7 +205,7 @@
 		<article class="actions-bloc">
 			<div class="container d-lg-flex flex-lg-row justify-content-lg-center align-items-lg-center">
 				<div class="col-lg-4 actions-bloc-title">
-					<h1>Nos Actions</h1>
+					<h1>TCHIKI</h1>
 					<div class="d-flex flex-row justify-content-around align-items-center actions-bandeau_sous-titre m-auto">
 						<div class="actions-bandeau_trait"></div>
 						<div>
@@ -366,7 +388,7 @@
 					<div class="modal-dialog modal-lg modal-dialog-centered">
 						<div class="modal-content">
 							<div class="modal-header bg-dark white-text">
-								<h5 class="modal-title" id="videoModal{{ loop.index }}Label">{{ video.name }}</h5>
+								<h5 class="modal-title" id="videoModal{{ loop.index }}Label">{{ video.title }}</h5>
 								<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
 							</div>
 							<div class="modal-body">

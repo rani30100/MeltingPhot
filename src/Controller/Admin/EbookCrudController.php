@@ -47,8 +47,7 @@ class EbookCrudController extends AbstractCrudController
             ->setLabel('Auteur');
         yield TextEditorField::new('description')
             ->setLabel('Description');
-        yield Field::new('fileObj')
-            ->setLabel('Fichier Ebook')
+        yield Field::new('pdfFile','Ebook {Pdf Exclusivement}')
             ->setFormType(VichFileType::class);
     }
 

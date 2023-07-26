@@ -2,447 +2,199 @@
 
 {% block title %}Hello OrangeController!{% endblock %}
 
-{% block stylesheet %}
-    {% for cssFile in cssFiles %}
-        <link rel="stylesheet" href="{{ asset(cssFile) }}">
-    {% endfor %}
+{% block styles %}
+<style>
+    /* Styles pour le livre numérique */
+    .mon-livre {
+        display: flex;
+        align-items: center;
+        flex-direction: column;
+        margin-top: 50px;
+    }
+
+    .book {
+        position: relative;
+        width: 200px;
+        height: 300px;
+        perspective: 1000px;
+    }
+
+    .paper {
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        transform-style: preserve-3d;
+        transition: transform 1s;
+    }
+
+    .front-content,
+    .back-content {
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        backface-visibility: hidden;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        box-sizing: border-box;
+        padding: 20px;
+        font-size: 16px;
+        color: #fff;
+        text-align: center;
+    }
+
+    .front-content {
+        background-color: #3f51b5;
+    }
+
+    .back-content {
+        background-color: #f44336;
+        transform: rotateY(180deg);
+    }
+
+    .flip-btn {
+        position: absolute;
+        bottom: 20px;
+        left: 50%;
+        transform: translateX(-50%);
+        display: flex;
+        justify-content: space-between;
+        width: 100px;
+    }
+
+    .prev-btn-flip,
+    .next-btn-flip {
+        cursor: pointer;
+        background-color: #333;
+        color: #fff;
+        border: none;
+        font-size: 24px;
+        width: 40px;
+        height: 40px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        border-radius: 50%;
+    }
+
+    .prev-btn-flip:hover,
+    .next-btn-flip:hover {
+        background-color: #555;
+    }
+
+    /* Styles pour le zoom */
+    .zoom-icon {
+        position: absolute;
+        bottom: 80px;
+        right: 30px;
+        cursor: pointer;
+        background-color: #333;
+        color: #fff;
+        border: none;
+        font-size: 24px;
+        width: 40px;
+        height: 40px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        border-radius: 50%;
+    }
+
+    .zoom-icon:hover {
+        background-color: #555;
+    }
+
+    .zoom-icon.active {
+        background-color: #f44336;
+    }
+
+    .zoom-icon.active:hover {
+        background-color: #ff5722;
+    }
+</style>
 {% endblock %}
 
-
 {% block javascripts %}
-	{{ parent() }}
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/hammer.js/2.0.8/hammer.js"></script>
-    <script src="{{ asset('js/flipbook/main.js') }}"></script>
-    <script src="{{ asset('js/flipbook/.js') }}"></script>
+    {{ parent() }}
+    <script>
+        // Script pour le livre numérique
 
-<script>
+        // Variables
+        let currentIndex = 0;
+        const papers = document.querySelectorAll('.paper');
+        const zoomIcon = document.querySelector('.zoom-icon');
+        let zoomActive = false;
 
-    document.addEventListener("DOMContentLoaded", function() {
-    var book = document.querySelector(".book");
-    var isActive = false;
-    var doubleTapTimeout;
-    var isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
-
-    if (isMobile) {
-        var hammer = new Hammer(book);
-
-        hammer.get('pinch').set({ enable: true });
-        hammer.on('pinch', function(event) {
-            if (event.scale > 1) {
-                book.classList.add("active");
-            } else {
-                book.classList.remove("active");
+        // Fonction pour passer à la page suivante
+        function nextPage() {
+            if (currentIndex < papers.length - 1) {
+                currentIndex++;
+                updateBook();
             }
-        });
-    } else {
-        book.addEventListener("click", function() {
-            if (doubleTapTimeout) {
-                clearTimeout(doubleTapTimeout);
-                doubleTapTimeout = null;
-                isActive = true;
-                book.classList.add("active");
-            } else {
-                doubleClickTimeout = setTimeout(function() {
-                    doubleClickTimeout = null;
-                    if (!isActive) {
-                        book.classList.remove("active");
-                    }
-                    isActive = false;
-                }, 300);
+        }
+
+        // Fonction pour passer à la page précédente
+        function prevPage() {
+            if (currentIndex > 0) {
+                currentIndex--;
+                updateBook();
             }
-        });
-    }
-});
-</script>
+        }
 
+        // Fonction pour mettre à jour l'affichage du livre
+        function updateBook() {
+            const rotationAngle = currentIndex * -180;
+            document.querySelector('#book-container').style.transform = `translateX(25%) rotateY(${rotationAngle}deg)`;
+        }
 
-   
+        // Fonction pour activer/désactiver le zoom
+        function toggleZoom() {
+            zoomActive = !zoomActive;
+            zoomIcon.classList.toggle('active', zoomActive);
+        }
+
+        // Ajouter les écouteurs d'événements
+        document.querySelector('.prev-btn-flip').addEventListener('click', prevPage);
+        document.querySelector('.next-btn-flip').addEventListener('click', nextPage);
+        zoomIcon.addEventListener('click', toggleZoom);
+    </script>
 {% endblock %}
 
 {% block body %}
+    <!-- Votre contenu ici -->
 
-<style>* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-}
-
-body {
-    display: flex;
-    flex-direction:column;
-    font-family: sans-serif;
-    background-color: orange;
-}
-
-/* Book */
-.book {
-    position: relative;
-    width: 350px;
-    height: 500px;
-    transition: transform 300ms ease-out;}
-
-.paper {
-    position: absolute;
-    width: 100%;
-    height: 100%;
-    top: 0;
-    left: 0;
-    perspective: 1500px;
-
-}
-
-.front,
-.back {
-    background-color: white;
-    position: absolute;
-    width: 75%;
-    height:75%;
-    top: 0;
-    left: 0;
-    transform-origin: left;
-    transition: transform 0.5s;
-}
-
-.front {
-    z-index: 1;
-    backface-visibility: hidden;
-    border-left: 3px solid powderblue;
-}
-
-.back {
-    z-index: 0;
-}
-
-.front-content,
-.back-content {
-    width: 100%;
-    height: 100%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
-
-.back-content {
-    transform: rotateY(180deg)
-}
-
-/* Paper flip effect */
-.flipped .front,
-.flipped .back {
-    transform: rotateY(-180deg);
-}
-
-/* Controller Buttons */
-button {
-    border: none;
-    background-color: transparent;
-    cursor: pointer;
-    margin: 10px;
-    transition: transform 0.5s;
-}
-
-button:focus {
-    outline: none;
-}
-
-button:hover i {
-    color: #636363;
-}
-
-.fas {
-    font-size: 50px;
-    color: gray;
-}
-
-/* Paper stack order */
-#p1 {
-    z-index: 3;
-}
-
-#p2 {
-    z-index: 2;
-}
-
-#p3 {
-    z-index: 1;
-}
-
-
- @media (min-width: 360px) and (max-width:669px) {
-
-    .paper{
-        width:67% !important;
-    }
-    .flip-btn{
-        width:280px;
-    }
-    .mon-livre{
-        margin-top:10rem !important;
-    }
- }
-
-@media (min-width: 670px)  {
-      .paper{
-        width:67% !important;
-    }
-    .book{
-        width: 615px;
-         height:0px;
-    }
-    .flip-btn{
-       margin-top: 0px !important;
-width: 94%;
-max-width: 1300Px;
-    }
- }
-
-@media (min-width: 930px)  {
-    .book{
-        width: 870px;
-         height:0px;
-    }
-    
- }
-
- @media (min-width: 1200px)  {
-    .book{
-        width: 1200px;
-        height:0px;
-    }
-    
- }
-
-</style>
-{# Navbar #}
-<section class="nav-main">
-	<nav class="navbar navbar-expand-lg bg-body-tertiary" id="navbar-hover">
-		<div class="d-flex justy-content-center w-100">
-			<ul class="navbar-nav me-auto mb-2 mb-lg-0 w-100 d-flex justify-content-center align-items-center">
-				<li>
-					<a href="/">
-						<img class="logo me-2" src="{{ asset('img/logo.png')}}" width alt=""></img>
-					</a>
-				</li>
-
-				<li class="nav-item me-2 meltingphot">
-					<a class="nav-link" aria-current="page" href="/">MELTINGPHOT</a>
-				</li>
-				<li class="nav-item me-2">
-					<a class="nav-link" href="{{ path("app_actions")}}">ACTIONS</a>
-				</li>
-
-
-				<li class="nav-item me-2">
-					<a class="nav-link" href="{{path('app_contact')}}">CONTACT</a>
-				</li>
-
-				{% if not app.user %}
-					<li class="nav-item me-2">
-						<a class="nav-link" href="{{path('app_login')}}">
-							<i class="fa-solid fa-user hi-icon hi-icon-user"></i>
-						</a>
-
-					</li>
-				{% endif %}
-				{% if app.user %}
-					{% if 'ROLE_SUPER_ADMIN' in app.user.roles %}
-						<a class="nav-link" href="{{ path('admin_') }}">Ma Page Admin</a>
-					{% endif %}
-				{% endif %}
-
-				{% if app.user %}
-					<li class="nav-item me-2">
-						<a class="nav-link" href="{{path('app_logout')}}">Se déconnecter</a>
-					</li>
-				{% endif %}
-				<div class="d-flex align-items-center">
-					<i id="search-icon" class="fa-solid fa-magnifying-glass mx-3"></i>
-					<form id="search-form" class="d-none">
-						<div class="input-group">
-							<input type="text" class="form-control" placeholder="Rechercher...">
-							<button class="btn btn-primary" type="submit">Rechercher</button>
-						</div>
-					</form>
-				</div>
-				{% if app.user %}
-					<p class="text-end btn btn-warning mt-3">Bienvenue {{ app.user.username }}!</p>
-				{% endif %}
-
-				{% if not app.user %}
-					<li class="nav-item me-2">
-						<a class="nav-link" href="{{path('app_register')}}">S'inscrire</a>
-					</li>
-				{% endif %}
-			<ul>
-		</div>
-	</nav>
-
-
-
-	  {# <nav class="navbar navbar-expand-lg navbar-light">
-			<div class="container-fluid">
-				<ul class="navbar-nav">
-					<!-- Icon dropdown -->
-					<li class="nav-item dropdown">
-						<a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-							<img id="flag-image" src="{{ asset('img/drapeau.png') }}" alt="">
-						</a>
-						<ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-							<li id="language-item">
-								<a class="dropdown-item d-flex" id="fr-flag" href="{{ path(app.request.attributes.get('_route'), {'_locale': 'fr'}) }}" onclick="changeLanguage('fr')">
-									<img src="{{ asset('img/drapeau.png') }}" alt="" style="margin-right: 1rem;">Français
-								</a>
-							</li>
-							<li>
-								<hr class="dropdown-divider"/>
-							</li>
-							<li>
-								<a class="dropdown-item d-flex" id="uk-flag" href="{{ path(app.request.attributes.get('_route'), {'_locale': 'en'}) }}" onclick="changeLanguage('en')">
-									<img src="{{ asset('img/unitedkingdom.png') }}" alt="" style="margin-right: 1rem;">English
-								</a>
-							</li>
-						</ul>
-					</li>
-				</ul>
-			</div>
-		</nav> #}
-</section>
-
-<nav class="navbar nav-phone navbar-dark bg-red-500">
-		<div class="container-fluid">
-			<button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarToggleExternalContent" aria-controls="navbarToggleExternalContent" aria-expanded="false" aria-label="Toggle navigation">
-				<span class="navbar-toggler-icon"></span>
-			</button>
-		</div>
-	</nav>
-
-	<div class="shadow nav-phone collapse navbarToggleExternalContent" data-bs-theme="dark">
-		<div class=" p-4">
-			<ul class="navbar-nav nav-phone-content me-auto mb-2 mb-lg-0 w-100 d-flex justify-content-center align-items-center">
-				<li class="">
-					<a href="/">
-						<img class="logo me-2" id="logo-MeltingPhot"src="{{ asset('img/logo.png')}}" width alt=""></img>
-					</a>
-				</li>
-
-				<li class="nav-item me-2 meltingphot">
-					<a class="nav-link" aria-current="page" href="/">MELTINGPHOT</a>
-				</li>
-				<li class="nav-item me-2">
-					<a class="nav-link" href="{{ path("app_actions")}}">Nos Actions</a>
-				</li>
-
-
-				<li class="nav-item me-2">
-					<a class="nav-link" href="{{path('app_contact')}}">Nous Contacter</a>
-				</li>
-
-				{% if not app.user %}
-					<li class="nav-item me-2">
-						<a class="nav-link" href="{{path('app_login')}}">
-							<i class="fa-solid fa-user hi-icon hi-icon-user"></i>
-						</a>
-
-					</li>
-				{% endif %}
-				{% if app.user %}
-					{% if 'ROLE_SUPER_ADMIN' in app.user.roles %}
-						<a class="nav-link" href="{{ path('admin_') }}">Ma Page Admin</a>
-					{% endif %}
-				{% endif %}
-
-				{% if app.user %}
-					<li class="nav-item me-2">
-						<a class="nav-link" href="{{path('app_logout')}}">Se déconnecter</a>
-					</li>
-				{% endif %}
-				<div class="d-flex align-items-center">
-					<i id="search-icon" class="fa-solid fa-magnifying-glass mx-3"></i>
-					<form id="search-form" class="d-none">
-						<div class="input-group">
-							<input type="text" class="form-control" placeholder="Rechercher...">
-							<button class="btn btn-primary" type="submit">Rechercher</button>
-						</div>
-					</form>
-				</div>
-				{% if app.user %}
-					<p class="text-end btn btn-warning mt-3">Bienvenue,{{ app.user.username }}!</p>
-				{% endif %}
-
-				{% if not app.user %}
-					<li class="nav-item me-2">
-						<a class="nav-link" href="{{path('app_register')}}">S'inscrire</a>
-					</li>
-				{% endif %}
-			<ul>
-		</div>
-	</div>
-
-
-<section class="mon-livre"style="margin-top:23rem">
-
-    <div class="d-flex align-items-center flex column ">
-    
-
-
-            <!-- Book -->
-       <div class="book" style="transform: translateX(25%);" id="book-container">
-
-            <!-- Paper 1 -->
-                <div class="paper p1">
-                    <div class="front">
-                        <div id="f1" class="front-content ">
-                            <img  class="img" src="{{asset('img/pages/1.jpg')}}" alt="">     
+    <!-- Flipbook -->
+    <section class="mon-livre">
+        <div class="d-flex align-items-center flex-column">
+            <div class="book" style="transform: translateX(25%);" id="book-container">
+                {% for imagePath in imagePaths %}
+                    <div class="paper p{{ loop.index }}">
+                        <div class="front">
+                            <div id="f{{ loop.index }}" class="front-content">
+                                <img class="img" src="{{ asset('uploads/hébémag/' ~ imagePath) }}" alt="">
+                            </div>
+                        </div>
+                        <div class="back">
+                            <div id="b{{ loop.index }}" class="back-content">
+                                <!-- Vous pouvez laisser cette partie vide si vous ne souhaitez pas afficher de texte au dos de l'image -->
+                            </div>
                         </div>
                     </div>
-                    <div class="back">
-                        <div id="b1" class="back-content ">
-                            <img class="img" src="{{asset('img/pages/2.jpg')}}" alt="">    
-                    </div>
-                    </div>
-                </div>
-                <!-- Paper 2 -->
-                <div class="paper p2">
-                    <div class="front">
-                        <div id="f2" class="front-content  ">    
-                        <img class="img" src="{{asset('img/pages/3.jpg')}}" alt="">   
+                {% endfor %}
             </div>
-                    </div>
-                    <div class="back">
-                        <div id="b2" class="back-content ">
-                            <img class="img" src="{{asset('img/pages/4.jpg')}}" alt="">        
-                        </div>
-                    </div>
-                </div>
-                <!-- Paper 3 -->
-                <div class="paper p3 ">
-                    <div class="front">
-                        <div id="f3" class="front-content ">
-                        <img class="img" src="{{asset('img/pages/5.jpg')}}" alt="">  
-                        </div>
-                    </div>
-                    <div class="back">
-                        <div id="b3" class="back-content ">
-                            <img class="img" src="{{asset('img/pages/6.jpg')}}" alt="">  
-                        </div>
-                    </div>
-                </div>
-            </div>
+
             <div style="margin-top: -125px;" class="d-flex justify-content-between flip-btn">
                 <button class="prev-btn-flip" style="transform: translateX(45px);">
-                        <i class="fas fa-arrow-circle-left"></i>
+                    <i class="fas fa-arrow-circle-left"></i>
                 </button>
 
-                <button class="next-btn-flip" style="transform: translateX(-30px)";>
-                    <i class="fas fa-arrow-circle-right" aria-hidden="true" style="width: 55Px;"></i>  
+                <button class="next-btn-flip" style="transform: translateX(-30px)">
+                    <i class="fas fa-arrow-circle-right" aria-hidden="true" style="width: 55px;"></i>
                 </button>
             </div>
         </div>
-
-    <i class="fas btn fa-search zoom-icon loupe"></i>
-</section>
-
-    
-
+        <i class="fas btn fa-search zoom-icon loupe"></i>
+    </section>
+    <!-- Fin du Flipbook -->
 
 {% endblock %}

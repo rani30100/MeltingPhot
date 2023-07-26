@@ -39,6 +39,15 @@ class PostsRepository extends ServiceEntityRepository
         }
     }
 
+    public function findByQuery($query)
+    {
+        return $this->createQueryBuilder('p')
+            ->where('p.title LIKE :query')
+            ->setParameter('query', '%' . $query . '%')
+            ->getQuery()
+            ->getResult();
+    }
+
 //    /**
 //     * @return Posts[] Returns an array of Posts objects
 //     */
