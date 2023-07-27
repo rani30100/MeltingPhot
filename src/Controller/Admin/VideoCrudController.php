@@ -25,7 +25,7 @@ class VideoCrudController extends AbstractCrudController
         return [
             IdField::new('id')->hideOnForm(),
             TextField::new('user_id')->hideOnForm(),
-            TextEditorField::new('name'),
+            TextEditorField::new('title'),
             DateTimeField::new('created_at')->onlyOnIndex(),
             TextField::new('url'),
             AssociationField::new('category')->autocomplete(),

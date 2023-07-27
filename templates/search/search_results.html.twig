@@ -172,52 +172,54 @@
 		</div>
 	</nav>
     <section class="text-center my-24">
+		<h1>Résultats de la recherche pour "{{ query }}" :</h1>
+		{% if pagination.getTotalItemCount()  > 0%}
+			<p>{{ pagination.getTotalItemCount() }} résultat(s) trouvé(s) pour cette recherche.</p>
+			<ul class="">
+				{% set videoDisplayed = false %}
+				{% for result in pagination %}		
+					{# Affichez la vidéo uniquement si c'est une vidéo et aucune vidéo n'a encore été affichée #}
+					{% if result.url is defined %}          
+						<li class="d-flex justify-center mt-4 card-body">
+							<a href="{{ result.url }}" target="_blank">Voir la vidéo</a>
+						</li>
+						{% set videoDisplayed = true %}
+					{% endif %}
 
-   <h1>Résultats de la recherche pour "{{ query }}" :</h1>
-{% if results %}
-    <ul class="">
-        {% set videoDisplayed = false %}
-        {% for result in results %}
-            {# Affichez la vidéo uniquement si c'est une vidéo et aucune vidéo n'a encore été affichée #}
-            {% if result.url is defined and not videoDisplayed %}          
-                <li class="d-flex justify-center mt-4 card-body">
-                    <a href="{{ result.url }}" target="_blank">Voir la vidéo</a>
-                </li>
-                {% set videoDisplayed = true %}
-            {% endif %}
+					{# N'affichez pas le titre si c'est une vidéo #}
+					{% if result.path is defined %}
+						
+						<li class="d-flex justify-center mt-4 card-body">
+							<img src="{{ asset('uploads/' ~ result.path) }}" alt="{{ result.title }}" style="width: 150px; height: 150px;">
+						</li>
+						
+					{% endif %}
+					
+					{# Affichez l'image uniquement si c'est une image #}
+					{% if result.Image is defined and not result.url is defined  %}
+						<li class="d-flex justify-center mt-4">
+							<img src="{{ asset('uploads/' ~ result.Image) }}" alt="{{ result.title }}" style="width: 150px; height: 150px;">
+						</li>
+					{% endif %}
+				{% endfor %}
+			</ul>
+			
+			<div class="pagination d-flex justify-center w-30 m2">
+				{{ knp_pagination_render(pagination) }}
+			</div>
 
-            {# N'affichez pas le titre si c'est une vidéo #}
-            {% if result.path is defined %}
-                
-                <li class="d-flex justify-center mt-4 card-body">
-                    <img src="{{ asset('uploads/' ~ result.path) }}" alt="{{ result.title }}" style="width: 150px; height: 150px;">
-                </li>
-                
-            {% endif %}
-            
-            {# Affichez l'image uniquement si c'est une image #}
-            {% if result.Image is defined and not result.url is defined  %}
-                <li class="d-flex justify-center mt-4">
-                    <img src="{{ asset('uploads/' ~ result.Image) }}" alt="{{ result.title }}" style="width: 150px; height: 150px;">
-                </li>
-            {% endif %}
-        {% endfor %}
-    </ul>
-{% else %}
-    <p>Aucun résultat trouvé.</p>
-{% endif %}
+		{% else %}
+			<p>Aucun résultat trouvé.</p>
+		{% endif %}
 
-    <h2>Faire une nouvelle Recherche ?</h2>
-    <form id="search-form2" class="d-flex justify-center " action="{{ path('app_search_results') }}" method="GET">
-        <div class="input-group w-50">
-            <input type="text" class="form-control" name="q" placeholder="Rechercher...">
-            <button class="btn btn-primary" type="submit">Rechercher</button>
-        </div>
-    </form>
-
-
-
-    </section>
+		<h2>Faire une nouvelle Recherche ?</h2>
+		<form id="search-form2" class="d-flex justify-center " action="{{ path('app_search_results') }}" method="GET">
+			<div class="input-group w-50 sm-w-80">
+				<input type="text" class="form-control" name="q" placeholder="Rechercher...">
+				<button class="btn btn-primary" type="submit">Rechercher</button>
+			</div>
+		</form>
+	</section>
 
 
     	<footer class="text-center text-lg-start bg-light text-muted w-100">

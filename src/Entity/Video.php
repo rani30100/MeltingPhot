@@ -27,7 +27,7 @@ class Video
     #[ORM\Column(type: 'datetime_immutable')]
     private ?\DateTimeImmutable $created_at = null;
 
-    #[ORM\Column(length: 255)]
+    #[ORM\Column(length: 255, unique: true)]
     private ?string $url = null;
 
     #[ORM\ManyToOne(inversedBy: 'videos')]
