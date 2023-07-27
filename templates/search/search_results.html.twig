@@ -170,35 +170,37 @@
 				<ul>
 			</div>
 		</div>
-	</nav>
-    <section class="text-center my-24">
+		</nav>
+	<section class="text-center my-24">
 		<h1>Résultats de la recherche pour "{{ query }}" :</h1>
-		{% if pagination.getTotalItemCount()  > 0%}
+		{% if pagination.getTotalItemCount() > 0 %}
 			<p>{{ pagination.getTotalItemCount() }} résultat(s) trouvé(s) pour cette recherche.</p>
 			<ul class="">
 				{% set videoDisplayed = false %}
-				{% for result in pagination %}		
-					{# Affichez la vidéo uniquement si c'est une vidéo et aucune vidéo n'a encore été affichée #}
+				{% for result in pagination %}        
+					{# Display the video only if it's a video and no video has been displayed yet #}
 					{% if result.url is defined %}          
 						<li class="d-flex justify-center mt-4 card-body">
-							<a href="{{ result.url }}" target="_blank">Voir la vidéo</a>
+							<a href="{{ videoPageUrls }}">Voir la vidéo</a>					
 						</li>
 						{% set videoDisplayed = true %}
 					{% endif %}
 
-					{# N'affichez pas le titre si c'est une vidéo #}
+					{# Don't display the title if it's a video #}
 					{% if result.path is defined %}
-						
 						<li class="d-flex justify-center mt-4 card-body">
-							<img src="{{ asset('uploads/' ~ result.path) }}" alt="{{ result.title }}" style="width: 150px; height: 150px;">
+							<a href="{{ path('image_page', {'id': result.id}) }}">
+								<img src="{{ asset('uploads/' ~ result.path) }}" alt="{{ result.title }}" style="width: 150px; height: 150px;">
+							</a>
 						</li>
-						
 					{% endif %}
 					
-					{# Affichez l'image uniquement si c'est une image #}
+					{# Display the image only if it's an image #}
 					{% if result.Image is defined and not result.url is defined  %}
 						<li class="d-flex justify-center mt-4">
-							<img src="{{ asset('uploads/' ~ result.Image) }}" alt="{{ result.title }}" style="width: 150px; height: 150px;">
+							<a href="{{ path('image_page', {'id': result.id}) }}">
+								<img src="{{ asset('uploads/' ~ result.Image) }}" alt="{{ result.title }}" style="width: 150px; height: 150px;">
+							</a>
 						</li>
 					{% endif %}
 				{% endfor %}
@@ -220,18 +222,35 @@
 			</div>
 		</form>
 	</section>
+			<script>
+    $(document).ready(function() {
+        // Récupérez l'ID de la vidéo à partir de l'URL
+        var videoId = window.location.pathname.split('/').pop();
+        
+        // Faites une requête Ajax pour obtenir l'URL de redirection avec l'ID de la vidéo
+        $.ajax({
+            url: '/actions/'+ category = '/' + videoId,
+            type: 'GET',
+            dataType: 'json',
+            success: function(data) {
+                // Redirigez automatiquement vers l'URL de redirection
+                window.location.href = data.redirect_url;
+            }
+        });
+    });
+</script>
+
+		
 
 
-    	<footer class="text-center text-lg-start bg-light text-muted w-100">
-			<section class="p-4 border-top">
-				<div
-					class="text-center text-md-start mt-5">
-					<!-- Grid row -->
-					<div class="row mt-3 d-flex">
-						<div
-							class="d-flex justify-content-center">
-							<!-- Links -->
-							<img src="{{ asset('img/logo.png')}}" class="fw-bold mb-4"></img>
+	<footer class="text-center text-lg-start bg-light text-muted w-100">
+		<section class="p-4 border-top">
+			<div class="text-center text-md-start mt-5">
+				<!-- Grid row -->
+				<div class="row mt-3 d-flex">
+					<div class="d-flex justify-content-center">
+						<!-- Links -->
+						<img src="{{ asset('img/logo.png')}}" class="fw-bold mb-4"></img>
 					</div>
 					<!-- Grid column -->
 					<div class="d-flex justify-content-center ">
@@ -254,25 +273,29 @@
 				</div>
 			</div>
 			<!-- Grid column -->
-			<div
-				class="col-md-4 col-lg-3 col-xl-3 mx-auto mb-md-0 mb-4 contact-2">
-				<!-- Links -->
+			<div class="col-md-4 col-lg-3 col-xl-3 mx-auto mb-md-0 mb-4 contact-2">
+			<!-- Links -->
 				<p>
-					<i class="fas fa-home me-3"></i>15 Route de bagnols, 30100 Alès</p>
+					<i class="fas fa-home me-3"></i>15 Route de bagnols, 30100 Alès
+				</p>
 				<p>
-					<i class="fas fa-envelope me-3"></i>info@example.com</p>
+					<i class="fas fa-envelope me-3"></i>info@example.com
+				</p>
 				<p>
-					<i class="fas fa-phone me-3"></i>06 64 21 93 75</p>
+					<i class="fas fa-phone me-3"></i>06 64 21 93 75
+				</p>
 			</div>
-			<div
-				class="info-contact2 ">
+			<div class="info-contact2 ">
 				<!-- Links -->
 				<p class="ms-3">
-					<i class="fas fa-home me-2"></i>15 Route de bagnols, 30100 Alès</p>
+					<i class="fas fa-home me-2"></i>15 Route de bagnols, 30100 Alès
+				</p>
 				<p class="ms-3">
-					<i class="fas fa-envelope me-2"></i>info@example.com</p>
+					<i class="fas fa-envelope me-2"></i>info@example.com
+				</p>
 				<p class="ms-3">
-					<i class="fas fa-phone me-2"></i>06 64 21 93 75</p>
+					<i class="fas fa-phone me-2"></i>06 64 21 93 75
+				</p>
 			</div>
 		</section><!-- Section: Links  -->
 		<!-- Copyright -->

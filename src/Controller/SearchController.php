@@ -20,27 +20,34 @@ class SearchController extends AbstractController
         $query = $request->get('q');
 
         $ebooks = $ebookRepository->findByQuery($query);
-        $videos = $videoRepository->findByQuery($query);
         $images = $imageRepository->findByQuery($query);
         $posts = $postRepository->findByQuery($query);
 
+        // Fetch video results with video page URLs
+        $videoResults = $videoRepository->findByQuery($query);
 
+        // Generate the video page URLs for each video result
+        $videoPageUrls = [];
+        foreach ($videoResults as $videoResult) {
+            // Concatenate category and ID to create the desired URL format
+            $url = $videoResult->getCategory() . "/" .$videoResult->getId();
+            $videoPageUrls = $this->generateUrl('app_actions', [$url]);
+        }
 
-        // Concaténez les résultats dans un seul tableau
-        $results = array_merge($ebooks, $videos, $images, $posts);
+        // Concatenate the results in a single array
+        $results = array_merge($ebooks, $videoResults, $images, $posts);
 
-        // Paginez les résultats
+        // Paginate the results
         $pagination = $paginator->paginate(
-            $results, // Requête avec les données à paginer
-            $request->query->getInt('page', 1), // Numéro de la page par défaut
-            10 // Nombre d'éléments par page
+            $results, // Query with the data to paginate
+            $request->query->getInt('page', 1), // Page number by default
+            10 // Number of items per page
         );
-    
 
-    
         return $this->render('search/search_results.html.twig', [
             'query' => $query,
             'pagination' => $pagination,
+            'videoPageUrls' => $videoPageUrls,
         ]);
     }
 }
