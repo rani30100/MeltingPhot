@@ -14,3 +14,12 @@ vich_uploader:
             uri_prefix: /uploads
             upload_destination: '%kernel.project_dir%/public/uploads'
             namer: Vich\UploaderBundle\Naming\SmartUniqueNamer
+        
+        video_files :
+            upload_destination: '%kernel.project_dir%/public/uploads/post/videos'
+            namer: Vich\UploaderBundle\Naming\SmartUniqueNamer
+        
+        post_images :
+            upload_destination: '%kernel.project_dir%/public/uploads/post/images'
+            namer: Vich\UploaderBundle\Naming\SmartUniqueNamer
+

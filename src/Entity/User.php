@@ -58,6 +58,10 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
         $this->created_at = new ArrayCollection();
         $this->images = new ArrayCollection();
     }
+    public function __toString()
+    {
+        return $this->getUsername();
+    }
 
     public function getId(): ?int
     {
