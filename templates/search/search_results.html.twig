@@ -172,24 +172,32 @@
 		</div>
 		</nav>
 	<section class="text-center my-24">
+	
 		<h1>Résultats de la recherche pour "{{ query }}" :</h1>
 		{% if pagination.getTotalItemCount() > 0 %}
-			<p>{{ pagination.getTotalItemCount() }} résultat(s) trouvé(s) pour cette recherche.</p>
-			<ul class="">
+			<p class="text-xl">{{ pagination.getTotalItemCount() }} résultat(s) trouvé(s) pour cette recherche.</p>
+			<ul class="d-flex justify-center">
 				{% set videoDisplayed = false %}
 				{% for result in pagination %}        
 					{# Display the video only if it's a video and no video has been displayed yet #}
-					{% if result.url is defined %}          
-						<li class="d-flex justify-center mt-4 card-body">
-							<a href="{{ videoPageUrls }}">Voir la vidéo</a>					
-						</li>
+					{# {% if result.url is defined %}          
+						   {% for videoPageUrl in videoPageUrls %}
+            					<a href="{{ videoPageUrl }}">Voir la vidéo</a>
+        					{% endfor %}	
 						{% set videoDisplayed = true %}
+					{% endif %} #}
+
+					{% if result.Image is defined %}
+						{% for videoPageUrl in videoPageUrls %}
+							<a href="{{ videoPageUrl }}">
+						   		<img src="{{ asset(result.Image) }}" alt="" style="width: 150px; height: 150px;"></img>
+							</a>         
+						{% endfor %}	 
 					{% endif %}
 
 					{# Don't display the title if it's a video #}
 					{% if result.path is defined %}
 						<li class="d-flex justify-center mt-4 card-body">
-							<a href="{{ path('image_page', {'id': result.id}) }}">
 								<img src="{{ asset('uploads/' ~ result.path) }}" alt="{{ result.title }}" style="width: 150px; height: 150px;">
 							</a>
 						</li>
@@ -222,23 +230,7 @@
 			</div>
 		</form>
 	</section>
-			<script>
-    $(document).ready(function() {
-        // Récupérez l'ID de la vidéo à partir de l'URL
-        var videoId = window.location.pathname.split('/').pop();
-        
-        // Faites une requête Ajax pour obtenir l'URL de redirection avec l'ID de la vidéo
-        $.ajax({
-            url: '/actions/'+ category = '/' + videoId,
-            type: 'GET',
-            dataType: 'json',
-            success: function(data) {
-                // Redirigez automatiquement vers l'URL de redirection
-                window.location.href = data.redirect_url;
-            }
-        });
-    });
-</script>
+
 
 		
 

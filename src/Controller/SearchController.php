@@ -29,19 +29,20 @@ class SearchController extends AbstractController
         // Generate the video page URLs for each video result
         $videoPageUrls = [];
         foreach ($videoResults as $videoResult) {
-            // Concatenate category and ID to create the desired URL format
-            $url = $videoResult->getCategory() . "/" .$videoResult->getId();
-            $videoPageUrls = $this->generateUrl('app_actions', [$url]);
-        }
+            $category = str_replace('/', '_', $videoResult->getCategory());
+            $url = $videoResult->getId();
+            // Obtenez la locale actuelle
+            $locale = $request->getLocale();
+            $videoPageUrls[] = 'http://127.0.0.1:8000' . $locale . 'actions/' . $category . '/' . $url;        }
 
         // Concatenate the results in a single array
         $results = array_merge($ebooks, $videoResults, $images, $posts);
 
-        // Paginate the results
+        // Paginer les résultats
         $pagination = $paginator->paginate(
-            $results, // Query with the data to paginate
-            $request->query->getInt('page', 1), // Page number by default
-            10 // Number of items per page
+            $results, // Requete donnée pour paginer
+            $request->query->getInt('page', 1), // Page par défault
+            10 // Nombre items par page
         );
 
         return $this->render('search/search_results.html.twig', [

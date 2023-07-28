@@ -73,12 +73,23 @@ class ActionsController extends AbstractController
 
 
     #[Route('/actions/{category}/{id}', name: 'app_actions_video')]
-    public function redirectToVideo(string $category, int $id): Response
+    public function redirectToVideo(string $category, int $id, VideoRepository $videoRepository): Response
     {
-        // La redirection vers l'URL avec l'ID de la vidéo
-        return $this->redirectToRoute('app_video_page', ['category' => $category, 'id' => $id]);
-    }
+      // Récupérer la vidéo à partir de l'identifiant (ID)
+      $video = $videoRepository->find($id);
+ 
+      $videos = $videoRepository->findAll();
+      // Si la vidéo n'est pas trouvée, vous pouvez gérer l'erreur ici ou rediriger l'utilisateur vers une page d'erreur.
+      if (!$video) {
+          throw $this->createNotFoundException('La vidéo n\'existe pas.');
+      }
 
+      // Rendre le template de la vue qui affiche le modal avec la vidéo correspondante
+      return $this->render('actions/modal_video.html.twig', [
+          'video' => $video,
+          'videos' => $videos
+      ]);
+  }
     
 
 
