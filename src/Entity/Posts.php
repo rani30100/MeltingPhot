@@ -328,17 +328,13 @@ class Posts
         return $this->imageFile;
     }
 
-    /**
-     * Set the value of imageFile
-     *
-     * @return  self
-     */ 
-    public function setImageFile($imageFile)
+    public function setImageFile(?File $imageFile = null): void
     {
         $this->imageFile = $imageFile;
-        if (null !==$imageFile) {}
-
-        return $this;
+        if ($imageFile) {
+            // It is required to trigger the event here to update the imageFile property.
+            $this->updatedAt = new \DateTimeImmutable();
+        }
     }
 
     /**
