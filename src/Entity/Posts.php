@@ -30,6 +30,9 @@ class Posts
     #[ORM\Column(length: 255)]
     private ?string $title = null;
 
+    #[ORM\Column(length: 255)]
+    private ?string $path = null;
+
     #[ORM\Column(type: "text")]
     private ?string $description = null;
 
@@ -45,7 +48,7 @@ class Posts
     #[Assert\Valid()]
     private Collection $imagesCollection;
 
-    #[Vich\UploadableField(mapping: 'post_images', fileNameProperty: 'imageFile')]
+    #[Vich\UploadableField(mapping: 'post_images', fileNameProperty: 'path')]
     private ?File $imageFile = null;
 
     #[ORM\Column(type: "string", length: 255, nullable: true)]
@@ -73,7 +76,6 @@ class Posts
       
     
     #[ORM\ManyToMany(targetEntity : Page::class, inversedBy : "posts")]
-    #[ORM\JoinTable(name :"page_posts")]
     
     private Collection $pages;
 
@@ -94,7 +96,7 @@ class Posts
     }
     public function __toString()
     {
-        return $this->getUser(); // Assuming that the User entity has a `getUsername()` method.
+        return $this->getTitle() . ' - ' . $this->getUser()->getUsername();
     }
     
     public function getPages(): Collection
@@ -202,22 +204,6 @@ class Posts
             }
         }
 
-        return $this;
-    }
-
-    public function getImageFile(): ?File
-    {
-        return $this->imageFile;
-    }
-
-    public function setImageFile(?File $imageFile = null): self
-    {
-        $this->imageFile = $imageFile;
-        if ($imageFile instanceof UploadedFile) {
-            $this->updatedAt = new \DateTimeImmutable();
-            // Pas besoin de créer une nouvelle entité Image ici.
-            // L'entité Image sera créée et associée automatiquement lors de la sauvegarde de l'entité Posts.
-        }
         return $this;
     }
     
@@ -331,5 +317,47 @@ class Posts
         return $this;
     }
 
+    
 
+
+    /**
+     * Get the value of imageFile
+     */ 
+    public function getImageFile()
+    {
+        return $this->imageFile;
+    }
+
+    /**
+     * Set the value of imageFile
+     *
+     * @return  self
+     */ 
+    public function setImageFile($imageFile)
+    {
+        $this->imageFile = $imageFile;
+        if (null !==$imageFile) {}
+
+        return $this;
+    }
+
+    /**
+     * Get the value of path
+     */ 
+    public function getPath()
+    {
+        return $this->path;
+    }
+
+    /**
+     * Set the value of path
+     *
+     * @return  self
+     */ 
+    public function setPath($path)
+    {
+        $this->path = $path;
+
+        return $this;
+    }
 }

@@ -16,10 +16,14 @@ use EasyCorp\Bundle\EasyAdminBundle\Field\TextField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\ImageField;
 use Symfony\Component\Validator\Constraints as Assert;
 use EasyCorp\Bundle\EasyAdminBundle\Field\DateTimeField;
+use EasyCorp\Bundle\EasyAdminBundle\Field\TextareaField;
+use Symfony\Component\Form\Extension\Core\Type\FileType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use EasyCorp\Bundle\EasyAdminBundle\Field\TextEditorField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\AssociationField;
+use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 use EasyCorp\Bundle\EasyAdminBundle\Controller\AbstractCrudController;
+use Vich\UploaderBundle\Form\Type\VichImageType;
 
 class PostsCrudController extends AbstractCrudController
 {
@@ -39,12 +43,15 @@ class PostsCrudController extends AbstractCrudController
     public function configureFields(string $pageName): iterable
     {
         return [
+            
             IdField::new('id')
             ->hideOnForm()
             ->hideOnIndex(),
             TextField::new('title')->setLabel('Titre du Post'),
             TextField::new('description', 'Description'),
+
             ImageField::new('path', 'Image')
+
                 ->setBasePath('/uploads/post')
                 ->setLabel('Image du Post')
                 ->onlyOnIndex(),
@@ -53,7 +60,18 @@ class PostsCrudController extends AbstractCrudController
                 ->setLabel('Utilisateur'),
           
 
-            Field::new('imageFile', 'Image')->setFormType(VichFileType::class)->onlyOnForms(),
+                // ImageField::new('imageFile', 'Image')
+                // ->setFormType(VichImageType::class)
+                // ->setFormTypeOptions([
+                //     'upload_dir' => 'uploads/post/images',
+                //     'required' => false, // Optional: Set it to true, if the field is mandatory.
+                // ]),
+                TextareaField::new('imageFile')
+                ->setFormType(VichFileType::class)
+                ->onlyOnForms(),
+                
+                
+            
 
             Field::new('video', 'Fichier Vidéo')
                 ->setFormType(DropzoneType::class)

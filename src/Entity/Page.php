@@ -5,11 +5,12 @@ namespace App\Entity;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
 use App\Repository\PageRepository;
+use Doctrine\Common\Collections\Collection;
 use phpDocumentor\Reflection\Types\Nullable;
 use Doctrine\Common\Collections\ArrayCollection;
+use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\String\Slugger\SluggerInterface;
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
-use Doctrine\Common\Collections\Collection;
 
 
 #[ORM\Entity(repositoryClass: PageRepository::class)]
@@ -32,9 +33,7 @@ class Page
 
 
 
-    #[ORM\ManyToMany(targetEntity: Posts::class)]
-    #[ORM\JoinTable(name: "page_posts")]   
-     
+    #[ORM\ManyToMany(targetEntity: Posts::class)]     
     private Collection $posts;
 
     public function __construct()
@@ -110,4 +109,5 @@ class Page
             $this->slug = (string) $slugger->slug((string) $this)->lower();
         }
     }
+
 }
