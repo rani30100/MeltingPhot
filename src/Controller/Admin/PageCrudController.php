@@ -39,24 +39,12 @@ class PageCrudController extends AbstractCrudController
     public function configureFields(string $pageName): iterable
     {
         yield TextField::new('title')->setLabel('Titre');
-        yield TextField::new('slug')->setLabel('Slug')->hideOnForm();
+        yield TextField::new('slug')->setLabel('/Url')->hideOnForm();
         yield TextEditorField::new('content')->setLabel('Contenu');
         yield AssociationField::new('posts')
         ->setLabel('Posts')
         ->setFormTypeOption('by_reference', false)
-        ->setRequired(true)
-        ->formatValue(
-            function ($value, $entity) {
-                $posts = $entity->getPosts();
-                $titles = [];
-    
-                foreach ($posts as $post) {
-                    $titles[] = $post->getTitle();
-                }
-    
-                return implode(', ', $titles);
-            }
-        );
+        ->setRequired(true);
     }
 
     public function persistEntity(EntityManagerInterface $entityManager, $entityInstance): void
