@@ -30,8 +30,11 @@ class Posts
     #[ORM\Column(length: 255)]
     private ?string $title = null;
 
-    #[ORM\Column(length: 255)]
+    #[ORM\Column(length: 255, nullable: true)]
     private ?string $path = null;
+
+    #[ORM\Column]
+    private ?int $imageSize = null;
 
     #[ORM\Column(type: "text")]
     private ?string $description = null;
@@ -48,7 +51,7 @@ class Posts
     #[Assert\Valid()]
     private Collection $imagesCollection;
 
-    #[Vich\UploadableField(mapping: 'post_images', fileNameProperty: 'path')]
+    #[Vich\UploadableField(mapping: 'post_images', fileNameProperty: 'path',size: 'imageSize')]
     private ?File $imageFile = null;
 
     #[ORM\Column(type: "string", length: 255, nullable: true)]
@@ -76,7 +79,6 @@ class Posts
       
     
     #[ORM\ManyToMany(targetEntity : Page::class, inversedBy : "posts")]
-    
     private Collection $pages;
 
 
@@ -251,7 +253,7 @@ class Posts
         return $this->updatedAt;
     }
 
-    public function setUpdatedAtdAt($updatedAt) : self
+    public function setUpdatedAt($updatedAt) : self
     {
         $this->updatedAt = $updatedAt;
 
@@ -330,13 +332,13 @@ class Posts
 
     public function setImageFile(?File $imageFile = null): void
     {
-        $this->imageFile = $imageFile;
-        if ($imageFile) {
-            // It is required to trigger the event here to update the imageFile property.
-            $this->updatedAt = new \DateTimeImmutable();
-        }
+      $this->imageFile = $imageFile;
+    
+      if (null !== $imageFile) {
+        // Il faut biensur que la propriété updatedAt soit crée sur l'Entity.
+        $this->updatedAt = new \DateTimeImmutable();
+      }
     }
-
     /**
      * Get the value of path
      */ 
@@ -353,6 +355,26 @@ class Posts
     public function setPath($path)
     {
         $this->path = $path;
+
+        return $this;
+    }
+
+    /**
+     * Get the value of imageSize
+     */ 
+    public function getImageSize()
+    {
+        return $this->imageSize;
+    }
+
+    /**
+     * Set the value of imageSize
+     *
+     * @return  self
+     */ 
+    public function setImageSize($imageSize)
+    {
+        $this->imageSize = $imageSize;
 
         return $this;
     }
