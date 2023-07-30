@@ -166,11 +166,22 @@
 		</div>
     </div>
 
-    {# <section class='h-50'>
+    <section class='h-50'>
         <h1>{{ page.title }}</h1>
         <div>{{ page.content }}</div>
 
-    </section> #}
+		       <section>
+        {# Loop through the posts collection and display each post's title and description #}
+        {% for post in page.posts %}
+            <h2>{{ post.title }}</h2>
+            <p>{{ post.description }}</p>
+			<img src="asset('uploads/post/images/{{post.path}}')" alt="">
+			{{post.path}}
+			
+        {% endfor %}
+    </section>
+
+    </section>
 
 
 
