@@ -36,13 +36,13 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     #[ORM\Column]
     private $username;
 
-    #[ORM\OneToMany(mappedBy: 'user_id', targetEntity: Posts::class, orphanRemoval: true)]
+    #[ORM\OneToMany(mappedBy: 'user', targetEntity: Posts::class, orphanRemoval: true)]
     private Collection $posts;
 
     #[ORM\ManyToMany(targetEntity: Newsletter::class, mappedBy: 'user_id')]
     private Collection $newsletters;
 
-    #[ORM\OneToMany(mappedBy: 'user', targetEntity: Video::class)]
+    #[ORM\OneToMany(mappedBy: 'user_id', targetEntity: Video::class)]
     private Collection $created_at;
 
     #[ORM\OneToMany(mappedBy: 'user_id', targetEntity: Image::class)]
@@ -58,10 +58,17 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
         $this->created_at = new ArrayCollection();
         $this->images = new ArrayCollection();
     }
-    public function __toString()
+
+       /**
+     * Returns the username of the user.
+     *
+     * @return string
+     */
+    public function __toString(): string
     {
-        return $this->getUsername();
+        return $this->username;
     }
+
 
     public function getId(): ?int
     {
@@ -140,7 +147,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     {
         if (!$this->posts->contains($post)) {
             $this->posts->add($post);
-            $post->setUserId($this);
+            $post->setUser($this);
         }
 
         return $this;
@@ -150,8 +157,8 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     {
         if ($this->posts->removeElement($post)) {
             // set the owning side to null (unless already changed)
-            if ($post->getUserId() === $this) {
-                $post->setUserId(null);
+            if ($post->getUser() === $this) {
+                $post->setUser(null);
             }
         }
 
@@ -218,7 +225,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     {
         if (!$this->images->contains($image)) {
             $this->images->add($image);
-            $image->setUserId($this);
+            $image->setUser($this);
         }
 
         return $this;
@@ -228,8 +235,8 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     {
         if ($this->images->removeElement($image)) {
             // set the owning side to null (unless already changed)
-            if ($image->getUserId() === $this) {
-                $image->setUserId(null);
+            if ($image->getUser() === $this) {
+                $image->setUser(null);
             }
         }
 
@@ -258,6 +265,13 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
                 ->atPath('username')
                 ->addViolation();
         }
+
+        if (empty($this->username)) {
+            $context->buildViolation("Le Username est un champ obligatoire.")
+                ->atPath('username')
+                ->addViolation();
+        }
+        
         if (strpos($this->password, ' ') !== false) {
             $context->buildViolation("Le nom d'utilisateur ne doit pas contenir d'espaces.")
                 ->atPath('username')

@@ -2,17 +2,16 @@
 
 namespace App\Entity;
 
-use Doctrine\ORM\Mapping as ORM;
-use Symfony\Component\HttpFoundation\File\File;
+use App\Entity\User;
 use Doctrine\DBAL\Types\Types;
+use Doctrine\ORM\Mapping as ORM;
 use App\Repository\PostsRepository;
+use Doctrine\Common\Collections\Collection;
+use Symfony\Component\HttpFoundation\File\File;
+use Doctrine\Common\Collections\ArrayCollection;
 use Vich\UploaderBundle\Mapping\Annotation as Vich;
 use Symfony\Component\Validator\Constraints as Assert;
-
-use Symfony\Component\Validator\Constraints\File as FileConstraint;
 use Symfony\Component\HttpFoundation\File\UploadedFile;
-use Symfony\Component\Form\Extension\Core\Type\FileType as VichFileType;
-
 
 #[ORM\Entity(repositoryClass: PostsRepository::class)]
 #[Vich\Uploadable]
@@ -23,21 +22,30 @@ class Posts
     #[ORM\GeneratedValue]
     #[ORM\Column]
     private ?int $id = null;
+    
+    #[ORM\ManyToOne(targetEntity: User::class)]
+    #[ORM\JoinColumn(name: 'user_id', referencedColumnName: 'id')] 
+    private ?User $user;
 
     #[ORM\Column(length: 255)]
     private ?string $title = null;
 
-    #[ORM\Column(type: Types::TEXT)]
+    #[ORM\Column(type: "text")]
     private ?string $description = null;
 
-    #[ORM\ManyToOne(targetEntity: User::class)]
-    #[ORM\JoinColumn(name: 'user_id', referencedColumnName: 'id')]
-    private ?User $user;
+    #[ORM\Column(type: "integer", nullable: true)]
+    private ?int $img_Id = null;
 
-    #[ORM\Column(type: "string", length: 255, nullable: true)]
-    private ?string $imageName = null;
+    #[ORM\OneToOne(targetEntity: Image::class, cascade: ["persist"])]
+    #[ORM\JoinColumn(name: "img_id", referencedColumnName: "id")]
+    private ?Image $image = null;
 
-    #[Vich\UploadableField(mapping: 'post_images', fileNameProperty: 'imageName')]
+
+    #[ORM\OneToMany(targetEntity: Image::class, mappedBy: "post", cascade: ["persist", "remove"], orphanRemoval: true)]
+    #[Assert\Valid()]
+    private Collection $imagesCollection;
+
+    #[Vich\UploadableField(mapping: 'post_images', fileNameProperty: 'imageFile')]
     private ?File $imageFile = null;
 
     #[ORM\Column(type: "string", length: 255, nullable: true)]
@@ -56,17 +64,72 @@ class Posts
 
     #[ORM\Column(type: "string", length: 255, nullable: true)]
     private ?string $position = null;
-
-    #[ORM\Column(type: "datetime", nullable: true)]
-    private ?\DateTimeInterface $updatedAt = null;
-
+    
     #[ORM\Column(type: "datetime", nullable: true)]
     private ?\DateTimeInterface $createdAt = null;
+    
+    #[ORM\Column(type: "datetime", nullable: true)]
+    private ?\DateTimeInterface $updatedAt = null;
+      
+    
+    #[ORM\ManyToMany(targetEntity : Page::class, inversedBy : "posts")]
+    #[ORM\JoinTable(name :"page_posts")]
+    
+    private Collection $pages;
+
+
+    #[ORM\PrePersist]
+    #[ORM\PreUpdate]
+    public function updateTimestamps(): void
+    {
+        $this->updatedAt = new \DateTime();
+    }
 
     public function __construct()
     {
         $this->createdAt = new \DateTime();
+        $this->updatedAt = new \DateTime();
+        $this->imagesCollection = new ArrayCollection();
+        $this->pages = new ArrayCollection();
     }
+    public function __toString()
+    {
+        return $this->getUser(); // Assuming that the User entity has a `getUsername()` method.
+    }
+    
+    public function getPages(): Collection
+    {
+        return $this->pages;
+    }
+
+    public function addPage(Page $page): self
+    {
+        if (!$this->pages->contains($page)) {
+            $this->pages[] = $page;
+        }
+
+        return $this;
+    }
+
+    public function removePage(Page $page): self
+    {
+        $this->pages->removeElement($page);
+
+        return $this;
+    }
+
+
+    public function getImage(): ?Image
+    {
+        return $this->image;
+    }
+
+    public function setImage(?Image $image): self
+    {
+        $this->image = $image;
+        return $this;
+    }
+
 
     public function setVideo(?File $video = null): self
     {
@@ -116,14 +179,28 @@ class Posts
         return $this;
     }
 
-    public function getImageName(): ?string
+    public function getImagesCollection(): Collection
     {
-        return $this->imageName;
+        return $this->imagesCollection;
     }
 
-    public function setImageName(?string $imageName): self
+    public function addImage(Image $image): self
     {
-        $this->imageName = $imageName;
+        if (!$this->imagesCollection->contains($image)) {
+            $this->imagesCollection[] = $image;
+            $image->setPost($this);
+        }
+
+        return $this;
+    }
+
+    public function removeImage(Image $image): self
+    {
+        if ($this->imagesCollection->removeElement($image)) {
+            if ($image->getPost() === $this) {
+                $image->setPost(null);
+            }
+        }
 
         return $this;
     }
@@ -133,15 +210,17 @@ class Posts
         return $this->imageFile;
     }
 
-    public function setImageFile(?File $imageFile = null): void
+    public function setImageFile(?File $imageFile = null): self
     {
         $this->imageFile = $imageFile;
-        if ($imageFile) {
-            // It is required to trigger the event here to update the imageFile property.
+        if ($imageFile instanceof UploadedFile) {
             $this->updatedAt = new \DateTimeImmutable();
+            // Pas besoin de créer une nouvelle entité Image ici.
+            // L'entité Image sera créée et associée automatiquement lors de la sauvegarde de l'entité Posts.
         }
+        return $this;
     }
-
+    
     public function getVideoUrl(): ?string
     {
         return $this->videoUrl;
@@ -166,45 +245,40 @@ class Posts
         return $this;
     }
 
-    /**
-     * Get the value of createdAt
-     */
+    
     public function getCreatedAt(): ?\DateTimeInterface
     {
         return $this->createdAt;
     }
 
-    /**
-     * Get the value of updatedAt
-     */
+
+     
+    public function setCreatedAt($createdAt) : self
+    {
+        $this->createdAt = $createdAt;
+
+        return $this;
+    }
+
     public function getUpdatedAt(): ?\DateTimeInterface
     {
         return $this->updatedAt;
     }
 
-    /**
-     * Get the value of video
-     */
+    public function setUpdatedAtdAt($updatedAt) : self
+    {
+        $this->updatedAt = $updatedAt;
+
+        return $this;
+    }
+
+
+
     public function getVideo(): ?File
     {
         return $this->video;
     }
 
-
-
-    /**
-     * Get the value of videoFile
-     */
-    public function getVideoFile(): ?string
-    {
-        return $this->videoFile;
-    }
-
-    /**
-     * Set the value of videoFile
-     *
-     * @return  self
-     */
     public function setVideoFile(?string $videoFile): self
     {
         $this->videoFile = $videoFile;
@@ -213,26 +287,49 @@ class Posts
     }
 
     /**
-     * Set the value of createdAt
-     *
-     * @return  self
-     */
-    public function setCreatedAt($createdAt)
-    {
-        $this->createdAt = $createdAt;
-
-        return $this;
-    }
-
-    /**
-     * Set the value of updatedAt
-     *
-     * @return  self
+     * Get the value of videoFile
      */ 
-    public function setUpdatedAt($updatedAt)
+    public function getVideoFile()
     {
-        $this->updatedAt = $updatedAt;
+        return $this->videoFile;
+    }
+
+  
+
+
+    public function getImgId(): ?int
+    {
+        return $this->img_Id;
+    }
+
+    public function setImgId(?int $img_Id): static
+    {
+        $this->img_Id = $img_Id;
 
         return $this;
     }
+
+    public function addImagesCollection(Image $imagesCollection): static
+    {
+        if (!$this->imagesCollection->contains($imagesCollection)) {
+            $this->imagesCollection->add($imagesCollection);
+            $imagesCollection->setPost($this);
+        }
+
+        return $this;
+    }
+
+    public function removeImagesCollection(Image $imagesCollection): static
+    {
+        if ($this->imagesCollection->removeElement($imagesCollection)) {
+            // set the owning side to null (unless already changed)
+            if ($imagesCollection->getPost() === $this) {
+                $imagesCollection->setPost(null);
+            }
+        }
+
+        return $this;
+    }
+
+
 }

@@ -10,6 +10,7 @@ use App\Entity\Video;
 
 use App\Entity\Category;
 use App\Controller\Admin\UserCrudController;
+use App\Entity\Page;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use EasyCorp\Bundle\EasyAdminBundle\Config\Crud;
@@ -17,6 +18,7 @@ use EasyCorp\Bundle\EasyAdminBundle\Config\MenuItem;
 use EasyCorp\Bundle\EasyAdminBundle\Config\Dashboard;
 use Symfony\Component\Security\Http\Attribute\IsGranted;
 use EasyCorp\Bundle\EasyAdminBundle\Router\AdminUrlGenerator;
+use Symfony\Component\Security\Core\Exception\AccessDeniedException;
 use EasyCorp\Bundle\EasyAdminBundle\Controller\AbstractDashboardController;
 
 class DashboardController extends AbstractDashboardController
@@ -38,9 +40,12 @@ class DashboardController extends AbstractDashboardController
 
 
     #[Route('/admin', name: 'admin_')]
-    #[IsGranted('ROLE_SUPER_ADMIN')]
     public function index(): Response
     {
+
+        if (!$this->isGranted('ROLE_SUPER_ADMIN') && !$this->isGranted('ROLE_ADMIN')) {
+            throw new AccessDeniedException('You do not have the required roles to access this page.');
+        }
 
 
         // Option 1. You can make your dashboard redirect to some common page of your backend
@@ -84,32 +89,60 @@ class DashboardController extends AbstractDashboardController
         // yield MenuItem::linkToCrud('Ajouter une photo', 'fas fa-plus', ImageCrudController::class)
         // ->setAction(Crud::PAGE_NEW);
 
-        yield MenuItem::section('Statistiques');
-        yield MenuItem::linkToUrl('Mes Stats', 'fa fa-chart-bar', '/business');
-        yield MenuItem::linkToCrud('Mes Livres Numériques', 'fa fa-pencil-alt',Ebook::class)->setAction(Crud::PAGE_NEW);
+      
+
+        yield MenuItem::section('Livres');
+        yield MenuItem::subMenu('Livres Numériques', 'fa fa-pencil-alt')->setSubItems([
+            MenuItem::linkToCrud('Ajouter un Livre ', 'fa fa-pencil-alt',Ebook::class)
+            ->setAction(Crud::PAGE_NEW),
+
+            MenuItem::linkToCrud('Mes Livres Numériques', 'fas fa-eye',Ebook::class)
+           
+
+
+           ]);
         //     // yield MenuItem::linkToCrud('The Label', 'fas fa-list', EntityClass::class);
         //     yield MenuItem::linkToDashboard('Dashboard', 'fa fa-home');
 
         yield MenuItem::section("J'ajoute des éléments");
-        yield MenuItem::linkToCrud('Post', 'fa fa-pencil-alt', Posts::class);
+
+        yield MenuItem::subMenu('Post', 'fa fa-pencil-alt')->setSubItems([
+
+            MenuItem::linkToCrud('Créer un post', 'fa fa-pencil-alt', Posts::class)
+            ->setPermission('ROLE_SUPER_ADMIN'),
+            MenuItem::linkToCrud('Mes Posts', 'fas fa-eye', Posts::class)
+            ->setPermission('ROLE_SUPER_ADMIN'),
+
+        ]);
+
+        yield MenuItem::subMenu('Page','fa-regular fa-image')->setSubItems([
+            MenuItem::linkToCrud('Ajouter une page', 'fas fa-plus', Page::class)->setAction(Crud::PAGE_NEW),
+            MenuItem::linkToCrud('Mes Pages Configuré', 'fas fa-eye', Page::class),
+
+        ]);
 
         yield MenuItem::subMenu('Categorie','fa-regular fa-circle-plus')->setSubItems([
-            MenuItem::linkToCrud('Créer une categorie', 'fas fa-plus', Category::class)->setAction(Crud::PAGE_NEW),
-            MenuItem::linkToCrud('Ma liste', 'fas fa-eye', Category::class),
+            MenuItem::linkToCrud('Créer une catégorie', 'fas fa-plus', Category::class)->setAction(Crud::PAGE_NEW),
+            MenuItem::linkToCrud('Mes catégories', 'fas fa-eye', Category::class),
 
         ]);
 
         yield MenuItem::subMenu('Image','fa-regular fa-image')->setSubItems([
             MenuItem::linkToCrud('Ajouter une image', 'fas fa-plus', Image::class)->setAction(Crud::PAGE_NEW),
-            MenuItem::linkToCrud('Ma liste', 'fas fa-eye', Image::class),
+            MenuItem::linkToCrud('Mes Images', 'fas fa-eye', Image::class),
 
         ]);
 
         yield MenuItem::subMenu('Vidéos','fa-regular fa-image')->setSubItems([
             MenuItem::linkToCrud('Ajouter une vidéo', 'fas fa-plus', Video::class)->setAction(Crud::PAGE_NEW),
-            MenuItem::linkToCrud('Ma liste', 'fas fa-eye', Video::class),
+            MenuItem::linkToCrud('Mes Vidéos', 'fas fa-eye', Video::class),
 
         ]);
+
+
+
+        yield MenuItem::section('Statistiques');
+        yield MenuItem::linkToUrl('Mes Stats', 'fa fa-chart-bar', '/business');
         //     yield MenuItem::linkToCrud('Blog Posts', 'fa fa-file-text', PostsCrudController::class);
 
         //     yield MenuItem::section('Users');
