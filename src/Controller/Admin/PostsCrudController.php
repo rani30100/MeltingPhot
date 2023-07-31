@@ -9,7 +9,9 @@ use App\Twig\PlainTextExtension;
 use Google\Service\DriveActivity\Create;
 use Symfony\UX\Dropzone\Form\DropzoneType;
 use Vich\UploaderBundle\Form\Type\VichFileType;
+use EasyCorp\Bundle\EasyAdminBundle\Config\Crud;
 use EasyCorp\Bundle\EasyAdminBundle\Field\Field;
+use Vich\UploaderBundle\Form\Type\VichImageType;
 use EasyCorp\Bundle\EasyAdminBundle\Field\IdField;
 use EasyCorp\Bundle\EasyAdminBundle\Config\Filters;
 use EasyCorp\Bundle\EasyAdminBundle\Field\TextField;
@@ -23,7 +25,6 @@ use EasyCorp\Bundle\EasyAdminBundle\Field\TextEditorField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\AssociationField;
 use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 use EasyCorp\Bundle\EasyAdminBundle\Controller\AbstractCrudController;
-use Vich\UploaderBundle\Form\Type\VichImageType;
 
 class PostsCrudController extends AbstractCrudController
 {
@@ -48,7 +49,7 @@ class PostsCrudController extends AbstractCrudController
             ->hideOnForm()
             ->hideOnIndex(),
             TextField::new('title')->setLabel('Titre du Post'),
-            TextField::new('description', 'Description'),
+            TextEditorField::new('description', 'Description'),
 
             ImageField::new('path', 'Image')
 
@@ -110,5 +111,13 @@ class PostsCrudController extends AbstractCrudController
             
         ;
     }
+
+    public function configureCrud(Crud $crud): Crud
+    {
+        return $crud
+        
+        ->addFormTheme('@FOSCKEditor/Form/ckeditor_widget.html.twig');
+    }
+
 
 }

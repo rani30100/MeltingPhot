@@ -166,17 +166,17 @@
 		</div>
     </div>
 
-    <section class='h-50'>
-        <h1>{{ page.title }}</h1>
-        <div>{{ page.content }}</div>
+    <section class='h-50 d-flex justify-center'>
+         {# <h1>{{ page.title }}</h1>
+         <div>{{ page.content|raw }}</div>  #}
 
 		       <section>
         {# Loop through the posts collection and display each post's title and description #}
         {% for post in page.posts %}
-            <h2>{{ post.title }}</h2>
-            <p>{{ post.description }}</p>
-			<img src="asset('uploads/post/images/{{post.path}}')" alt="">
-			{{post.path}}
+            <h1 class="text-center">{{ post.title }}</h2>
+            <p class="text-center">{{ post.description|raw }}</p>
+			<img src="{{ asset('uploads/post/images/' ~ post.path) }}" style="height:100px" alt="">
+			{# {{post.path}} #}
 			
         {% endfor %}
     </section>

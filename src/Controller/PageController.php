@@ -168,7 +168,7 @@ class PageController extends AbstractController
 
         }
         // Render the template for the page with the corresponding content
-        return $this->render('page/show.html.twig', [
+        return $this->render('page/index.html.twig', [
             'page' => $page,
         ]);
     }
