@@ -185,14 +185,13 @@
             					<a href="{{ videoPageUrl }}">Voir la vidéo</a>
         					{% endfor %}	
 					{% endif %} #}
+								{{ dump(result.Image) }}
 
 					{% if result.Image is defined %}
 					
 						{% for videoPageUrl in videoPageUrls %}
 							<a href="{{ videoPageUrl }}">
 						   		<img src="{{ asset(result.Image) }}" alt="" style="width: 150px; height: 150px;"></img>
-								{{ dump(result.Image) }}
-
 							</a>         
 						{% set videoDisplayed = true %}
 						{% endfor %}	 
