@@ -112,12 +112,7 @@ class PostsCrudController extends AbstractCrudController
         ;
     }
 
-    public function configureCrud(Crud $crud): Crud
-    {
-        return $crud
-        
-        ->addFormTheme('@FOSCKEditor/Form/ckeditor_widget.html.twig');
-    }
+  
 
 
 }
