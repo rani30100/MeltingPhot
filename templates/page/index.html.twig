@@ -173,9 +173,18 @@
 		       <section>
         {# Loop through the posts collection and display each post's title and description #}
         {% for post in page.posts %}
+		<section class="d-flex justify-center flex-column">
+		
             <h1 class="text-center">{{ post.title }}</h2>
             <p class="text-center">{{ post.description|raw }}</p>
+			<div>
 			<img src="{{ asset('uploads/post/images/' ~ post.path) }}" style="height:100px" alt="">
+			
+			</div>
+			<iframe src="{{ asset('uploads/post/videos/' ~ post.videoFile) }}" frameborder="0"></iframe>
+			
+		
+		</section>
 			{# {{post.path}} #}
 			
         {% endfor %}

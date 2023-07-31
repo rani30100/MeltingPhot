@@ -44,7 +44,7 @@ class PageCrudController extends AbstractCrudController
         yield AssociationField::new('posts')
         ->setLabel('Posts')
         ->setFormTypeOption('by_reference', false)
-        ->setRequired(true);
+        ->setRequired(false);
     }
 
     public function persistEntity(EntityManagerInterface $entityManager, $entityInstance): void
