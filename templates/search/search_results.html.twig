@@ -191,6 +191,8 @@
 						{% for videoPageUrl in videoPageUrls %}
 							<a href="{{ videoPageUrl }}">
 						   		<img src="{{ asset(result.Image) }}" alt="" style="width: 150px; height: 150px;"></img>
+								{{ dump(result.Image) }}
+
 							</a>         
 						{% set videoDisplayed = true %}
 						{% endfor %}	 
