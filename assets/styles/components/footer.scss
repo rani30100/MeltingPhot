@@ -1,0 +1,26 @@
+footer {
+    .footer-logo {
+        display: flex !important;
+        justify-content: center !important;
+       
+    }
+
+    .info-contact2 {
+        display: flex;
+        justify-content: center;
+        flex-direction: column;
+
+    }
+
+    .text-contact {
+        max-width: 757px;
+    }
+}
+
+@media (min-width: 700px) {
+
+    .info-contact2{
+      flex-direction: row !important;
+    }
+
+}

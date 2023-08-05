@@ -1,0 +1,32 @@
+DirectoryIndex index.php
+
+
+<IfModule mod_rewrite.c>
+    RewriteEngine On 
+    RewriteCond %{HTTP:Accept-Language} ^fr [NC]  
+    RewriteRule ^$ /fr [L,R=302]  
+    RewriteCond %{HTTP:Accept-Language} ^en [NC]
+    RewriteRule ^$ /en [L,R=302]
+
+    RewriteCond %{HTTP:Accept-Language} !^(fr|en) [NC]
+    RewriteRule ^$ /fr [L,R=302] 
+    RewriteCond %{REQUEST_FILENAME} !-f  
+    RewriteCond %{REQUEST_FILENAME} !-d  
+    RewriteRule ^(.*)$ index.php [QSA,L]   
+
+ 
+    RewriteEngine On
+    RewriteCond %{HTTPS} off
+    RewriteRule ^ https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
+
+
+    <FilesMatch "\.(htaccess|htpasswd|ini|phps|fla|psd|log|sh)$">
+        Order allow,deny
+        Deny from all
+    </FilesMatch>
+    
+
+    php_flag allow_url_include off
+    php_value upload_max_filesize 300M
+    php_value post_max_size 300M
+</IfModule>

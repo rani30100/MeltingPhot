@@ -1,0 +1,27 @@
+"join": "Be at the heart of the action by signing up today!"
+
+'label':
+  'name': 'Name'
+  'password': 'Password'
+  'email': 'Email'
+  'confirm-password': 'Confirm your password'
+  
+'btn': 
+  'register' : Register
+
+'placeholder': 
+  'name' : 'Name'
+  'password' : 'Password'
+  'email' : "Email Adress"
+
+
+'terms' : "Please accept the terms of use. To find out more click here."
+
+'question': "Already have an account?"
+"connect" : "Log in here."
+
+'Le mot de passe doit contenir au minimum 6 caractères' : 'Your password should contain at least 6 characters'
+
+'Please check this box.': 'Please check this box.'
+
+

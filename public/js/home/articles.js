@@ -1,0 +1,35 @@
+
+// Récupérer tous les éléments d'article
+const articles = document.querySelectorAll('.parent-article article');
+
+// Fonction de détection du scroll
+function handleScroll() {
+  // Parcourir tous les articles
+  articles.forEach((article, index) => {
+    // Récupérer la position de l'article par rapport à la fenêtre
+    const rect = article.getBoundingClientRect();
+
+    // Calculer le point de déclenchement de l'animation (ajuster la valeur si nécessaire)
+    const triggerPoint = window.innerHeight * 1.0;
+
+    // Vérifier si l'article est visible dans la fenêtre
+    if (rect.top < triggerPoint && rect.bottom >= 0) {
+      // Vérifier si l'article a déjà été animé
+      if (!article.classList.contains('slide-in-left') && !article.classList.contains('slide-in-right')) {
+        // Ajouter la classe pour déclencher l'animation en fonction de l'index
+        if (index === 0 || index === 2) {
+          article.classList.add('slide-in-left');
+        } else if (index === 1) {
+          article.classList.add('slide-in-right');
+        }
+      }
+    } else {
+      // Réinitialiser l'animation lorsque l'article n'est pas visible
+      article.classList.remove('slide-in-left');
+      article.classList.remove('slide-in-right');
+    }
+  });
+}
+
+// Ajouter l'écouteur d'événement pour détecter le scroll
+window.addEventListener('scroll', handleScroll);

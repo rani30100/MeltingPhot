@@ -1,0 +1,50 @@
+
+
+
+{% block title %}Video index
+{% endblock %}
+
+{% block body %}
+
+
+	{# <section class="container card">
+		<div class="block-add_video">
+			<h1>Ajouter une video</h1>
+
+			<table class="table">
+				<thead>
+					<tr>
+						<th>Id</th>
+						<th>Nom</th>
+						<th>Ajouté le</th>
+						<th>Url</th>
+						<th>actions</th>
+					</tr>
+				</thead>
+				<tbody>
+					{% for video in videos %}
+						<tr>
+							<td>{{ video.id }}</td>
+							<td>{{ video.name }}</td>
+							<td>{{ video.createdAt ? video.createdAt|date('Y-m-d H:i:s') : '' }}</td>
+							<td>{{ video.url }}</td>
+							<td>
+								<a href="{{ path('app_admin_show', {'id': video.id}) }}">Montrer</a>
+								<a href="{{ path('app_admin_edit', {'id': video.id}) }}">Modifier</a>
+								<a href="{{path('app_admin_delete', {'id': video.id}) }}">Supprimer<a/></td>
+							</td>
+						</tr>
+					{% else %}
+						<tr>
+							<td colspan="5">no records found</td>
+						</tr>
+					{% endfor %}
+				</tbody>
+			</table>
+
+			<a href="{{ path('app_admin_new') }}">Create new</a>
+
+
+		</div>
+	</section> #}
+{% endblock %}

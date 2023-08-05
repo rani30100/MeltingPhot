@@ -1,0 +1,17 @@
+vich_uploader:
+    db_driver: orm
+    mappings:
+        post_images: # The mapping name you used in the "Vich\UploadableField" annotation
+            uri_prefix: /uploads/post/images
+            upload_destination: '%kernel.project_dir%/public/uploads/post/images'
+            namer: Vich\UploaderBundle\Naming\OrignameNamer
+
+        video_files:
+            uri_prefix: /uploads/post/videos
+            upload_destination: '%kernel.project_dir%/public/uploads/post/videos'
+            namer: Vich\UploaderBundle\Naming\SmartUniqueNamer
+
+        ebook_files:
+            uri_prefix: /uploads/ebook
+            upload_destination: '%kernel.project_dir%/public/uploads/ebook'
+            namer: Vich\UploaderBundle\Naming\SmartUniqueNamer

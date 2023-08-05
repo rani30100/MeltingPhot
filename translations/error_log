@@ -1,0 +1,8 @@
+[28-May-2023 04:16:15 UTC] PHP Fatal error:  Uncaught Error: Interface "Symfony\Contracts\Translation\TranslatorInterface" not found in /home/vzrv5352/public_html/MeltingPhot/translations/Translator.php:34
+Stack trace:
+#0 {main}
+  thrown in /home/vzrv5352/public_html/MeltingPhot/translations/Translator.php on line 34
+[28-May-2023 04:16:38 UTC] PHP Fatal error:  Uncaught Error: Interface "Symfony\Contracts\Translation\TranslatableInterface" not found in /home/vzrv5352/public_html/MeltingPhot/translations/TranslatableMessage.php:20
+Stack trace:
+#0 {main}
+  thrown in /home/vzrv5352/public_html/MeltingPhot/translations/TranslatableMessage.php on line 20

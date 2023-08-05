@@ -1,0 +1,61 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello EbookController!{% endblock %}
+
+{% block body %}
+<style>
+    .example-wrapper { margin: 1em auto; max-width: 800px; width: 95%; font: 18px/1.5 sans-serif; }
+    .example-wrapper code { background: #F5F5F5; padding: 2px 6px; }
+    .error-message { color: red; }
+</style>
+
+<script src="https://unpkg.com/dropzone@5/dist/min/dropzone.min.js"></script>
+<link rel="stylesheet" href="https://unpkg.com/dropzone@5/dist/min/dropzone.min.css" type="text/css" />
+
+
+<div class="example-wrapper">
+
+    {{ form_start(ebookForm, {'attr': {'enctype': 'multipart/form-data'}}) }}
+    <div>
+        {{ form_widget(ebookForm.title, {'attr': {'class': 'w-50', 'placeholder': 'Titre', 'style': 'margin: 1rem'}}) }}
+        {{ form_errors(ebookForm.title) }} <!-- Afficher les erreurs du champ 'title' -->
+    </div>
+    <div>
+        {{ form_widget(ebookForm.author, {'attr': {'class': 'w-50', 'placeholder': 'Auteur', 'style': 'margin: 1rem'}}) }}
+        {{ form_errors(ebookForm.author) }} <!-- Afficher les erreurs du champ 'author' -->
+    </div>
+    <div>
+        {{ form_widget(ebookForm.description, {'attr': {'class': 'w-50', 'placeholder': 'Description', 'style': 'margin: 1rem'}}) }}
+        {{ form_errors(ebookForm.description) }} <!-- Afficher les erreurs du champ 'description' -->
+    </div>
+    <div>
+        <div class="dropzone" id="my-awesome-dropzone"></div>
+    </div>
+    <div>
+        {% for flashMessage in app.flashes('danger') %}
+            <p class="error-message">{{ flashMessage }}</p>
+        {% endfor %}
+    </div>
+    <button type="submit">Submit</button>
+    {{ form_end(ebookForm) }}
+</div>
+<script>
+    Dropzone.autoDiscover = false;
+    var myDropzone = new Dropzone("#my-awesome-dropzone", {
+        url: "{{ path('admin_ebook_upload') }}",
+        paramName: "file",
+        maxFilesize: 300,
+        acceptedFiles: ".pdf",
+        dictDefaultMessage: "Déposez vos fichiers ici ou cliquez pour les télécharger",
+        dictInvalidFileType: "Ce type de fichier n'est pas autorisé.",
+        dictFallbackMessage: "Votre navigateur ne prend pas en charge le glisser-déposer de fichiers.",
+        dictFallbackText: "Veuillez utiliser le formulaire ci-dessous pour télécharger vos fichiers.",
+        dictCancelUpload: "Annuler le téléchargement",
+        dictCancelUploadConfirmation: "Êtes-vous sûr de vouloir annuler ce téléchargement ?",
+        dictRemoveFile: "Supprimer le fichier",
+       
+    });
+</script>
+<a href="/ebook/{id}">voir les ebook</a>
+
+{% endblock %}

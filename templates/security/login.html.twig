@@ -1,0 +1,103 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Log in!{% endblock %}
+
+{% block body %}
+
+<body class="bg-white font-family-karla h-screen">
+    
+
+<div class="w-full flex flex-wrap">
+    <!-- Section de connexion -->
+    <div class="w-full md:w-1/2 flex flex-col">
+        <div class="d-flex justify-content-center md:justify-start pt-12 md:pl-12 md:-mb-12">
+        	<a href="/">
+                <img class="logo me-2" src="{{ asset('img/logo.png')}}" width alt=""></img>
+            </a>
+        </div>
+
+        <div class="flex flex-col bloc-login justify-center md:justify-start my-auto pt-8 md:pt-0 px-8 md:px-24 lg:px-32">
+            <p class="text-center text-3xl">Welcome.</p>
+
+            <form method="post" id='login-form'action="{{ path('app_login') }}" class="flex flex-col pt-3">
+                {% if error %}
+                 	 <div class="alert alert-danger">{{ error|trans({}, 'security') }}</div>
+                {% endif %}
+
+				{% for flashMessage in app.session.flashBag.get('danger') %}
+					<div class="alert alert-danger">
+						{{ flashMessage }}
+					</div>
+				{% endfor %}
+				{% if app.request.method == 'POST' %}
+					{% if user is not null %}
+						<div class="alert alert-success">
+							Adresse e-mail disponible !
+						</div>
+					{% endif %}
+				{% endif %}
+
+                {% if app.user %}
+                    <div class="mb-3">
+                        You are logged in as {{ app.user.userIdentifier }},
+                        <a href="{{ path('app_logout') }}">Logout</a>
+                    </div>
+                {% endif %}
+				
+				{# <div class="form-group d-block">
+					<label for="username" class="text-lg">Username</label>
+					<input type="text" id="username" name="_username" placeholder="Your username"
+						class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 mt-1 leading-tight focus:outline-none focus:shadow-outline">
+				</div> #}
+
+               <div class="form-group d-block">
+					<label for="inputEmail" class="text-lg"  required autofocus>Email</label>
+			<input type="email" value="{{ last_username }}" name="email" id="inputEmail" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 mt-1 leading-tight focus:outline-none focus:shadow-outline" autocomplete="email" required autofocus>
+				</div>
+
+
+                <div class="form-group d-block pt-4">
+                    <label for="inputPassword" class="text-lg" >Mot de Passe</label>
+			<input type="password" name="password" id="inputPassword" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 mt-1 leading-tight focus:outline-none focus:shadow-outline" autocomplete="current-password" required>
+                </div>
+
+            	<input type="hidden" name="_csrf_token" value="{{ csrf_token('authenticate')|e('html_attr') }}">
+            
+                <input type="submit" value="Se connecter" class="bg-black text-white font-bold text-lg hover:bg-gray-700 p-2 mt-8">
+				
+
+
+                <div class="text-center pt-12 pb-12">
+                    <p>Vous n'avez pas de compte ? <a href="/new-account" class="underline font-semibold">S'inscrire ici !</a></p>
+                </div>
+
+            </form>
+        </div>
+    </div>
+
+    <!-- Section d'image -->
+    <div class="w-1/2 shadow-2xl">
+        <img class="object-cover w-full h-screen hidden md:block" src="{{ asset('img/screen-register.jpg')}}" alt="" />
+    </div>
+</div>
+</body>
+
+				 <script>
+        // Récupérer le formulaire de connexion
+        const loginForm = document.querySelector('#login-form');
+
+        // Ajouter un écouteur d'événement pour la soumission du formulaire
+        loginForm.addEventListener('submit', function(event) {
+           // Empêcher le comportement par défaut du formulaire (rechargement de la page)
+             // Récupérer la valeur du champ de mot de passe
+            const passwordField = document.querySelector('#password');
+            const password = passwordField.value;
+
+            // Récupérer la valeur du champ d'e-mail
+            const emailField = document.querySelector('#email');
+            const email = emailField.value;
+
+
+        });
+    </script>
+{% endblock %}

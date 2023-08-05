@@ -1,0 +1,22 @@
+.navbar {
+    .logo {
+        width: 120px;
+        margin-top: 7px;
+        margin-bottom: 11px;
+    }
+
+    .form {
+        .search {
+            height: fit-content;
+            align-self: center;
+            min-width: 120px;
+            max-width: 210px;
+        }
+
+        .search-btn {
+            height: fit-content;
+            align-self: center;
+        }
+
+    }
+}
