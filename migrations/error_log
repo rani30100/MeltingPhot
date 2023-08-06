@@ -1,0 +1,64 @@
+[28-May-2023 04:16:18 UTC] PHP Fatal error:  Uncaught Error: Class "Doctrine\Migrations\AbstractMigration" not found in /home/vzrv5352/public_html/MeltingPhot/migrations/Version20230407082601.php:13
+Stack trace:
+#0 {main}
+  thrown in /home/vzrv5352/public_html/MeltingPhot/migrations/Version20230407082601.php on line 13
+[28-May-2023 04:16:52 UTC] PHP Fatal error:  Uncaught Error: Class "Doctrine\Migrations\AbstractMigration" not found in /home/vzrv5352/public_html/MeltingPhot/migrations/Version20230407084202.php:13
+Stack trace:
+#0 {main}
+  thrown in /home/vzrv5352/public_html/MeltingPhot/migrations/Version20230407084202.php on line 13
+[28-May-2023 04:16:54 UTC] PHP Fatal error:  Uncaught Error: Class "Doctrine\Migrations\AbstractMigration" not found in /home/vzrv5352/public_html/MeltingPhot/migrations/Version20230426095237.php:13
+Stack trace:
+#0 {main}
+  thrown in /home/vzrv5352/public_html/MeltingPhot/migrations/Version20230426095237.php on line 13
+[28-May-2023 04:16:55 UTC] PHP Fatal error:  Uncaught Error: Class "Doctrine\Migrations\AbstractMigration" not found in /home/vzrv5352/public_html/MeltingPhot/migrations/Version20230426095704.php:13
+Stack trace:
+#0 {main}
+  thrown in /home/vzrv5352/public_html/MeltingPhot/migrations/Version20230426095704.php on line 13
+[28-May-2023 04:17:00 UTC] PHP Fatal error:  Uncaught Error: Class "Doctrine\Migrations\AbstractMigration" not found in /home/vzrv5352/public_html/MeltingPhot/migrations/Version20230419150416.php:13
+Stack trace:
+#0 {main}
+  thrown in /home/vzrv5352/public_html/MeltingPhot/migrations/Version20230419150416.php on line 13
+[28-May-2023 04:17:03 UTC] PHP Fatal error:  Uncaught Error: Class "Doctrine\Migrations\AbstractMigration" not found in /home/vzrv5352/public_html/MeltingPhot/migrations/Version20230407083306.php:13
+Stack trace:
+#0 {main}
+  thrown in /home/vzrv5352/public_html/MeltingPhot/migrations/Version20230407083306.php on line 13
+[28-May-2023 04:17:04 UTC] PHP Fatal error:  Uncaught Error: Class "Doctrine\Migrations\AbstractMigration" not found in /home/vzrv5352/public_html/MeltingPhot/migrations/Version20230428081138.php:13
+Stack trace:
+#0 {main}
+  thrown in /home/vzrv5352/public_html/MeltingPhot/migrations/Version20230428081138.php on line 13
+[28-May-2023 04:17:06 UTC] PHP Fatal error:  Uncaught Error: Class "Doctrine\Migrations\AbstractMigration" not found in /home/vzrv5352/public_html/MeltingPhot/migrations/Version20230418083058.php:13
+Stack trace:
+#0 {main}
+  thrown in /home/vzrv5352/public_html/MeltingPhot/migrations/Version20230418083058.php on line 13
+[28-May-2023 04:17:07 UTC] PHP Fatal error:  Uncaught Error: Class "Doctrine\Migrations\AbstractMigration" not found in /home/vzrv5352/public_html/MeltingPhot/migrations/Version20230426101328.php:13
+Stack trace:
+#0 {main}
+  thrown in /home/vzrv5352/public_html/MeltingPhot/migrations/Version20230426101328.php on line 13
+[28-May-2023 04:17:08 UTC] PHP Fatal error:  Uncaught Error: Class "Doctrine\Migrations\AbstractMigration" not found in /home/vzrv5352/public_html/MeltingPhot/migrations/Version20230426095018.php:13
+Stack trace:
+#0 {main}
+  thrown in /home/vzrv5352/public_html/MeltingPhot/migrations/Version20230426095018.php on line 13
+[28-May-2023 04:17:10 UTC] PHP Fatal error:  Uncaught Error: Class "Doctrine\Migrations\AbstractMigration" not found in /home/vzrv5352/public_html/MeltingPhot/migrations/Version20230419145534.php:13
+Stack trace:
+#0 {main}
+  thrown in /home/vzrv5352/public_html/MeltingPhot/migrations/Version20230419145534.php on line 13
+[28-May-2023 04:17:12 UTC] PHP Fatal error:  Uncaught Error: Class "Doctrine\Migrations\AbstractMigration" not found in /home/vzrv5352/public_html/MeltingPhot/migrations/Version20230426102743.php:13
+Stack trace:
+#0 {main}
+  thrown in /home/vzrv5352/public_html/MeltingPhot/migrations/Version20230426102743.php on line 13
+[28-May-2023 04:17:13 UTC] PHP Fatal error:  Uncaught Error: Class "Doctrine\Migrations\AbstractMigration" not found in /home/vzrv5352/public_html/MeltingPhot/migrations/Version20230426103249.php:13
+Stack trace:
+#0 {main}
+  thrown in /home/vzrv5352/public_html/MeltingPhot/migrations/Version20230426103249.php on line 13
+[28-May-2023 04:17:14 UTC] PHP Fatal error:  Uncaught Error: Class "Doctrine\Migrations\AbstractMigration" not found in /home/vzrv5352/public_html/MeltingPhot/migrations/Version20230419232206.php:13
+Stack trace:
+#0 {main}
+  thrown in /home/vzrv5352/public_html/MeltingPhot/migrations/Version20230419232206.php on line 13
+[28-May-2023 04:17:16 UTC] PHP Fatal error:  Uncaught Error: Class "Doctrine\Migrations\AbstractMigration" not found in /home/vzrv5352/public_html/MeltingPhot/migrations/Version20230426101031.php:13
+Stack trace:
+#0 {main}
+  thrown in /home/vzrv5352/public_html/MeltingPhot/migrations/Version20230426101031.php on line 13
+[28-May-2023 04:17:17 UTC] PHP Fatal error:  Uncaught Error: Class "Doctrine\Migrations\AbstractMigration" not found in /home/vzrv5352/public_html/MeltingPhot/migrations/Version20230428080808.php:13
+Stack trace:
+#0 {main}
+  thrown in /home/vzrv5352/public_html/MeltingPhot/migrations/Version20230428080808.php on line 13
