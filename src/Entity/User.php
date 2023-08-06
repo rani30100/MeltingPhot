@@ -8,8 +8,6 @@ use Doctrine\Common\Collections\Collection;
 use Doctrine\Common\Collections\ArrayCollection;
 use Symfony\Component\Validator\Constraints as Assert;
 use Symfony\Component\Security\Core\User\UserInterface;
-use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
-use Symfony\Component\Validator\Context\ExecutionContextInterface;
 use Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface;
 
 #[ORM\Entity(repositoryClass: UserRepository::class)]
@@ -255,42 +253,38 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
         return $this;
     }
 
-    // Contraintes de Validation
-    #[Assert\Callback]
-    public function validateUsername(ExecutionContextInterface $context, $payload)
-    {
-        // Check for spaces in the username
-        if (strpos($this->username, ' ') !== false) {
-            $context->buildViolation("Le nom d'utilisateur ne doit pas contenir d'espaces.")
-                ->atPath('username')
-                ->addViolation();
-        }
 
-        if (empty($this->username)) {
-            $context->buildViolation("Le Username est un champ obligatoire.")
-                ->atPath('username')
-                ->addViolation();
-        }
-        
-        if (strpos($this->password, ' ') !== false) {
-            $context->buildViolation("Le nom d'utilisateur ne doit pas contenir d'espaces.")
-                ->atPath('username')
-                ->addViolation();
-        }
 
-        if (strlen($this->password) < 6) {
-            $context->buildViolation('Le mot de passe doit contenir au minimum 6 caractères')
-                ->atPath('password')
-                ->addViolation();
-        }
+    // // Contraintes de Validation
+    // #[Assert\Callback]
+    // public function validateUsername(ExecutionContextInterface $context, $payload)
+    // {
+    //     // Check for spaces in the username
+    //     if (strpos($this->username, ' ') !== false) {
+    //         $context->buildViolation("Le nom d'utilisateur ne doit pas contenir d'espaces.")
+    //             ->atPath('username')
+    //             ->addViolation();
+    //     }
 
-        // Check for numbers only at the end of the username
-        if (!preg_match('/^[a-zA-Z]+[0-9]*$/', $this->username)) {
-            $context->buildViolation("Les seuls chiffres du nom d'utilisateur doivent être à la fin. Aucun caractère spécial.")
-                ->atPath('username')
-                ->addViolation();
-        }
-    }
+    //     if (empty($this->username)) {
+    //         $context->buildViolation("Le Username est un champ obligatoire.")
+    //             ->atPath('username')
+    //             ->addViolation();
+    //     }
+
+    //     if (strlen($this->getPassword()) < 6) {
+    //         $context->buildViolation('Le mot de passe doit contenir au moins 6 caractères.')
+    //             ->atPath('password')
+    //             ->addViolation();
+    //     }
+
+    //     // Check for numbers only at the end of the username
+    //     if (!preg_match('/^[a-zA-Z]+[0-9]*$/', $this->username)) {
+    //         $context->buildViolation("Les seuls chiffres du nom d'utilisateur doivent être à la fin. Aucun caractère spécial.")
+    //             ->atPath('username')
+    //             ->addViolation();
+    //     }
+    // }
 }
 
 

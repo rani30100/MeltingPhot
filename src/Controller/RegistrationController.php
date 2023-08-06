@@ -7,6 +7,7 @@ use App\Security\EmailVerifier;
 use App\Form\RegistrationFormType;
 use App\Security\AppAuthenticator;
 use Symfony\Component\Mime\Address;
+use Symfony\Component\Form\FormError;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bridge\Twig\Mime\TemplatedEmail;
 use Symfony\Component\HttpFoundation\Request;
@@ -23,29 +24,51 @@ use Symfony\Component\Security\Http\Authentication\UserAuthenticatorInterface;
 class RegistrationController extends AbstractController
 {
     private EmailVerifier $emailVerifier;
+    private TranslatorInterface $translator;
 
-    public function __construct(EmailVerifier $emailVerifier)
-    {
+    public function __construct(EmailVerifier $emailVerifier, TranslatorInterface $translator)    {
         $this->emailVerifier = $emailVerifier;
+        $this->translator = $translator;
     }
 
-    #[Route('/new-account', name: 'app_register')]
-    public function register(Request $request, UserPasswordHasherInterface $userPasswordHasher, UserAuthenticatorInterface $userAuthenticator, AppAuthenticator $authenticator, EntityManagerInterface $entityManager, TranslatorInterface $translator, ValidatorInterface $validator): Response
-    {
+       #[Route('/new-account', name: 'app_register')]
+    public function register(
+        Request $request,
+        UserPasswordHasherInterface $userPasswordHasher,
+        UserAuthenticatorInterface $userAuthenticator,
+        AppAuthenticator $authenticator,
+        EntityManagerInterface $entityManager,
+        TranslatorInterface $translator,
+        ValidatorInterface $validator
+    ): Response {
         $user = new User();
 
         $form = $this->createForm(RegistrationFormType::class, $user);
         $form->handleRequest($request);
-        $errorMessage = '';
 
         if ($form->isSubmitted() && $form->isValid()) {
-            // Check if email already exists
+            // Validate the user entity separately
             $existingUser = $entityManager->getRepository(User::class)->findOneBy(['email' => $user->getEmail()]);
             if ($existingUser) {
-                $errorMessage = 'L\'adresse email existe déjà.';
+                $errorMessage = $this->translator->trans('This email adress already exists !', [], 'register');
+                $form->get('email')->addError(new FormError($errorMessage));
+                // Return the form with the error message
                 return $this->render('registration/register.html.twig', [
                     'form' => $form->createView(),
-                    'errorMessage' => $errorMessage,
+                    'errors' => null, // Set errors to null when rendering the form initially
+                ]);
+            }
+            $errors = $validator->validate($user);
+
+            if (count($errors) > 0) {
+                // Display validation errors
+                foreach ($errors as $error) {
+                    $form->addError(new FormError($error->getMessage()));
+                }
+
+                return $this->render('registration/register.html.twig', [
+                    'form' => $form->createView(),
+                    'errors' => $errors,
                 ]);
             }
 
@@ -80,10 +103,9 @@ class RegistrationController extends AbstractController
 
         return $this->render('registration/register.html.twig', [
             'form' => $form->createView(),
-            'errorMessage' => $errorMessage,
+            'errors' => null, // Set errors to null when rendering the form initially
         ]);
     }
-
 
     #[Route('/verify/email', name: 'app_verify_email')]
     public function verifyUserEmail(Request $request, TranslatorInterface $translator): Response
@@ -125,3 +147,16 @@ class RegistrationController extends AbstractController
         return $this;
     }
 }
+
+   // foreach ($form->getErrors(true) as $error) {
+            //     dump($error->getMessage());
+            // }
+            // Check if email already exists
+            // $existingUser = $entityManager->getRepository(User::class)->findOneBy(['email' => $user->getEmail()]);
+            // if ($existingUser) {
+            //     $errorMessage = 'L\'adresse email existe déjà.';
+            //     return $this->render('registration/register.html.twig', [
+            //         'form' => $form->createView(),
+            //         'errorMessage' => $errorMessage,
+            //     ]);
+            // }

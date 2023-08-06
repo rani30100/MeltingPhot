@@ -176,6 +176,17 @@
     <h1>Résultats de la recherche pour "{{ query }}" :</h1>
     {% if pagination.getTotalItemCount() > 0 %}
         <p class="text-xl">{{ pagination.getTotalItemCount() }} résultat(s) trouvé(s) pour cette recherche.</p>
+
+		<section class="new-search">
+			<h2>Faire une nouvelle Recherche ?</h2>
+			<form id="search-form2" class="d-flex justify-center " action="{{ path('app_search_results') }}" method="GET">
+				<div class="input-group w-50 sm-w-80">
+					<input type="text" class="form-control" name="q" placeholder="Rechercher...">
+					<button class="btn btn-primary" type="submit">Rechercher</button>
+				</div>
+			</form>
+	
+		</section>
         <ul class="d-flex justify-center flex-column">
             {% for result in pagination %}        
                 {% if result.Image is defined and not result.url is defined %}
@@ -205,7 +216,10 @@
     {% else %}
         <p>Aucun résultat trouvé.</p>
     {% endif %}
-</section>
+	
+
+	</section>
+{# </section> #}
 
 
 

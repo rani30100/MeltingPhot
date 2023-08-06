@@ -50,68 +50,77 @@
             <div class="flex flex-col justify-center md:justify-start my-auto pt-8 md:pt-0 px-8 md:px-24 lg:px-32">
                 <p class="text-center text-xl ml-4">{{ 'join'|trans({}, 'register') }}</p>
 
-{% if form.password.vars.errors|length > 0 %}
-    <div class="alert alert-danger">
-        {% set firstError = form.password.vars.errors[0] %}
-        {% set translatedMessage = firstError.message|trans({}, 'register') %}
-        {{ translatedMessage }}<br>
-    </div>
-{% endif %}
-
-  
-
-
-                {{ form_start(form, {
+               {{ form_start(form, {
                     'attr': {
                         'class': 'flex flex-col pt-3',
-                     
                     }
                 }) }}
 
-                <div class="flex flex-col">
-					<label for="name" class="text-lg" style="margin-left: 2rem;">{{ 'label.name'|trans({}, 'register') }}</label>
-                    <div class="d-flex">
-                       
-					{{ form_widget(form.username, {
-						'attr': {
-							'id': 'name',
-							'placeholder': 'placeholder.name'|trans({}, 'register'),
-							'class': 'shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 mt-1 leading-tight focus:outline-none focus:shadow-outline',
-                            'style': 'max-width: 688px;'
-                    	}
-					}) }}
-                </div> 
+                    {% if form.vars.errors|length > 0 %}
+                        <div class="alert alert-danger">
+                            {% for error in form.vars.errors %}
+                                {% set translatedMessage = error.message|trans({}, 'register') %}
+                                {{ translatedMessage }}<br>
+                            {% endfor %}
+                        </div>
+                    {% endif %}
+
+                    <div class="flex flex-col">
+                        <label for="name" class="text-lg" style="margin-left: 2rem;">{{ 'label.name'|trans({}, 'register') }}</label>
+                        <div class="d-flex">
+                            {{ form_widget(form.username, {
+                                'attr': {
+                                    'id': 'name',
+                                    'placeholder': 'placeholder.name'|trans({}, 'register'),
+                                    'class': 'shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 mt-1 leading-tight focus:outline-none focus:shadow-outline',
+                                    'style': 'max-width: 688px;'
+                                }
+                            }) }}
+                        </div>
                     </div>
 
-                <div class="flex flex-col pt-4">
-					<label for="email" class="text-lg"style="margin-left: 2rem;">{{ 'label.email'|trans({}, 'register') }}</label>
-                    <div class="d-flex">
-                      
-                        {{ form_widget(form.email, {
-                            'attr': {
-                                'id': 'email',
-                                'placeholder': 'placeholder.email'|trans({}, 'register'),
-                                'class': 'shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 mt-1 leading-tight focus:outline-none focus:shadow-outline',
-                                'style': 'max-width: 688px;'
-                            }
-                        }) }}
+                    <div class="flex flex-col pt-4">
+                        <label for="email" class="text-lg" style="margin-left: 2rem;">{{ 'label.email'|trans({}, 'register') }}</label>
+                        <div class="d-flex">
+                            {{ form_widget(form.email, {
+                                'attr': {
+                                    'id': 'email',
+                                    'placeholder': 'placeholder.email'|trans({}, 'register'),
+                                    'class': 'shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 mt-1 leading-tight focus:outline-none focus:shadow-outline',
+                                    'style': 'max-width: 688px;'
+                                }
+                            }) }}
+                        </div>
+                        {% if form.email.vars.errors|length > 0 %}
+                            <div class="alert alert-danger">
+                                {% set firstError = form.email.vars.errors[0] %}
+                                {% set translatedMessage = firstError.message|trans({}, 'register') %}
+                                {{ translatedMessage }}<br>
+                            </div>
+                        {% endif %}
                     </div>
-                </div>
-                <div class="flex flex-col pt-4">
-                    <label for="password" class="text-lg" style="margin-left: 2rem;">{{ 'label.password'|trans({}, 'register') }}</label>
-                    <div class="input-with-icon d-flex">
 
-                        {{ form_widget(form.password, {
-                            'attr': {
-                                'type': 'password',
-                                'placeholder': 'placeholder.password'|trans({}, 'register'),
-                                'id': 'password',
-                                'class': 'shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 mt-1 leading-tight focus:outline-none focus:shadow-outline'
-                            }
-                        }) }}
-                        <i class="bi bi-eye-slash"style="align-self: center;position: relative;left: -28px;" id="togglePassword"></i>
+                    <div class="flex flex-col pt-4">
+                        <label for="password" class="text-lg" style="margin-left: 2rem;">{{ 'label.password'|trans({}, 'register') }}</label>
+                        <div class="input-with-icon d-flex">
+                            {{ form_widget(form.password, {
+                                'attr': {
+                                    'type': 'password',
+                                    'placeholder': 'placeholder.password'|trans({}, 'register'),
+                                    'id': 'password',
+                                    'class': 'shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 mt-1 leading-tight focus:outline-none focus:shadow-outline'
+                                }
+                            }) }}
+                            <i class="bi bi-eye-slash" style="align-self: center; position: relative; left: -28px;" id="togglePassword"></i>
+                        </div>
+                        {% if form.password.vars.errors|length > 0 %}
+                            <div class="alert alert-danger">
+                                {% set firstError = form.password.vars.errors[0] %}
+                                {% set translatedMessage = firstError.message|trans({}, 'register') %}
+                                {{ translatedMessage }}<br>
+                            </div>
+                        {% endif %}
                     </div>
-                </div>
 
 
 
@@ -126,18 +135,18 @@
                     }) }}  
                 </div> #}
 
-                <div class="flex justify-center mx-4 mb-3 mb-lg-4 m-4">
-                    <button type="submit" class="btn btn-primary btn-lg">{{ 'btn.register'|trans({}, 'register')}}</button>
-                </div>
-                 <div class="text-center d-flex">
-                
-                	{{ form_widget(form.agreeTerms, {
-						'attr': {
-							'id': 'terms'
-                            
-						}
-					}) }}
-                </div>
+                    <div class="flex justify-center mx-4 mb-3 mb-lg-4 m-4">
+                        <button type="submit" class="btn btn-primary btn-lg">{{ 'btn.register'|trans({}, 'register')}}</button>
+                    </div>
+                    <div class="text-center d-flex">
+                    
+                        {{ form_widget(form.agreeTerms, {
+                            'attr': {
+                                'id': 'terms'
+                                
+                            }
+                        }) }}
+                    </div>
 
                 {{ form_end(form) }}
 
@@ -154,6 +163,8 @@
         </div>
     </div>
 </body>
+
+
 <script>
     const togglePassword = document.querySelector("#togglePassword");
     const password = document.querySelector("#registration_form_password");
