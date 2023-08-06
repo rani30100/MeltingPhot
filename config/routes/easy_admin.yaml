@@ -1,9 +1,9 @@
 # config/routes/easy_admin.yaml
 
-# easy_admin_bundle:
-#     resource: 'src/Controller/Admin'
-#     type: annotation
-#     prefix: /admin
+easy_admin_bundle:
+    controller: App\Controller\Admin\DashboardController::index
+    path: /admin
+    prefix: /admin
 
 # change_roles:
 #     path: /admin/user/{id}/change-roles
