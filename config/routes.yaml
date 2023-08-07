@@ -19,19 +19,19 @@ kernel:
     type: attribute
 
 # routes.yaml
-app_security:
-    resource: App\Controller\SecurityController
-    type: annotation
+# app_security:
+#     resource: App\Controller\SecurityController
+#     type: annotation
 
-app_register:
-    path: /new-account
-    controller: App\Controller\RegistrationController::register
-    methods: [GET, POST]
+# app_register:
+#     path: /new-account
+#     controller: App\Controller\RegistrationController::register
+#     methods: [GET, POST]
 
-app_verify_email:
-    path: /verify/email
-    controller: App\Controller\RegistrationController::verifyUserEmail
-    methods: [GET]
+# app_verify_email:
+#     path: /verify/email
+#     controller: App\Controller\RegistrationController::verifyUserEmail
+#     methods: [GET]
 
 
 

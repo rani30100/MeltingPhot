@@ -21,7 +21,7 @@ services:
     # App\Services\PdfImageExtractor:
     #     arguments:
     #         $imageDirectory : '%kernel.project_dir%/public/pdf-images'
-    
+
     App\:
         resource: '../src/'
         exclude:
