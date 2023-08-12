@@ -44,9 +44,9 @@ class DashboardController extends AbstractDashboardController
     {
 
 
-        // if (!$this->isGranted('ROLE_SUPER_ADMIN') && !$this->isGranted('ROLE_ADMIN')) {
-        //     throw new AccessDeniedException('You do not have the required roles to access this page.');
-        // }
+        if (!$this->isGranted('ROLE_SUPER_ADMIN') && !$this->isGranted('ROLE_ADMIN')) {
+            throw new AccessDeniedException('You do not have the required roles to access this page.');
+        }
 
 
         // // Option 1. You can make your dashboard redirect to some common page of your backend
@@ -63,7 +63,7 @@ class DashboardController extends AbstractDashboardController
         // Option 3. You can render some custom template to display a proper dashboard with widgets, etc.
         // (tip: it's easier if your template extends from @EasyAdmin/page/content.html.twig)
         //
-        // return parent::index();
+        return parent::index();
     }
 
     public function configureDashboard(): Dashboard
