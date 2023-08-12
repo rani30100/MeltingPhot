@@ -1,4 +1,4 @@
-zzcontrollers:
+controllers:
     resource:
         path: ../src/Controller/
         namespace: App\Controller
@@ -18,22 +18,25 @@ kernel:
     resource: App\Kernel
     type: attribute
 
-when@dev:
-    _errors:
-        resource: '@FrameworkBundle/Resources/config/routing/errors.xml'
-        prefix:   /_error
+# routes.yaml
+# app_security:
+#     resource: App\Controller\SecurityController
+#     type: annotation
 
-error_403:
-    path: /_error/403
-    controller: App\Controller\ErrorController::error403
+# app_register:
+#     path: /new-account
+#     controller: App\Controller\RegistrationController::register
+#     methods: [GET, POST]
 
-error_404:
-    path: /_error/404
-    controller: App\Controller\ErrorController::error404
+# app_verify_email:
+#     path: /verify/email
+#     controller: App\Controller\RegistrationController::verifyUserEmail
+#     methods: [GET]
 
-error_500:
-    path: /_error/500
-    controller: App\Controller\ErrorController::error500
+
+
+
+
 
 
 

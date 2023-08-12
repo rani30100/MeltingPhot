@@ -13,19 +13,16 @@
 	<script>
 		document.addEventListener('DOMContentLoaded', function() {
 			const lazyVideos = document.querySelectorAll('.lazy-video');
-
 			const observer = new IntersectionObserver((entries, observer) => {
 				entries.forEach(entry => {
 					if (entry.isIntersecting) {
 						const video = entry.target;
 						const src = video.getAttribute('data-src');
-
 						video.src = src;
 						observer.unobserve(video);
 					}
 				});
 			});
-
 			lazyVideos.forEach(video => {
 				observer.observe(video);
 			});
@@ -101,8 +98,6 @@
 				</li>
 			{% endif %}
 			<ul></div>
-
-			<p>V.1</p>
 		</nav>
 
 
@@ -142,75 +137,66 @@
 		</div>
 	</nav>
 
-
-<nav class="navbar nav-phone navbar-dark bg-red-500">
-		<div class="container-fluid">
-			<button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarToggleExternalContent" aria-controls="navbarToggleExternalContent" aria-expanded="false" aria-label="Toggle navigation">
-				<span class="navbar-toggler-icon"></span>
-			</button>
-		</div>
-	</nav>
-
-	<div class="shadow nav-phone collapse navbarToggleExternalContent" data-bs-theme="dark">
+	<div class="shadow nav-phone collapse" id="navbarToggleExternalContent" data-bs-theme="dark">
 		<div class=" p-4">
 			<ul class="navbar-nav nav-phone-content me-auto mb-2 mb-lg-0 w-100 d-flex justify-content-center align-items-center">
 				<li class="">
 					<a href="/">
-						<img class="logo me-2" id="logo-MeltingPhot"src="{{ asset('img/logo.png')}}" width alt=""></img>
-					</a>
+						<img class="logo me-2" id="logo-MeltingPhot" src="{{ asset('img/logo.png')}}" width alt=""></img>
 				</li>
+			</a>
+		</li>
 
-				<li class="nav-item me-2 meltingphot">
-					<a class="nav-link" aria-current="page" href="/">MELTINGPHOT</a>
-				</li>
-				<li class="nav-item me-2">
-					<a class="nav-link" href="{{ path("app_actions")}}">Nos Actions</a>
-				</li>
+		<li class="nav-item me-2 meltingphot">
+			<a class="nav-link" aria-current="page" href="/">MELTINGPHOT</a>
+		</li>
+		<li class="nav-item me-2">
+			<a class="nav-link" href="{{ path("app_actions")}}">Nos Actions</a>
+		</li>
 
 
-				<li class="nav-item me-2">
-					<a class="nav-link" href="{{path('app_contact')}}">Nous Contacter</a>
-				</li>
+		<li class="nav-item me-2">
+			<a class="nav-link" href="{{path('app_contact')}}">Nous Contacter</a>
+		</li>
 
-				{% if not app.user %}
-					<li class="nav-item me-2">
-						<a class="nav-link" href="{{path('app_login')}}">
-							<i class="fa-solid fa-user hi-icon hi-icon-user"></i>
-						</a>
+		{% if not app.user %}
+			<li class="nav-item me-2">
+				<a class="nav-link" href="{{path('app_login')}}">
+					<i class="fa-solid fa-user hi-icon hi-icon-user"></i>
+				</a>
 
-					</li>
-				{% endif %}
-				{% if app.user %}
-					{% if 'ROLE_SUPER_ADMIN' in app.user.roles %}
-						<a class="nav-link" href="{{ path('admin_') }}">Ma Page Admin</a>
-					{% endif %}
-				{% endif %}
+			</li>
+		{% endif %}
+		{% if app.user %}
+			{% if 'ROLE_SUPER_ADMIN' in app.user.roles %}
+				<a class="nav-link" href="{{ path('admin_') }}">Ma Page Admin</a>
+			{% endif %}
+		{% endif %}
 
-				{% if app.user %}
-					<li class="nav-item me-2">
-						<a class="nav-link" href="{{path('app_logout')}}">Se déconnecter</a>
-					</li>
-				{% endif %}
-				<div class="d-flex align-items-center">
-					<i id="search-icon" class="fa-solid fa-magnifying-glass mx-3"></i>
-					<form id="search-form" class="d-none">
-						<div class="input-group">
-							<input type="text" class="form-control" placeholder="Rechercher...">
-							<button class="btn btn-primary" type="submit">Rechercher</button>
-						</div>
-					</form>
+		{% if app.user %}
+			<li class="nav-item me-2">
+				<a class="nav-link" href="{{path('app_logout')}}">Se déconnecter</a>
+			</li>
+		{% endif %}
+		<div class="d-flex align-items-center">
+			<i id="search-icon" class="fa-solid fa-magnifying-glass mx-3"></i>
+			<form id="search-form" class="d-none">
+				<div class="input-group">
+					<input type="text" class="form-control" placeholder="Rechercher...">
+					<button class="btn btn-primary" type="submit">Rechercher</button>
 				</div>
-				{% if app.user %}
-					<p class="text-end btn btn-warning mt-3">Bienvenue,{{ app.user.username }}!</p>
-				{% endif %}
-
-				{% if not app.user %}
-					<li class="nav-item me-2">
-						<a class="nav-link" href="{{path('app_register')}}">S'inscrire</a>
-					</li>
-				{% endif %}
-			<ul>
+			</form>
 		</div>
+		{% if app.user %}
+			<p class="text-end btn btn-warning mt-3">Bienvenue,{{ app.user.username }}!</p>
+		{% endif %}
+
+		{% if not app.user %}
+			<li class="nav-item me-2">
+				<a class="nav-link" href="{{path('app_register')}}">S'inscrire</a>
+			</li>
+		{% endif %}
+		<ul></div>
 	</div>
 
 
@@ -233,35 +219,29 @@
 	</section>
 
 	<div class="d-flex flex-column align-items-center justify-content-center bloc-filtres carousel-container mb-5">
-		<div style="height: 65vh;">
-			<div>
-			<h2 for="my-dropdown" class="text-center fw-light">NOS
-				<span class="fw-bold">ACTIONS
+		<h2 for="my-dropdown" class="text-center fw-light">NOS
+			<span class="fw-bold">ACTIONS
 			</h2>
-			<h2 class="text-center">D'EDUCATION
+			<h2>
+				D'EDUCATION
 				<span class="text-center fw-light">PAR L'IMAGE</span>
 			</h2>
+			<div class="d-flex flex-wrap align-items-center justify-content-center mb-3 ">
+				{# quand je clique sur le filme mon futur metier affiche les videos correspondantes a cette categorie  #}
+				<a href="{{ path('app_actions', {'category': 'Je_Filme_Mon_Futur_Métier'}) }}" class="btn col-6 col-sm-2 filter-tab" id="video-link">Je Filme mon futur métier</a>
+				<a href="{{ path('app_actions', {'category':'Odonymes'}) }}" class="btn col-6 col-sm-2 filter-tab">Odonymes</a>
+				<a href="{{ path('app_actions', {'category':'Les_Critiques_pétillantes'}) }}" class="btn col-6 col-sm-2 filter-tab">Les Critiques pétillantes</a>
+				<a href="{{ path('app_actions', {'category':'Parole_Public'}) }}" class="btn col-6 col-sm-2 filter-tab">Parole Public</a>
+				<a href="{{ path('app_actions', {'category':'Les_Vitrines_des_Cévènnes'}) }}" class="btn col-6 col-sm-2 filter-tab">Les Vitrines des Cévènnes</a>
 			</div>
-				<div class="d-flex flex-wrap align-items-center justify-content-center mb-3 ">
-					{# quand je clique sur le filme mon futur metier affiche les videos correspondantes a cette categorie  #}
-					<a href="{{ path('app_actions', {'category': 'Je_Filme_Mon_Futur_Métier'}) }}" class="btn col-6 col-sm-2 filter-tab" id="video-link">Je Filme mon futur métier</a>
-					<a href="{{ path('app_actions', {'category':'Odonymes'}) }}" class="btn col-6 col-sm-2 filter-tab">Odonymes</a>
-					<a href="{{ path('app_actions', {'category':'Les_Critiques_pétillantes'}) }}" class="btn col-6 col-sm-2 filter-tab">Les Critiques pétillantes</a>
-					<a href="{{ path('app_actions', {'category':'Parole_Public'}) }}" class="btn col-6 col-sm-2 filter-tab">Parole Public</a>
-					<a href="{{ path('app_actions', {'category':'Les_Vitrines_des_Cévènnes'}) }}" class="btn col-6 col-sm-2 filter-tab">Les Vitrines des Cévènnes</a>
-				</div>
 
-				<div class="d-flex align-items-center justify-content-center" style="height:56%">
-				
-				<p class="text-center"style="font-size: 50px;">Vidéo en cours d'intégration !</p>
-				</div>
-	
-		</div>
+
+                    <p class="text-6xl mt-11 mb-11">{{ 'noVideo'|trans({}, 'actions') }}</p>
 
 
 
-		
-	
+
+
 
 		<section class="partenaire-pc d-flex align-items-center shadow-lg">
 			<div class="w-50 Pc">
@@ -328,24 +308,21 @@
 
 		<script>
 			document.addEventListener('DOMContentLoaded', function () {
-var videoButtons = document.querySelectorAll('.videos-btn');
-
-videoButtons.forEach(function (button) {
-button.addEventListener('click', function () {
-var videoId = button.dataset.videoId;
-var modalBody = button.closest('.modal').querySelector('.modal-body');
-
-var iframe = document.createElement('iframe');
-iframe.className = 'embed-responsive-item w-100 modal-video';
-iframe.src = 'https://www.youtube.com/embed/' + videoId + '?rel=0';
-iframe.allowfullscreen = true;
-iframe.allow = 'autoplay';
-
-modalBody.innerHTML = '';
-modalBody.appendChild(iframe);
-});
-});
-});
+            var videoButtons = document.querySelectorAll('.videos-btn');
+            videoButtons.forEach(function (button) {
+            button.addEventListener('click', function () {
+            var videoId = button.dataset.videoId;
+            var modalBody = button.closest('.modal').querySelector('.modal-body');
+            var iframe = document.createElement('iframe');
+            iframe.className = 'embed-responsive-item w-100 modal-video';
+            iframe.src = 'https://www.youtube.com/embed/' + videoId + '?rel=0';
+            iframe.allowfullscreen = true;
+            iframe.allow = 'autoplay';
+            modalBody.innerHTML = '';
+            modalBody.appendChild(iframe);
+            });
+            });
+            });
 		</script>
 
 		{# <div class="d-flex justify-content-center flex-wrap bloc-videos p-1" id="video-container"></div> #}

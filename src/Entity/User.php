@@ -8,8 +8,6 @@ use Doctrine\Common\Collections\Collection;
 use Doctrine\Common\Collections\ArrayCollection;
 use Symfony\Component\Validator\Constraints as Assert;
 use Symfony\Component\Security\Core\User\UserInterface;
-use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
-use Symfony\Component\Validator\Context\ExecutionContextInterface;
 use Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface;
 
 #[ORM\Entity(repositoryClass: UserRepository::class)]
@@ -36,13 +34,13 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     #[ORM\Column]
     private $username;
 
-    #[ORM\OneToMany(mappedBy: 'user_id', targetEntity: Posts::class, orphanRemoval: true)]
+    #[ORM\OneToMany(mappedBy: 'user', targetEntity: Posts::class, orphanRemoval: true)]
     private Collection $posts;
 
     #[ORM\ManyToMany(targetEntity: Newsletter::class, mappedBy: 'user_id')]
     private Collection $newsletters;
 
-    #[ORM\OneToMany(mappedBy: 'user', targetEntity: Video::class)]
+    #[ORM\OneToMany(mappedBy: 'user_id', targetEntity: Video::class)]
     private Collection $created_at;
 
     #[ORM\OneToMany(mappedBy: 'user_id', targetEntity: Image::class)]
@@ -58,6 +56,17 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
         $this->created_at = new ArrayCollection();
         $this->images = new ArrayCollection();
     }
+
+       /**
+     * Returns the username of the user.
+     *
+     * @return string
+     */
+    public function __toString(): string
+    {
+        return $this->username;
+    }
+
 
     public function getId(): ?int
     {
@@ -136,7 +145,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     {
         if (!$this->posts->contains($post)) {
             $this->posts->add($post);
-            $post->setUserId($this);
+            $post->setUser($this);
         }
 
         return $this;
@@ -146,8 +155,8 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     {
         if ($this->posts->removeElement($post)) {
             // set the owning side to null (unless already changed)
-            if ($post->getUserId() === $this) {
-                $post->setUserId(null);
+            if ($post->getUser() === $this) {
+                $post->setUser(null);
             }
         }
 
@@ -214,7 +223,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     {
         if (!$this->images->contains($image)) {
             $this->images->add($image);
-            $image->setUserId($this);
+            $image->setUser($this);
         }
 
         return $this;
@@ -224,8 +233,8 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     {
         if ($this->images->removeElement($image)) {
             // set the owning side to null (unless already changed)
-            if ($image->getUserId() === $this) {
-                $image->setUserId(null);
+            if ($image->getUser() === $this) {
+                $image->setUser(null);
             }
         }
 
@@ -244,35 +253,38 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
         return $this;
     }
 
-    // Contraintes de Validation
-    #[Assert\Callback]
-    public function validateUsername(ExecutionContextInterface $context, $payload)
-    {
-        // Check for spaces in the username
-        if (strpos($this->username, ' ') !== false) {
-            $context->buildViolation("Le nom d'utilisateur ne doit pas contenir d'espaces.")
-                ->atPath('username')
-                ->addViolation();
-        }
-        if (strpos($this->password, ' ') !== false) {
-            $context->buildViolation("Le nom d'utilisateur ne doit pas contenir d'espaces.")
-                ->atPath('username')
-                ->addViolation();
-        }
 
-        if (strlen($this->password) < 6) {
-            $context->buildViolation('Le mot de passe doit contenir au minimum 6 caractères')
-                ->atPath('password')
-                ->addViolation();
-        }
 
-        // Check for numbers only at the end of the username
-        if (!preg_match('/^[a-zA-Z]+[0-9]*$/', $this->username)) {
-            $context->buildViolation("Les seuls chiffres du nom d'utilisateur doivent être à la fin. Aucun caractère spécial.")
-                ->atPath('username')
-                ->addViolation();
-        }
-    }
+    // // Contraintes de Validation
+    // #[Assert\Callback]
+    // public function validateUsername(ExecutionContextInterface $context, $payload)
+    // {
+    //     // Check for spaces in the username
+    //     if (strpos($this->username, ' ') !== false) {
+    //         $context->buildViolation("Le nom d'utilisateur ne doit pas contenir d'espaces.")
+    //             ->atPath('username')
+    //             ->addViolation();
+    //     }
+
+    //     if (empty($this->username)) {
+    //         $context->buildViolation("Le Username est un champ obligatoire.")
+    //             ->atPath('username')
+    //             ->addViolation();
+    //     }
+
+    //     if (strlen($this->getPassword()) < 6) {
+    //         $context->buildViolation('Le mot de passe doit contenir au moins 6 caractères.')
+    //             ->atPath('password')
+    //             ->addViolation();
+    //     }
+
+    //     // Check for numbers only at the end of the username
+    //     if (!preg_match('/^[a-zA-Z]+[0-9]*$/', $this->username)) {
+    //         $context->buildViolation("Les seuls chiffres du nom d'utilisateur doivent être à la fin. Aucun caractère spécial.")
+    //             ->atPath('username')
+    //             ->addViolation();
+    //     }
+    // }
 }
 
 

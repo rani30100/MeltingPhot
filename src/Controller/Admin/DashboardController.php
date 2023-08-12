@@ -1,20 +1,23 @@
 <?php
-
 namespace App\Controller\Admin;
 
 //J'appelle les entity pour les liens
+use App\Entity\Ebook;
 use App\Entity\Image;
 use App\Entity\Posts;
 use App\Entity\Video;
-use App\Entity\Category;
 
+use App\Entity\Category;
 use App\Controller\Admin\UserCrudController;
+use App\Entity\Page;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use EasyCorp\Bundle\EasyAdminBundle\Config\Crud;
 use EasyCorp\Bundle\EasyAdminBundle\Config\MenuItem;
 use EasyCorp\Bundle\EasyAdminBundle\Config\Dashboard;
 use Symfony\Component\Security\Http\Attribute\IsGranted;
 use EasyCorp\Bundle\EasyAdminBundle\Router\AdminUrlGenerator;
+use Symfony\Component\Security\Core\Exception\AccessDeniedException;
 use EasyCorp\Bundle\EasyAdminBundle\Controller\AbstractDashboardController;
 
 class DashboardController extends AbstractDashboardController
@@ -41,10 +44,15 @@ class DashboardController extends AbstractDashboardController
     {
 
 
-        // Option 1. You can make your dashboard redirect to some common page of your backend
-        //
-        $adminUrlGenerator = $this->container->get(AdminUrlGenerator::class);
-        return $this->redirect($adminUrlGenerator->setController(UserCrudController::class)->generateUrl());
+        // if (!$this->isGranted('ROLE_SUPER_ADMIN') && !$this->isGranted('ROLE_ADMIN')) {
+        //     throw new AccessDeniedException('You do not have the required roles to access this page.');
+        // }
+
+
+        // // Option 1. You can make your dashboard redirect to some common page of your backend
+        // //
+        // $adminUrlGenerator = $this->container->get(AdminUrlGenerator::class);
+        // return $this->redirect($adminUrlGenerator->setController(UserCrudController::class)->generateUrl());
 
         // Option 2. You can make your dashboard redirect to different pages depending on the user
         //
@@ -55,7 +63,7 @@ class DashboardController extends AbstractDashboardController
         // Option 3. You can render some custom template to display a proper dashboard with widgets, etc.
         // (tip: it's easier if your template extends from @EasyAdmin/page/content.html.twig)
         //
-        // return $this->render('some/path/my-dashboard.html.twig');
+        // return parent::index();
     }
 
     public function configureDashboard(): Dashboard
@@ -82,17 +90,60 @@ class DashboardController extends AbstractDashboardController
         // yield MenuItem::linkToCrud('Ajouter une photo', 'fas fa-plus', ImageCrudController::class)
         // ->setAction(Crud::PAGE_NEW);
 
-        yield MenuItem::section('Statistiques');
-        yield MenuItem::linkToUrl('Mes Stats', 'fa fa-chart-bar', '/business');
-        yield MenuItem::linkToUrl('Mes Livres Numériques', 'fa fa-pencil-alt','admin/ebook/upload');
+      
+
+        yield MenuItem::section('Livres');
+        yield MenuItem::subMenu('Livres Numériques', 'fa fa-pencil-alt')->setSubItems([
+            MenuItem::linkToCrud('Ajouter un Livre ', 'fa fa-pencil-alt',Ebook::class)
+            ->setAction(Crud::PAGE_NEW),
+
+            MenuItem::linkToCrud('Mes Livres Numériques', 'fas fa-eye',Ebook::class)
+           
+
+
+           ]);
         //     // yield MenuItem::linkToCrud('The Label', 'fas fa-list', EntityClass::class);
         //     yield MenuItem::linkToDashboard('Dashboard', 'fa fa-home');
 
         yield MenuItem::section("J'ajoute des éléments");
-        yield MenuItem::linkToCrud('Post', 'fa fa-pencil-alt', Posts::class);
-        yield MenuItem::linkToCrud('Catégorie', 'fa-regular fa-circle-plus', Category::class);
-        yield MenuItem::linkToCrud('Image', 'fa-regular fa-image', Image::class);
-        yield MenuItem::linkToCrud('Vidéo', 'fa-light fa-video', Video::class);
+
+        yield MenuItem::subMenu('Post', 'fa fa-pencil-alt')->setSubItems([
+
+            MenuItem::linkToCrud('Créer un post', 'fa fa-pencil-alt', Posts::class)
+            ->setPermission('ROLE_SUPER_ADMIN'),
+            MenuItem::linkToCrud('Mes Posts', 'fas fa-eye', Posts::class)
+            ->setPermission('ROLE_SUPER_ADMIN'),
+
+        ]);
+
+        yield MenuItem::subMenu('Page','fa-regular fa-image')->setSubItems([
+            MenuItem::linkToCrud('Ajouter une page', 'fas fa-plus', Page::class)->setAction(Crud::PAGE_NEW),
+            MenuItem::linkToCrud('Mes Pages Configuré', 'fas fa-eye', Page::class),
+
+        ]);
+
+        yield MenuItem::subMenu('Categorie','fa-regular fa-circle-plus')->setSubItems([
+            MenuItem::linkToCrud('Créer une catégorie', 'fas fa-plus', Category::class)->setAction(Crud::PAGE_NEW),
+            MenuItem::linkToCrud('Mes catégories', 'fas fa-eye', Category::class),
+
+        ]);
+
+        yield MenuItem::subMenu('Image','fa-regular fa-image')->setSubItems([
+            MenuItem::linkToCrud('Ajouter une image', 'fas fa-plus', Image::class)->setAction(Crud::PAGE_NEW),
+            MenuItem::linkToCrud('Mes Images', 'fas fa-eye', Image::class),
+
+        ]);
+
+        yield MenuItem::subMenu('Vidéos','fa-regular fa-image')->setSubItems([
+            MenuItem::linkToCrud('Ajouter une vidéo', 'fas fa-plus', Video::class)->setAction(Crud::PAGE_NEW),
+            MenuItem::linkToCrud('Mes Vidéos', 'fas fa-eye', Video::class),
+
+        ]);
+
+
+
+        yield MenuItem::section('Statistiques');
+        yield MenuItem::linkToUrl('Mes Stats', 'fa fa-chart-bar', '/business');
         //     yield MenuItem::linkToCrud('Blog Posts', 'fa fa-file-text', PostsCrudController::class);
 
         //     yield MenuItem::section('Users');
@@ -119,4 +170,4 @@ class DashboardController extends AbstractDashboardController
     // {
     //     return Assets::new()
     //         ->addCssFile('css/custom.css');
-    // }
+    // } -->

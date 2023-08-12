@@ -18,6 +18,7 @@ use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\Extension\Core\Type\EmailType;
 use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
 use Symfony\Component\Form\Extension\Core\Type\PasswordType;
+use Symfony\Component\Validator\Context\ExecutionContextInterface;
 
 class RegistrationFormType extends AbstractType
 {
@@ -50,7 +51,7 @@ class RegistrationFormType extends AbstractType
                     ]),
                     new Email([
                         'message' => 'Entrez une adresse email valide.',
-                    ]),
+                    ])
                 ],
             ])
 

@@ -38,6 +38,15 @@ class EbookRepository extends ServiceEntityRepository
             $this->getEntityManager()->flush();
         }
     }
+    public function findByQuery($query)
+    {
+        return $this->createQueryBuilder('e')
+            ->where('e.title LIKE :query')
+            ->setParameter('query', '%' . $query . '%')
+            ->getQuery()
+            ->getResult();
+    }
+    
 
 //    /**
 //     * @return Ebook[] Returns an array of Ebook objects
@@ -63,4 +72,7 @@ class EbookRepository extends ServiceEntityRepository
 //            ->getOneOrNullResult()
 //        ;
 //    }
+
+  
+
 }

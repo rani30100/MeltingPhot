@@ -1,0 +1,26 @@
+.pagination .page a, .pagination .current, .pagination .next a, .pagination .last a, .pagination .first a, .pagination .previous a {
+  color: #D00A4B;
+  transition: transform 0.2s ease;
+  font-size: 22px;
+  text-decoration: none;
+}
+.pagination .current, .pagination .page, .pagination .next, .pagination .last, .pagination .first, .pagination .previous {
+  margin: 0.4rem;
+}
+.pagination .current:hover, .pagination .page:hover, .pagination .next:hover, .pagination .last:hover, .pagination .first:hover, .pagination .previous:hover {
+  transform: scale(1.45);
+  -webkit-text-decoration: underline 3px solid #D00A4B;
+          text-decoration: underline 3px solid #D00A4B;
+}
+.pagination .current {
+  color: black;
+}
+
+@media (max-width: 992px) {
+  .sm-w-80 {
+    width: 80% !important;
+  }
+}
+.m2 {
+  margin: 2rem;
+}/*# sourceMappingURL=search.css.map */

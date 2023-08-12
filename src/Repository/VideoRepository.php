@@ -38,6 +38,14 @@ class VideoRepository extends ServiceEntityRepository
             $this->getEntityManager()->flush();
         }
     }
+    public function findByQuery($query)
+    {
+        return $this->createQueryBuilder('v')
+            ->where('v.title LIKE :query')
+            ->setParameter('query', '%' . $query . '%')
+            ->getQuery()
+            ->getResult();
+    }
 
 //    /**
 //     * @return Video[] Returns an array of Video objects

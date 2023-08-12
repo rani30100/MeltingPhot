@@ -68,7 +68,7 @@
 					</form>
 				</div>
 				{% if app.user %}
-					<p class="text-end btn btn-warning mt-3">Bienvenue{{ app.user.username }}!</p>
+					<p class="text-end btn btn-warning mt-3">Bienvenue {{ app.user.username }}!</p>
 				{% endif %}
 
 				{% if not app.user %}
