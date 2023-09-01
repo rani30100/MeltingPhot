@@ -41,7 +41,7 @@ class VideoCrudController extends AbstractCrudController
             ->setUploadDir('public/uploads/videos/images') // Dossier de destination pour enregistrer les images
             ->setUploadedFileNamePattern('[name].[extension]') // Modèle de nom de fichier pour les images téléchargées
             ->setRequired(false), // Rendre le champ facultatif si nécessaire
-
+            //COmmentaire
         ];
     }
     
