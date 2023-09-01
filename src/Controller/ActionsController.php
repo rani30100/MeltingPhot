@@ -53,23 +53,7 @@ class ActionsController extends AbstractController
         return $client;
     }
 
-    private function getImage(string $videoId): ?string
-    {
-        $client = $this->createGoogleApiClient();
-        $youtube = new YouTube($client);
-
-        // Retrieve video details, including the thumbnail URL
-        $videoDetails = $youtube->videos->listVideos('snippet', [
-            'id' => $videoId,
-            'part' => 'snippet',
-        ]);
-
-        if ($videoDetails->getItems()) {
-            return $videoDetails->getItems()[0]->getSnippet()->getThumbnails()->getDefault()->getUrl();
-        }
-
-        return null;
-    }
+ 
 
 
     #[Route('/actions/{category}/{id}', name: 'app_actions_video')]
@@ -78,7 +62,7 @@ class ActionsController extends AbstractController
       // Récupérer la vidéo à partir de l'identifiant (ID)
       $video = $videoRepository->find($id);
  
-      $videos = $videoRepository->findAll();
+    //   $videos = $videoRepository->findAll();
       // Si la vidéo n'est pas trouvée, vous pouvez gérer l'erreur ici ou rediriger l'utilisateur vers une page d'erreur.
       if (!$video) {
           throw $this->createNotFoundException('La vidéo n\'existe pas.');
@@ -87,7 +71,6 @@ class ActionsController extends AbstractController
       // Rendre le template de la vue qui affiche le modal avec la vidéo correspondante
       return $this->render('actions/modal_video.html.twig', [
           'video' => $video,
-          'videos' => $videos
       ]);
   }
     
@@ -95,8 +78,11 @@ class ActionsController extends AbstractController
 
     #[Route('/actions/{category}', defaults: ['category' => 'Je_Filme_Mon_Futur_Métier'], methods: ['GET', 'HEAD'], name: 'app_actions')]
     public function index(string $category = null, EntityManagerInterface $entityManager, CacheInterface $cache, VideoRepository $videoRepository): Response
-    {
+    { 
+   
+        
         $videos = $videoRepository->findAll();
+        // dd($videos);
         // Essaye de récupérer les vidéos depuis le cache s'ils sont disponibles
         $cachedVideos = $cache->get('playlist_videos', function (ItemInterface $item) use ($category, $entityManager) {
             
@@ -109,7 +95,7 @@ class ActionsController extends AbstractController
                 $youtubeVideos = $this->fetchYouTubeVideos();
 
                 if ($youtubeVideos) {
-                    $imageIndex = 0;
+                    // $imageIndex = 0;
                     foreach ($youtubeVideos as $youtubeVideo) {
                         $videoUrl = 'https://www.youtube.com/embed/' . $youtubeVideo->getSnippet()->getResourceId()->getVideoId();
 
@@ -125,22 +111,22 @@ class ActionsController extends AbstractController
 
                             $category = $entityManager->getRepository(Category::class)->find(2);
                             $video->setCategory($category);
-
+                            $video->setImage('public/uploads/videos/images');
+            
                             // Obtenez l'URL de la miniature en utilisant l'ID de la vidéo
-                            $thumbnailUrl = $this->getImage($youtubeVideo->getSnippet()->getResourceId()->getVideoId());
-                            $video->setImage($thumbnailUrl);
+                            // $thumbnailUrl = $this->getImage($youtubeVideo->getSnippet()->getResourceId()->getVideoId());
+                            // $video->setImage($thumbnailUrl);
 
                             // Assigner le chemin de l'image en fonction de l'index de l'image
-                            $imagePath = '/img/videos/' . $imageIndex . '.jpg';
-                            $video->setImage($imagePath);
+                            // $imagePath = '/img/videos/' . $imageIndex . '.jpg';
+                            // $video->setImage($imagePath);
 
                             $entityManager->persist($video);
 
                             // Incrémentez l'index de l'image pour la vidéo suivante
-                            $imageIndex++;
+                            // $imageIndex++;
                         }
                     }
-
                     $entityManager->flush();
                     $videos = $videoRepository->findByCategory($category);
                 }
@@ -157,10 +143,9 @@ class ActionsController extends AbstractController
             return $this->render('actions/no_videos.html.twig', [
             'category' => $category]);
         }
-
-
+        
         // S'il il n'y a pas de videos misent en cache, prend les videos de la BDD
-        $videosToShow = $cachedVideos ?: $videos;
+        $videosToShow = $cachedVideos ?: $videos;   
 
         return $this->render('actions/index.html.twig', [
             'videos' => $videosToShow,

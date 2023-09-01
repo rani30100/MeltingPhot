@@ -256,9 +256,9 @@
 											<div class="groupe ">
 												<!-- On ouvre une div pour contenir chaque élément vidéo. -->
 												<div class="h-100">
-													{% if video.getImage() %}
+													{% if video.Image %}
 														<!-- On vérifie si la vidéo possède une image associée. -->
-														<img src="{{ asset(video.getImage()) }}"
+													 <img src="{{ asset('uploads/videos/images/' ~ video.image) }}"
 														class="h-100 {% if isFirstVideo %}first-video{% elseif isLastVideo %}last-video{% endif %}" 
 														alt="Video Image"  
 														data-bs-toggle="modal" 
@@ -318,6 +318,7 @@
 				</div>
 			</div>
 				
+
 			<div id="carouselIndicatorsMobile" class="carousel slide">
 				<div class="carousel-inner">
 					{% for i in 0..(videos|length - 1) %}
