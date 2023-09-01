@@ -10,16 +10,19 @@ use App\Repository\VideoRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Contracts\Cache\ItemInterface;
 use Symfony\Contracts\Cache\CacheInterface;
-use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
-use Symfony\Component\HttpFoundation\JsonResponse;
-use Symfony\Component\HttpFoundation\RedirectResponse;
-use Symfony\Component\Routing\Generator\UrlGeneratorInterface;
+use Symfony\Component\DependencyInjection\Attribute\Autowire;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
 class ActionsController extends AbstractController
 {
+    public function __construct(
+        #[Autowire('%env(GOOGLE_API_YOUTUBE)%')]
+        private $apiYoutube,
+ 
+    ) {
+    }
     //Recuperaton des videos ytb
     private function fetchYouTubeVideos(): ?array
     {
@@ -49,7 +52,7 @@ class ActionsController extends AbstractController
     {
         $client = new Client();
         $client->setApplicationName('MeltingPhot');
-        $client->setDeveloperKey('AIzaSyDNbPQ6M-fqyLQCyRNtkdJuhIdLDS1CoP4');
+        $client->setDeveloperKey($this->apiYoutube);
         return $client;
     }
 
