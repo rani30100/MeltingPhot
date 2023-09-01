@@ -2,20 +2,24 @@
 
 namespace App\Controller;
 
+
+use App\Entity\Page;
 use App\Entity\User;
 use Doctrine\ORM\EntityManagerInterface;
-use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
-use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Component\HttpFoundation\RedirectResponse;
+use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
 use Symfony\Component\Security\Http\Authentication\AuthenticationUtils;
 
 class SecurityController extends AbstractController
 {
     #[Route(path: '/login', name: 'app_login')]
-    public function login(AuthenticationUtils $authenticationUtils, Request $request, EntityManagerInterface $entityManager): Response
+    public function login(AuthenticationUtils $authenticationUtils,Request $request, EntityManagerInterface $entityManager): Response
     {
+        
         if ($this->getUser()) {
             return $this->redirectToRoute('app_home_page');
         }
@@ -43,7 +47,8 @@ class SecurityController extends AbstractController
         return $this->render('security/login.html.twig', [
             'last_username' => $lastUsername,
             'error' => $error,
-            'user' => $user, // Pass the user variable to the template
+            'user' => $user,
+         // Pass the user variable to the template
         ]);
     }
 

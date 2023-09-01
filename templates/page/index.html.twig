@@ -167,14 +167,12 @@
     </div>
 
     <section class='h-50 d-flex justify-center'>
-         {# <h1>{{ page.title }}</h1>
-         <div>{{ page.content|raw }}</div>  #}
 
 		       <section>
-        {# Loop through the posts collection and display each post's title and description #}
-        {# {% for post in page.posts %}
+         {% for post in page.posts %}
 		<section class="d-flex justify-center flex-column">
 		
+         <h2>{{ page.content|raw }}</h2>  
             <h1 class="text-center">{{ post.title }}</h2>
             <p class="text-center">{{ post.description|raw }}</p>
 			<div>
@@ -185,9 +183,9 @@
 			
 		
 		</section>
-			{# {{post.path}} #}
+			 {{post.path}} 
 			
-        {# {% endfor %} #} 
+         {% endfor %}  
     </section>
 
     </section>

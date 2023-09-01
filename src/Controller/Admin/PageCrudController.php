@@ -48,6 +48,12 @@ class PageCrudController extends AbstractCrudController
         if ($entityInstance instanceof Page) {
             $this->computeSlug($entityInstance); // Compute the slug before persisting the entity
         }
+        $existingPageWithSlug = $entityManager->getRepository(Page::class)->findOneBy(['slug' => $entityInstance->getSlug()]);
+
+        if ($existingPageWithSlug) {
+            // Handle the case where the slug is already used, for example, by appending a unique identifier
+            $entityInstance->setSlug($this->generateUniqueSlug($entityInstance->getSlug()));
+        }
 
         parent::persistEntity($entityManager, $entityInstance);
     }
@@ -57,4 +63,21 @@ class PageCrudController extends AbstractCrudController
         $slug = $this->slugger->slug((string) $page->getTitle())->lower();
         $page->setSlug($slug);
     }
+
+    private function generateUniqueSlug(string $slug)
+    {
+        // Generate a unique slug, for example, by appending a unique identifier
+        $uniqueSlug = $slug . '-' . uniqid();
+
+        return $uniqueSlug;
+    }
 }
+
+
+
+
+
+
+
+
+//etape 2 : Verifier si slug nest pas deja utilise lors de la creation du slug

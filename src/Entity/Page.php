@@ -3,17 +3,17 @@
 namespace App\Entity;
 
 use Doctrine\DBAL\Types\Types;
+use Doctrine\ORM\Mapping\Index;
 use Doctrine\ORM\Mapping as ORM;
 use App\Repository\PageRepository;
 use Doctrine\Common\Collections\Collection;
-use phpDocumentor\Reflection\Types\Nullable;
 use Doctrine\Common\Collections\ArrayCollection;
-use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\String\Slugger\SluggerInterface;
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 
 
 #[ORM\Entity(repositoryClass: PageRepository::class)]
+#[ORM\Index(name: "slug", columns: ["slug"])]
 #[UniqueEntity('slug')]
 class Page
 {

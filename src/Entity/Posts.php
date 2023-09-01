@@ -2,8 +2,8 @@
 
 namespace App\Entity;
 
+use App\Entity\Page;
 use App\Entity\User;
-use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
 use App\Repository\PostsRepository;
 use Doctrine\Common\Collections\Collection;
@@ -33,7 +33,7 @@ class Posts
     #[ORM\Column(length: 255, nullable: true)]
     private ?string $path = null;
 
-    #[ORM\Column]
+    #[ORM\Column (nullable: true)]
     private ?int $imageSize = null;
 
     #[ORM\Column(type: "text")]
