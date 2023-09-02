@@ -83,9 +83,16 @@ class ActionsController extends AbstractController
     public function index(string $category = null, EntityManagerInterface $entityManager, CacheInterface $cache, VideoRepository $videoRepository): Response
     { 
    
+        $video = new Video();
         
         $videos = $videoRepository->findAll();
-        // dd($videos);
+
+        $jeFilmeMonFuturMétier = 'Je_Filme_Mon_Futur_Métier';
+        $odonymes = $category === 'Odonymes';
+        $lesCritiquesPétillantes = 'Les_Critiques_pétillantes';
+        $parolePublic = 'Parole_Public';
+        $lesVitrinesDesCévènnes= "Les_Vitrines_des_Cévènnes";
+
         // Essaye de récupérer les vidéos depuis le cache s'ils sont disponibles
         $cachedVideos = $cache->get('playlist_videos', function (ItemInterface $item) use ($category, $entityManager) {
             
@@ -115,19 +122,8 @@ class ActionsController extends AbstractController
                             $category = $entityManager->getRepository(Category::class)->find(2);
                             $video->setCategory($category);
                             $video->setImage('public/uploads/videos/images');
-            
-                            // Obtenez l'URL de la miniature en utilisant l'ID de la vidéo
-                            // $thumbnailUrl = $this->getImage($youtubeVideo->getSnippet()->getResourceId()->getVideoId());
-                            // $video->setImage($thumbnailUrl);
-
-                            // Assigner le chemin de l'image en fonction de l'index de l'image
-                            // $imagePath = '/img/videos/' . $imageIndex . '.jpg';
-                            // $video->setImage($imagePath);
-
+        
                             $entityManager->persist($video);
-
-                            // Incrémentez l'index de l'image pour la vidéo suivante
-                            // $imageIndex++;
                         }
                     }
                     $entityManager->flush();
@@ -140,11 +136,37 @@ class ActionsController extends AbstractController
             $item->set($videos);
             return $videos;
         });
-
-        // Si les vidéos récupérées sont vides et que la catégorie n'est pas celle par défaut, rend le template "novideo.html.twig"
-        if ($category !== 'Je_Filme_Mon_Futur_Métier' && empty($cachedVideos)) {
+        // dd($category === $lesCritiquesPétillantes && empty($video->getUrl()));
+        
+        if ($category === $odonymes && empty($video->getUrl())) {
+            // La catégorie est 'Odonymes' et il n'y a pas de vidéos, donc on affiche le modèle 'novideo.html.twig'
             return $this->render('actions/no_videos.html.twig', [
-            'category' => $category]);
+                'category' => $category
+            ]);
+        // }else{
+            // $videos = $videoRepository->findByCategory($category);
+
+            // return $this->render('actions/index.html.twig', [
+            //     'videos' => $video->getUrl(),
+            // ]);
+        }
+        if ($category === $lesCritiquesPétillantes && empty($video->getUrl())) {
+            // La catégorie est 'Odonymes' et il n'y a pas de vidéos, donc on affiche le modèle 'novideo.html.twig'
+            return $this->render('actions/no_videos.html.twig', [
+                'category' => $category
+            ]);
+        }
+        if ($category === $parolePublic && empty($video->getUrl())) {
+            // La catégorie est 'Odonymes' et il n'y a pas de vidéos, donc on affiche le modèle 'novideo.html.twig'
+            return $this->render('actions/no_videos.html.twig', [
+                'category' => $category
+            ]);
+        }
+        if ($category === $lesVitrinesDesCévènnes && empty($video->getUrl())) {
+            // La catégorie est 'Odonymes' et il n'y a pas de vidéos, donc on affiche le modèle 'novideo.html.twig'
+            return $this->render('actions/no_videos.html.twig', [
+                'category' => $category
+            ]);
         }
         
         // S'il il n'y a pas de videos misent en cache, prend les videos de la BDD
