@@ -5,6 +5,7 @@ namespace App\Controller;
 
 
 use App\Form\LoginFormType;
+use App\Form\ResetPasswordRequestFormType;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Security\Core\Security;
 use Symfony\Component\HttpFoundation\Response;
@@ -27,8 +28,14 @@ class SecurityController extends AbstractController
         $error = $authenticationUtils->getLastAuthenticationError();
         // last username entered by the user
         $lastUsername = $authenticationUtils->getLastUsername();
+        // $formResetPassword = $this->createForm(ResetPasswordRequestFormType::class);
+        
 
-        return $this->render('security/login.html.twig', ['last_username' => $lastUsername, 'error' => $error]);
+        return $this->render('security/login.html.twig', [
+            'last_username' => $lastUsername,
+             'error' => $error,
+            //  'form'=> $formResetPassword
+            ]);
     }
 
     

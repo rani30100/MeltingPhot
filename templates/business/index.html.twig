@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Statistiques Google Analytics</title>
+</head>
+<body>
+    <h1>Statistiques Google Analytics</h1>
+
+    {% if results %}
+        <table>
+            <thead>
+                <tr>
+                    <th>Date</th>
+                    <th>Sessions</th>
+                    <th>Pageviews</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for row in results.getRows() %}
+                    <tr>
+                        <td>{{ row[0] }}</td>
+                        <td>{{ row[1] }}</td>
+                        <td>{{ row[2] }}</td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    {% else %}
+        <p>Aucune donnée de statistiques Google Analytics disponible.</p>
+    {% endif %}
+</body>
+</html>

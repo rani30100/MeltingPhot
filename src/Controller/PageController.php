@@ -9,7 +9,7 @@ use Symfony\Component\HttpFoundation\Response;
 
 class PageController extends AbstractController
 {
-    #[Route("/{slug}", name: "app_page_show", priority: -1, requirements: ["slug" => "^(?!.*\.(jpg|png|gif|jpeg)$).+"])]
+    #[Route("/{slug}", name: "app_page_show", priority: -1)]
 
     public function show(Page $page): Response
     {
