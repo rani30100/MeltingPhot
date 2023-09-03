@@ -10,62 +10,75 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
 class BusinessController extends AbstractController
 {
-    public function __construct(
-        #[Autowire('%env(GOOGLE_API_KEY)%')]
-        private $apiKey,
-    ) {
-    }
-
-    #[Route('/business', name: 'app_business')]
-    public function index(KernelInterface $kernel): Response
+    public function initializeAnalytics(KernelInterface $kernel)
     {
         $KEY_FILE_LOCATION = $kernel->getProjectDir() . '/googleCredentials.json';
 
         $client = new \Google_Client();
+        $client->setRedirectUri('http://127.0.0.1:8000/oauth2callback.php');
+        $client->setAccessType('offline');
+        $client->setApplicationName('Analytics Reporting');
         $client->setAuthConfig($KEY_FILE_LOCATION);
-        $client->addScope(\Google_Service_Analytics::ANALYTICS_READONLY); // Utilisez le scope approprié pour la lecture seule
+        $client->setScopes(Analytics::ANALYTICS_READONLY);
 
-        // Définissez le token d'accès si nécessaire
-        // $client->setAccessToken($accessToken);
-
-        // Si vous n'avez pas déjà un jeton d'accès, vous devrez obtenir l'autorisation de l'utilisateur
-        if (!$client->getAccessToken()) {
+        if (!isset($_SESSION['access_token'])) {
+            // Si le jeton d'accès n'est pas dans la session, redirigez l'utilisateur vers la page d'autorisation
             $authUrl = $client->createAuthUrl();
             header('Location: ' . $authUrl);
             exit;
         }
 
-        $analytics = new Analytics($client);
+        $accessToken = $_SESSION['access_token'];
 
-        // Obtenez la liste des comptes disponibles
-        $accounts = $analytics->management_accounts->listManagementAccounts();
-
-        // Obtenez les données de la première vue (property) disponible
-        if (!empty($accounts->getItems())) {
-            $account = $accounts->getItems()[0];
-            $properties = $analytics->management_webproperties->listManagementWebproperties($account['id']);
-            if (!empty($properties->getItems())) {
-                $property = $properties->getItems()[0];
-                $views = $analytics->management_profiles->listManagementProfiles($account['id'], $property['id']);
-                if (!empty($views->getItems())) {
-                    $view = $views->getItems()[0];
-
-                    // Obtenez des données spécifiques pour cette vue
-                    $viewId = 'ga:' . $view['id'];
-                    $startDate = '7daysAgo'; // Période de début souhaitée (ex. : '7daysAgo' pour les 7 derniers jours)
-                    $endDate = 'today'; // Période de fin souhaitée (ex. : 'today' pour aujourd'hui)
-                    $metrics = 'ga:sessions,ga:pageviews'; // Les métriques que vous souhaitez récupérer
-
-                    $results = $analytics->data_ga->get($viewId, $startDate, $endDate, $metrics);
-
-                    // Vous pouvez maintenant utiliser $results pour obtenir les données de statistiques
-                    dd($results);
-                }
-            }
+        // Vérifiez si le jeton d'accès est expiré
+        if ($client->isAccessTokenExpired()) {
+            // Si le jeton d'accès est expiré, utilisez le jeton de rafraîchissement pour en obtenir un nouveau
+            $newAccessToken = $client->fetchAccessTokenWithRefreshToken($accessToken['refresh_token']);
+            // Mettez à jour le jeton d'accès dans la session
+            $_SESSION['access_token'] = $newAccessToken;
+            $accessToken = $newAccessToken;
         }
 
+        // Assurez-vous que le jeton d'accès est configuré dans le client
+        $client->setAccessToken($accessToken);
+
+        $analytics = new Analytics($client);
+        return $analytics;
+    }
+
+
+
+    
+    
+    #[Route('/business', name: 'app_business')]
+    public function index(KernelInterface $kernel): Response
+    {
+        
+        $analytics = $this->initializeAnalytics($kernel);
+
+        // // Obtenez la liste des comptes disponibles
+        $stats = $this->getAnalyticsData($analytics);
+
         return $this->render('business/index.html.twig', [
-            // 'stats' => $stats,
+            'stats' => $stats,
         ]);
+    }
+    private function getAnalyticsData($analytics)
+    {
+        // Vous pouvez ajouter ici le code pour récupérer les données de Google Analytics
+        // Par exemple :
+        $viewId = 'ga:YOUR_VIEW_ID';
+        $startDate = '7daysAgo';
+        $endDate = 'today';
+        $metrics = 'ga:sessions,ga:pageviews';
+        $results = $analytics->data_ga->get($viewId, $startDate, $endDate, $metrics);
+        
+        // Dans cet exemple, $results contiendrait les données que vous souhaitez afficher.
+
+        // Retournez les données que vous souhaitez afficher dans la vue Twig
+        return [
+            'sessions' => $results->getTotalsForAllResults()['ga:sessions'],
+            'pageviews' => $results->getTotalsForAllResults()['ga:pageviews'],
+        ];
     }
 }
