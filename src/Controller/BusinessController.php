@@ -1,16 +1,36 @@
 <?php
 
 namespace App\Controller;
+
 use Google\Service\Analytics;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\HttpKernel\KernelInterface;
-use Symfony\Component\DependencyInjection\Attribute\Autowire;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
 class BusinessController extends AbstractController
 {
-    public function initializeAnalytics(KernelInterface $kernel)
+    #[Route('/business', name: 'app_business')]
+    public function index(KernelInterface $kernel): Response
+    {
+        $analytics = $this->initializeAnalytics($kernel);
+
+        // Vérifiez si l'utilisateur est déjà connecté
+        if (!$this->isUserConnected($analytics)) {
+            // Redirigez l'utilisateur vers l'authentification Google
+            $authUrl = $analytics->createAuthUrl();
+            return $this->redirect($authUrl);
+        }
+
+        // Obtenez les statistiques Google Analytics
+        $stats = $this->getAnalyticsData($analytics);
+
+        return $this->render('business/index.html.twig', [
+            'stats' => $stats,
+        ]);
+    }
+
+    private function initializeAnalytics(KernelInterface $kernel): \Google_Client
     {
         $KEY_FILE_LOCATION = $kernel->getProjectDir() . '/googleCredentials.json';
 
@@ -21,64 +41,39 @@ class BusinessController extends AbstractController
         $client->setAuthConfig($KEY_FILE_LOCATION);
         $client->setScopes(Analytics::ANALYTICS_READONLY);
 
-        if (!isset($_SESSION['access_token'])) {
-            // Si le jeton d'accès n'est pas dans la session, redirigez l'utilisateur vers la page d'autorisation
-            $authUrl = $client->createAuthUrl();
-            header('Location: ' . $authUrl);
-            exit;
-        }
-
-        $accessToken = $_SESSION['access_token'];
-
-        // Vérifiez si le jeton d'accès est expiré
-        if ($client->isAccessTokenExpired()) {
-            // Si le jeton d'accès est expiré, utilisez le jeton de rafraîchissement pour en obtenir un nouveau
-            $newAccessToken = $client->fetchAccessTokenWithRefreshToken($accessToken['refresh_token']);
-            // Mettez à jour le jeton d'accès dans la session
-            $_SESSION['access_token'] = $newAccessToken;
-            $accessToken = $newAccessToken;
-        }
-
-        // Assurez-vous que le jeton d'accès est configuré dans le client
-        $client->setAccessToken($accessToken);
-
-        $analytics = new Analytics($client);
-        return $analytics;
+        return $client;
     }
 
-
-
-    
-    
-    #[Route('/business', name: 'app_business')]
-    public function index(KernelInterface $kernel): Response
+    private function isUserConnected($analytics): bool
     {
-        
-        $analytics = $this->initializeAnalytics($kernel);
+        // Vérifiez si le jeton d'accès existe et s'il est encore valide
+        if ($analytics->getAccessToken()) {
+            return !$analytics->isAccessTokenExpired();
+        }
 
-        // // Obtenez la liste des comptes disponibles
-        $stats = $this->getAnalyticsData($analytics);
-
-        return $this->render('business/index.html.twig', [
-            'stats' => $stats,
-        ]);
+        return false;
     }
-    private function getAnalyticsData($analytics)
+
+    private function getAnalyticsData($analytics): array
     {
-        // Vous pouvez ajouter ici le code pour récupérer les données de Google Analytics
-        // Par exemple :
-        $viewId = 'ga:YOUR_VIEW_ID';
+        $viewId = 'ga:YOUR_VIEW_ID'; // Remplacez par l'ID de vue réel
         $startDate = '7daysAgo';
         $endDate = 'today';
         $metrics = 'ga:sessions,ga:pageviews';
-        $results = $analytics->data_ga->get($viewId, $startDate, $endDate, $metrics);
         
-        // Dans cet exemple, $results contiendrait les données que vous souhaitez afficher.
-
-        // Retournez les données que vous souhaitez afficher dans la vue Twig
-        return [
-            'sessions' => $results->getTotalsForAllResults()['ga:sessions'],
-            'pageviews' => $results->getTotalsForAllResults()['ga:pageviews'],
-        ];
+        try {
+            $results = $analytics->data_ga->get($viewId, $startDate, $endDate, $metrics);
+            
+            return [
+                'sessions' => $results->getTotalsForAllResults()['ga:sessions'],
+                'pageviews' => $results->getTotalsForAllResults()['ga:pageviews'],
+            ];
+        } catch (\Exception $e) {
+            // Gérer les erreurs, par exemple, en enregistrant les erreurs ou en affichant un message d'erreur à l'utilisateur.
+            return [
+                'sessions' => 0,
+                'pageviews' => 0,
+            ];
+        }
     }
 }
