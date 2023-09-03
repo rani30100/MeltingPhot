@@ -35,7 +35,7 @@ class BusinessController extends AbstractController
         $KEY_FILE_LOCATION = $kernel->getProjectDir() . '/googleCredentials.json';
 
         $client = new \Google_Client();
-        $client->setRedirectUri('https://meltingphot.org/oauth2callback.php');
+        $client->setRedirectUri('https://meltingphot.org/business/oauth2callback.php');
         $client->setAccessType('offline');
         $client->setApplicationName('Analytics Reporting');
         $client->setAuthConfig($KEY_FILE_LOCATION);
