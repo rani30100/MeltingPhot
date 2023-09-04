@@ -24,10 +24,13 @@ class VideoCrudController extends AbstractCrudController
     {
         return [
             IdField::new('id')->hideOnForm(),
+         
+            AssociationField::new('user', 'Utilisateur')
+            ->setLabel('Utilisateur'),
 
             TextField::new('user_id')->hideOnForm(),
 
-            TextEditorField::new('title'),
+            TextField::new('title'),
 
             DateTimeField::new('created_at')->onlyOnIndex(),
 

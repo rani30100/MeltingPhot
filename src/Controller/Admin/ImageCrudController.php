@@ -21,7 +21,7 @@ class ImageCrudController extends AbstractCrudController
     
     public function configureFields(string $pageName): iterable
     { 
-        yield TextEditorField::new('title', "Titre ");
+        yield TextField::new('title', "Titre ");
         yield ImageField::new('path')
             ->setLabel('Image')
             ->setBasePath('uploads/')

@@ -36,7 +36,7 @@ class PageCrudController extends AbstractCrudController
     {
         yield TextField::new('title')->setLabel('Titre');
         yield TextField::new('slug')->setLabel('/Url')->hideOnForm();
-        yield TextEditorField::new('content')->setLabel('Contenu');
+        yield TextField::new('content')->setLabel('Contenu');
         yield AssociationField::new('posts')
             ->setLabel('Posts')
             ->setFormTypeOption('by_reference', false)

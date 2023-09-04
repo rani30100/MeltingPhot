@@ -49,7 +49,7 @@ class PostsCrudController extends AbstractCrudController
             ->hideOnForm()
             ->hideOnIndex(),
             TextField::new('title')->setLabel('Titre du Post'),
-            TextEditorField::new('description', 'Description'),
+            TextField::new('description', 'Description'),
 
             ImageField::new('path', 'Image')
 

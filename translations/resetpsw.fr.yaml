@@ -1,3 +1,8 @@
 Titre1: 'Reinitialisez votre mot de passe'
-Description :  Entrez votre adresse email,et vous recevrer un email de reinitialisation de votre mot de passe.
+Description :  Entrez votre adresse email, et vous recevrer un email de reinitialisation de votre mot de passe.
 btn : Envoyez
+
+check_email : S'il existe un compte correspondant à votre adresse e-mail, un e-mail vient d'être envoyé contenant un lien que vous pouvez utiliser pour réinitialiser votre mot de passe. 
+this_link : Ce lien expirera dans
+retry : Si vous ne recevez pas d'e-mail, veuillez vérifier votre dossier spam ou
+tryAgain : réessayer

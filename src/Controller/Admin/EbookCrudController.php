@@ -48,8 +48,9 @@ class EbookCrudController extends AbstractCrudController
         yield TextField::new('author')
             ->setLabel('Auteur');
 
-        yield TextEditorField::new('description')
+        yield TextField::new('description')
             ->setLabel('Description');
+            
             
         yield TextField::new('pdf', 'Lien du Livre Numérique')
         ->setTemplatePath('admin/ebook/pdf_link.html.twig')

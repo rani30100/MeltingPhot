@@ -23,6 +23,11 @@ class Video
 
     #[ORM\ManyToOne(inversedBy: 'created_at')]
     private ?User $user = null;
+     /**
+     * @ORM\ManyToOne(targetEntity="App\Entity\User")
+     * @ORM\JoinColumn(name="username", referencedColumnName="username")
+     */
+    private $username;
 
     #[ORM\Column(type: 'datetime_immutable')]
     private ?\DateTimeImmutable $created_at = null;
@@ -118,6 +123,26 @@ class Video
     public function setImage(?string $Image): self
     {
         $this->Image = $Image;
+
+        return $this;
+    }
+
+    /**
+     * Get the value of username
+     */ 
+    public function getUsername()
+    {
+        return $this->username;
+    }
+
+    /**
+     * Set the value of username
+     *
+     * @return  self
+     */ 
+    public function setUsername($username)
+    {
+        $this->username = $username;
 
         return $this;
     }

@@ -93,7 +93,7 @@ class DashboardController extends AbstractDashboardController
       
 
         yield MenuItem::section('Livres');
-        yield MenuItem::subMenu('Livres Numériques', 'fa fa-pencil-alt')->setSubItems([
+        yield MenuItem::subMenu('Livres Numériques', 'fa-solid fa-book')->setSubItems([
             MenuItem::linkToCrud('Ajouter un Livre ', 'fa fa-pencil-alt',Ebook::class)
             ->setAction(Crud::PAGE_NEW),
 
@@ -116,13 +116,13 @@ class DashboardController extends AbstractDashboardController
 
         ]);
 
-        yield MenuItem::subMenu('Page','fa-regular fa-image')->setSubItems([
+        yield MenuItem::subMenu('Page','fa-solid fa-sheet-plastic')->setSubItems([
             MenuItem::linkToCrud('Ajouter une page', 'fas fa-plus', Page::class)->setAction(Crud::PAGE_NEW),
             MenuItem::linkToCrud('Mes Pages Configuré', 'fas fa-eye', Page::class),
 
         ]);
 
-        yield MenuItem::subMenu('Categorie','fa-regular fa-circle-plus')->setSubItems([
+        yield MenuItem::subMenu('Categorie','fa-solid fa-list')->setSubItems([
             MenuItem::linkToCrud('Créer une catégorie', 'fas fa-plus', Category::class)->setAction(Crud::PAGE_NEW),
             MenuItem::linkToCrud('Mes catégories', 'fas fa-eye', Category::class),
 
@@ -134,16 +134,16 @@ class DashboardController extends AbstractDashboardController
 
         ]);
 
-        yield MenuItem::subMenu('Vidéos','fa-regular fa-image')->setSubItems([
-            MenuItem::linkToCrud('Ajouter une vidéo', 'fas fa-plus', Video::class)->setAction(Crud::PAGE_NEW),
-            MenuItem::linkToCrud('Mes Vidéos', 'fas fa-eye', Video::class),
+        yield MenuItem::subMenu('Vidéos','fa-regular fa-circle-play')->setSubItems([
+            MenuItem::linkToCrud('Ajouter une vidéo', 'fas fa-play', Video::class)->setAction(Crud::PAGE_NEW),
+            MenuItem::linkToCrud('Mes Vidéos', 'fas fa-video', Video::class),
 
         ]);
 
 
 
-        yield MenuItem::section('Statistiques');
-        yield MenuItem::linkToUrl('Mes Stats', 'fa fa-chart-bar', '/business');
+        // yield MenuItem::section('Statistiques');
+        // yield MenuItem::linkToUrl('Mes Stats', 'fa fa-chart-bar', '/business');
         //     yield MenuItem::linkToCrud('Blog Posts', 'fa fa-file-text', PostsCrudController::class);
 
         //     yield MenuItem::section('Users');
