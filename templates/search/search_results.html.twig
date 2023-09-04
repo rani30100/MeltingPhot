@@ -188,25 +188,18 @@
 	
 		</section>
         <ul class="d-flex justify-center flex-column">
-            {% for result in pagination %}        
-                {% if result.Image is defined and not result.url is defined %}
-                    <li class="d-flex justify-center mt-4">
-                        <a href="{{ path({'id': result.id}) }}">
-                            <img src="{{ asset('uploads/' ~ result.Image) }}" alt="{{ result.title }}" style="width: 150px; height: 150px;">
-                        </a>
-                    </li>
-                {% elseif result.url is defined %}
-                    <li class="d-flex justify-center mt-4">
-                        <a href="{{ videoPageUrls[loop.index0] }}">
-                            <img src="{{ asset(result.Image) }}" alt="" style="width: 150px; height: 150px;">
-                        </a>
-                    </li>
-                {% else %}
-                    <li class="d-flex justify-center mt-4">
-                        <img src="{{ asset('uploads/' ~ result.path) }}"style="width: 150px; height: 150px;"></img>
-                    </li>
-                {% endif %}
-            {% endfor %}
+			{# <a href="{{ path({'id': result.id}) }}">	 #}
+			{% for result in pagination %}
+				{% if result.Image is defined and not result.url is defined %}
+					<li class="d-flex justify-center mt-4">
+						<a href="{{ path({'id': result.id}) }}">
+							<img src="{{ asset('uploads/' ~ result.Image) }}" alt="{{ result.title }}" style="width: 150px; height: 150px;">
+						</a>
+					</li>
+				{% endif %}
+
+			{% endfor %}
+
         </ul>
         
         <div class="pagination d-flex justify-center w-30 m2">

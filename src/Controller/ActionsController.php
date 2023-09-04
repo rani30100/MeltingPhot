@@ -56,27 +56,7 @@ class ActionsController extends AbstractController
         return $client;
     }
 
- 
 
-
-    #[Route('/actions/{category}/{id}', name: 'app_actions_video')]
-    public function redirectToVideo(string $category, int $id, VideoRepository $videoRepository): Response
-    {
-      // Récupérer la vidéo à partir de l'identifiant (ID)
-      $video = $videoRepository->find($id);
- 
-    //   $videos = $videoRepository->findAll();
-      // Si la vidéo n'est pas trouvée, vous pouvez gérer l'erreur ici ou rediriger l'utilisateur vers une page d'erreur.
-      if (!$video) {
-          throw $this->createNotFoundException('La vidéo n\'existe pas.');
-      }
-
-      // Rendre le template de la vue qui affiche le modal avec la vidéo correspondante
-      return $this->render('actions/modal_video.html.twig', [
-          'video' => $video,
-      ]);
-  }
-    
 
 
     #[Route('/actions/{category}', defaults: ['category' => 'Je_Filme_Mon_Futur_Métier'], methods: ['GET', 'HEAD'], name: 'app_actions')]
