@@ -11,6 +11,7 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+
 class SearchController extends AbstractController
 {
     #[Route('/search', name: 'app_search_results')]
@@ -32,8 +33,7 @@ class SearchController extends AbstractController
             $url = $videoResult->getId();
             // Obtenez la locale actuelle
             $locale = $request->getLocale();
-            $videoPageUrls[] = 'http://127.0.0.1:8000' . $locale . 'actions/' . $category . '/' . $url;
-        }
+            $videoPageUrls[] = 'http://127.0.0.1:8000' . $locale . 'actions/' . $category . '/' . $url;        }
 
         // Concatenate the results in a single array
         $results = array_merge($ebooks, $videoResults, $images, $posts);
@@ -45,14 +45,10 @@ class SearchController extends AbstractController
             10 // Nombre items par page
         );
 
-        // Create an array to keep track of video IDs that have already been displayed
-        $displayedVideoIds = [];
-
         return $this->render('search/search_results.html.twig', [
             'query' => $query,
             'pagination' => $pagination,
             'videoPageUrls' => $videoPageUrls,
-            'displayedVideoIds' => $displayedVideoIds,
         ]);
     }
 }
