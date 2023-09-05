@@ -10,19 +10,16 @@ use App\Repository\VideoRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Contracts\Cache\ItemInterface;
 use Symfony\Contracts\Cache\CacheInterface;
+use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
-use Symfony\Component\DependencyInjection\Attribute\Autowire;
+use Symfony\Component\HttpFoundation\JsonResponse;
+use Symfony\Component\HttpFoundation\RedirectResponse;
+use Symfony\Component\Routing\Generator\UrlGeneratorInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
 class ActionsController extends AbstractController
 {
-    public function __construct(
-        #[Autowire('%env(GOOGLE_API_YOUTUBE)%')]
-        private $apiYoutube,
- 
-    ) {
-    }
     //Recuperaton des videos ytb
     private function fetchYouTubeVideos(): ?array
     {
@@ -52,81 +49,121 @@ class ActionsController extends AbstractController
     {
         $client = new Client();
         $client->setApplicationName('MeltingPhot');
-        $client->setDeveloperKey($this->apiYoutube);
+        $client->setDeveloperKey('AIzaSyDNbPQ6M-fqyLQCyRNtkdJuhIdLDS1CoP4');
         return $client;
     }
 
+    private function getImage(string $videoId): ?string
+    {
+        $client = $this->createGoogleApiClient();
+        $youtube = new YouTube($client);
+
+        // Retrieve video details, including the thumbnail URL
+        $videoDetails = $youtube->videos->listVideos('snippet', [
+            'id' => $videoId,
+            'part' => 'snippet',
+        ]);
+
+        if ($videoDetails->getItems()) {
+            return $videoDetails->getItems()[0]->getSnippet()->getThumbnails()->getDefault()->getUrl();
+        }
+
+        return null;
+    }
+
+
+    #[Route('/actions/{category}/{id}', name: 'app_actions_video')]
+    public function redirectToVideo(string $category, int $id, VideoRepository $videoRepository): Response
+    {
+      // Récupérer la vidéo à partir de l'identifiant (ID)
+      $video = $videoRepository->find($id);
+ 
+      $videos = $videoRepository->findAll();
+      // Si la vidéo n'est pas trouvée, vous pouvez gérer l'erreur ici ou rediriger l'utilisateur vers une page d'erreur.
+      if (!$video) {
+          throw $this->createNotFoundException('La vidéo n\'existe pas.');
+      }
+
+      // Rendre le template de la vue qui affiche le modal avec la vidéo correspondante
+      return $this->render('actions/modal_video.html.twig', [
+          'video' => $video,
+          'videos' => $videos
+      ]);
+  }
     
+
 
     #[Route('/actions/{category}', defaults: ['category' => 'Je_Filme_Mon_Futur_Métier'], methods: ['GET', 'HEAD'], name: 'app_actions')]
     public function index(string $category = null, EntityManagerInterface $entityManager, CacheInterface $cache, VideoRepository $videoRepository): Response
     {
-        // Définissez un tableau associatif pour mapper les catégories à leurs identifiants
-        $categoryMappings = [
-            'Je_Filme_Mon_Futur_Métier' => 2,
-            'Odonymes' => 3,
-            'Les_Critiques_pétillantes' => 4,
-            'Parole_Public' => 5,
-            'Les_Vitrines_des_Cévènnes' => 6,
-        ];
+        $videos = $videoRepository->findAll();
+        // Essaye de récupérer les vidéos depuis le cache s'ils sont disponibles
+        $cachedVideos = $cache->get('playlist_videos', function (ItemInterface $item) use ($category, $entityManager) {
+            
+            // Récupération des vidéos depuis la base de données pour la catégorie spécifiée
+            $videoRepository = $entityManager->getRepository(Video::class);
+            $videos = $videoRepository->findByCategory($category);
 
-        // Vérifiez si la catégorie categorie dans l'URL existe dans le tableau des mappings
-        //si elle existe associe $categorie a cet id
-        if (array_key_exists($category, $categoryMappings)) {
-            $categoryId = $categoryMappings[$category];
-        } else {
-            // Gére le cas où la catégorie n'est pas reconnue .
-            return $this->render('actions/no_videos.html.twig');
-        }
+            // Si aucune vidéo n'existe pour la catégorie dans la base de données, récupérez-les depuis YouTube et stockez-les
+            if (empty($videos)) {
+                $youtubeVideos = $this->fetchYouTubeVideos();
 
-        // Récupération de la catégorie à partir de son ID
-        $selectedCategory = $entityManager->getRepository(Category::class)->find($categoryId);
+                if ($youtubeVideos) {
+                    $imageIndex = 0;
+                    foreach ($youtubeVideos as $youtubeVideo) {
+                        $videoUrl = 'https://www.youtube.com/embed/' . $youtubeVideo->getSnippet()->getResourceId()->getVideoId();
 
-        $videos = $videoRepository->findByCategory($selectedCategory);
+                        // Vérifier si la vidéo avec la même URL existe déjà dans la base de données
+                        $existingVideo = $videoRepository->findOneBy(['url' => $videoUrl]);
 
-    
-        // Récupération des vidéos depuis la base de données pour la catégorie spécifiée
-        $videos = $videoRepository->findByCategory($selectedCategory);
-        $JeFilmeMonFuturMetier = $entityManager->getRepository(Category::class)->find(2);
+                        if (!$existingVideo) {
+                            // La vidéo n'existe pas dans la base de données, créez-la et persistez-la
+                            $video = new Video();
+                            $video->setTitle($youtubeVideo->getSnippet()->getTitle());
+                            $video->setUrl($videoUrl);
+                            $video->setCreatedAt(new DateTimeImmutable($youtubeVideo->getSnippet()->getPublishedAt()));
 
+                            $category = $entityManager->getRepository(Category::class)->find(2);
+                            $video->setCategory($category);
 
+                            // Obtenez l'URL de la miniature en utilisant l'ID de la vidéo
+                            $thumbnailUrl = $this->getImage($youtubeVideo->getSnippet()->getResourceId()->getVideoId());
+                            $video->setImage($thumbnailUrl);
 
-        // Si aucune vidéo n'existe dans la base de données, récupérez-les depuis YouTube et stockez-les
-        if (empty($videos)) {
-            $youtubeVideos = $this->fetchYouTubeVideos();
+                            // Assigner le chemin de l'image en fonction de l'index de l'image
+                            $imagePath = '/img/videos/' . $imageIndex . '.jpg';
+                            $video->setImage($imagePath);
 
-            if ($youtubeVideos) {
-                foreach ($youtubeVideos as $youtubeVideo) {
-                    $videoUrl = 'https://www.youtube.com/embed/' . $youtubeVideo->getSnippet()->getResourceId()->getVideoId();
+                            $entityManager->persist($video);
 
-                    // Vérifier si la vidéo avec la même URL existe déjà dans la base de données
-                    $existingVideo = $videoRepository->findOneBy(['url' => $videoUrl]);
-
-                    if (!$existingVideo) {
-                        // La vidéo n'existe pas dans la base de données, créez-la et persistez-la
-                        $video = new Video();
-                        $video->setTitle($youtubeVideo->getSnippet()->getTitle());
-                        $video->setUrl($videoUrl);
-                        $video->setCreatedAt(new DateTimeImmutable($youtubeVideo->getSnippet()->getPublishedAt()));
-                        $video->setImage('public/uploads/videos/images');
-                        $video->setCategory($JeFilmeMonFuturMetier);
-
-                        $entityManager->persist($video);
+                            // Incrémentez l'index de l'image pour la vidéo suivante
+                            $imageIndex++;
+                        }
                     }
+
+                    $entityManager->flush();
+                    $videos = $videoRepository->findByCategory($category);
                 }
-                $entityManager->flush();
             }
+
+            // Stocker les vidéos récupérées dans le cache pour une utilisation future
+            $item->expiresAfter(3600); // Cache pendant 1 heure
+            $item->set($videos);
+            return $videos;
+        });
+
+        // Si les vidéos récupérées sont vides et que la catégorie n'est pas celle par défaut, rend le template "novideo.html.twig"
+        if ($category !== 'Je_Filme_Mon_Futur_Métier' && empty($cachedVideos)) {
+            return $this->render('actions/no_videos.html.twig', [
+            'category' => $category]);
         }
-    
-       
-        
-        // Si aucune vidéo n'a été trouvée, vous pouvez afficher une vue "no_videos.html.twig"
-        if (empty($videos)) {
-            return $this->render('actions/no_videos.html.twig');
-        }
+
+
+        // S'il il n'y a pas de videos misent en cache, prend les videos de la BDD
+        $videosToShow = $cachedVideos ?: $videos;
 
         return $this->render('actions/index.html.twig', [
-            'videos' => $videos,
+            'videos' => $videosToShow,
         ]);
     }
 }
