@@ -1,4 +1,5 @@
 <?php
+
 namespace App\Entity;
 
 use DateTimeImmutable;
@@ -30,13 +31,13 @@ class Ebook
     #[ORM\Column(type: Types::TEXT)]
     private ?string $description = null;
 
-    
-    #[ORM\Column(length: 255 , nullable: true)]
-    private ? string $pdf =null;
+
+    #[ORM\Column(length: 255, nullable: true)]
+    private ?string $pdf = null;
 
     #[Vich\UploadableField(mapping: 'ebook_files', fileNameProperty: 'pdf')]
     private ?File $pdfFile = null;
-    
+
 
 
     public function getId(): ?int
@@ -79,11 +80,11 @@ class Ebook
 
 
 
- 
+
     /**
      * Get the value of pdf
-     */ 
-    public function getPdf() : ?string
+     */
+    public function getPdf(): ?string
     {
         return $this->pdf;
     }
@@ -92,7 +93,7 @@ class Ebook
      * Set the value of pdf
      *
      * @return  self
-     */ 
+     */
     public function setPdf($pdf)
     {
         $this->pdf = $pdf;
@@ -102,7 +103,7 @@ class Ebook
 
     /**
      * Get the value of pdfFile
-     */ 
+     */
     public function getPdfFile()
     {
         return $this->pdfFile;
@@ -112,7 +113,7 @@ class Ebook
      * Set the value of pdfFile
      *
      * @return  self
-     */ 
+     */
     public function setPdfFile($pdfFile)
     {
         $this->pdfFile = $pdfFile;
@@ -131,4 +132,9 @@ class Ebook
         }
     }
 
+
+    public function getType()
+    {
+        return "ebook";
+    }
 }

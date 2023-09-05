@@ -118,4 +118,8 @@ class Image
 
         return $this;
     }
+
+    public function getType() {
+        return "image";
+    }
 }

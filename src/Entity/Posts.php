@@ -22,9 +22,9 @@ class Posts
     #[ORM\GeneratedValue]
     #[ORM\Column]
     private ?int $id = null;
-    
+
     #[ORM\ManyToOne(targetEntity: User::class)]
-    #[ORM\JoinColumn(name: 'user_id', referencedColumnName: 'id')] 
+    #[ORM\JoinColumn(name: 'user_id', referencedColumnName: 'id')]
     private ?User $user;
 
     #[ORM\Column(length: 255)]
@@ -33,7 +33,7 @@ class Posts
     #[ORM\Column(length: 255, nullable: true)]
     private ?string $path = null;
 
-    #[ORM\Column (nullable: true)]
+    #[ORM\Column(nullable: true)]
     private ?int $imageSize = null;
 
     #[ORM\Column(type: "text")]
@@ -51,7 +51,7 @@ class Posts
     #[Assert\Valid()]
     private Collection $imagesCollection;
 
-    #[Vich\UploadableField(mapping: 'post_images', fileNameProperty: 'path',size: 'imageSize')]
+    #[Vich\UploadableField(mapping: 'post_images', fileNameProperty: 'path', size: 'imageSize')]
     private ?File $imageFile = null;
 
     #[ORM\Column(type: "string", length: 255, nullable: true)]
@@ -70,15 +70,15 @@ class Posts
 
     #[ORM\Column(type: "string", length: 255, nullable: true)]
     private ?string $position = null;
-    
+
     #[ORM\Column(type: "datetime", nullable: true)]
     private ?\DateTimeInterface $createdAt = null;
-    
+
     #[ORM\Column(type: "datetime", nullable: true)]
     private ?\DateTimeInterface $updatedAt = null;
-      
-    
-    #[ORM\ManyToMany(targetEntity : Page::class, inversedBy : "posts")]
+
+
+    #[ORM\ManyToMany(targetEntity: Page::class, inversedBy: "posts")]
     private Collection $pages;
 
 
@@ -98,10 +98,9 @@ class Posts
     }
     public function __toString()
     {
-        return $this->getTitle() ;
-       
+        return $this->getTitle();
     }
-    
+
     public function getPages(): Collection
     {
         return $this->pages;
@@ -209,7 +208,7 @@ class Posts
 
         return $this;
     }
-    
+
     public function getVideoUrl(): ?string
     {
         return $this->videoUrl;
@@ -234,15 +233,15 @@ class Posts
         return $this;
     }
 
-    
+
     public function getCreatedAt(): ?\DateTimeInterface
     {
         return $this->createdAt;
     }
 
 
-     
-    public function setCreatedAt($createdAt) : self
+
+    public function setCreatedAt($createdAt): self
     {
         $this->createdAt = $createdAt;
 
@@ -254,7 +253,7 @@ class Posts
         return $this->updatedAt;
     }
 
-    public function setUpdatedAt($updatedAt) : self
+    public function setUpdatedAt($updatedAt): self
     {
         $this->updatedAt = $updatedAt;
 
@@ -277,13 +276,13 @@ class Posts
 
     /**
      * Get the value of videoFile
-     */ 
+     */
     public function getVideoFile()
     {
         return $this->videoFile;
     }
 
-  
+
 
 
     public function getImgId(): ?int
@@ -320,12 +319,12 @@ class Posts
         return $this;
     }
 
-    
+
 
 
     /**
      * Get the value of imageFile
-     */ 
+     */
     public function getImageFile()
     {
         return $this->imageFile;
@@ -333,16 +332,16 @@ class Posts
 
     public function setImageFile(?File $imageFile = null): void
     {
-      $this->imageFile = $imageFile;
-    
-      if (null !== $imageFile) {
-        // Il faut biensur que la propriété updatedAt soit crée sur l'Entity.
-        $this->updatedAt = new \DateTimeImmutable();
-      }
+        $this->imageFile = $imageFile;
+
+        if (null !== $imageFile) {
+            // Il faut biensur que la propriété updatedAt soit crée sur l'Entity.
+            $this->updatedAt = new \DateTimeImmutable();
+        }
     }
     /**
      * Get the value of path
-     */ 
+     */
     public function getPath()
     {
         return $this->path;
@@ -352,7 +351,7 @@ class Posts
      * Set the value of path
      *
      * @return  self
-     */ 
+     */
     public function setPath($path)
     {
         $this->path = $path;
@@ -362,7 +361,7 @@ class Posts
 
     /**
      * Get the value of imageSize
-     */ 
+     */
     public function getImageSize()
     {
         return $this->imageSize;
@@ -372,11 +371,16 @@ class Posts
      * Set the value of imageSize
      *
      * @return  self
-     */ 
+     */
     public function setImageSize($imageSize)
     {
         $this->imageSize = $imageSize;
 
         return $this;
+    }
+
+    public function getType()
+    {
+        return "post";
     }
 }

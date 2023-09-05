@@ -36,6 +36,7 @@ class ImageCrudController extends AbstractCrudController
             ->setRequired(true);
         yield DateTimeField::new('created_at', "Ajouté le ")
         ->hideWhenCreating()
+        ->hideOnForm()
         ->renderAsChoice();
         yield AssociationField::new('page', 'Page')
         ->setFormType(EntityType::class, [

@@ -166,29 +166,41 @@
 		</div>
     </div>
 
-    <section class='h-50 d-flex justify-center'>
-
-		       <section>
-         {% for post in page.posts %}
-		<section class="d-flex justify-center flex-column">
-		
-         <h2>{{ page.content|raw }}</h2>  
-            <h1 class="text-center">{{ post.title }}</h2>
-            <p class="text-center">{{ post.description|raw }}</p>
-			<div>
-			<img src="{{ asset('uploads/post/images/' ~ post.path) }}" style="height:100px" alt="">
-			
+<section class=" d-flex justify-center">
+    <section class="h-100 mt-5">
+        {% for post in page.posts %}
+        <section class="d-flex justify-center flex-column">
+			<div class="d-flex justify-center align-items-center flex-column">
+            	<h1 class="text-center">Titre du Post : {{ post.title }}</h1>
+				<p class="text-center w-50">{{ post.description|raw }}</p>
 			</div>
-			<iframe src="{{ asset('uploads/post/videos/' ~ post.videoFile) }}" frameborder="0"></iframe>
-			
-		
-		</section>
-			 {{post.path}} 
-			
-         {% endfor %}  
-    </section>
+            
+            <div class="text-center d-flex justify-content-center">
+                <div>
+					<h3 class="text-start">Image du Post</h3>
+                	<img src="{{ asset('uploads/post/images/' ~ post.path) }}" style="max-height: 300px" alt="{{ post.title }}">
+				</div>
+				{% if images is not empty %}
+					<div>
+						<h3 class="text-center">Images associées à la page</h3>
+							{% for image in images %}
+							<img src="{{ asset('uploads/' ~ image.path) }}" style=" max-height: 300px; margin: 5px;" alt="{{ image.title }}">
+							{% endfor %}
+					</div>
+				{% endif %}
+            </div>
+            <br>
+            <div class="mb-5 text-center flex-column justify-content-center d-flex align-items-center">
+                <h3>Videos Du post</h3>
+                <iframe src="{{ asset('uploads/post/videos/' ~ post.videoFile) }}" frameborder="0" width="640" height="360"></iframe>
+       
+            </div>
 
+        </section>
+        {% endfor %}
     </section>
+</section>
+
 
 
 

@@ -6,7 +6,7 @@
 
 
 {% block body %}
-	<section class="nav-main"style="background-color: #D00A4B;">
+	<section class="nav-main" style="background-color: #D00A4B;">
 		<nav class="navbar navbar-expand-lg bg-body-tertiary" id="navbar-hover">
 			<div class="d-flex justy-content-center w-100">
 				<ul class="navbar-nav me-auto mb-2 mb-lg-0 w-100 d-flex justify-content-center align-items-center">
@@ -51,7 +51,8 @@
 						</form>
 					</div>
 					{% if app.user %}
-						<p class="text-end btn btn-warning mt-3">Bienvenue {{ app.user.username }}!</p>
+						<p class="text-end btn btn-warning mt-3">Bienvenue
+							{{ app.user.username }}!</p>
 					{% endif %}
 
 					{% if not app.user %}
@@ -59,62 +60,60 @@
 							<a class="nav-link" href="{{path('app_register')}}">S'INSCRIRE</a>
 						</li>
 					{% endif %}
-				
-				<div>
-					<p style="margin-bottom: 0px">V1</p>
+
+					<div>
+						<p style="margin-bottom: 0px">V1</p>
+					</div>
 				</div>
-			</div>
-		</nav>
-	</section>
+			</nav>
+		</section>
 
 
+		{# <nav class="navbar navbar-expand-lg navbar-light">
+									<div class="container-fluid">
+										<ul class="navbar-nav">
+											<!-- Icon dropdown -->
+											<li class="nav-item dropdown">
+												<a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+													<img id="flag-image" src="{{ asset('img/drapeau.png') }}" alt="">
+												</a>
+												<ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+													<li id="language-item">
+														<a class="dropdown-item d-flex" id="fr-flag" href="{{ path(app.request.attributes.get('_route'), {'_locale': 'fr'}) }}" onclick="changeLanguage('fr')">
+															<img src="{{ asset('img/drapeau.png') }}" alt="" style="margin-right: 1rem;">Français
+														</a>
+													</li>
+													<li>
+														<hr class="dropdown-divider"/>
+													</li>
+													<li>
+														<a class="dropdown-item d-flex" id="uk-flag" href="{{ path(app.request.attributes.get('_route'), {'_locale': 'en'}) }}" onclick="changeLanguage('en')">
+															<img src="{{ asset('img/unitedkingdom.png') }}" alt="" style="margin-right: 1rem;">English
+														</a>
+													</li>
+												</ul>
+											</li>
+										</ul>
+									</div>
+								</nav> #}
 
 
-	  {# <nav class="navbar navbar-expand-lg navbar-light">
+		<nav class="navbar nav-phone navbar-dark bg-red-500">
 			<div class="container-fluid">
-				<ul class="navbar-nav">
-					<!-- Icon dropdown -->
-					<li class="nav-item dropdown">
-						<a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-							<img id="flag-image" src="{{ asset('img/drapeau.png') }}" alt="">
-						</a>
-						<ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-							<li id="language-item">
-								<a class="dropdown-item d-flex" id="fr-flag" href="{{ path(app.request.attributes.get('_route'), {'_locale': 'fr'}) }}" onclick="changeLanguage('fr')">
-									<img src="{{ asset('img/drapeau.png') }}" alt="" style="margin-right: 1rem;">Français
-								</a>
-							</li>
-							<li>
-								<hr class="dropdown-divider"/>
-							</li>
-							<li>
-								<a class="dropdown-item d-flex" id="uk-flag" href="{{ path(app.request.attributes.get('_route'), {'_locale': 'en'}) }}" onclick="changeLanguage('en')">
-									<img src="{{ asset('img/unitedkingdom.png') }}" alt="" style="margin-right: 1rem;">English
-								</a>
-							</li>
-						</ul>
-					</li>
-				</ul>
+				<button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarToggleExternalContent" aria-controls="navbarToggleExternalContent" aria-expanded="false" aria-label="Toggle navigation">
+					<span class="navbar-toggler-icon"></span>
+				</button>
 			</div>
-		</nav> #}
 
-	
-	
-	<nav class="navbar nav-phone navbar-dark bg-red-500">
-		<div class="container-fluid">
-			<button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarToggleExternalContent" aria-controls="navbarToggleExternalContent" aria-expanded="false" aria-label="Toggle navigation">
-				<span class="navbar-toggler-icon"></span>
-			</button>
-		</div>
-	
 
-	<div class="shadow nav-phone navbarToggleExternalContent" data-bs-theme="dark">
-		<div id="navbarToggleExternalContent" class="collapse p-4">
-			<div class=" p-4">
-				<ul class="navbar-nav nav-phone-content me-auto mb-2 mt-3 mb-lg-0 w-100 d-flex justify-content-center align-items-center">
-					<li class="mt-5">
-						<a href="/">
-							<img class="logo me-2" id="logo-MeltingPhot"src="{{ asset('img/logo.png')}}" width alt=""></img>
+			<div class="shadow nav-phone navbarToggleExternalContent" data-bs-theme="dark">
+				<div id="navbarToggleExternalContent" class="collapse p-4">
+					<div class=" p-4">
+						<ul class="navbar-nav nav-phone-content me-auto mb-2 mt-3 mb-lg-0 w-100 d-flex justify-content-center align-items-center">
+							<li class="mt-5">
+								<a href="/">
+									<img class="logo me-2" id="logo-MeltingPhot" src="{{ asset('img/logo.png')}}" width alt=""></img>
+							</li>
 						</a>
 					</li>
 
@@ -167,139 +166,119 @@
 							<a class="nav-link" href="{{path('app_register')}}">S'inscrire</a>
 						</li>
 					{% endif %}
-				<ul>
-			</div>
-		</div>
-		</nav>
-	<section class="text-center my-24">
-	
-		<h1>Résultats de la recherche pour "{{ query }}" :</h1>
-		{% if pagination.getTotalItemCount() > 0 %}
-			<p class="text-xl">{{ pagination.getTotalItemCount() }} résultat(s) trouvé(s) pour cette recherche.</p>
-			<ul class="d-flex justify-center">
-				{% set videoDisplayed = false %}
-				{% for result in pagination %}        
-					{# Display the video only if it's a video and no video has been displayed yet #}
-					{# {% if result.url is defined %}          
-						   {% for videoPageUrl in videoPageUrls %}
-            					<a href="{{ videoPageUrl }}">Voir la vidéo</a>
-        					{% endfor %}	
-						{% set videoDisplayed = true %}
-					{% endif %} #}
+					<ul></div>
+				</div>
+			</nav>
+			<section class="text-center my-24">
 
-					 {% if result.Image is defined %}
-						{% if result.Image.page is defined %}
-							<li class="d-flex justify-center mt-4 card-body">
-								<a href="{{ path(image.page) }}">
-									<img src="{{ asset('uploads/' ~ result.path) }}" alt="{{ result.title }}" style="width: 150px; height: 150px;">
+				<h1>Résultats de la recherche pour "{{ query }}" :</h1>
+				{% if pagination.getTotalItemCount() > 0 %}
+					<p class="text-xl">{{ pagination.getTotalItemCount() }}
+						résultat(s) trouvé(s) pour cette recherche.</p>
+					<ul class="d-flex justify-center">
+						{% set videoDisplayed = false %}
+						{% for result in pagination %}
+
+
+							{%     if result.type == "image" %}
+								<a href="{{ path("app_page_show", {slug: result.page.slug}) }}">
+									<img src="{{ asset('uploads/' ~ result.path) }}" alt="{{ result.title }}" style="width: 150px; height: 150px;"/>
 								</a>
-							</li>
-						{% endif %}
-					{% endif %}
-
-					{# Don't display the title if it's a video #}
-					{% if result.path is defined %}
-						{# <li class="d-flex justify-center mt-4 card-body">
-								<img src="{{ asset('uploads/' ~ result.path) }}" alt="{{ result.title }}" style="width: 150px; height: 150px;">
-							</a>
-						</li> #}
-					{% endif %}
-					
-					{# Display the image only if it's an image #}
-					{% if result.Image is defined and not result.url is defined  %}
-						{# <li class="d-flex justify-center mt-4">
-							<a href="{{ asset('uploads/' ~  result.path )  }}">
-								<img src="{{ asset('uploads/' ~ result.Image) }}" alt="{{ result.title }}" style="width: 150px; height: 150px;">
-							</a>
-						</li> #}
-					{% endif %}
-				{% endfor %}
-			</ul>
-			
-			<div class="pagination d-flex justify-center w-30 m2">
-				{{ knp_pagination_render(pagination) }}
-			</div>
-
-		{% else %}
-			<p>Aucun résultat trouvé.</p>
-		{% endif %}
-
-		<h2>Faire une nouvelle Recherche ?</h2>
-		<form id="search-form2" class="d-flex justify-center " action="{{ path('app_search_results') }}" method="GET">
-			<div class="input-group w-50 sm-w-80">
-				<input type="text" class="form-control" name="q" placeholder="Rechercher...">
-				<button class="btn btn-primary" type="submit">Rechercher</button>
-			</div>
-		</form>
-	</section>
+							{% elseif result.type == "ebook" %}
+							{% elseif result.type == "video" %}
+							{% elseif result.type == "page"  %}
+								{% else %}
+								{# Ceci ne devrais pas arriver mais bon on sais jamais hein #}
+							{% endif %}
 
 
-		
+						{% endfor %}
+					</ul>
 
-
-	<footer class="text-center text-lg-start bg-light text-muted w-100">
-		<section class="p-4 border-top">
-			<div class="text-center text-md-start mt-5">
-				<!-- Grid row -->
-				<div class="row mt-3 d-flex">
-					<div class="d-flex justify-content-center">
-						<!-- Links -->
-						<img src="{{ asset('img/logo.png')}}" class="fw-bold mb-4"></img>
+					<div class="pagination d-flex justify-center w-30 m2">
+						{{ knp_pagination_render(pagination) }}
 					</div>
-					<!-- Grid column -->
-					<div class="d-flex justify-content-center ">
-						<p class="text-contact">MELTINGPHOT est un acteur important sur le territoire en mennant des projets d'éducations par l'image auprès des associations, collectivités et entreprises.</p>
+
+				{% else %}
+					<p>Aucun résultat trouvé.</p>
+				{% endif %}
+
+				<h2>Faire une nouvelle Recherche ?</h2>
+				<form id="search-form2" class="d-flex justify-center " action="{{ path('app_search_results') }}" method="GET">
+					<div class="input-group w-50 sm-w-80">
+						<input type="text" class="form-control" name="q" placeholder="Rechercher...">
+						<button class="btn btn-primary" type="submit">Rechercher</button>
 					</div>
-					<div class="d-flex justify-content-center mb-3">
-						<a href="https://www.facebook.com/MeltingPhot/?locale=fr_FR" class="me-4 text-reset">
-							<i class="fab fa-facebook-f"></i>
-						</a>
-						<a href="https://twitter.com/melting_phot?lang=fr" class="me-4 text-reset">
-							<i class="fab fa-twitter"></i>
-						</a>
-						<a href="https://www.instagram.com/meltingphot/?hl=fr" class="me-4 text-reset">
-							<i class="fab fa-instagram"></i>
-						</a>
-						<a href="https://www.linkedin.com/company/meltingphot" class="me-4 text-reset">
-							<i class="fab fa-linkedin"></i>
-						</a>
+				</form>
+			</section>
+
+
+			<footer class="text-center text-lg-start bg-light text-muted w-100">
+				<section class="p-4 border-top">
+					<div
+						class="text-center text-md-start mt-5">
+						<!-- Grid row -->
+						<div class="row mt-3 d-flex">
+							<div
+								class="d-flex justify-content-center">
+								<!-- Links -->
+								<img src="{{ asset('img/logo.png')}}" class="fw-bold mb-4"></img>
+						</div>
+						<!-- Grid column -->
+						<div class="d-flex justify-content-center ">
+							<p class="text-contact">MELTINGPHOT est un acteur important sur le territoire en mennant des projets d'éducations par l'image auprès des associations, collectivités et entreprises.</p>
+						</div>
+						<div class="d-flex justify-content-center mb-3">
+							<a href="https://www.facebook.com/MeltingPhot/?locale=fr_FR" class="me-4 text-reset">
+								<i class="fab fa-facebook-f"></i>
+							</a>
+							<a href="https://twitter.com/melting_phot?lang=fr" class="me-4 text-reset">
+								<i class="fab fa-twitter"></i>
+							</a>
+							<a href="https://www.instagram.com/meltingphot/?hl=fr" class="me-4 text-reset">
+								<i class="fab fa-instagram"></i>
+							</a>
+							<a href="https://www.linkedin.com/company/meltingphot" class="me-4 text-reset">
+								<i class="fab fa-linkedin"></i>
+							</a>
+						</div>
 					</div>
 				</div>
+				<!-- Grid column -->
+				<div
+					class="col-md-4 col-lg-3 col-xl-3 mx-auto mb-md-0 mb-4 contact-2">
+					<!-- Links -->
+					<p>
+						<i class="fas fa-home me-3"></i>15 Route de bagnols, 30100 Alès
+					</p>
+					<p>
+						<i class="fas fa-envelope me-3"></i>info@example.com
+					</p>
+					<p>
+						<i class="fas fa-phone me-3"></i>06 64 21 93 75
+					</p>
+				</div>
+				<div
+					class="info-contact2 ">
+					<!-- Links -->
+					<p class="ms-3">
+						<i class="fas fa-home me-2"></i>15 Route de bagnols, 30100 Alès
+					</p>
+					<p class="ms-3">
+						<i class="fas fa-envelope me-2"></i>info@example.com
+					</p>
+					<p class="ms-3">
+						<i class="fas fa-phone me-2"></i>06 64 21 93 75
+					</p>
+				</div>
+			</section>
+			<!-- Section: Links  -->
+			<!-- Copyright -->
+			<div class="text-center p-4 fw-bold text-white d-flex flex-column align-items-center" style="background-color: #D00A4B;">
+				<a>Tous droits réservés © 2023 @MeltingPhot</a>
+				<p class="fst-italic fw-light fs-6 text-white copyright-text">En effet, tous les éléments présents sur Internet (textes, images, vidéos, extraits sonores, codes informatiques…)
+																			sont de facto soumis au droit d’auteur, même si l’accès est libre, gratuit et sans mention particulière.</p>
 			</div>
-			<!-- Grid column -->
-			<div class="col-md-4 col-lg-3 col-xl-3 mx-auto mb-md-0 mb-4 contact-2">
-			<!-- Links -->
-				<p>
-					<i class="fas fa-home me-3"></i>15 Route de bagnols, 30100 Alès
-				</p>
-				<p>
-					<i class="fas fa-envelope me-3"></i>info@example.com
-				</p>
-				<p>
-					<i class="fas fa-phone me-3"></i>06 64 21 93 75
-				</p>
-			</div>
-			<div class="info-contact2 ">
-				<!-- Links -->
-				<p class="ms-3">
-					<i class="fas fa-home me-2"></i>15 Route de bagnols, 30100 Alès
-				</p>
-				<p class="ms-3">
-					<i class="fas fa-envelope me-2"></i>info@example.com
-				</p>
-				<p class="ms-3">
-					<i class="fas fa-phone me-2"></i>06 64 21 93 75
-				</p>
-			</div>
-		</section><!-- Section: Links  -->
-		<!-- Copyright -->
-		<div class="text-center p-4 fw-bold text-white d-flex flex-column align-items-center" style="background-color: #D00A4B;">
-			<a>Tous droits réservés © 2023 @MeltingPhot</a>
-			<p class="fst-italic fw-light fs-6 text-white copyright-text">En effet, tous les éléments présents sur Internet (textes, images, vidéos, extraits sonores, codes informatiques…)
-				sont de facto soumis au droit d’auteur, même si l’accès est libre, gratuit et sans mention particulière.</p>
-		</div>
-		<!-- Copyright -->
-	</footer>
-{% endblock %}
-
-
+			<!-- Copyright -->
+		</footer>
+	{% endblock %}

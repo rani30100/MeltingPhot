@@ -35,7 +35,7 @@ class PageCrudController extends AbstractCrudController
     public function configureFields(string $pageName): iterable
     {
         yield TextField::new('title')->setLabel('Titre');
-        yield TextField::new('slug')->setLabel('/Url')->hideOnForm();
+        yield TextField::new('slug')->setLabel('/Url');
         yield TextField::new('content')->setLabel('Contenu');
         yield AssociationField::new('posts')
             ->setLabel('Posts')

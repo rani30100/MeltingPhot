@@ -146,4 +146,8 @@ class Video
 
         return $this;
     }
+
+    public function getType() {
+        return "video";
+    }
 }
