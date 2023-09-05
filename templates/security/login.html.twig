@@ -17,25 +17,16 @@
         </div>
 
         <div class="flex flex-col bloc-login justify-center md:justify-start my-auto pt-8 md:pt-0 px-8 md:px-24 lg:px-32">
-            <p class="text-center text-3xl">Welcome.</p>
+            <p class="text-center text-3xl"></p>
 
             <form method="post" id='login-form'action="{{ path('app_login') }}" class="flex flex-col pt-3">
-                {% if error %}
-                 	 <div class="alert alert-danger">{{ error|trans({}, 'security') }}</div>
+              
+				{% if error %}
+                    <div class="alert alert-danger">
+                        {{ error.messageKey|trans(error.messageData, 'security') }}
+                    </div>
                 {% endif %}
-
-				{% for flashMessage in app.session.flashBag.get('danger') %}
-					<div class="alert alert-danger">
-						{{ flashMessage }}
-					</div>
-				{% endfor %}
-				{% if app.request.method == 'POST' %}
-					{% if user is not null %}
-						<div class="alert alert-success">
-							Adresse e-mail disponible !
-						</div>
-					{% endif %}
-				{% endif %}
+				
 
                 {% if app.user %}
                     <div class="mb-3">
@@ -44,28 +35,36 @@
                     </div>
                 {% endif %}
 				
-				{# <div class="form-group d-block">
-					<label for="username" class="text-lg">Username</label>
-					<input type="text" id="username" name="_username" placeholder="Your username"
-						class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 mt-1 leading-tight focus:outline-none focus:shadow-outline">
-				</div> #}
+			
 
                <div class="form-group d-block">
 					<label for="inputEmail" class="text-lg"  required autofocus>Email</label>
-			<input type="email" value="{{ last_username }}" name="email" id="inputEmail" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 mt-1 leading-tight focus:outline-none focus:shadow-outline" autocomplete="email" required autofocus>
-				</div>
+                    <input type="email" value="{{ last_username }}" name="email" id="inputEmail" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 mt-1 leading-tight focus:outline-none focus:shadow-outline" autocomplete="email" required autofocus>
+                </div>  
 
 
                 <div class="form-group d-block pt-4">
                     <label for="inputPassword" class="text-lg" >Mot de Passe</label>
-			<input type="password" name="password" id="inputPassword" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 mt-1 leading-tight focus:outline-none focus:shadow-outline" autocomplete="current-password" required>
+			        <input type="password" name="password" id="password" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 mt-1 leading-tight focus:outline-none focus:shadow-outline" autocomplete="current-password" required>
+                    
+                    <div class="d-flex ">
+                        <a class="btn" style=" color: white;background: black;margin-top: 0.6rem;" id="togglePassword">Afficher le mot depasse </a>
+                    </div>
+
                 </div>
+                <style>
+                    .input-with-icon {position: relative;}
+                    /* Style pour le champ de mot de passe */
+                    .password-input {
+                        padding-right: 30px; /* Réservez de l'espace pour l'icône d'œil à droite */
+                    }
+                </style>
 
             	<input type="hidden" name="_csrf_token" value="{{ csrf_token('authenticate')|e('html_attr') }}">
+                <a href="{{ path('app_forgot_password_request') }}" value="Réinitialiser le mot de passe" class="bg-gray-300 text-black font-bold text-lg hover:bg-gray-400 p-2 mt-4">Réinitialiser le mot de passe</a>
             
                 <input type="submit" value="Se connecter" class="bg-black text-white font-bold text-lg hover:bg-gray-700 p-2 mt-8">
 				
-
 
                 <div class="text-center pt-12 pb-12">
                     <p>Vous n'avez pas de compte ? <a href="/new-account" class="underline font-semibold">S'inscrire ici !</a></p>
@@ -82,22 +81,34 @@
 </div>
 </body>
 
-				 <script>
-        // Récupérer le formulaire de connexion
-        const loginForm = document.querySelector('#login-form');
+        <script>
+  // Récupérez les éléments nécessaires
+const passwordInput = document.getElementById('password');
+const togglePassword = document.getElementById('togglePassword');
+const passwordToggleText = document.getElementById('passwordToggleText');
 
-        // Ajouter un écouteur d'événement pour la soumission du formulaire
-        loginForm.addEventListener('submit', function(event) {
-           // Empêcher le comportement par défaut du formulaire (rechargement de la page)
-             // Récupérer la valeur du champ de mot de passe
-            const passwordField = document.querySelector('#password');
-            const password = passwordField.value;
+// Ajoutez un gestionnaire d'événements "input" pour surveiller les changements dans le champ de mot de passe
+passwordInput.addEventListener('input', function () {
+    const hasValue = passwordInput.value.trim() !== '';
 
-            // Récupérer la valeur du champ d'e-mail
-            const emailField = document.querySelector('#email');
-            const email = emailField.value;
+    // Mettez à jour la visibilité du bouton "Toggle Password" en fonction de la valeur du champ
+    if (hasValue) {
+        togglePassword.style.display = 'block';
+    } else {
+        togglePassword.style.display = 'none';
+  
+    }
+});
 
-
+// Ajoutez un gestionnaire d'événements pour basculer entre le mode texte et le mode masqué
+    togglePassword.addEventListener('click', function () {
+            if (passwordInput.type === 'password') {
+                passwordInput.type = 'text';
+                togglePassword.textContent = 'Masquer le mot de passe';
+            } else {
+                passwordInput.type = 'password';
+                togglePassword.textContent = 'Afficher le mot de passe';
+            }
         });
     </script>
 {% endblock %}

@@ -16,172 +16,7 @@
 
 {% block body %}
 
-	<section class="nav-main"style="background-color: #D00A4B;">
-		<nav class="navbar navbar-expand-lg bg-body-tertiary" id="navbar-hover">
-			<div class="d-flex justy-content-center w-100">
-				<ul class="navbar-nav me-auto mb-2 mb-lg-0 w-100 d-flex justify-content-center align-items-center">
-					<li class="nav-item me-2 meltingphot">
-						<a class="nav-link" aria-current="page" href="/">MELTINGPHOT</a>
-					</li>
-					<li class="nav-item me-2">
-						<a class="nav-link" href="{{ path("app_actions")}}">ACTIONS</a>
-					</li>
-
-
-					<li class="nav-item me-2">
-						<a class="nav-link" href="{{path('app_contact')}}">CONTACT</a>
-					</li>
-
-					{% if not app.user %}
-						<li class="nav-item me-2">
-							<a class="nav-link" href="{{path('app_login')}}">
-								<i class="fa-solid fa-user hi-icon hi-icon-user"></i>
-							</a>
-
-						</li>
-					{% endif %}
-					{% if app.user %}
-						{% if 'ROLE_SUPER_ADMIN' in app.user.roles %}
-							<a class="nav-link" href="{{ path('admin_') }}">Ma Page Admin</a>
-						{% endif %}
-					{% endif %}
-
-					{% if app.user %}
-						<li class="nav-item me-2">
-							<a class="nav-link" href="{{path('app_logout')}}">Se déconnecter</a>
-						</li>
-					{% endif %}
-					<div class="d-flex align-items-center">
-						<i id="search-icon" class="fa-solid fa-magnifying-glass mx-3"></i>
-						<form id="search-form" class="d-none">
-							<div class="input-group">
-								<input id="search-input" type="text" class="form-control" placeholder="Rechercher...">
-								<button id="search-button" class="btn btn-primary" type="button">Rechercher</button>
-							</div>
-						</form>
-					</div>
-
-					{% if app.user %}
-						<p class="text-end btn btn-warning mt-3">Bienvenue {{ app.user.username }}!</p>
-					{% endif %}
-
-					{% if not app.user %}
-						<li class="nav-item me-2">
-							<a class="nav-link" href="{{path('app_register')}}">S'INSCRIRE</a>
-						</li>
-					{% endif %}
-				
-				<div>
-					<p style="margin-bottom: 0px">V1</p>
-				</div>
-			</div>
-		</nav>
-	</section>
-
-	
-
-
-	  {# <nav class="navbar navbar-expand-lg navbar-light">
-			<div class="container-fluid">
-				<ul class="navbar-nav">
-					<!-- Icon dropdown -->
-					<li class="nav-item dropdown">
-						<a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-							<img id="flag-image" src="{{ asset('img/drapeau.png') }}" alt="">
-						</a>
-						<ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-							<li id="language-item">
-								<a class="dropdown-item d-flex" id="fr-flag" href="{{ path(app.request.attributes.get('_route'), {'_locale': 'fr'}) }}" onclick="changeLanguage('fr')">
-									<img src="{{ asset('img/drapeau.png') }}" alt="" style="margin-right: 1rem;">Français
-								</a>
-							</li>
-							<li>
-								<hr class="dropdown-divider"/>
-							</li>
-							<li>
-								<a class="dropdown-item d-flex" id="uk-flag" href="{{ path(app.request.attributes.get('_route'), {'_locale': 'en'}) }}" onclick="changeLanguage('en')">
-									<img src="{{ asset('img/unitedkingdom.png') }}" alt="" style="margin-right: 1rem;">English
-								</a>
-							</li>
-						</ul>
-					</li>
-				</ul>
-			</div>
-		</nav> #}
-
-	
-	
-	<nav class="navbar nav-phone navbar-dark bg-red-500">
-		<div class="container-fluid">
-			<button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarToggleExternalContent" aria-controls="navbarToggleExternalContent" aria-expanded="false" aria-label="Toggle navigation">
-				<span class="navbar-toggler-icon"></span>
-			</button>
-		</div>
-	
-
-	<div class="shadow nav-phone navbarToggleExternalContent" data-bs-theme="dark">
-		<div id="navbarToggleExternalContent" class="collapse p-4">
-			<div class=" p-4">
-				<ul class="navbar-nav nav-phone-content me-auto mb-2 mt-3 mb-lg-0 w-100 d-flex justify-content-center align-items-center">
-					<li class="mt-5">
-						<a href="/">
-							<img class="logo me-2" id="logo-MeltingPhot"src="{{ asset('img/logo.png')}}" width alt=""></img>
-						</a>
-					</li>
-
-					<li class="nav-item me-2 meltingphot">
-						<a class="nav-link " aria-current="page" href="/">MELTINGPHOT</a>
-					</li>
-					<li class="nav-item me-2">
-						<a class="nav-link" href="{{ path("app_actions")}}">Nos Actions</a>
-					</li>
-
-
-					<li class="nav-item me-2">
-						<a class="nav-link" href="{{path('app_contact')}}">Nous Contacter</a>
-					</li>
-
-					{% if not app.user %}
-						<li class="nav-item me-2">
-							<a class="nav-link" href="{{path('app_login')}}">
-								<i class="fa-solid fa-user hi-icon hi-icon-user"></i>
-							</a>
-
-						</li>
-					{% endif %}
-					{% if app.user %}
-						{% if 'ROLE_SUPER_ADMIN' in app.user.roles %}
-							<a class="nav-link" href="{{ path('admin_') }}">Ma Page Admin</a>
-						{% endif %}
-					{% endif %}
-
-					{% if app.user %}
-						<li class="nav-item me-2">
-							<a class="nav-link" href="{{path('app_logout')}}">Se déconnecter</a>
-						</li>
-					{% endif %}
-					<div class="d-flex align-items-center">
-						<i id="search-icon" class="fa-solid fa-magnifying-glass mx-3"></i>
-						<form id="search-form" class="d-none">
-							<div class="input-group">
-								<input type="text" class="form-control" placeholder="Rechercher...">
-								<button class="btn btn-primary" type="submit">Rechercher</button>
-							</div>
-						</form>
-					</div>
-					{% if app.user %}
-						<p class="text-end btn btn-warning mt-3">Bienvenue,{{ app.user.username }}!</p>
-					{% endif %}
-
-					{% if not app.user %}
-						<li class="nav-item me-2">
-							<a class="nav-link" href="{{path('app_register')}}">S'inscrire</a>
-						</li>
-					{% endif %}
-				<ul>
-			</div>
-		</div>
-	</nav>
+	{% include 'component/navbar.html.twig' %}
 
 	<section class="actions-bandeau w-100 bg-secondary-subtle h-400 d-flex flex-column justify-content-center align-items-center p-1">
 		<article class="actions-bloc">
@@ -201,16 +36,16 @@
 		</article>
 	</section>
 
-	<div class="d-flex flex-column align-items-center justify-content-center bloc-filtres carousel-container mb-5">
+	<div class="d-flex flex-column align-items-center justify-content-center bloc-filtres carousel-container">
 		<div class='pc-actions'>
 			<div>
-			<h2 for="my-dropdown" class="text-center fw-light">NOS
-				<span class="fw-bold">ACTIONS
-			</h2>
-			<h2 class="text-center">D'EDUCATION
-				<span class="text-center fw-light">PAR L'IMAGE</span>
-			</h2>
-			</div>
+				<h2 for="my-dropdown" class="text-center fw-light">NOS
+					<span class="fw-bold">ACTIONS
+					</h2>
+					<h2 class="text-center">D'EDUCATION
+						<span class="text-center fw-light">PAR L'IMAGE</span>
+					</h2>
+				</div>
 				<div class="d-flex flex-wrap align-items-center justify-content-center mb-3 ">
 					{# quand je clique sur le filme mon futur metier affiche les videos correspondantes a cette categorie  #}
 					<a href="{{ path('app_actions', {'category': 'Je_Filme_Mon_Futur_Métier'}) }}" class="btn col-6 col-sm-2 filter-tab" id="video-link">Je Filme mon futur métier</a>
@@ -221,277 +56,211 @@
 				</div>
 
 
-		
+				<div id="carouselIndicators" class="carousel w-100" data-bs-interval="false">
+					<div class="carousel-inner d-flex">
+						{% if videos|length > 0 %}
+							{% for i in range(0, (videos|length / 6 - 1)) %}
+								<div class="carousel-item {% if i == 0 %}active{% endif %}">
+									<div class="d-flex flex-row justify-content-center" style="margin: 0 auto; width: 95%;">
+										{% for j in range(0, 5) %}
+											{% set imageIndex = i * 6 + j %}
+											{% if imageIndex < videos|length %}
+												{% set video = videos[imageIndex] %}
+												<!-- On assigne la vidéo correspondant à l'index 'imageIndex' à la variable 'video'. -->
+												{% set isFirstVideo = j == 0 %}
+												{% set isSecondVideo = j == 1 %}
+												{% set isThirdVideo = j == 2 %}
+												{% set isFourthVideo = j == 3 %}
+												{% set isFifthVideo = j == 4 %}
+												{% set isLastVideo = j == 5 %}
+												<!-- On définit des variables booléennes pour indiquer la position de la vidéo actuelle dans l'itération. -->
 
-			<div id="carouselIndicators" class="carousel w-100" data-bs-interval="false">
-				<div class="carousel-inner d-flex">
-					{% if videos|length > 0 %}
-						{% for i in range(0, (videos|length / 6 - 1)) %}
-							<div class="carousel-item {% if i == 0 %}active{% endif %}">
-								<div class="d-flex flex-row justify-content-center" style="margin: 0 auto; width: 95%;">
-									{% for j in range(0, 5) %}
-										{% set imageIndex = i * 6 + j %}
-										{% if imageIndex < videos|length %}
-											{% set video = videos[imageIndex] %}
-											<!-- On assigne la vidéo correspondant à l'index 'imageIndex' à la variable 'video'. -->
-
-											{% set isFirstVideo = j == 0 %}
-											{% set isSecondVideo = j == 1 %}
-											{% set isThirdVideo = j == 2 %}
-											{% set isFourthVideo = j == 3 %}
-											{% set isFifthVideo = j == 4 %}
-											{% set isLastVideo = j == 5 %}
-											<!-- On définit des variables booléennes pour indiquer la position de la vidéo actuelle dans l'itération. -->
-
-											{% if isSecondVideo %}
-												<!-- Si c'est la deuxième vidéo, on ouvre une nouvelle div avec la classe 'video-group'. -->
-												<div class="video-group">
-											{% endif %}
-
-											{% if isFourthVideo %}
-												<!-- Si c'est la quatrième vidéo, on ouvre une nouvelle div avec la classe 'video-group2'. -->
-												<div class="video-group2">
-											{% endif %}
-
-											<div class="groupe ">
-												<!-- On ouvre une div pour contenir chaque élément vidéo. -->
-												<div class="h-100">
-													{% if video.getImage() %}
-														<!-- On vérifie si la vidéo possède une image associée. -->
-														<img src="{{ asset(video.getImage()) }}"
-														class="h-100 {% if isFirstVideo %}first-video{% elseif isLastVideo %}last-video{% endif %}" 
-														alt="Video Image"  
-														data-bs-toggle="modal" 
-														data-bs-target="#videoModal{{ imageIndex + 1 }}" 
-														data-video-id="{{ video.id }}">
-													{% else %}
-														<p>No image available</p>
+												{% if isSecondVideo %}
+													<!-- Si c'est la deuxième vidéo, on ouvre une nouvelle div avec la classe 'video-group'. -->
+													<div class="video-group">
 													{% endif %}
 
-													{% if isSecondVideo and isThirdVideo %}
-														<!-- Si c'est la deuxième et la troisième vidéo, on ouvre une nouvelle div avec la classe 'video-group' à l'intérieur de cette div. -->
-														<div class="video-group {% if isSecondVideo %}second-video{% elseif isThirdVideo %}third-video{% endif %}">
+													{% if isFourthVideo %}
+														<!-- Si c'est la quatrième vidéo, on ouvre une nouvelle div avec la classe 'video-group2'. -->
+														<div class="video-group2">
+														{% endif %}
+
+															<div class="groupe ">
+																<!-- On ouvre une div pour contenir chaque élément vidéo. -->
+																<div class="h-100">
+																{% if video.Image %}
+																		<!-- On vérifie si la vidéo possède une image associée. -->
+																		{# <a href="{{ path('app_actions_video', {'id': video.id,'category': category}) }}"> #}
+																	<img src="{{ asset('uploads/videos/images/' ~ video.image) }}" class="h-100 {% if isFirstVideo %}first-video{% elseif isLastVideo %}last-video{% endif %}" alt="Video Image" data-bs-toggle="modal" data-bs-target="#videoModal{{ imageIndex + 1 }}" data-video-id="{{ video.id }}"> </a>
+																{% else %}
+																	<p>No image available</p>
+																{% endif %}
+
+																{% if isSecondVideo and isThirdVideo %}
+																	<!-- Si c'est la deuxième et la troisième vidéo, on ouvre une nouvelle div avec la classe 'video-group' à l'intérieur de cette div. -->
+																	<div class="video-group {% if isSecondVideo %}second-video{% elseif isThirdVideo %}third-video{% endif %}">
+																	{% endif %}
+																</div>
+															</div>
+
+														{% if isThirdVideo %}
+															<!-- Si c'est la troisième vidéo, on ferme la div 'video-group'. -->
+														</div>
 													{% endif %}
-												</div>
-											</div>
 
-											{% if isThirdVideo %}
-												<!-- Si c'est la troisième vidéo, on ferme la div 'video-group'. -->
-												</div>
+													{% if isFifthVideo %}
+														<!-- Si c'est la cinquième vidéo, on ferme la div 'video-group2'. -->
+													</div>
+												{% endif %}
+
 											{% endif %}
-
-											{% if isFifthVideo %}
-												<!-- Si c'est la cinquième vidéo, on ferme la div 'video-group2'. -->
-												</div>
-											{% endif %}
-
-										{% endif %}
-									{% endfor %}
+										{% endfor %}
+									</div>
 								</div>
-							</div>
+							{% endfor %}
+						{% else %}
+							<!-- Handle the case when there are no videos -->
+							<p>No videos available</p>
+						{% endif %}
+
+						<!-- Rest of the carousel code -->
+					</div>
+
+					<!-- Boutons de contrôle du carrousel -->
+					<ol class="carousel-indicators">
+						{% for i in 0..(videos|length / 6 - 1) %}
+							<li data-bs-target="#carouselIndicators" data-bs-slide-to="{{ i }}" {% if i == 0 %} class="active" {% endif %}></li>
 						{% endfor %}
-					{% else %}
-						<!-- Handle the case when there are no videos -->
-						<p>No videos available</p>
-					{% endif %}
+					</ol>
 
-					<!-- Rest of the carousel code -->
+					<!-- Indicateurs du carrousel -->
+					<div class="carousel-pagination">
+						<button class="carousel-control-prev carousel-fade" type="button" data-bs-target="#carouselIndicators" data-bs-slide="prev">
+							<span class="carousel-control-prev-icon" aria-hidden="true"></span>
+							<span class="visually-hidden">Previous</span>
+						</button>
+						<button class="carousel-control-next carousel-fade" type="button" data-bs-target="#carouselIndicators" data-bs-slide="next">
+							<span class="carousel-control-next-icon" aria-hidden="true"></span>
+							<span class="visually-hidden">Next</span>
+						</button>
+					</div>
 				</div>
 
-				<!-- Boutons de contrôle du carrousel -->
-				<ol class="carousel-indicators">
-					{% for i in 0..(videos|length / 6 - 1) %}
-						<li data-bs-target="#carouselIndicators" data-bs-slide-to="{{ i }}" {% if i == 0 %}class="active"{% endif %}></li>
-					{% endfor %}
-				</ol>
 
-				<!-- Indicateurs du carrousel -->
-				<div class="carousel-pagination">
-					<button class="carousel-control-prev carousel-fade" type="button" data-bs-target="#carouselIndicators" data-bs-slide="prev">
-						<span class="carousel-control-prev-icon" aria-hidden="true"></span>
-						<span class="visually-hidden">Previous</span>
-					</button>
-					<button class="carousel-control-next carousel-fade" type="button" data-bs-target="#carouselIndicators" data-bs-slide="next">
-						<span class="carousel-control-next-icon" aria-hidden="true"></span>
-						<span class="visually-hidden">Next</span>
-					</button>
-				</div>
-			</div>
-				
-			<div id="carouselIndicatorsMobile" class="carousel slide">
-				<div class="carousel-inner">
-					{% for i in 0..(videos|length - 1) %}
-						{% set videoIndex = loop.index0 %}
-						{% if videoIndex < videos|length %}
-							<div class="carousel-item {% if i == 0 %}active{% endif %}" style="height: 400px;">
-								<div class="d-flex w-100 justify-content-center">
-									<div class="">
-										{% set video = videos[videoIndex] %}
-										{% if video.getImage() %}
-											<img class="carousel_img" style="margin:0 auto;" src="{{ asset('' ~ video.getImage()) }}" alt="Video Image">
-										{% else %}
-											<p>No image available</p>
-										{% endif %}
-										<div class="w-full d-flex justify-content-center ">
-											<button type="button" class="btn btn-primary btn-{{ loop.index }}" data-bs-toggle="modal" data-bs-target="#videoModal{{ videoIndex + 1 }}" data-video-id="{{ video.id }}" style="height:50px; margin-top:-6rem">
-												<i class="bi bi-play-circle"></i>
-												En voir plus +
-											</button>
+				<div id="carouselIndicatorsMobile" class="carousel slide">
+					<div class="carousel-inner">
+						{% for i in 0..(videos|length - 1) %}
+							{% set videoIndex = loop.index0 %}
+							{% if videoIndex < videos|length %}
+								<div class="carousel-item {% if i == 0 %}active{% endif %}" style="height: 400px;">
+									<div class="d-flex w-100 justify-content-center">
+										<div class="">
+											{% set video = videos[videoIndex] %}
+											{% if video.getImage() %}
+												<img class="carousel_img" style="margin:0 auto;" src="{{ asset('' ~ video.getImage()) }}" alt="Video Image">
+											{% else %}
+												<p>No image available</p>
+											{% endif %}
+											<div class="w-full d-flex justify-content-center ">
+												<button type="button" class="btn btn-primary btn-{{ loop.index }}" data-bs-toggle="modal" data-bs-target="#videoModal{{ videoIndex + 1 }}" data-video-id="{{ video.id }}" style="height:50px; margin-top:-6rem">
+													<i class="bi bi-play-circle"></i>
+													En voir plus +
+												</button>
+											</div>
 										</div>
 									</div>
 								</div>
-							</div>
-						{% endif %}
-					{% endfor %}
-
-
-					<div class="carousel-indicators">
-						{% for j in 0..(videos|length - 1) %}
-							<button type="button" data-bs-target="#carouselIndicatorsMobile" data-bs-slide-to="{{ j }}" {% if j == 0 %} class="active" aria-current="true" {% endif %} aria-label="Slide {{ j + 1 }}"></button>
+							{% endif %}
 						{% endfor %}
+
+
+						<div class="carousel-indicators">
+							{% for j in 0..(videos|length - 1) %}
+								<button type="button" data-bs-target="#carouselIndicatorsMobile" data-bs-slide-to="{{ j }}" {% if j == 0 %} class="active" aria-current="true" {% endif %} aria-label="Slide {{ j + 1 }}"></button>
+							{% endfor %}
+						</div>
+
+						<button class="carousel-control-prev mobile-prev" type="button" data-bs-target="#carouselIndicatorsMobile" data-bs-slide="prev">
+							<span class="carousel-control-prev-icon" aria-hidden="true"></span>
+							<span class="visually-hidden">Previous</span>
+						</button>
+
+						<button class="carousel-control-next mobile-next" type="button" data-bs-target="#carouselIndicatorsMobile" data-bs-slide="next">
+							<span class="carousel-control-next-icon" aria-hidden="true"></span>
+							<span class="visually-hidden">Next</span>
+						</button>
 					</div>
-
-					<button class="carousel-control-prev mobile-prev" type="button" data-bs-target="#carouselIndicatorsMobile" data-bs-slide="prev">
-						<span class="carousel-control-prev-icon" aria-hidden="true"></span>
-						<span class="visually-hidden">Previous</span>
-					</button>
-
-					<button class="carousel-control-next mobile-next" type="button" data-bs-target="#carouselIndicatorsMobile" data-bs-slide="next">
-						<span class="carousel-control-next-icon" aria-hidden="true"></span>
-						<span class="visually-hidden">Next</span>
-					</button>
 				</div>
-			</div>
 
 
-			{% for video in videos %}
-				<div class="modal fade" id="videoModal{{ loop.index }}" tabindex="-1" aria-labelledby="videoModal{{ loop.index }}
-				Label" aria-hidden="true">
-					<div class="modal-dialog modal-lg modal-dialog-centered">
-						<div class="modal-content">
-							<div class="modal-header bg-dark white-text">
-								<h5 class="modal-title" id="videoModal{{ loop.index }}Label">{{ video.title }}</h5>
-								<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-							</div>
-							<div class="modal-body">
-								<div class="embed-responsive embed-responsive-16by9">
-									<iframe class="embed-responsive-item w-100 modal-video lazy-video" data-src="{{ video.url }}?rel=0" allowfullscreen allow="autoplay"></iframe>
+				{% for video in videos %}
+					<div class="modal fade" id="videoModal{{ loop.index }}" tabindex="-1" aria-labelledby="videoModal{{ loop.index }}
+																			Label" aria-hidden="true">
+						<div class="modal-dialog modal-lg modal-dialog-centered">
+							<div class="modal-content">
+								<div class="modal-header bg-dark white-text">
+									<h5 class="modal-title" id="videoModal{{ loop.index }}Label">{{ video.title }}</h5>
+									<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+								</div>
+								<div class="modal-body">
+									<div class="embed-responsive embed-responsive-16by9">
+										<iframe class="embed-responsive-item w-100 modal-video lazy-video" data-src="{{ video.url }}?rel=0" allowfullscreen allow="autoplay"></iframe>
+									</div>
 								</div>
 							</div>
 						</div>
 					</div>
-				</div>
-			{% endfor %}
+				{% endfor %}
+			</div>
+		</div>
+	</div>
+
+
+	<section class="partenaire-pc d-flex align-items-center shadow-lg">
+		<div class="w-50 Pc">
+			<div class="w-full d-flex flex-wrap justify-content-left">
+				<a href="/flipbook/hebemag" style="width:255Px" class="btn">
+					<img style="margin-left:2rem; margin-top:1rem" src="{{ asset('img/flipbook1/pics/Magazine-HébéMag.jpeg') }}" alt="">
+				</a>
+			</div>
+
 		</div>
 
 
-		<section class="partenaire-pc d-flex align-items-center shadow-lg">
-			<div class="w-50 Pc">
-				<div class="w-full d-flex flex-wrap justify-content-left">
-					<a href="/flipbook/hebemag" style="width:255Px"  class="btn">
-						<img style="margin-left:2rem; margin-top:1rem" src="{{ asset('img/flipbook1/pics/Magazine-HébéMag.jpeg') }}" alt="">
-					</a>
-				</div>
-
+		<div class="w-50">
+			<div class="partenaire-bloc">
+				<h3 class="partenaire-title">
+					<span class="fw-light">Nos</span>
+					Magazines</h3>
+				<p class="partenaire-p">Lorem ipsum dolor sit amet consectetur adipisicing elit. Accusamus saepe magni vel cum dolores quasi veniam nisi, laboriosam distinctio, laborum voluptas dolor repellat quis consequatur nulla ad, qui ut vitae.</p>
+				<button class="btn btn-outline-danger">Ouvrez en Un !</button>
 			</div>
-
-
-			<div class="w-50">
-				<div class="partenaire-bloc">
-					<h3 class="partenaire-title">
-						<span class="fw-light">Nos</span>
-						Magazines</h3>
-					<p class="partenaire-p">Lorem ipsum dolor sit amet consectetur adipisicing elit. Accusamus saepe magni vel cum dolores quasi veniam nisi, laboriosam distinctio, laborum voluptas dolor repellat quis consequatur nulla ad, qui ut vitae.</p>
-					<button class="btn btn-outline-danger">Ouvrez en Un !</button>
-				</div>
-			</div>
-		</section>
-
-		<section class="partenaire-tab d-flex flex-column">
-			<div class="w-full d-flex ">
-				<div class="d-flex flex-column align-items-center">
-					<h3 class="partenaire-title">
-						<span class="fw-light">Nos</span>
-						Magazines</h3>
-					<p class="partenaire-p">Lorem ipsum dolor sit amet consectetur adipisicing elit. Accusamus saepe magni vel cum dolores quasi veniam nisi, laboriosam distinctio, laborum voluptas dolor repellat quis consequatur nulla ad, qui ut vitae.</p>
-					<button class="btn btn-outline-danger">Ouvrez en Un !</button>
-				</div>
-			</div>
-			<div class="w-full">
-				<div class="w-full d-flex flex-wrap justify-content-left">
-					<a href="/flipbook/hebemag"style="width:150px">
-						<img style="margin-left:2rem; margin-top:1rem" src="{{ asset('img/flipbook1/pics/Magazine-HébéMag.jpeg') }}" alt="">
-					</a>
-				</div>
-
-			</div>
-		</section>
-
-
-
-		{# <div class="d-flex justify-content-center flex-wrap bloc-videos p-1" id="video-container"></div> #}
-
-		<footer class="text-center text-lg-start bg-light text-muted w-100">
-			<section class="p-4 border-top">
-				<div
-					class="text-center text-md-start mt-5">
-					<!-- Grid row -->
-					<div class="row mt-3 d-flex">
-						<div
-							class="d-flex justify-content-center">
-							<!-- Links -->
-							<img src="{{ asset('img/logo.png')}}" class="fw-bold mb-4"></img>
-					</div>
-					<!-- Grid column -->
-					<div class="d-flex justify-content-center ">
-						<p class="text-contact">MELTINGPHOT est un acteur important sur le territoire en mennant des projets d'éducations par l'image auprès des associations, collectivités et entreprises.</p>
-					</div>
-					<div class="d-flex justify-content-center mb-3">
-						<a href="https://www.facebook.com/MeltingPhot/?locale=fr_FR" class="me-4 text-reset">
-							<i class="fab fa-facebook-f"></i>
-						</a>
-						<a href="https://twitter.com/melting_phot?lang=fr" class="me-4 text-reset">
-							<i class="fab fa-twitter"></i>
-						</a>
-						<a href="https://www.instagram.com/meltingphot/?hl=fr" class="me-4 text-reset">
-							<i class="fab fa-instagram"></i>
-						</a>
-						<a href="https://www.linkedin.com/company/meltingphot" class="me-4 text-reset">
-							<i class="fab fa-linkedin"></i>
-						</a>
-					</div>
-				</div>
-			</div>
-			<!-- Grid column -->
-			<div
-				class="col-md-4 col-lg-3 col-xl-3 mx-auto mb-md-0 mb-4 contact-2">
-				<!-- Links -->
-				<p>
-					<i class="fas fa-home me-3"></i>15 Route de bagnols, 30100 Alès</p>
-				<p>
-					<i class="fas fa-envelope me-3"></i>info@example.com</p>
-				<p>
-					<i class="fas fa-phone me-3"></i>06 64 21 93 75</p>
-			</div>
-			<div
-				class="info-contact2 ">
-				<!-- Links -->
-				<p class="ms-3">
-					<i class="fas fa-home me-2"></i>15 Route de bagnols, 30100 Alès</p>
-				<p class="ms-3">
-					<i class="fas fa-envelope me-2"></i>info@example.com</p>
-				<p class="ms-3">
-					<i class="fas fa-phone me-2"></i>06 64 21 93 75</p>
-			</div>
-		</section><!-- Section: Links  -->
-		<!-- Copyright -->
-		<div class="text-center p-4 fw-bold text-white d-flex flex-column align-items-center" style="background-color: #D00A4B;">
-			<a>Tous droits réservés © 2023 @MeltingPhot</a>
-			<p class="fst-italic fw-light fs-6 text-white copyright-text">En effet, tous les éléments présents sur Internet (textes, images, vidéos, extraits sonores, codes informatiques…)
-				sont de facto soumis au droit d’auteur, même si l’accès est libre, gratuit et sans mention particulière.</p>
 		</div>
-		<!-- Copyright -->
-	</footer>
+	</section>
+
+	<section class="partenaire-tab d-flex flex-column">
+		<div class="w-full d-flex ">
+			<div class="d-flex flex-column align-items-center">
+				<h3 class="partenaire-title">
+					<span class="fw-light">Nos</span>
+					Magazines</h3>
+				<p class="partenaire-p">Lorem ipsum dolor sit amet consectetur adipisicing elit. Accusamus saepe magni vel cum dolores quasi veniam nisi, laboriosam distinctio, laborum voluptas dolor repellat quis consequatur nulla ad, qui ut vitae.</p>
+				<button class="btn btn-outline-danger">Ouvrez en Un !</button>
+			</div>
+		</div>
+		<div class="w-full">
+			<div class="w-full d-flex flex-wrap justify-content-left">
+				<a href="/flipbook/hebemag" style="width:150px">
+					<img style="margin-left:2rem; margin-top:1rem" src="{{ asset('img/flipbook1/pics/Magazine-HébéMag.jpeg') }}" alt="">
+				</a>
+			</div>
+
+		</div>
+	</section>
+
+
+	{# <div class="d-flex justify-content-center flex-wrap bloc-videos p-1" id="video-container"></div> #}
+	{% include 'component/footer.html.twig' %}
 
 
 {% endblock %}

@@ -1,0 +1,17 @@
+.body-new-category {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.btn-back {
+  width: 180px;
+  margin-left: 30px;
+}
+
+.new-category {
+  height: 40vh;
+  width: 90%;
+  margin-bottom: 6rem;
+}/*# sourceMappingURL=admin.css.map */

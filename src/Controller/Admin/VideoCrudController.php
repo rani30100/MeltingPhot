@@ -24,18 +24,27 @@ class VideoCrudController extends AbstractCrudController
     {
         return [
             IdField::new('id')->hideOnForm(),
+         
+            AssociationField::new('user', 'Utilisateur')
+            ->setLabel('Utilisateur'),
+
             TextField::new('user_id')->hideOnForm(),
-            TextEditorField::new('title'),
+
+            TextField::new('title'),
+
             DateTimeField::new('created_at')->onlyOnIndex(),
+
             TextField::new('url'),
+
             AssociationField::new('category')->autocomplete(),
+            
             ImageField::new('Image')
             ->setLabel('Image')
-            ->setBasePath('/uploads/videos/images') // Chemin de base pour afficher les images
+            ->setBasePath('uploads/videos/images') // Chemin de base pour afficher les images
             ->setUploadDir('public/uploads/videos/images') // Dossier de destination pour enregistrer les images
-            ->setUploadedFileNamePattern('[randomhash].[extension]') // Modèle de nom de fichier pour les images téléchargées
+            ->setUploadedFileNamePattern('[name].[extension]') // Modèle de nom de fichier pour les images téléchargées
             ->setRequired(false), // Rendre le champ facultatif si nécessaire
-
+            //COmmentaire
         ];
     }
     

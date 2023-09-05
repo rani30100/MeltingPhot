@@ -1,52 +1,79 @@
 <?php
+
 namespace App\Controller;
 
-use Google\Client;
 use Google\Service\Analytics;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Component\HttpKernel\KernelInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
-use Symfony\Component\Dotenv\Dotenv;
-
 
 class BusinessController extends AbstractController
 {
     #[Route('/business', name: 'app_business')]
-    public function index(): Response
+    public function index(KernelInterface $kernel): Response
     {
-        $KEY_FILE_LOCATION = '/var/www/html/Projet-MeltingPhot/vendor/google/google_credentials.json';
+        $analytics = $this->initializeAnalytics($kernel);
 
+        // Vérifiez si l'utilisateur est déjà connecté
+        if (!$this->isUserConnected($analytics)) {
+            // Redirigez l'utilisateur vers l'authentification Google
+            $authUrl = $analytics->createAuthUrl();
+            return $this->redirect($authUrl);
+        }
 
-        // Instantiate the Google\Client
-        $client = new Client();
-        // Set the path to the JSON file containing the credentials
-        $client->setAuthConfig($KEY_FILE_LOCATION);
-        
-        // Authorize the client
-        $client->setScopes([
-            'https://www.googleapis.com/auth/analytics.readonly',
-        ]);
-        
-        // Create a new Google_Service_Analytics object
-        $analyticsService = new \Google_Service_Analytics($client);
-        
-        // Make a request to retrieve the analytics data
-        $analyticsData = $analyticsService->data_ga->get(
-            'G-XLMQDM4797', // Replace with your Google Analytics View ID
-            '2023-07-01',   // Start date
-            '2023-07-31',   // End date
-            'ga:users,ga:sessions,ga:pageviews' // Metrics to retrieve
-        );
-        
-        // Extract the statistics from the response
-        $stats = [
-            'users' => $analyticsData['totalsForAllResults']['ga:users'],
-            'sessions' => $analyticsData['totalsForAllResults']['ga:sessions'],
-            'pageviews' => $analyticsData['totalsForAllResults']['ga:pageviews'],
-        ];
-         
+        // Obtenez les statistiques Google Analytics
+        $stats = $this->getAnalyticsData($analytics);
+
         return $this->render('business/index.html.twig', [
             'stats' => $stats,
         ]);
+    }
+
+    private function initializeAnalytics(KernelInterface $kernel): \Google_Client
+    {
+        $KEY_FILE_LOCATION = $kernel->getProjectDir() . '/googleCredentials.json';
+
+        $client = new \Google_Client();
+        $client->setRedirectUri('https://meltingphot.org/oauth2callback.php');
+        $client->setAccessType('offline');
+        $client->setApplicationName('Analytics Reporting');
+        $client->setAuthConfig($KEY_FILE_LOCATION);
+        $client->setScopes(Analytics::ANALYTICS_READONLY);
+
+        return $client;
+    }
+
+    private function isUserConnected($analytics): bool
+    {
+        // Vérifiez si le jeton d'accès existe et s'il est encore valide
+        if ($analytics->getAccessToken()) {
+            return !$analytics->isAccessTokenExpired();
+        }
+
+        return false;
+    }
+
+    private function getAnalyticsData($analytics): array
+    {
+        $viewId = 'ga:YOUR_VIEW_ID'; // Remplacez par l'ID de vue réel
+        $startDate = '7daysAgo';
+        $endDate = 'today';
+        $metrics = 'ga:sessions,ga:pageviews';
+        
+        try {
+            $results = $analytics->data_ga->get($viewId, $startDate, $endDate, $metrics);
+            
+            return [
+                'sessions' => $results->getTotalsForAllResults()['ga:sessions'],
+                'pageviews' => $results->getTotalsForAllResults()['ga:pageviews'],
+            ];
+        } catch (\Exception $e) {
+            // Gérer les erreurs, par exemple, en enregistrant les erreurs ou en affichant un message d'erreur à l'utilisateur.
+            return [
+                'sessions' => 0,
+                'pageviews' => 0,
+            ];
+        }
     }
 }

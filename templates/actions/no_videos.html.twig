@@ -220,28 +220,22 @@
 
 	<div class="d-flex flex-column align-items-center justify-content-center bloc-filtres carousel-container mb-5">
 		<h2 for="my-dropdown" class="text-center fw-light">NOS
-			<span class="fw-bold">ACTIONS
-			</h2>
-			<h2>
-				D'EDUCATION
-				<span class="text-center fw-light">PAR L'IMAGE</span>
-			</h2>
-			<div class="d-flex flex-wrap align-items-center justify-content-center mb-3 ">
-				{# quand je clique sur le filme mon futur metier affiche les videos correspondantes a cette categorie  #}
-				<a href="{{ path('app_actions', {'category': 'Je_Filme_Mon_Futur_Métier'}) }}" class="btn col-6 col-sm-2 filter-tab" id="video-link">Je Filme mon futur métier</a>
-				<a href="{{ path('app_actions', {'category':'Odonymes'}) }}" class="btn col-6 col-sm-2 filter-tab">Odonymes</a>
-				<a href="{{ path('app_actions', {'category':'Les_Critiques_pétillantes'}) }}" class="btn col-6 col-sm-2 filter-tab">Les Critiques pétillantes</a>
-				<a href="{{ path('app_actions', {'category':'Parole_Public'}) }}" class="btn col-6 col-sm-2 filter-tab">Parole Public</a>
-				<a href="{{ path('app_actions', {'category':'Les_Vitrines_des_Cévènnes'}) }}" class="btn col-6 col-sm-2 filter-tab">Les Vitrines des Cévènnes</a>
-			</div>
+		<span class="fw-bold">ACTIONS
+		</h2>
+		<h2>
+			D'EDUCATION
+			<span class="text-center fw-light">PAR L'IMAGE</span>
+		</h2>
+		<div class="d-flex flex-wrap align-items-center justify-content-center mb-3 ">
+			{# quand je clique sur le filme mon futur metier affiche les videos correspondantes a cette categorie  #}
+			<a href="{{ path('app_actions', {'category': 'Je_Filme_Mon_Futur_Métier'}) }}" class="btn col-6 col-sm-2 filter-tab" id="video-link">Je Filme mon futur métier</a>
+			<a href="{{ path('app_actions', {'category':'Odonymes'}) }}" class="btn col-6 col-sm-2 filter-tab">Odonymes</a>
+			<a href="{{ path('app_actions', {'category':'Les_Critiques_pétillantes'}) }}" class="btn col-6 col-sm-2 filter-tab">Les Critiques pétillantes</a>
+			<a href="{{ path('app_actions', {'category':'Parole_Public'}) }}" class="btn col-6 col-sm-2 filter-tab">Parole Public</a>
+			<a href="{{ path('app_actions', {'category':'Les_Vitrines_des_Cévènnes'}) }}" class="btn col-6 col-sm-2 filter-tab">Les Vitrines des Cévènnes</a>
+		</div>
 
-
-                    <p class="text-6xl mt-11 mb-11">{{ 'noVideo'|trans({}, 'actions') }}</p>
-
-
-
-
-
+		<p class="text-4xl mt-11 mb-11"style="margin-bottom: 5rem;">{{ 'noVideo'|trans({}, 'actions') }}</p>
 
 		<section class="partenaire-pc d-flex align-items-center shadow-lg">
 			<div class="w-50 Pc">

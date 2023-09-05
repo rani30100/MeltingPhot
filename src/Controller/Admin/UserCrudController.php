@@ -59,7 +59,6 @@ class UserCrudController extends AbstractCrudController
 
             TextField::new('password', 'Mot de Passe')
             ->setFormType(PasswordType::class)
-            ->onlyWhenCreating()
             ->setRequired(true)
             ->setColumns(6),
 
@@ -88,7 +87,15 @@ class UserCrudController extends AbstractCrudController
     
         parent::persistEntity($entityManager, $entityInstance);
     }
-    
+    public function updateEntity(EntityManagerInterface $entityManager, $entityInstance): void
+    {
+        // Hashage du mot de passe
+        $hashedPassword = $this->passwordHasher->hashPassword($entityInstance, $entityInstance->getPassword());
+        $entityInstance->setPassword($hashedPassword);
+
+        parent::updateEntity($entityManager, $entityInstance);
+    }
+
 }
       
 

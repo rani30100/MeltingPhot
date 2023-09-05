@@ -46,6 +46,15 @@ class VideoRepository extends ServiceEntityRepository
             ->getQuery()
             ->getResult();
     }
+    public function findVideosWithImages($query)
+    {
+        return $this->createQueryBuilder('v')
+        ->where('v.title LIKE :query')
+        ->andWhere('v.Image IS NOT NULL') // Ensure Image is not null to filter videos with images
+        ->setParameter('query', '%' . $query . '%')
+        ->getQuery()
+        ->getResult();
+}
 
 //    /**
 //     * @return Video[] Returns an array of Video objects

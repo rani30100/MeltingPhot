@@ -1,0 +1,22 @@
+{% block easyadmin_user_edit_form %}
+    {{ form_start(form) }}
+    {{ form_row(form.username) }}
+    {{ form_row(form.email) }}
+    {{ form_row(form.password) }}
+    <div class="form-group">
+        <label for="show_password_checkbox">
+            <input type="checkbox" id="show_password_checkbox">
+            Show Password
+        </label>
+    </div>
+    {{ form_row(form.roles) }}
+    {{ form_row(form.isVerified) }}
+    {{ form_end(form) }}
+
+
+{% endblock %}
+{% block javascripts %}
+    {{ parent() }}
+    <script src="{{ asset('js/showPasswordAdmin/showPassword.js') }}"></script>
+{% endblock %}
+

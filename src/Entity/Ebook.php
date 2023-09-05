@@ -9,6 +9,8 @@ use Symfony\Component\HttpFoundation\File\File;
 use Symfony\Component\Validator\Constraints\All;
 use Vich\UploaderBundle\Mapping\Annotation as Vich;
 use Symfony\Component\HttpFoundation\File\UploadedFile;
+use Symfony\Component\Validator\Context\ExecutionContextInterface;
+use Symfony\Component\Validator\Constraints as Assert;
 
 #[ORM\Entity(repositoryClass: EbookRepository::class)]
 #[Vich\Uploadable]
@@ -31,6 +33,7 @@ class Ebook
     
     #[ORM\Column(length: 255 , nullable: true)]
     private ? string $pdf =null;
+
     #[Vich\UploadableField(mapping: 'ebook_files', fileNameProperty: 'pdf')]
     private ?File $pdfFile = null;
     
@@ -80,7 +83,7 @@ class Ebook
     /**
      * Get the value of pdf
      */ 
-    public function getPdf()
+    public function getPdf() : ?string
     {
         return $this->pdf;
     }
@@ -116,4 +119,16 @@ class Ebook
 
         return $this;
     }
+
+    // Contraintes de Validation
+    #[Assert\Callback]
+    public function validatePdfFile(ExecutionContextInterface $context)
+    {
+        if ($this->pdfFile !== null && $this->pdfFile->getMimeType() !== 'application/pdf') {
+            $context->buildViolation('Prend uniquement les livres numériques format pdf.')
+                ->atPath('pdfFile')
+                ->addViolation();
+        }
+    }
+
 }
