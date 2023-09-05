@@ -98,7 +98,8 @@ class Posts
     }
     public function __toString()
     {
-        return $this->getTitle() . ' - ' . $this->getUser()->getUsername();
+        return $this->getTitle() ;
+       
     }
     
     public function getPages(): Collection

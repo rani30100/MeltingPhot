@@ -187,29 +187,31 @@
 						{% set videoDisplayed = true %}
 					{% endif %} #}
 
-					{% if result.Image is defined %}
-						{% for videoPageUrl in videoPageUrls %}
-							<a href="{{ videoPageUrl }}">
-						   		<img src="{{ asset("uploads/videos/images/" ~ result.Image) }}" alt="" style="width: 150px; height: 150px;"></img>
-							</a>         
-						{% endfor %}	 
+					 {% if result.Image is defined %}
+						{% if result.Image.page is defined %}
+							<li class="d-flex justify-center mt-4 card-body">
+								<a href="{{ path(image.page) }}">
+									<img src="{{ asset('uploads/' ~ result.path) }}" alt="{{ result.title }}" style="width: 150px; height: 150px;">
+								</a>
+							</li>
+						{% endif %}
 					{% endif %}
 
 					{# Don't display the title if it's a video #}
 					{% if result.path is defined %}
-						<li class="d-flex justify-center mt-4 card-body">
+						{# <li class="d-flex justify-center mt-4 card-body">
 								<img src="{{ asset('uploads/' ~ result.path) }}" alt="{{ result.title }}" style="width: 150px; height: 150px;">
 							</a>
-						</li>
+						</li> #}
 					{% endif %}
 					
 					{# Display the image only if it's an image #}
 					{% if result.Image is defined and not result.url is defined  %}
-						<li class="d-flex justify-center mt-4">
-							<a href="{{ path('image_page', {'id': result.id}) }}">
+						{# <li class="d-flex justify-center mt-4">
+							<a href="{{ asset('uploads/' ~  result.path )  }}">
 								<img src="{{ asset('uploads/' ~ result.Image) }}" alt="{{ result.title }}" style="width: 150px; height: 150px;">
 							</a>
-						</li>
+						</li> #}
 					{% endif %}
 				{% endfor %}
 			</ul>

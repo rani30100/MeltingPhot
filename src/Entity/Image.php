@@ -31,6 +31,10 @@ class Image
     #[ORM\JoinColumn(name: 'post_id', referencedColumnName: 'id')]
     private ?Posts $post = null;
 
+    #[ORM\ManyToOne(targetEntity: Page::class)] // Assuming Page is your entity for representing pages
+    #[ORM\JoinColumn(name: 'page_id', referencedColumnName: 'id')]
+    private ?Page $page = null;
+
     #[ORM\Column(type: 'datetime')]
     private ?DateTimeInterface $created_at = null;
 
@@ -100,6 +104,17 @@ class Image
     public function setCreatedAt(DateTimeInterface $created_at): self
     {
         $this->created_at = $created_at;
+
+        return $this;
+    }
+    public function getPage(): ?Page
+    {
+        return $this->page;
+    }
+
+    public function setPage(?Page $page): self
+    {
+        $this->page = $page;
 
         return $this;
     }

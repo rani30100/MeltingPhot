@@ -8,6 +8,7 @@ use Twig\Environment;
 use App\Twig\PlainTextExtension;
 use Google\Service\DriveActivity\Create;
 use Symfony\UX\Dropzone\Form\DropzoneType;
+use Symfony\Component\Security\Core\Security;
 use Vich\UploaderBundle\Form\Type\VichFileType;
 use EasyCorp\Bundle\EasyAdminBundle\Config\Crud;
 use EasyCorp\Bundle\EasyAdminBundle\Field\Field;
@@ -29,11 +30,13 @@ use EasyCorp\Bundle\EasyAdminBundle\Controller\AbstractCrudController;
 class PostsCrudController extends AbstractCrudController
 {
     private Environment $twig;
+    private Security $security; // Inject the Security service
 
-    // Inject the Twig Environment using constructor injection
-    public function __construct(Environment $twig)
+    // Inject the Twig Environment and Security service using constructor injection
+    public function __construct(Environment $twig, Security $security)
     {
         $this->twig = $twig;
+        $this->security = $security;
     }
     
     public static function getEntityFqcn(): string
@@ -58,7 +61,9 @@ class PostsCrudController extends AbstractCrudController
                 ->onlyOnIndex(),
 
                 AssociationField::new('user', 'Utilisateur')
-                ->setLabel('Utilisateur'),
+                ->setLabel('Utilisateur')
+                ->setCustomOption('user', $this->security->getUser()), // Pass the user to the field
+                // ->onlyOnIndex(),
           
 
                 // ImageField::new('imageFile', 'Image')
@@ -91,9 +96,11 @@ class PostsCrudController extends AbstractCrudController
                 ->onlyOnForms()
                 ->hideOnIndex(),
 
-            TextField::new('position')->onlyOnForms(),
+            // TextField::new('position')->onlyOnForms(),
             DateTimeField::new('createdAt', 'Date de Création ')
+            ->hideWhenCreating()
             ->hideWhenUpdating(),
+            
             DateTimeField::new('updatedAt','Date de Modification')
                 ->hideWhenCreating(),
         ];

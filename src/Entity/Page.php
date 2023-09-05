@@ -41,6 +41,12 @@ class Page
         $this->posts = new ArrayCollection();
     }
 
+    public function __toString()
+    {
+        // Customize this method to return the property that should be used
+        // to represent the Page entity as a string, for example, 'title'.
+        return (string) $this->getTitle();
+    }
     public function getPosts(): Collection
     {
         return $this->posts;

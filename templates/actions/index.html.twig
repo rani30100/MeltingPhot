@@ -157,7 +157,8 @@
 										<div class="">
 											{% set video = videos[videoIndex] %}
 											{% if video.getImage() %}
-												<img class="carousel_img" style="margin:0 auto;" src="{{ asset('' ~ video.getImage()) }}" alt="Video Image">
+													<img class="carousel_img" style="margin:0 auto;" src="{{ asset('' ~ video.getImage()) }}" alt="Video Image">
+												
 											{% else %}
 												<p>No image available</p>
 											{% endif %}

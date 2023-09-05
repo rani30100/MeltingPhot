@@ -255,7 +255,7 @@
 												<div class="h-100">
 													{% if videoAction.getImage() %}
 														<!-- On vérifie si la vidéo possède une image associée. -->
-														<a href="{{ path('app_actions_video', {'id': video.id}) }}">
+														<a href="{{ path('app_actions', {'id': video.id}) }}">
 															<img src="{{ asset('uploads/videos/images/' ~ videoAction.image) }}" class="h-100 {% if isFirstVideo %}first-video{% elseif isLastVideo %}last-video{% endif %}" alt="Video Image" data-bs-toggle="modal" data-bs-target="#videoModal{{ imageIndex + 1 }}" data-video-id="{{ videoAction.id }}">
 														</a>
 													{% else %}
@@ -313,7 +313,7 @@
 			</div>
 
 {% if video %}
-	<a href="{{ path('app_actions_video', {'id': video.id}) }}">
+	<a href="{{ path('app_actions', {'id': video.id}) }}">
     <!-- On vérifie si la vidéo possède une image associée. -->
 		<img class="d-none" src="{{ asset(video.getImage()) }}"
 				class="h-100 video-thumbnail" 
