@@ -190,7 +190,7 @@
 					{% if result.Image is defined %}
 						{% for videoPageUrl in videoPageUrls %}
 							<a href="{{ videoPageUrl }}">
-						   		<img src="{{ asset(result.Image) }}" alt="" style="width: 150px; height: 150px;"></img>
+						   		<img src="{{ asset("uploads/videos/images/" ~ result.Image) }}" alt="" style="width: 150px; height: 150px;"></img>
 							</a>         
 						{% endfor %}	 
 					{% endif %}
