@@ -102,7 +102,9 @@ class PostsCrudController extends AbstractCrudController
             ->hideWhenUpdating(),
             
             DateTimeField::new('updatedAt','Date de Modification')
-                ->hideWhenCreating(),
+            ->hideOnForm()
+            ->hideWhenCreating(),
+    
         ];
     }
 

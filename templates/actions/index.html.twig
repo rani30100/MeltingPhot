@@ -239,25 +239,28 @@
 		</div>
 	</section>
 
-	<section class="partenaire-tab d-flex flex-column">
-		<div class="w-full d-flex ">
-			<div class="d-flex flex-column align-items-center">
-				<h3 class="partenaire-title">
-					<span class="fw-light">Nos</span>
-					Magazines</h3>
-				<p class="partenaire-p">Lorem ipsum dolor sit amet consectetur adipisicing elit. Accusamus saepe magni vel cum dolores quasi veniam nisi, laboriosam distinctio, laborum voluptas dolor repellat quis consequatur nulla ad, qui ut vitae.</p>
-				<button class="btn btn-outline-danger">Ouvrez en Un !</button>
-			</div>
-		</div>
-		<div class="w-full">
-			<div class="w-full d-flex flex-wrap justify-content-left">
-				<a href="/flipbook/hebemag" style="width:150px">
-					<img style="margin-left:2rem; margin-top:1rem" src="{{ asset('img/flipbook1/pics/Magazine-HébéMag.jpeg') }}" alt="">
-				</a>
-			</div>
+<section class="partenaire-tab d-flex flex-column">
+    <div class="w-full d-flex ">
+        <div class="d-flex flex-column align-items-center">
+            <h3 class="partenaire-title">
+                <span class="fw-light">Nos</span>
+                Magazines</h3>
+            <p class="partenaire-p">Lorem ipsum dolor sit amet consectetur adipisicing elit. Accusamus saepe magni vel cum dolores quasi veniam nisi, laboriosam distinctio, laborum voluptas dolor repellat quis consequatur nulla ad, qui ut vitae.</p>
+            <button class="btn btn-outline-danger">Ouvrez en Un !</button>
+        </div>
+    </div>
+<div class="w-full">
+    <div class="w-full d-flex flex-wrap justify-content-left">
+        {% for ebook in ebooks %}
+<a href="{{ path('app_flipbook', { 'id': ebook.id }) }}" style="width:150px">
+                <img style="margin-left:2rem; margin-top:1rem" src="{{ asset('img/flipbook1/pics/Magazine-HébéMag.jpeg') }}" alt="">
+            </a>
+        {% endfor %}
+    </div>
+</div>
 
-		</div>
-	</section>
+</section>
+
 
 
 	{# <div class="d-flex justify-content-center flex-wrap bloc-videos p-1" id="video-container"></div> #}

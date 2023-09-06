@@ -2,10 +2,12 @@
 namespace App\Controller;
 
 use Google\Client;
+use App\Entity\Ebook;
 use App\Entity\Video;
 use DateTimeImmutable;
 use App\Entity\Category;
 use Google\Service\YouTube;
+use App\Repository\EbookRepository;
 use App\Repository\VideoRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Contracts\Cache\ItemInterface;
@@ -94,8 +96,9 @@ class ActionsController extends AbstractController
 
 
     #[Route('/actions/{category}', defaults: ['category' => 'Je_Filme_Mon_Futur_Métier'], methods: ['GET', 'HEAD'], name: 'app_actions')]
-    public function index(string $category = null, EntityManagerInterface $entityManager, CacheInterface $cache, VideoRepository $videoRepository): Response
+    public function index(string $category = null, EntityManagerInterface $entityManager,EbookRepository $ebooks, CacheInterface $cache, VideoRepository $videoRepository): Response
     {
+        $ebooks = $ebooks->findAll(['category' => $category]);
         $videos = $videoRepository->findAll();
         // Essaye de récupérer les vidéos depuis le cache s'ils sont disponibles
         $cachedVideos = $cache->get('playlist_videos', function (ItemInterface $item) use ($category, $entityManager) {
@@ -164,6 +167,7 @@ class ActionsController extends AbstractController
 
         return $this->render('actions/index.html.twig', [
             'videos' => $videosToShow,
+            'ebooks' => $ebooks,
         ]);
     }
 }

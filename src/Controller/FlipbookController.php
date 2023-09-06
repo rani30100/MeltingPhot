@@ -1,41 +1,32 @@
 <?php
+
 namespace App\Controller;
 
-use Spatie\PdfToImage\Pdf;
+use App\Entity\Ebook;
+use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
 class FlipbookController extends AbstractController
 {
-    #[Route('/flipbook/Hébémag', name: 'app_flipbook')]
-    public function index(): Response
+    #[Route('/flipbook', name: 'app_flipbook', methods: ['GET', 'HEAD']) ]
+    public function index(string $id, EntityManagerInterface $entityManager): Response
     {
-        $hébémag = 'uploads/ebook/hebemag.pdf'; 
-        $pathToHébémagImage = 'uploads/hébémag/'; // Chemin de l'image extraite
-    
-        try {
-            // Créez une instance Pdf
-            $pdf = new Pdf($hébémag);
-    
-            // Extrayez toutes les images du PDF et enregistrez-les dans le répertoire de destination
-            $images = $pdf->saveAllPagesAsImages($pathToHébémagImage);
-    
-            // Créez un tableau pour stocker les noms des images extraites (sans le chemin complet)
-            $imagePaths = [];
-
-            // Ajoutez les noms des images au tableau
-            foreach ($images as $image) {
-                $imagePaths[] = basename($image);
-            }
-        } catch (\Exception $e) {
-            // Gérez les erreurs éventuelles lors de l'extraction des images
-            echo "Erreur lors de l'extraction des images : " . $e->getMessage();
+        // Convertir la chaîne ID en entier
+        $ebookId = (int) $id;
+        dd($ebookId);
+        // Utiliser l'ID converti pour récupérer l'ebook
+        $ebook = $entityManager->getRepository(Ebook::class)->find($ebookId);
+        
+        // Gérer le cas où l'ebook n'a pas été trouvé
+        if (!$ebook) {
+            throw $this->createNotFoundException('Flipbook non trouvé.');
         }
-    
+        
         return $this->render('Flipbook-hébémag/index.html.twig', [
             'controller_name' => 'FlipbookController',
-            'imagePaths' => $imagePaths,
+            'ebook' => $ebook,
         ]);
     }
 }

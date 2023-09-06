@@ -38,7 +38,8 @@ class Ebook
     #[Vich\UploadableField(mapping: 'ebook_files', fileNameProperty: 'pdf')]
     private ?File $pdfFile = null;
 
-
+    #[ORM\Column(nullable: true)]
+    private ?\DateTimeImmutable $updatedAt = null;
 
     public function getId(): ?int
     {
@@ -117,6 +118,10 @@ class Ebook
     public function setPdfFile($pdfFile)
     {
         $this->pdfFile = $pdfFile;
+
+        if (null !== $pdfFile) {
+            $this->updatedAt = new \DateTimeImmutable();
+        }
 
         return $this;
     }

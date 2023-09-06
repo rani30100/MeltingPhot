@@ -8,8 +8,8 @@
 
 {% block body %}
     <div class="flipbook-container">
-        {% for imagePath in imagePaths %}
-            <img src="{{ asset('uploads/hébémag/' ~ imagePath) }}" alt="Page {{ loop.index }}" class="flipbook-image">
+        {% for ebook in ebooks %}
+            {# <img src="{{ asset('uploads/hébémag/' ~ imagePath) }}" alt="Page {{ loop.index }}" class="flipbook-image"> #}
         {% endfor %}
     </div>
 {% endblock %}
