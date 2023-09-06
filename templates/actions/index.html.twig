@@ -156,8 +156,8 @@
 									<div class="d-flex w-100 justify-content-center">
 										<div class="">
 											{% set video = videos[videoIndex] %}
-											{% if video.getImage() %}
-													<img class="carousel_img" style="margin:0 auto;" src="{{ asset('' ~ video.getImage()) }}" alt="Video Image">
+											{% if video.Image() %}
+													<img class="carousel_img" style="margin:0 auto;" src="{{ asset('uploads/videos/images/' ~ video.image) }}" alt="Video Image">
 												
 											{% else %}
 												<p>No image available</p>
