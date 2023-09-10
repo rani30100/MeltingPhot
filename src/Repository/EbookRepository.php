@@ -21,33 +21,6 @@ class EbookRepository extends ServiceEntityRepository
         parent::__construct($registry, Ebook::class);
     }
 
-    public function save(Ebook $entity, bool $flush = false): void
-    {
-        $this->getEntityManager()->persist($entity);
-
-        if ($flush) {
-            $this->getEntityManager()->flush();
-        }
-    }
-
-    public function remove(Ebook $entity, bool $flush = false): void
-    {
-        $this->getEntityManager()->remove($entity);
-
-        if ($flush) {
-            $this->getEntityManager()->flush();
-        }
-    }
-    public function findByQuery($query)
-    {
-        return $this->createQueryBuilder('e')
-            ->where('e.title LIKE :query')
-            ->setParameter('query', '%' . $query . '%')
-            ->getQuery()
-            ->getResult();
-    }
-    
-
 //    /**
 //     * @return Ebook[] Returns an array of Ebook objects
 //     */
@@ -72,7 +45,4 @@ class EbookRepository extends ServiceEntityRepository
 //            ->getOneOrNullResult()
 //        ;
 //    }
-
-  
-
 }

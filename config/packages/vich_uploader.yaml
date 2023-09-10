@@ -11,7 +11,7 @@ vich_uploader:
             upload_destination: '%kernel.project_dir%/public/uploads/post/videos'
             namer: Vich\UploaderBundle\Naming\SmartUniqueNamer
 
-        ebook_files:
+        ebook_images:
             uri_prefix: /uploads/ebook
             upload_destination: '%kernel.project_dir%/public/uploads/ebook'
             namer: Vich\UploaderBundle\Naming\SmartUniqueNamer

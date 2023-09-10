@@ -2,19 +2,13 @@
 
 namespace App\Entity;
 
-use DateTimeImmutable;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
 use App\Repository\EbookRepository;
-use Symfony\Component\HttpFoundation\File\File;
-use Symfony\Component\Validator\Constraints\All;
-use Vich\UploaderBundle\Mapping\Annotation as Vich;
-use Symfony\Component\HttpFoundation\File\UploadedFile;
-use Symfony\Component\Validator\Context\ExecutionContextInterface;
-use Symfony\Component\Validator\Constraints as Assert;
+use Doctrine\Common\Collections\Collection;
+use Doctrine\Common\Collections\ArrayCollection;
 
 #[ORM\Entity(repositoryClass: EbookRepository::class)]
-#[Vich\Uploadable]
 class Ebook
 {
     #[ORM\Id]
@@ -22,124 +16,124 @@ class Ebook
     #[ORM\Column]
     private ?int $id = null;
 
-    #[ORM\Column(length: 255)]
-    private ?string $title = null;
+    #[ORM\OneToMany(mappedBy: 'ebook', targetEntity: EbookImage::class, cascade: ['remove'])]
+    private Collection $images;
 
     #[ORM\Column(length: 255)]
     private ?string $author = null;
 
+    #[ORM\Column(length: 255)]
+    private ?string $title = null;
+
     #[ORM\Column(type: Types::TEXT)]
     private ?string $description = null;
+    
+    public function __construct()
+    {
+        $this->images = new ArrayCollection();
+    }
 
+    public function __toString(): string
+    {
+        return $this->author;
+        return $this->title;
+        return $this->description;
 
-    #[ORM\Column(length: 255, nullable: true)]
-    private ?string $pdf = null;
-
-    #[Vich\UploadableField(mapping: 'ebook_files', fileNameProperty: 'pdf')]
-    private ?File $pdfFile = null;
-
-    #[ORM\Column(nullable: true)]
-    private ?\DateTimeImmutable $updatedAt = null;
+    }
 
     public function getId(): ?int
     {
         return $this->id;
     }
 
-    public function getTitle(): ?string
+
+    /**
+     * @return Collection<int, ProductImage>
+     */
+    public function getImages(): Collection
     {
-        return $this->title;
+        return $this->images;
     }
 
-    public function setTitle(string $title): self
+    public function addImage(EbookImage $image): self
     {
-        $this->title = $title;
+        if (!$this->images->contains($image)) {
+            $this->images->add($image);
+            $image->setEbook($this);
+        }
+
         return $this;
     }
 
-    public function getAuthor(): ?string
+    public function removeImage(EbookImage $image): self
+    {
+        if ($this->images->removeElement($image)) {
+            // set the owning side to null (unless already changed)
+            if ($image->getEbook() === $this) {
+                $image->setEbook(null);
+            }
+        }
+
+        return $this;
+    }
+
+    /**
+     * Get the value of author
+     */ 
+    public function getAuthor()
     {
         return $this->author;
     }
 
-    public function setAuthor(string $author): self
+    /**
+     * Set the value of author
+     *
+     * @return  self
+     */ 
+    public function setAuthor($author)
     {
         $this->author = $author;
+
         return $this;
     }
 
-    public function getDescription(): ?string
+    /**
+     * Get the value of title
+     */ 
+    public function getTitle()
+    {
+        return $this->title;
+    }
+
+    /**
+     * Set the value of title
+     *
+     * @return  self
+     */ 
+    public function setTitle($title)
+    {
+        $this->title = $title;
+
+        return $this;
+    }
+
+    /**
+     * Get the value of description
+     */ 
+    public function getDescription()
     {
         return $this->description;
     }
 
-    public function setDescription(string $description): self
+    /**
+     * Set the value of description
+     *
+     * @return  self
+     */ 
+    public function setDescription($description)
     {
         $this->description = $description;
-        return $this;
-    }
-
-
-
-
-    /**
-     * Get the value of pdf
-     */
-    public function getPdf(): ?string
-    {
-        return $this->pdf;
-    }
-
-    /**
-     * Set the value of pdf
-     *
-     * @return  self
-     */
-    public function setPdf($pdf)
-    {
-        $this->pdf = $pdf;
 
         return $this;
-    }
-
-    /**
-     * Get the value of pdfFile
-     */
-    public function getPdfFile()
-    {
-        return $this->pdfFile;
-    }
-
-    /**
-     * Set the value of pdfFile
-     *
-     * @return  self
-     */
-    public function setPdfFile($pdfFile)
-    {
-        $this->pdfFile = $pdfFile;
-
-        if (null !== $pdfFile) {
-            $this->updatedAt = new \DateTimeImmutable();
-        }
-
-        return $this;
-    }
-
-    // Contraintes de Validation
-    #[Assert\Callback]
-    public function validatePdfFile(ExecutionContextInterface $context)
-    {
-        if ($this->pdfFile !== null && $this->pdfFile->getMimeType() !== 'application/pdf') {
-            $context->buildViolation('Prend uniquement les livres numériques format pdf.')
-                ->atPath('pdfFile')
-                ->addViolation();
-        }
-    }
-
-
-    public function getType()
-    {
-        return "ebook";
     }
 }

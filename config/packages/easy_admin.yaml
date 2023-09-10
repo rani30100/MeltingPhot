@@ -1,7 +1,7 @@
 easy_admin:
     entities:
-        Ebook:
-            class: App\Entity\Ebook
+        Product:
+            class: App\Entity\Product
         Image:
             class: App\Entity\Image
             form:
