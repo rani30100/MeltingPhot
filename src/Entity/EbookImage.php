@@ -5,20 +5,20 @@ namespace App\Entity;
 use App\Entity\Ebook;
 use Doctrine\ORM\Mapping as ORM;
 use App\Repository\EbookImageRepository;
-
 use Symfony\Component\HttpFoundation\File\File;
+use Doctrine\Common\Collections\ArrayCollection;
 use Vich\UploaderBundle\Mapping\Annotation as Vich;
+use Symfony\Component\Validator\Constraints\Collection;
+
 #[ORM\Entity(repositoryClass: EbookImageRepository::class)]
 #[Vich\Uploadable]
 class EbookImage
 {
     #[ORM\Id]
     #[ORM\GeneratedValue]
-    #[ORM\Column(nullable:true)]
+    #[ORM\Column]
     private ?int $id = null;
 
-    #[Vich\UploadableField(mapping: 'ebook_images', fileNameProperty: 'imageName', size: 'imageSize')]
-    private ?File $imageFile = null;
     #[ORM\Column(length: 255, nullable: true)]
     private ?string $imageName = null;
 
@@ -28,41 +28,17 @@ class EbookImage
     #[ORM\Column(nullable: true)]
     private ?\DateTimeImmutable $updatedAt = null;
 
-    #[ORM\ManyToOne(inversedBy: 'images')]
-    #[ORM\JoinColumn(nullable: true)]
-    private ?Ebook $ebook = null;
 
-    
-    public function __toString(): string
-    {
-        return $this->imageName ?? ''; // Si imageName est null, retourne une chaîne vide        
-    }
+    #[ORM\ManyToOne(targetEntity: Ebook::class, inversedBy: 'images')]
+    private ?Ebook $ebook = null; 
+
+
 
     public function getId(): ?int
     {
         return $this->id;
     }
 
-    public function setImageFile(?array $imageFiles = null): void
-    {
-        if (null === $imageFiles) {
-            return;
-        }
-    
-        foreach ($imageFiles as $imageFile) {
-            $this->imageFile[] = $imageFile;
-    
-            if (null !== $imageFile) {
-                $this->updatedAt = new \DateTimeImmutable();
-            }
-        }
-    }
-    
-    public function getImageFile(): ?array
-    {
-        return $this->imageFile;
-    }
-    
     public function getImageName(): ?string
     {
         return $this->imageName;
@@ -104,5 +80,6 @@ class EbookImage
         return $this;
     }
 
+ 
 
 }

@@ -3,14 +3,16 @@
 namespace App\Controller\Admin;
 
 use App\Entity\Ebook;
+use App\Entity\EbookImage;
 use App\Form\Type\EbookImageType;
 use Doctrine\ORM\EntityManagerInterface;
+use EasyCorp\Bundle\EasyAdminBundle\Field\IdField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\TextField;
 use Symfony\Component\Form\Extension\Core\Type\FileType;
 use Vich\UploaderBundle\Templating\Helper\UploaderHelper;
 use EasyCorp\Bundle\EasyAdminBundle\Field\CollectionField;
+use Symfony\Component\Form\Extension\Core\Type\HiddenType;
 use EasyCorp\Bundle\EasyAdminBundle\Controller\AbstractCrudController;
-use EasyCorp\Bundle\EasyAdminBundle\Field\IdField;
 
 // use App\Service\PdfImageExtractor;
 class EbookCrudController extends AbstractCrudController
@@ -51,10 +53,10 @@ class EbookCrudController extends AbstractCrudController
         yield TextField::new('title', 'Titre');
         yield TextField::new('description', 'Description');
         yield CollectionField::new('images')
-            ->setEntryType(EbookImageType::class)
-            ->allowAdd(true)
-            ->allowDelete(true);
+        ->setEntryType(EbookImageType::class)
+        ->allowAdd(true)
+        ->allowDelete(true);
     }
 
-
+  
 }

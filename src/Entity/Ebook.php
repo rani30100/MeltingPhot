@@ -16,8 +16,8 @@ class Ebook
     #[ORM\Column]
     private ?int $id = null;
 
-    #[ORM\OneToMany(mappedBy: 'ebook', targetEntity: EbookImage::class, cascade: ['remove'])]
-    private Collection $images;
+    #[ORM\OneToMany(mappedBy: 'ebook', targetEntity: EbookImage::class, orphanRemoval: true, cascade: ['persist'])]
+    private $images;
 
     #[ORM\Column(length: 255)]
     private ?string $author = null;
@@ -27,6 +27,7 @@ class Ebook
 
     #[ORM\Column(type: Types::TEXT)]
     private ?string $description = null;
+
     
     public function __construct()
     {
@@ -48,17 +49,17 @@ class Ebook
 
 
     /**
-     * @return Collection<int, ProductImage>
+     * @return Collection|EbookImage[]
      */
     public function getImages(): Collection
     {
         return $this->images;
     }
-
+    
     public function addImage(EbookImage $image): self
     {
         if (!$this->images->contains($image)) {
-            $this->images->add($image);
+            $this->images[] = $image;
             $image->setEbook($this);
         }
 
@@ -76,6 +77,8 @@ class Ebook
 
         return $this;
     }
+    
+
 
     /**
      * Get the value of author
@@ -135,5 +138,25 @@ class Ebook
         $this->description = $description;
 
         return $this;
+    }
+
+    /**
+     * Set the value of images
+     *
+     * @return  self
+     */ 
+    public function setImages($images)
+    {
+        $this->images = $images;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, EbookImage>
+     */
+    public function getEbookImages(): Collection
+    {
+        return $this->images;
     }
 }
