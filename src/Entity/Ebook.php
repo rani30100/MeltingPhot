@@ -16,7 +16,7 @@ class Ebook
     #[ORM\Column]
     private ?int $id = null;
 
-    #[ORM\OneToMany(mappedBy: 'ebook', targetEntity: EbookImage::class, orphanRemoval: true, cascade: ['persist'])]
+    #[ORM\OneToMany(mappedBy: 'ebook', targetEntity: EbookImage::class, orphanRemoval: true, cascade: ['persist', 'remove'])]
     private $images;
 
     #[ORM\Column(length: 255)]
@@ -28,7 +28,7 @@ class Ebook
     #[ORM\Column(type: Types::TEXT)]
     private ?string $description = null;
 
-    
+
     public function __construct()
     {
         $this->images = new ArrayCollection();
@@ -39,7 +39,6 @@ class Ebook
         return $this->author;
         return $this->title;
         return $this->description;
-
     }
 
     public function getId(): ?int
@@ -55,7 +54,7 @@ class Ebook
     {
         return $this->images;
     }
-    
+
     public function addImage(EbookImage $image): self
     {
         if (!$this->images->contains($image)) {
@@ -77,12 +76,12 @@ class Ebook
 
         return $this;
     }
-    
+
 
 
     /**
      * Get the value of author
-     */ 
+     */
     public function getAuthor()
     {
         return $this->author;
@@ -92,7 +91,7 @@ class Ebook
      * Set the value of author
      *
      * @return  self
-     */ 
+     */
     public function setAuthor($author)
     {
         $this->author = $author;
@@ -102,7 +101,7 @@ class Ebook
 
     /**
      * Get the value of title
-     */ 
+     */
     public function getTitle()
     {
         return $this->title;
@@ -112,7 +111,7 @@ class Ebook
      * Set the value of title
      *
      * @return  self
-     */ 
+     */
     public function setTitle($title)
     {
         $this->title = $title;
@@ -122,7 +121,7 @@ class Ebook
 
     /**
      * Get the value of description
-     */ 
+     */
     public function getDescription()
     {
         return $this->description;
@@ -132,7 +131,7 @@ class Ebook
      * Set the value of description
      *
      * @return  self
-     */ 
+     */
     public function setDescription($description)
     {
         $this->description = $description;
@@ -144,7 +143,7 @@ class Ebook
      * Set the value of images
      *
      * @return  self
-     */ 
+     */
     public function setImages($images)
     {
         $this->images = $images;

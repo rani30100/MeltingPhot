@@ -2,13 +2,12 @@
 
 namespace App\Entity;
 
+use ArrayAccess;
 use App\Entity\Ebook;
 use Doctrine\ORM\Mapping as ORM;
 use App\Repository\EbookImageRepository;
 use Symfony\Component\HttpFoundation\File\File;
-use Doctrine\Common\Collections\ArrayCollection;
 use Vich\UploaderBundle\Mapping\Annotation as Vich;
-use Symfony\Component\Validator\Constraints\Collection;
 
 #[ORM\Entity(repositoryClass: EbookImageRepository::class)]
 #[Vich\Uploadable]
@@ -19,7 +18,10 @@ class EbookImage
     #[ORM\Column]
     private ?int $id = null;
 
-    #[ORM\Column(length: 255, nullable: true)]
+    #[Vich\UploadableField(mapping: 'ebook_images', fileNameProperty: 'imageName')]
+    private ?File $imageFile = null;
+
+    #[ORM\Column(nullable: true)]
     private ?string $imageName = null;
 
     #[ORM\Column(nullable: true)]
@@ -30,14 +32,30 @@ class EbookImage
 
 
     #[ORM\ManyToOne(targetEntity: Ebook::class, inversedBy: 'images')]
-    private ?Ebook $ebook = null; 
-
+    private ?Ebook $ebook = null;
 
 
     public function getId(): ?int
     {
         return $this->id;
     }
+
+    public function setImageFile(?File $imageFile): self
+    {
+        $this->imageFile = $imageFile;
+
+        if ($imageFile) {
+            $this->updatedAt = new \DateTimeImmutable();
+        }
+
+        return $this;
+    }
+
+    public function getImageFile(): ?File
+    {
+        return $this->imageFile;
+    }
+
 
     public function getImageName(): ?string
     {
@@ -79,7 +97,4 @@ class EbookImage
 
         return $this;
     }
-
- 
-
 }
