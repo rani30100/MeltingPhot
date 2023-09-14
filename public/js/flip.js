@@ -3,7 +3,6 @@ const url = document.getElementById('gotMyPdf').textContent;// If absolute URL f
 // header on that server.
 
 
-
  // Loaded via <script> tag, create shortcut to access PDF.js exports.
 var pdfjsLib = window['pdfjs-dist/build/pdf'];
 
@@ -15,7 +14,7 @@ var pdfDoc = null,
     pageRendering = false,
     pageNumPending = null,
     scale = 0.8,
-    canvas = document.getElementById('the-canvas'),
+    canvas = document.getElementById('canvas'),
     ctx = canvas.getContext('2d');
 
 /**

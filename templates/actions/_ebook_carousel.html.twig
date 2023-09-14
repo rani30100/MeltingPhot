@@ -1,0 +1,23 @@
+<div id="ebookCarousel-{{ carouselId }}" class="carousel slide" data-bs-ride="true">
+  <div class="carousel-inner">
+    {% for ebook in ebooks %}
+        <div class="carousel-item {{ loop.index == 1 ? 'active' }}">
+            <img src="{{ asset('img/flipbook1/pics/Magazine-HébéMag.jpeg') }}" class="d-block w-100" alt="{{ ebook.title }}">
+            <div class="carousel-caption d-none d-md-block">
+                <h5>
+                    <a href="{{ path('app_flipbook', { 'id': ebook.id }) }}">{{ ebook.title }}</a>
+                </h5>
+                <p><a href="{{ path('app_flipbook', { 'id': ebook.id }) }}">{{ ebook.description }}</a></p>
+            </div>
+        </div>
+    {% endfor %}
+  </div>
+  <button class="carousel-control-prev" type="button" data-bs-target="#ebookCarousel-{{ carouselId }}" data-bs-slide="prev">
+    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+    <span class="visually-hidden">Previous</span>
+  </button>
+  <button class="carousel-control-next" type="button" data-bs-target="#ebookCarousel-{{ carouselId }}" data-bs-slide="next">
+    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+    <span class="visually-hidden">Next</span>
+  </button>
+</div>

@@ -79,7 +79,7 @@
 												{% if isSecondVideo %}
 													<!-- Si c'est la deuxième vidéo, on ouvre une nouvelle div avec la classe 'video-group'. -->
 													<div class="video-group">
-													{% endif %}
+												{% endif %}
 
 													{% if isFourthVideo %}
 														<!-- Si c'est la quatrième vidéo, on ouvre une nouvelle div avec la classe 'video-group2'. -->
@@ -89,17 +89,17 @@
 															<div class="groupe ">
 																<!-- On ouvre une div pour contenir chaque élément vidéo. -->
 																<div class="h-100">
-																{% if video.Image %}
-																		<!-- On vérifie si la vidéo possède une image associée. -->
-																		{# <a href="{{ path('app_actions_video', {'id': video.id,'category': category}) }}"> #}
-																	<img src="{{ asset('uploads/videos/images/' ~ video.image) }}" class="h-100 {% if isFirstVideo %}first-video{% elseif isLastVideo %}last-video{% endif %}" alt="Video Image" data-bs-toggle="modal" data-bs-target="#videoModal{{ imageIndex + 1 }}" data-video-id="{{ video.id }}"> </a>
-																{% else %}
-																	<p>No image available</p>
-																{% endif %}
+																	{% if video.Image %}
+																			<!-- On vérifie si la vidéo possède une image associée. -->
+																			{# <a href="{{ path('app_actions_video', {'id': video.id,'category': category}) }}"> #}
+																		<img src="{{ asset('uploads/videos/images/' ~ video.image) }}" class="h-100 {% if isFirstVideo %}first-video{% elseif isLastVideo %}last-video{% endif %}" alt="Video Image" data-bs-toggle="modal" data-bs-target="#videoModal{{ imageIndex + 1 }}" data-video-id="{{ video.id }}"> </a>
+																	{% else %}
+																		<p>No image available</p>
+																	{% endif %}
 
-																{% if isSecondVideo and isThirdVideo %}
-																	<!-- Si c'est la deuxième et la troisième vidéo, on ouvre une nouvelle div avec la classe 'video-group' à l'intérieur de cette div. -->
-																	<div class="video-group {% if isSecondVideo %}second-video{% elseif isThirdVideo %}third-video{% endif %}">
+																	{% if isSecondVideo and isThirdVideo %}
+																		<!-- Si c'est la deuxième et la troisième vidéo, on ouvre une nouvelle div avec la classe 'video-group' à l'intérieur de cette div. -->
+																		<div class="video-group {% if isSecondVideo %}second-video{% elseif isThirdVideo %}third-video{% endif %}">
 																	{% endif %}
 																</div>
 															</div>
@@ -221,11 +221,7 @@
 	<section class="partenaire-pc d-flex align-items-center shadow-lg">
 		<div class="w-50 Pc">
 			<div class="w-full d-flex flex-wrap justify-content-left">
-			 {% for ebook in ebooks %}
-				<a href="{{ path('app_flipbook', { 'id': ebook.id }) }}" style="width:150px">
-					<img style="margin-left:2rem; margin-top:1rem" src="{{ asset('img/flipbook1/pics/Magazine-HébéMag.jpeg') }}" alt="">
-				</a>
-			{% endfor %}
+				{% include 'actions/_ebook_carousel.html.twig' with { carouselId: 'pc'} %}
 			</div>
 		</div>
 
@@ -255,11 +251,7 @@
 		</div>
 		<div class="w-full">
 			<div class="w-full d-flex flex-wrap justify-content-left">
-				{% for ebook in ebooks %}
-					<a href="{{ path('app_flipbook', { 'id': ebook.id }) }}" style="width:100px">
-						<img style="margin-left:2rem; margin-top:1rem" src="{{ asset('img/flipbook1/pics/Magazine-HébéMag.jpeg') }}" alt="">
-					</a>
-				{% endfor %}
+				{% include 'actions/_ebook_carousel.html.twig'  with { carouselId: 'mobile'}  %}
 			</div>
 		</div>
 	</section>
