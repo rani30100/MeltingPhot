@@ -5,184 +5,12 @@
 
 {% block javascripts %}
 	{{ parent() }}
-
-	<script>
-		const searchIcon = document.querySelector('#search-icon');
-const searchForm = document.querySelector('#search-form');
-
-searchIcon.addEventListener('click', () => {
-searchForm.classList.toggle('d-none');
-searchIcon.classList.toggle('d-none')
-});
-	
-</script>
-
+	<script src="{{ asset('js/Contact/equipe.js') }}"></script>
 
 {% endblock %}
 
 {% block body %}
-<section class="nav-main"style="background-color: #D00A4B;">
-		<nav class="navbar navbar-expand-lg bg-body-tertiary" id="navbar-hover">
-			<div class="d-flex justy-content-center w-100">
-				<ul class="navbar-nav me-auto mb-2 mb-lg-0 w-100 d-flex justify-content-center align-items-center">
-					<li class="nav-item me-2 meltingphot">
-						<a class="nav-link" aria-current="page" href="/">MELTINGPHOT</a>
-					</li>
-					<li class="nav-item me-2">
-						<a class="nav-link" href="{{ path("app_actions")}}">ACTIONS</a>
-					</li>
-
-
-					<li class="nav-item me-2">
-						<a class="nav-link" href="{{path('app_contact')}}">CONTACT</a>
-					</li>
-
-					{% if not app.user %}
-						<li class="nav-item me-2">
-							<a class="nav-link" href="{{path('app_login')}}">
-								<i class="fa-solid fa-user hi-icon hi-icon-user"></i>
-							</a>
-
-						</li>
-					{% endif %}
-					{% if app.user %}
-						{% if 'ROLE_SUPER_ADMIN' in app.user.roles %}
-							<a class="nav-link" href="{{ path('admin_') }}">Ma Page Admin</a>
-						{% endif %}
-					{% endif %}
-
-					{% if app.user %}
-						<li class="nav-item me-2">
-							<a class="nav-link" href="{{path('app_logout')}}">Se déconnecter</a>
-						</li>
-					{% endif %}
-					<div class="d-flex align-items-center">
-						<i id="search-icon" class="fa-solid fa-magnifying-glass mx-3"></i>
-						<form id="search-form" class="d-none">
-							<div class="input-group">
-								<input type="text" class="form-control" id="search-input" placeholder="Rechercher...">
-								<button class="btn btn-primary" type="submit">Rechercher</button>
-							</div>
-						</form>
-					</div>
-
-					{% if app.user %}
-						<p class="text-end btn btn-warning mt-3">Bienvenue {{ app.user.username }}!</p>
-					{% endif %}
-
-					{% if not app.user %}
-						<li class="nav-item me-2">
-							<a class="nav-link" href="{{path('app_register')}}">S'INSCRIRE</a>
-						</li>
-					{% endif %}
-				
-				<div>
-					<p style="margin-bottom: 0px">V1</p>
-				</div>
-			</div>
-		</nav>
-	</section>
-
-	
-	  {# <nav class="navbar navbar-expand-lg navbar-light">
-			<div class="container-fluid">
-				<ul class="navbar-nav">
-					<!-- Icon dropdown -->
-					<li class="nav-item dropdown">
-						<a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-							<img id="flag-image" src="{{ asset('img/drapeau.png') }}" alt="">
-						</a>
-						<ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-							<li id="language-item">
-								<a class="dropdown-item d-flex" id="fr-flag" href="{{ path(app.request.attributes.get('_route'), {'_locale': 'fr'}) }}" onclick="changeLanguage('fr')">
-									<img src="{{ asset('img/drapeau.png') }}" alt="" style="margin-right: 1rem;">Français
-								</a>
-							</li>
-							<li>
-								<hr class="dropdown-divider"/>
-							</li>
-							<li>
-								<a class="dropdown-item d-flex" id="uk-flag" href="{{ path(app.request.attributes.get('_route'), {'_locale': 'en'}) }}" onclick="changeLanguage('en')">
-									<img src="{{ asset('img/unitedkingdom.png') }}" alt="" style="margin-right: 1rem;">English
-								</a>
-							</li>
-						</ul>
-					</li>
-				</ul>
-			</div>
-		</nav> #}
-</section>
-
-	<nav class="navbar nav-phone navbar-dark bg-red-500">
-		<div class="container-fluid">
-			<button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarToggleExternalContent" aria-controls="navbarToggleExternalContent" aria-expanded="false" aria-label="Toggle navigation">
-				<span class="navbar-toggler-icon"></span>
-			</button>
-		</div>
-	</nav>
-
-	<div id="navbarToggleExternalContent" class="shadow nav-phone collapse navbarToggleExternalContent" data-bs-theme="dark">
-		<div class=" p-4">
-			<ul class="navbar-nav nav-phone-content me-auto mb-2 mt-3 mb-lg-0 w-100 d-flex justify-content-center align-items-center">
-				<li class="">
-					<a href="/">
-						<img class="logo me-2" id="logo-MeltingPhot"src="{{ asset('img/logo.png')}}" width alt=""></img>
-					</a>
-				</li>
-
-				<li class="nav-item me-2 meltingphot">
-					<a class="nav-link" aria-current="page" href="/">MELTINGPHOT</a>
-				</li>
-				<li class="nav-item me-2">
-					<a class="nav-link" href="{{ path("app_actions")}}">Nos Actions</a>
-				</li>
-
-
-				<li class="nav-item me-2">
-					<a class="nav-link" href="{{path('app_contact')}}">Nous Contacter</a>
-				</li>
-
-				{% if not app.user %}
-					<li class="nav-item me-2">
-						<a class="nav-link" href="{{path('app_login')}}">
-							<i class="fa-solid fa-user hi-icon hi-icon-user"></i>
-						</a>
-
-					</li>
-				{% endif %}
-				{% if app.user %}
-					{% if 'ROLE_SUPER_ADMIN' in app.user.roles %}
-						<a class="nav-link" href="{{ path('admin_') }}">Ma Page Admin</a>
-					{% endif %}
-				{% endif %}
-
-				{% if app.user %}
-					<li class="nav-item me-2">
-						<a class="nav-link" href="{{path('app_logout')}}">Se déconnecter</a>
-					</li>
-				{% endif %}
-				<div class="d-flex align-items-center">
-					<i id="search-icon" class="fa-solid fa-magnifying-glass mx-3"></i>
-					<form id="search-form" class="d-none">
-						<div class="input-group">
-							<input type="text" class="form-control" placeholder="Rechercher...">
-							<button class="btn btn-primary" type="submit">Rechercher</button>
-						</div>
-					</form>
-				</div>
-				{% if app.user %}
-					<p class="text-end btn btn-warning mt-3">Bienvenue,{{ app.user.username }}!</p>
-				{% endif %}
-
-				{% if not app.user %}
-					<li class="nav-item me-2">
-						<a class="nav-link" href="{{path('app_register')}}">S'inscrire</a>
-					</li>
-				{% endif %}
-			<ul>
-		</div>
-	</div>
-
+	{% include 'component/navbar.html.twig' %}
 
 	<section class="team d-flex flex-column align-items-center" style="margin:1rem">
 		<article class="d-flex flex-column align-items-center"style="margin-bottom: 2rem;margin-top:5rem">
@@ -271,19 +99,21 @@ searchIcon.classList.toggle('d-none')
 										</div>
 										<div class="mt-5 d-none employeeQuote3"></div>
 									</div>
+									
 								</div>
+								
 							</div>
 						</div>
 					</div>
 
-					<button class="carousel-control-prev" type="button" data-bs-target="#employeeCarousel" data-bs-slide="prev" style="height: 30px; top: 142px; width: 50px;">
-						<span class="carousel-control-prev-icon" aria-hidden="true"></span>
-						<span class="visually-hidden">Previous</span>
-					</button>
-					<button class="carousel-control-next" type="button" data-bs-target="#employeeCarousel" data-bs-slide="next" style="width: 50px; height: 30px; top: 142px;">
-						<span class="carousel-control-next-icon" aria-hidden="true"></span>
-						<span class="visually-hidden">Next</span>
-					</button>
+				  <button class="carousel-control-prev" type="button" data-bs-target="#employeeCarousel" data-bs-slide="prev">
+					<span class="carousel-control-prev-icon" aria-hidden="true"></span>
+					<span class="visually-hidden">Previous</span>
+				</button>
+				<button class="carousel-control-next" type="button" data-bs-target="#employeeCarousel" data-bs-slide="next">
+					<span class="carousel-control-next-icon" aria-hidden="true"></span>
+					<span class="visually-hidden">Next</span>
+				</button>
 				</div>
 			</div>
   		</article>
@@ -383,7 +213,8 @@ searchIcon.classList.toggle('d-none')
 						<p id="employeeQuote3" class="d-none">Citation Employée 3</p>
 					</div>
 				</div>
-			</article>
+			</article>		
+
 		</section>
 	</section>
 
@@ -457,174 +288,8 @@ searchIcon.classList.toggle('d-none')
 
 	</section>
 
-	<!-- Footer -->
+	{% include 'component/footer.html.twig' %}
 
-	<footer class="text-center text-lg-start bg-light text-muted">
-		<section class="p-4 border-top">
-			<div
-				class="text-center text-md-start mt-5">
-				<!-- Grid row -->
-				<div class="row mt-3 d-flex">
-					<div
-						class="d-flex justify-content-center">
-						<!-- Links -->
-						<img src="{{ asset('img/logo.png')}}" class="fw-bold mb-4"></img>
-				</div>
-				<!-- Grid column -->
-				<div class="d-flex justify-content-center ">
-					<p class="text-contact">MELTINGPHOT est un acteur important sur le territoire en mennant des projets d'éducations par l'image auprès des associations, collectivités et entreprises.</p>
-				</div>
-				<div class="d-flex justify-content-center mb-3">
-					<a href="https://www.facebook.com/MeltingPhot/?locale=fr_FR" class="me-4 text-reset">
-						<i class="fab fa-facebook-f"></i>
-					</a>
-					<a href="https://twitter.com/melting_phot?lang=fr" class="me-4 text-reset">
-						<i class="fab fa-twitter"></i>
-					</a>
-					<a href="https://www.instagram.com/meltingphot/?hl=fr" class="me-4 text-reset">
-						<i class="fab fa-instagram"></i>
-					</a>
-					<a href="https://www.linkedin.com/company/meltingphot" class="me-4 text-reset">
-						<i class="fab fa-linkedin"></i>
-					</a>
-					{# <a href="" class="me-4 text-reset">
-													<i class="fab fa-github"></i>
-												</a> #}
-				</div>
-				<!-- Grid column -->
-				<div class="col-md-4 col-lg-3 col-xl-3 mx-auto mb-md-0 mb-4 contact-2">
-					<!-- Links -->
-					<p>
-						<i class="fas fa-home me-3"></i>15 Route de bagnols, 30100 Alès</p>
-					<p>
-						<i class="fas fa-envelope me-3"></i>info@example.com</p>
-					<p>
-						<i class="fas fa-phone me-3"></i>06 64 21 93 75</p>
-
-				</div>
-				<!-- Grid column -->
-			</div>
-			<!-- Grid row -->
-		</div>
-		<div
-			class="info-contact2 ">
-			<!-- Links -->
-			<p class="ms-3">
-				<i class="fas fa-home me-2"></i>15 Route de bagnols, 30100 Alès</p>
-			<p class="ms-3">
-				<i class="fas fa-envelope me-2"></i>info@example.com</p>
-			<p class="ms-3">
-				<i class="fas fa-phone me-2"></i>06 64 21 93 75</p>
-		</div>
-	</section><!-- Section: Links  -->
-	<!-- Copyright -->
-	<div class="text-center p-4 fw-bold text-white d-flex flex-column align-items-center" style="background-color: #D00A4B;">
-
-		Tous droits réservés © 2023 @MeltingPhot
-
-		<p class="fst-italic fw-light fs-6 text-white copyright-text">En effet, tous les éléments présents sur Internet
-					 (textes, images, vidéos, extraits sonores, codes informatiques…)
-					sont de facto soumis au droit d’auteur, même si l’accès est libre,
-				 gratuit et sans mention particulière.</p>
-	</div>
-	<!-- Copyright -->
-
-</footer><!-- Footer -->
-{# js #}
-
-<script>
-  // Récupérer les éléments des employés
-  const employee1 = document.getElementById('employee1');
-  const employee2 = document.getElementById('employee2');
-  const employee3 = document.getElementById('employee3');
-
-  // Récupérer les éléments des citations
-  const employeeQuote1 = document.getElementById('employeeQuote1');
-  const employeeQuote2 = document.getElementById('employeeQuote2');
-  const employeeQuote3 = document.getElementById('employeeQuote3');
-
-  // Fonction pour afficher ou masquer les citations en fonction de l'employé cliqué
-  function toggleQuotes(employee, employeeQuote) {
-    employee.addEventListener('click', () => {
-      if (employeeQuote.style.display === 'none') {
-        employeeQuote.style.display = 'block';
-      } else {
-        employeeQuote.style.display = 'none';
-      }
-    });
-  }
-
-  // Appeler la fonction pour chaque employé
-  toggleQuotes(employee1, employeeQuote1);
-  toggleQuotes(employee2, employeeQuote2);
-  toggleQuotes(employee3, employeeQuote3);
-
-  // Fonction pour changer les informations
-  function changerInformations(employeId) {
-    // Récupérer les éléments du directeur
-    const directeurImage = document.getElementById('employeeImage');
-    const directeurNom = document.getElementById('employeeName');
-    const directeurJob = document.getElementById('employeeJob');
-    const directeurQuote = document.querySelector('.employeeQuote');
-    const directeurSocialMedia = document.getElementById('employeeSocialMedia1');
-
-    // Récupérer les éléments de l'employé cliqué
-    const employeImage = document.getElementById('employeeImage' + employeId);
-    const employeNom = document.getElementById('employeeName' + employeId);
-    const employeJob = document.getElementById('employeeJob' + employeId);
-    const employeQuote = document.querySelector('.employeeQuote' + employeId);
-    const employeSocialMedia = document.getElementById('employeeSocialMedia' + employeId);
-
-    // Sauvegarder les informations du directeur
-    const directeurImageSrc = directeurImage.src;
-    const directeurNomText = directeurNom.textContent;
-    const directeurJobText = directeurJob.textContent;
-    const directeurQuoteText = directeurQuote.innerHTML;
-    const directeurSocialMediaHTML = directeurSocialMedia.innerHTML;
-
-    // Changer les informations du directeur avec celles de l'employé
-    directeurImage.src = employeImage.src;
-    directeurNom.textContent = employeNom.textContent;
-    directeurJob.textContent = employeJob.textContent;
-    directeurQuote.innerHTML = employeQuote.innerHTML;
-    directeurSocialMedia.innerHTML = employeSocialMedia.innerHTML;
-
-    // Changer les informations de l'employé avec celles du directeur
-    employeImage.src = directeurImageSrc;
-    employeNom.textContent = directeurNomText;
-    employeJob.textContent = directeurJobText;
-    employeQuote.innerHTML = directeurQuoteText;
-    employeSocialMedia.innerHTML = directeurSocialMediaHTML;
-  }
-
-  // Ajouter des écouteurs d'événements sur les employés
-  var employe1 = document.getElementById('employee1');
-  employe1.addEventListener('click', function() {
-    changerInformations('1');
-  });
-
-  var employe2 = document.getElementById('employee2');
-  employe2.addEventListener('click', function() {
-    changerInformations('2');
-  });
-
-  var employe3 = document.getElementById('employee3');
-  employe3.addEventListener('click', function() {
-    changerInformations('3');
-  });
-
-  // Assigner les citations aux employés
-  const citationDirecteur = "La photographie est bien plus qu'une simple image figée, c'est une fenêtre ouverte sur le monde..";
-  const citationEmploye1 = "La photographie est une plume qui donne vie à nos histoires, capturant l'essence même de chaque instant.";
-  const citationEmploye2 = "La photographie est notre langage, notre moyen de capturer l'instant présent et de le transformer en un souvenir intemporel";
-  const citationEmploye3 = "La photographie est bien plus qu'une simple capture d'image, c'est un langage artistique à part entière.";
-
-  document.querySelector('.employeeQuote').innerText = citationDirecteur;
-  document.querySelector('.employeeQuote1').innerText = citationEmploye1;
-  document.querySelector('.employeeQuote2').innerText = citationEmploye2;
-  document.querySelector('.employeeQuote3').innerText = citationEmploye3;
-</script>
-</body></html>
 
 
 {% endblock %}

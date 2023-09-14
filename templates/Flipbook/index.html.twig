@@ -1,0 +1,58 @@
+{% extends 'base.html.twig' %}
+{% block javascripts %}
+	{{ parent() }}
+
+	<script src="{{ asset('js/flip.js') }}"></script>
+
+
+{% endblock %}
+
+{% block body %}
+		<script src="https://mozilla.github.io/pdf.js/build/pdf.js"></script>
+<style>
+	#canvas {
+		display: block;
+		margin: 0 auto;
+	}
+
+	#pageNumber {
+		display: inline;
+	}
+
+	.previous {
+		display: inline;
+		background-color: #FFFFFF;
+		color: black;
+		border-radius: 15%;
+	}
+
+	.next {
+		display: inline;
+		background-color: #42A047;
+		color: white;
+		border-radius: 15%;
+	}
+</style>
+	
+
+  <body>
+	{% include 'component/navbar.html.twig' %}
+s
+
+	<p class="visually-hidden" id="gotMyPdf" >{{pdfPath}}</p>
+
+
+    <div class="controls">
+      <button id="previous" class="previous">&laquo; Previous</button>
+      <p id="pageNumber">Page 1 of 1</p>
+      <button id="next" class="next">Next &raquo;</button>
+    </div>
+
+    <canvas id="canvas"></canvas>
+
+
+	{% include 'component/footer.html.twig' %}
+
+  </body>
+
+{% endblock %}

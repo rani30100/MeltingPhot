@@ -2,13 +2,20 @@
 
 namespace App\Entity;
 
+use Vich\Uploadable;
+use DateTimeImmutable;
+use Vich\UploadableField;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
 use App\Repository\EbookRepository;
 use Doctrine\Common\Collections\Collection;
+use Symfony\Component\HttpFoundation\File\File;
 use Doctrine\Common\Collections\ArrayCollection;
+use Vich\UploaderBundle\Mapping\Annotation as Vich;
+
 
 #[ORM\Entity(repositoryClass: EbookRepository::class)]
+#[Vich\Uploadable]
 class Ebook
 {
     #[ORM\Id]
@@ -19,15 +26,31 @@ class Ebook
     #[ORM\OneToMany(mappedBy: 'ebook', targetEntity: EbookImage::class, orphanRemoval: true, cascade: ['persist', 'remove'])]
     private $images;
 
+
+    #[Vich\UploadableField(mapping: 'ebook_aperçu', fileNameProperty: 'imageApercu')]
+    private ?File $aperçu = null;
+
     #[ORM\Column(length: 255)]
     private ?string $author = null;
 
     #[ORM\Column(length: 255)]
     private ?string $title = null;
 
+    #[ORM\Column(length: 255)]
+    private ?string $imageApercu = null;
+
     #[ORM\Column(type: Types::TEXT)]
     private ?string $description = null;
 
+    #[ORM\Column(nullable: true)]
+    private ?\DateTimeImmutable $updatedAt = null;
+
+    #[ORM\Column(length: 255, nullable: true)]
+    private ?string $pdf = null;
+
+
+    #[Vich\UploadableField(mapping: 'ebook_pdf', fileNameProperty: 'pdf')]
+    private ?File $pdfFile = null;
 
     public function __construct()
     {
@@ -78,7 +101,16 @@ class Ebook
     }
 
 
+    public function setAperçu(?File $aperçu): self
+    {
+        $this->aperçu = $aperçu;
 
+        if ($aperçu) {
+            $this->updatedAt = new \DateTimeImmutable();
+        }
+
+        return $this;
+    }
     /**
      * Get the value of author
      */
@@ -157,5 +189,84 @@ class Ebook
     public function getEbookImages(): Collection
     {
         return $this->images;
+    }
+
+    /**
+     * Get the value of aperçu
+     */
+    public function getAperçu()
+    {
+        return $this->aperçu;
+    }
+
+    /**
+     * Get the value of aperçu
+     */
+    public function getPdfFile()
+    {
+        return $this->pdfFile;
+    }
+
+    public function setPdfFile(?File $pdfFile): self
+    {
+        $this->pdfFile = $pdfFile;
+
+        if ($pdfFile) {
+            $this->updatedAt = new \DateTimeImmutable();
+        }
+
+        return $this;
+    }
+
+    /**
+     * Get the value of updatedAt
+     */
+    public function getUpdatedAt()
+    {
+        return $this->updatedAt;
+    }
+
+    /**
+     * Set the value of updatedAt
+     *
+     * @return  self
+     */
+    public function setUpdatedAt($updatedAt)
+    {
+        $this->updatedAt = $updatedAt;
+
+        return $this;
+    }
+
+    /**
+     * Get the value of imageApercu
+     */
+    public function getImageApercu()
+    {
+        return $this->imageApercu;
+    }
+
+    /**
+     * Set the value of imageApercu
+     *
+     * @return  self
+     */
+    public function setImageApercu($imageApercu)
+    {
+        $this->imageApercu = $imageApercu;
+
+        return $this;
+    }
+
+    public function getPdf(): ?string
+    {
+        return $this->pdf;
+    }
+
+    public function setPdf(?string $pdf): static
+    {
+        $this->pdf = $pdf;
+
+        return $this;
     }
 }

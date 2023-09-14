@@ -45,4 +45,12 @@ class EbookRepository extends ServiceEntityRepository
 //            ->getOneOrNullResult()
 //        ;
 //    }
+    public function findByQuery($query)
+    {
+        return $this->createQueryBuilder('e')
+            ->where('e.title LIKE :query')
+            ->setParameter('query', '%' . $query . '%')
+            ->getQuery()
+            ->getResult();
+    }
 }

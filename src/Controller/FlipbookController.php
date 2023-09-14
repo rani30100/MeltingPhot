@@ -12,27 +12,25 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 class FlipbookController extends AbstractController
 {
     #[Route('/flipbook/{id}', name: 'app_flipbook', methods: ['GET', 'HEAD'])]
-    public function index(string $id, EntityManagerInterface $entityManager): Response
+    public function index(Ebook $ebook, EntityManagerInterface $entityManager): Response
     {
-        // Convertir la chaîne ID en entier
-        $ebookId = (int) $id;
+        $ebook = $ebook->getPdf();
 
-        // Utiliser l'ID converti pour récupérer l'ebook
-        $ebook = $entityManager->getRepository(Ebook::class)->find($ebookId);
 
-        // Gérer le cas où l'ebook n'a pas été trouvé
-        if (!$ebook) {
-            throw $this->createNotFoundException('Flipbook non trouvé.');
-        }
 
-        
-        return $this->render('Flipbook-hébémag/index.html.twig', [
-            'controller_name' => 'FlipbookController',
-            'ebooks' => $ebook,
-            // 'images' => $images, // Transmettez les images au template
+
+
+        $pdfPath = '/uploads/ebook/pdf/' . $ebook;
+
+        return $this->render('Flipbook/index.html.twig', [
+            'pdfPath' => $pdfPath,
         ]);
     }
 }
+
+
+
+
 
 // // Répertoire principal pour stocker les images extraites
 // $imageDirectory = $this->getParameter('kernel.project_dir') . '/public/ebook-images/';

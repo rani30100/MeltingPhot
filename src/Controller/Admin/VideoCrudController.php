@@ -3,13 +3,19 @@
 namespace App\Controller\Admin;
 
 use App\Entity\Video;
+use Symfony\Component\Form\FormEvent;
+use Symfony\Component\Form\FormEvents;
+use Symfony\Component\Form\FormBuilderInterface;
+use EasyCorp\Bundle\EasyAdminBundle\Dto\EntityDto;
 use EasyCorp\Bundle\EasyAdminBundle\Field\IdField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\TextField;
+use EasyCorp\Bundle\EasyAdminBundle\Field\ImageField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\DateTimeField;
+use EasyCorp\Bundle\EasyAdminBundle\Config\KeyValueStore;
+use EasyCorp\Bundle\EasyAdminBundle\Context\AdminContext;
 use EasyCorp\Bundle\EasyAdminBundle\Field\TextEditorField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\AssociationField;
 use EasyCorp\Bundle\EasyAdminBundle\Controller\AbstractCrudController;
-use EasyCorp\Bundle\EasyAdminBundle\Field\ImageField;
 
 
 class VideoCrudController extends AbstractCrudController
@@ -48,5 +54,37 @@ class VideoCrudController extends AbstractCrudController
         ];
     }
     
+    public function createEditFormBuilder(EntityDto $entityDto, KeyValueStore $formOptions, AdminContext $context): FormBuilderInterface
+    {
+
+        $builder = parent::createEditFormBuilder($entityDto, $formOptions, $context);
+
+        $builder
+            ->addEventListener(FormEvents::POST_SUBMIT, function (FormEvent $event) {
+              
+                $this->addFlash(
+                    'success', // Le type du message flash (par exemple, 'success' pour un message de succès)
+                    'Les modifications ont été enregistrées avec succès!' // Le message à afficher
+                );
+            });
+
+        return $builder;
+    }
+    public function createNewFormBuilder(EntityDto $entityDto, KeyValueStore $formOptions, AdminContext $context): FormBuilderInterface
+    {
+
+        $builder = parent::createNewFormBuilder($entityDto, $formOptions, $context);
+
+        $builder
+            ->addEventListener(FormEvents::POST_SUBMIT, function (FormEvent $event) {
+  
+                $this->addFlash(
+                    'success', // Le type du message flash (par exemple, 'success' pour un message de succès)
+                    'Les modifications ont été enregistrées avec succès!' // Le message à afficher
+                );
+            });
+
+        return $builder;
+    }
   
 }

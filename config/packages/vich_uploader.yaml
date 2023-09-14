@@ -15,3 +15,12 @@ vich_uploader:
             uri_prefix: /uploads/ebook
             upload_destination: '%kernel.project_dir%/public/uploads/ebook'
             namer: Vich\UploaderBundle\Naming\SmartUniqueNamer
+        ebook_aperçu:
+            uri_prefix: /uploads/ebook/apercu
+            upload_destination: '%kernel.project_dir%/public/uploads/ebook/apercu'
+            namer: Vich\UploaderBundle\Naming\SmartUniqueNamer
+        ebook_pdf:
+            uri_prefix: /uploads/ebook/pdf
+            upload_destination: '%kernel.project_dir%/public/uploads/ebook/pdf'
+            namer: Vich\UploaderBundle\Naming\SmartUniqueNamer
+        

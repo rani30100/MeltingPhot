@@ -18,8 +18,7 @@ class PageController extends AbstractController
         $this->entityManager = $entityManager;
     }
 
-    #[Route("/{slug}", name: "app_page_show", priority: -1)]
-
+    #[Route("/{slug}", name: "app_page_show", priority: -1, requirements: ["slug" => ".*"])]    
     public function show(Page $page, EntityManagerInterface $entityManager,ImageRepository $images): Response
     {
         
