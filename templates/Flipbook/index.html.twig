@@ -37,19 +37,19 @@
 
   <body>
 	{% include 'component/navbar.html.twig' %}
-s
+
 
 	<p class="visually-hidden" id="gotMyPdf" >{{pdfPath}}</p>
 
+	<div class="w-full">
+		<canvas id="canvas" class="mt-5 flip-mobiles" style=""></canvas>
+	</div>
 
-    <div class="controls">
-      <button id="prev" class="previous">&laquo; Previous</button>
-      <p id="pageNumber">Page <span id="page_num">1</span> of <span id="page_count">1</span></p>
-      <button id="next" class="next">Next &raquo;</button>
+    <div class="controls d-flex justify-content-center align-items-baseline mb-5 mt-5">
+      <button id="prev" class="previous btn">&laquo; Précédent</button>
+      <p id="pageNumber" class="ms-1"> Page <span id="page_num"> </span> de <span id="page_count"class="me-1">  </span> </p>
+      <button id="next" class="next btn">Suivant &raquo;</button>
     </div>
-
-    <canvas id="canvas"></canvas>
-
 
 	{% include 'component/footer.html.twig' %}
 

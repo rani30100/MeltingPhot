@@ -26,7 +26,6 @@ class Ebook
     #[ORM\OneToMany(mappedBy: 'ebook', targetEntity: EbookImage::class, orphanRemoval: true, cascade: ['persist', 'remove'])]
     private $images;
 
-
     #[Vich\UploadableField(mapping: 'ebook_aperçu', fileNameProperty: 'imageApercu')]
     private ?File $aperçu = null;
 
@@ -36,7 +35,7 @@ class Ebook
     #[ORM\Column(length: 255)]
     private ?string $title = null;
 
-    #[ORM\Column(length: 255)]
+    #[ORM\Column(length: 255, nullable:true)]
     private ?string $imageApercu = null;
 
     #[ORM\Column(type: Types::TEXT)]
