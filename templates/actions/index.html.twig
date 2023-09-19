@@ -10,9 +10,6 @@
 	<script src="{{ asset('js/component/navbar.js') }}"></script>
 	<script src="{{ asset('js/lazy-video/lazy-video.js') }}"></script>
 	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/js/bootstrap.bundle.min.js"></script>
-	<script src="{{ asset('js/home/carousel-effect.js') }}"></script>
-		
-
 {% endblock %}
 
 {% block body %}
@@ -47,7 +44,8 @@
 						<span class="text-center fw-light">PAR L'IMAGE</span>
 					</h2>
 				</div>
-				<div class="d-flex flex-wrap align-items-center justify-content-center mb-3 ">
+				<div
+					class="d-flex flex-wrap align-items-center justify-content-center mb-3 ">
 					{# quand je clique sur le filme mon futur metier affiche les videos correspondantes a cette categorie  #}
 					<a href="{{ path('app_actions', {'category': 'Je_Filme_Mon_Futur_Métier'}) }}" class="btn col-6 col-sm-2 filter-tab" id="video-link">Je Filme mon futur métier</a>
 					<a href="{{ path('app_actions', {'category':'Odonymes'}) }}" class="btn col-6 col-sm-2 filter-tab">Odonymes</a>
@@ -56,96 +54,7 @@
 					<a href="{{ path('app_actions', {'category':'Les_Vitrines_des_Cévènnes'}) }}" class="btn col-6 col-sm-2 filter-tab">Les Vitrines des Cévènnes</a>
 				</div>
 
-
-				<div id="carouselIndicators" class="carousel w-100" data-bs-interval="false">
-					<div class="carousel-inner d-flex">
-						{% if videos|length > 0 %}
-							{% for i in range(0, (videos|length / 6 - 1)) %}
-								<div class="carousel-item {% if i == 0 %}active{% endif %}">
-									<div class="d-flex flex-row justify-content-center" style="margin: 0 auto; width: 95%;">
-										{% for j in range(0, 5) %}
-											{% set imageIndex = i * 6 + j %}
-											{% if imageIndex < videos|length %}
-												{% set video = videos[imageIndex] %}
-												<!-- On assigne la vidéo correspondant à l'index 'imageIndex' à la variable 'video'. -->
-												{% set isFirstVideo = j == 0 %}
-												{% set isSecondVideo = j == 1 %}
-												{% set isThirdVideo = j == 2 %}
-												{% set isFourthVideo = j == 3 %}
-												{% set isFifthVideo = j == 4 %}
-												{% set isLastVideo = j == 5 %}
-												<!-- On définit des variables booléennes pour indiquer la position de la vidéo actuelle dans l'itération. -->
-
-												{% if isSecondVideo %}
-													<!-- Si c'est la deuxième vidéo, on ouvre une nouvelle div avec la classe 'video-group'. -->
-													<div class="video-group">
-												{% endif %}
-
-													{% if isFourthVideo %}
-														<!-- Si c'est la quatrième vidéo, on ouvre une nouvelle div avec la classe 'video-group2'. -->
-														<div class="video-group2">
-														{% endif %}
-
-															<div class="groupe ">
-																<!-- On ouvre une div pour contenir chaque élément vidéo. -->
-																<div class="h-100">
-																	{% if video.Image %}
-																			<!-- On vérifie si la vidéo possède une image associée. -->
-																			{# <a href="{{ path('app_actions_video', {'id': video.id,'category': category}) }}"> #}
-																		<img src="{{ asset('uploads/videos/images/' ~ video.image) }}" class="h-100 {% if isFirstVideo %}first-video{% elseif isLastVideo %}last-video{% endif %}" alt="Video Image" data-bs-toggle="modal" data-bs-target="#videoModal{{ imageIndex + 1 }}" data-video-id="{{ video.id }}"> </a>
-																	{% else %}
-																		<p>No image available</p>
-																	{% endif %}
-
-																	{% if isSecondVideo and isThirdVideo %}
-																		<!-- Si c'est la deuxième et la troisième vidéo, on ouvre une nouvelle div avec la classe 'video-group' à l'intérieur de cette div. -->
-																		<div class="video-group {% if isSecondVideo %}second-video{% elseif isThirdVideo %}third-video{% endif %}">
-																	{% endif %}
-																</div>
-															</div>
-
-														{% if isThirdVideo %}
-															<!-- Si c'est la troisième vidéo, on ferme la div 'video-group'. -->
-														</div>
-													{% endif %}
-
-													{% if isFifthVideo %}
-														<!-- Si c'est la cinquième vidéo, on ferme la div 'video-group2'. -->
-													</div>
-												{% endif %}
-
-											{% endif %}
-										{% endfor %}
-									</div>
-								</div>
-							{% endfor %}
-						{% else %}
-							<!-- Handle the case when there are no videos -->
-							<p>No videos available</p>
-						{% endif %}
-
-						<!-- Rest of the carousel code -->
-					</div>
-
-					<!-- Boutons de contrôle du carrousel -->
-					<ol class="carousel-indicators">
-						{% for i in 0..(videos|length / 6 - 1) %}
-							<li data-bs-target="#carouselIndicators" data-bs-slide-to="{{ i }}" {% if i == 0 %} class="active" {% endif %}></li>
-						{% endfor %}
-					</ol>
-
-					<!-- Indicateurs du carrousel -->
-					<div class="carousel-pagination">
-						<button class="carousel-control-prev carousel-fade" type="button" data-bs-target="#carouselIndicators" data-bs-slide="prev">
-							<span class="carousel-control-prev-icon" aria-hidden="true"></span>
-							<span class="visually-hidden">Previous</span>
-						</button>
-						<button class="carousel-control-next carousel-fade" type="button" data-bs-target="#carouselIndicators" data-bs-slide="next">
-							<span class="carousel-control-next-icon" aria-hidden="true"></span>
-							<span class="visually-hidden">Next</span>
-						</button>
-					</div>
-				</div>
+				{% include "actions/_action_carousel_pc.html.twig" %}
 
 
 				<div id="carouselIndicatorsMobile" class="carousel slide">
@@ -158,8 +67,8 @@
 										<div class="">
 											{% set video = videos[videoIndex] %}
 											{% if video.Image() %}
-													<img class="carousel_img" style="margin:0 auto;" src="{{ asset('uploads/videos/images/' ~ video.image) }}" alt="Video Image">
-												
+												<img class="carousel_img" style="margin:0 auto;" src="{{ asset('uploads/videos/images/' ~ video.image) }}" alt="Video Image">
+
 											{% else %}
 												<p>No image available</p>
 											{% endif %}
@@ -197,7 +106,7 @@
 
 				{% for video in videos %}
 					<div class="modal fade" id="videoModal{{ loop.index }}" tabindex="-1" aria-labelledby="videoModal{{ loop.index }}
-																			Label" aria-hidden="true">
+																															Label" aria-hidden="true">
 						<div class="modal-dialog modal-lg modal-dialog-centered">
 							<div class="modal-content">
 								<div class="modal-header bg-dark white-text">
@@ -220,7 +129,7 @@
 	{# Pc-Tablette #}
 	<section class="partenaire-pc d-flex align-items-center shadow-lg">
 		<div class="w-50 Pc">
-			<div class="w-full d-flex flex-wrap justify-content-left"style="margin-left:3rem">
+			<div class="w-full d-flex flex-wrap justify-content-left" style="margin-left:3rem">
 				{% include 'actions/_ebook_carousel.html.twig' with { carouselId: 'pc'} %}
 			</div>
 		</div>
@@ -255,7 +164,6 @@
 			</div>
 		</div>
 	</section>
-
 
 
 	{# <div class="d-flex justify-content-center flex-wrap bloc-videos p-1" id="video-container"></div> #}

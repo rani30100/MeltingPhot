@@ -1,0 +1,73 @@
+{% set videosArr = videos|batch(6, null, false) %}
+<div
+	id="action-carousel-pc" class="carousel slide w-100" data-bs-interval="false">
+	<!-- Boutons de contrôle du carrousel -->
+	<ol class="carousel-indicators">
+		{% for key, row in videosArr %}
+			{% if row|length > 5 %}
+				<li data-bs-target="#action-carousel-pc" data-bs-slide-to="{{ key }}" {% if key == 0 %} class="active" {% endif %}></li>
+			{% endif %}
+		{% endfor %}
+	</ol>
+	<div class="carousel-inner d-flex">
+		{% for key, row in videosArr %}
+			{% if row|length > 5 %}
+				<div class="carousel-item {{ key == 0 ? " active" }}">
+					<div class="d-flex flex-row justify-content-center" style="margin: 0 auto; width: 95%;">
+						<div class="groupe">
+							<div class="h-100">
+								<img src="{{ asset('uploads/videos/images/' ~ row[0].image) }}" class="h-100 first-video" alt="Video Image" data-bs-toggle="modal" data-bs-target="#videoModal{{ " todo" }}" data-video-id="{{ row[0].id }}">
+							</div>
+						</div>
+
+						<div class="video-group">
+							<div class="group">
+								<div class="h-100">
+									<img src="{{ asset('uploads/videos/images/' ~ row[1].image) }}" class="h-100 first-video" alt="Video Image" data-bs-toggle="modal" data-bs-target="#videoModal{{ " todo" }}" data-video-id="{{ row[1].id }}">
+								</div>
+							</div>
+							<div class="group">
+								<div class="h-100">
+									<img src="{{ asset('uploads/videos/images/' ~ row[2].image) }}" class="h-100 first-video" alt="Video Image" data-bs-toggle="modal" data-bs-target="#videoModal{{ " todo" }}" data-video-id="{{ row[2].id }}">
+								</div>
+							</div>
+						</div>
+						<div class="video-group">
+							<div class="group">
+								<div class="h-100">
+									<img src="{{ asset('uploads/videos/images/' ~ row[3].image) }}" class="h-100 first-video" alt="Video Image" data-bs-toggle="modal" data-bs-target="#videoModal{{ " todo" }}" data-video-id="{{ row[3].id }}">
+								</div>
+							</div>
+							<div class="group">
+								<div class="h-100">
+									<img src="{{ asset('uploads/videos/images/' ~ row[4].image) }}" class="h-100 first-video" alt="Video Image" data-bs-toggle="modal" data-bs-target="#videoModal{{ " todo" }}" data-video-id="{{ row[4].id }}">
+								</div>
+							</div>
+						</div>
+						<div class="groupe">
+							<div class="h-100">
+								<img src="{{ asset('uploads/videos/images/' ~ row[5].image) }}" class="h-100 first-video" alt="Video Image" data-bs-toggle="modal" data-bs-target="#videoModal{{ " todo" }}" data-video-id="{{ row[5].id }}">
+							</div>
+						</div>
+					</div>
+				</div>
+			{% endif %}
+		{% endfor %}
+
+
+		<!-- Rest of the carousel code -->
+	</div>
+
+
+	<!-- Indicateurs du carrousel -->
+	<div class="carousel-pagination">
+		<button class="carousel-control-prev carousel-fade" type="button" data-bs-target="#action-carousel-pc" data-bs-slide="prev">
+			<span class="carousel-control-prev-icon" aria-hidden="true"></span>
+			<span class="visually-hidden">Previous</span>
+		</button>
+		<button class="carousel-control-next carousel-fade" type="button" data-bs-target="#action-carousel-pc" data-bs-slide="next">
+			<span class="carousel-control-next-icon" aria-hidden="true"></span>
+			<span class="visually-hidden">Next</span>
+		</button>
+	</div>
+</div>
