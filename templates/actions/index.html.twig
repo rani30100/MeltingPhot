@@ -16,6 +16,8 @@
 
 	{% include 'component/navbar.html.twig' %}
 
+
+
 	<section class="actions-bandeau w-100 bg-secondary-subtle h-400 d-flex flex-column justify-content-center align-items-center p-1">
 		<article class="actions-bloc">
 			<div class="container d-lg-flex flex-lg-row justify-content-lg-center align-items-lg-center">
@@ -67,6 +69,7 @@
 										<div class="">
 											{% set video = videos[videoIndex] %}
 											{% if video.Image() %}
+											
 												<img class="carousel_img" style="margin:0 auto;" src="{{ asset('uploads/videos/images/' ~ video.image) }}" alt="Video Image">
 
 											{% else %}
@@ -105,8 +108,7 @@
 
 
 				{% for video in videos %}
-					<div class="modal fade" id="videoModal{{ loop.index }}" tabindex="-1" aria-labelledby="videoModal{{ loop.index }}
-																															Label" aria-hidden="true">
+					<div class="modal fade" id="videoModal{{ loop.index }}" tabindex="-1" aria-labelledby="videoModal{{ loop.index }}Label" aria-hidden="true">
 						<div class="modal-dialog modal-lg modal-dialog-centered">
 							<div class="modal-content">
 								<div class="modal-header bg-dark white-text">

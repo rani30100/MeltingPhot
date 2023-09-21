@@ -42,7 +42,6 @@ class ActionsController extends AbstractController
                 $filteredPlaylistItems[] = $item;
             }
         }
-
         return $filteredPlaylistItems;
     }
 
@@ -158,7 +157,8 @@ class ActionsController extends AbstractController
         // Si les vidéos récupérées sont vides et que la catégorie n'est pas celle par défaut, rend le template "novideo.html.twig"
         if ($category !== 'Je_Filme_Mon_Futur_Métier' && empty($cachedVideos)) {
             return $this->render('actions/no_videos.html.twig', [
-            'category' => $category]);
+            'category' => $category
+        ]);
         }
 
 
@@ -168,6 +168,8 @@ class ActionsController extends AbstractController
         return $this->render('actions/index.html.twig', [
             'videos' => $videosToShow,
             'ebooks' => $ebooks,
+            'category' => $category
+
         ]);
     }
 }
