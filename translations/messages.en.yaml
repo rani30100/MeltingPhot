@@ -4,3 +4,6 @@ Symfony est gratuit: Symfony is free
 MELTINGPHOT est un acteur important sur le territoire en mennant des projets d'éducations par l'image auprès des associations, collectivités et entreprises.: MELTINGPHOT is an important player on the territory by leading educational projects through images with associations, communities and companies.
 http_error.name : Error 403
 search : rechercher
+New Password : New Password
+Repeat Password : Repeat Password
+minPassword : Your password should be at least {{ limit }} characters

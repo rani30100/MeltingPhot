@@ -20,13 +20,13 @@
             <p class="text-center text-3xl"></p>
 
             <form method="post" id='login-form'action="{{ path('app_login') }}" class="flex flex-col pt-3">
-              
-				{% if error %}
-                    <div class="alert alert-danger">
-                        {{ error.messageKey|trans(error.messageData, 'security') }}
-                    </div>
-                {% endif %}
-				
+            {% if error %}
+                <div class="alert alert-danger">
+                    {{ error.messageKey|trans(error.messageData, 'security') }}
+                </div>
+            {% endif %}
+
+
 
                 {% if app.user %}
                     <div class="mb-3">
@@ -48,7 +48,7 @@
 			        <input type="password" name="password" id="password" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 mt-1 leading-tight focus:outline-none focus:shadow-outline" autocomplete="current-password" required>
                     
                     <div class="d-flex ">
-                        <a class="btn" style=" color: white;background: black;margin-top: 0.6rem;" id="togglePassword">Afficher le mot depasse </a>
+                        <a class="btn" style=" color: white;background: black;margin-top: 0.6rem;" id="togglePassword">Afficher le mot de passe </a>
                     </div>
 
                 </div>

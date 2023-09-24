@@ -1,55 +1,77 @@
 {# search_results.html.twig #}
 {% extends 'base.html.twig' %}
 {% block javascripts %}
-	{{ parent() }}
+    {{ parent() }}
 {% endblock %}
 
-
 {% block body %}
+
+
 	{% include 'component/navbar.html.twig' %}
 
-	<section class="text-center my-24">
+    <section class="text-center my-24">
+        {% if query is not empty %}
+            <h2>Faire une nouvelle Recherche ?</h2>
+            <form id="search-form2" class="d-flex justify-center " action="{{ path('app_search_results') }}" method="GET">
+                <div class="input-group w-50 sm-w-80">
+                    <input type="text" class="form-control" name="q" value="{{query}}" placeholder="Rechercher...">
+                    <button class="btn btn-primary" type="submit">Rechercher</button>
+                </div>
+            </form>
 
-		<h1>Résultats de la recherche pour "{{ query }}" :</h1>
-		{% if pagination.getTotalItemCount() > 0 %}
-			<p class="text-xl">{{ pagination.getTotalItemCount() }}
-				résultat(s) trouvé(s) pour cette recherche.</p>
-			<ul class="d-flex justify-center">
-				{% set videoDisplayed = false %}
-				{% for result in pagination %}
+            <h1 class="mt-5">Résultats de la recherche pour "{{ query }}" :</h1>
+            {% if pagination.getTotalItemCount() > 0 %}
+                <p class="text-xl">{{ pagination.getTotalItemCount() }}
+                    résultat(s) trouvé(s) pour cette recherche.</p>
+                <ul class="d-flex justify-center flex-column align-items-center">
+                    {% set videoDisplayed = false %}
+                    {% for result in pagination %}
+                        {% if result.type == "image" %}
+                            <a href="{{ path("app_flipbook", {id: result.id}) }}">
+                                {% if result.imageApercu is defined %}
+                                    <img src="{{ asset('uploads/ebook/apercu/' ~ result.imageApercu) }}" alt="{{ result.title }}" style="width: 150px; height: 150px;"/>
+                            									
+							<a href="{{ path("app_flipbook", {id: result.id}) }}" class="link" style="max-width:415px;"><em>{{ result.title }}</ins></em></a>
+                            </a>
+						{% endif %}
+						
+                        {% elseif result.type == "video" %}
+                            <a style="display:contents"href="{{ path("app_actions_video", {id: result.id}) }}">
+                                <img src="{{ asset('img/videos/' ~ result.image) }}" alt="{{ result.title }}" style="width: 150px; height: 150px;"/>
+							<a href="{{ path("app_actions_video", {id: result.id}) }}" class="link"style="max-width:415px;"><em>{{ result.title }}</ins></em></a>
+                            </a>
+						
+                        {% elseif result.type == "page"  %}
+                            {# Handle page type here if needed #}
+                        {% else %}
+                            {# Handle other types if needed #}
+                        {% endif %}
+                    {% endfor %}
+                </ul>
 
+                <div class="pagination d-flex justify-center w-30 m2">
+                    {{ knp_pagination_render(pagination) }}
+                </div>
 
-					{%     if result.type == "image" %}
-						<a href="{{ path("app_page_show", {slug: result.page.slug}) }}">
-							<img src="{{ asset('uploads/' ~ result.path) }}" alt="{{ result.title }}" style="width: 150px; height: 150px;"/>
-						</a>
-					{% elseif result.type == "ebook" %}
-					{% elseif result.type == "video" %}
-					{% elseif result.type == "page"  %}
-						{% else %}
-						{# Ceci ne devrais pas arriver mais bon on sais jamais hein #}
-					{% endif %}
+            {% else %}
+                <p>Aucun résultat trouvé.</p>
+            {% endif %}
+        {% else %}
+			{% if pagination.getTotalItemCount() != 0 %}
+			       <h2>Que recherchez-vous ?</h2>
+						<form id="search-form2" class="d-flex justify-center " action="{{ path('app_search_results') }}" method="GET">
+							<div class="input-group w-50 sm-w-80">
+								<input type="text" class="form-control" name="q" value="{{query}}" placeholder="Rechercher...">
+								<button class="btn btn-primary" type="submit">Rechercher</button>
+							</div>
+						</form>
+					{# <p class="text-xl">
+					Aucune recherche n'a été effectuer</p> #}
+				<p>Aucun résultat trouvé.</p>
+			{% endif %}
+        {% endif %}
+    </section>
+    {% include 'component/footer.html.twig' %}
 
-
-				{% endfor %}
-			</ul>
-
-			<div class="pagination d-flex justify-center w-30 m2">
-				{{ knp_pagination_render(pagination) }}
-			</div>
-
-		{% else %}
-			<p>Aucun résultat trouvé.</p>
-		{% endif %}
-
-		<h2>Faire une nouvelle Recherche ?</h2>
-		<form id="search-form2" class="d-flex justify-center " action="{{ path('app_search_results') }}" method="GET">
-			<div class="input-group w-50 sm-w-80">
-				<input type="text" class="form-control" name="q" placeholder="Rechercher...">
-				<button class="btn btn-primary" type="submit">Rechercher</button>
-			</div>
-		</form>
-	</section>
-	{% include 'component/footer.html.twig' %}
 
 {% endblock %}

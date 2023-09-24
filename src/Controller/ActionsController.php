@@ -73,8 +73,8 @@ class ActionsController extends AbstractController
     }
 
 
-    #[Route('/actions/{category}/{id}', name: 'app_actions_video')]
-    public function redirectToVideo(string $category, int $id, VideoRepository $videoRepository): Response
+    #[Route('/actions/{id}', name: 'app_actions_video')]
+    public function redirectToVideo( int $id, VideoRepository $videoRepository): Response
     {
       // Récupérer la vidéo à partir de l'identifiant (ID)
       $video = $videoRepository->find($id);

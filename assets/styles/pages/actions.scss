@@ -338,11 +338,20 @@ h2 {
 @media (min-width: 700px) {
     #carouselIndicatorsMobile {
         display: none !important;
+
     }
+  
 
     @media (min-width: 576px) {
         modal-dialog {
             max-width: 90% !important;
         }
+    }
+}
+
+@media (max-width: 699px) {
+    #action-carousel-pc {
+        display: none !important;
+
     }
 }

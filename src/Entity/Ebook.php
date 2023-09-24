@@ -267,5 +267,10 @@ class Ebook
         $this->pdf = $pdf;
 
         return $this;
+ 
+    }
+
+    public function getType() {
+        return "image";
     }
 }

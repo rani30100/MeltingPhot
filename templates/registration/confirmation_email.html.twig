@@ -1,11 +1,28 @@
-<h1>Hi! Please confirm your email!</h1>
 
-<p>
-    Please confirm your email address by clicking the following link: <br><br>
-    <a href="{{ signedUrl|raw }}">Confirm my Email</a>.
-    This link will expire in {{ expiresAtMessageKey|trans(expiresAtMessageData, 'VerifyEmailBundle') }}.
-</p>
 
-<p>
-    Cheers!
-</p>
+<div class="w-100 d-flex justify-content-center">
+    <img id="employeeImage1" class="width-20 employeeImage employee1" src="{{ asset('img/Logo/logo.png') }}" style="max-width: 300px; min-width: 216px; height: 216px;object-fit: cover;">
+
+
+    <h1>Bonjour !</h1>
+
+    <p>
+        Confirmez mon email en cliquant sur le lien suivant: <br><br>
+        <a  class="btn btn-primary "href="{{ signedUrl|raw }}">Confirmez mon email.</a>.
+        This link will expire in {{ expiresAtMessageKey|trans(expiresAtMessageData, 'VerifyEmailBundle') }}.
+    </p>
+
+ 
+
+</div>
+
+<style>
+
+.banner{
+
+
+}
+
+
+
+</style>

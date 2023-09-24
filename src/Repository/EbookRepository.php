@@ -21,8 +21,37 @@ class EbookRepository extends ServiceEntityRepository
         parent::__construct($registry, Ebook::class);
     }
 
-//    /**
-//     * @return Ebook[] Returns an array of Ebook objects
+    public function findByQuery($query)
+    {
+        // Check if the query contains specific keywords
+        $keywords = ['magazine', 'livre', 'livre numérique', 'flipbook', 'ebook'];
+        $isSpecialQuery = false;
+    
+        foreach ($keywords as $keyword) {
+            if (strpos(strtolower($query), $keyword) !== false) {
+                $isSpecialQuery = true;
+                break;
+            }
+        }
+    
+        $qb = $this->createQueryBuilder('e');
+    
+        // If it's a special query, return all ebooks
+        if ($isSpecialQuery) {
+            return $qb->getQuery()->getResult();
+        }
+    
+        // If not, search for ebooks with titles containing the query
+        return $qb
+            ->where('e.title LIKE :query')
+            ->setParameter('query', '%' . $query . '%')
+            ->getQuery()
+            ->getResult();
+    }
+    
+
+    //    /**
+    //     * @return Ebook[] Returns an array of Ebook objects
 //     */
 //    public function findByExampleField($value): array
 //    {
@@ -45,12 +74,4 @@ class EbookRepository extends ServiceEntityRepository
 //            ->getOneOrNullResult()
 //        ;
 //    }
-    public function findByQuery($query)
-    {
-        return $this->createQueryBuilder('e')
-            ->where('e.title LIKE :query')
-            ->setParameter('query', '%' . $query . '%')
-            ->getQuery()
-            ->getResult();
-    }
 }

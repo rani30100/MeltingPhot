@@ -1,0 +1,66 @@
+
+				<div id="carouselIndicatorsMobile" class="carousel slide">
+					<div class="carousel-inner">
+						{% for i in 0..(videos|length - 1) %}
+							{% set videoIndex = loop.index0 %}
+							{% if videoIndex < videos|length %}
+								<div class="carousel-item {% if i == 0 %}active{% endif %}" style="height: 400px;">
+									<div class="d-flex w-100 justify-content-center">
+										<div class="">
+											{% set video = videos[videoIndex] %}
+											{% if video.Image() %}
+											
+												<img class="carousel_img" style="margin:0 auto;" src="{{ asset('uploads/videos/images/' ~ video.image) }}" alt="Video Image">
+
+											{% else %}
+												<p>No image available</p>
+											{% endif %}
+											<div class="w-full d-flex justify-content-center ">
+												<button type="button" class="btn btn-primary btn-{{ loop.index }}" data-bs-toggle="modal" data-bs-target="#videoModal{{ videoIndex + 1 }}" data-video-id="{{ video.id }}" style="height:50px; margin-top:-6rem">
+													<i class="bi bi-play-circle"></i>
+													En voir plus +
+												</button>
+											</div>
+										</div>
+									</div>
+								</div>
+							{% endif %}
+						{% endfor %}
+
+
+						<div class="carousel-indicators">
+							{% for j in 0..(videos|length - 1) %}
+								<button type="button" data-bs-target="#carouselIndicatorsMobile" data-bs-slide-to="{{ j }}" {% if j == 0 %} class="active" aria-current="true" {% endif %} aria-label="Slide {{ j + 1 }}"></button>
+							{% endfor %}
+						</div>
+
+						<button class="carousel-control-prev mobile-prev" type="button" data-bs-target="#carouselIndicatorsMobile" data-bs-slide="prev">
+							<span class="carousel-control-prev-icon" aria-hidden="true"></span>
+							<span class="visually-hidden">Previous</span>
+						</button>
+
+						<button class="carousel-control-next mobile-next" type="button" data-bs-target="#carouselIndicatorsMobile" data-bs-slide="next">
+							<span class="carousel-control-next-icon" aria-hidden="true"></span>
+							<span class="visually-hidden">Next</span>
+						</button>
+					</div>
+				</div>
+
+
+				{% for video in videos %}
+					<div class="modal fade" id="videoModal{{ loop.index }}" tabindex="-1" aria-labelledby="videoModal{{ loop.index }}Label" aria-hidden="true">
+						<div class="modal-dialog modal-lg modal-dialog-centered">
+							<div class="modal-content">
+								<div class="modal-header bg-dark white-text">
+									<h5 class="modal-title" id="videoModal{{ loop.index }}Label">{{ video.title }}</h5>
+									<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+								</div>
+								<div class="modal-body">
+									<div class="embed-responsive embed-responsive-16by9">
+										<iframe class="embed-responsive-item w-100 modal-video lazy-video" data-src="{{ video.url }}?rel=0" allowfullscreen allow="autoplay"></iframe>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				{% endfor %}

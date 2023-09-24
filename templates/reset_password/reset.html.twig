@@ -3,10 +3,16 @@
 {% block title %}Reset your password{% endblock %}
 
 {% block body %}
-    <h1>{{ 'Titre1'|trans({}, 'resetpsw') }}</h1>
 
-    {{ form_start(resetForm) }}
-        {{ form_row(resetForm.plainPassword) }}
-        <button class="btn btn-primary">Reset password</button>
-    {{ form_end(resetForm) }}
+    {% include "component/navbar.html.twig" %} 
+    <section class="h-50 w-100 d-flex justify-content-center align-items-center flex-column" >
+        <h1>{{ 'Titre1'|trans({}, 'resetpsw') }}</h1>
+
+        {{ form_start(resetForm) }}
+            {{ form_row(resetForm.plainPassword) }}
+            <button class="btn btn-primary">Mettre à jour le mot de passe</button>
+        {{ form_end(resetForm) }}
+    </section>
+
+    {% include "component/footer.html.twig" %}
 {% endblock %}

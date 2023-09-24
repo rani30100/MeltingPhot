@@ -79,7 +79,7 @@ class RegistrationController extends AbstractController
                 )
             );
 
-            $user->setRoles(['ROLE_SUPER_ADMIN']);
+            $user->setRoles(['ROLE_USER']);
 
             $entityManager->persist($user);
             $entityManager->flush();
@@ -90,7 +90,7 @@ class RegistrationController extends AbstractController
                 (new TemplatedEmail())
                     ->from(new Address('raniderradj2@gmail.com', 'MeltingPhot'))
                     ->to($user->getEmail())
-                    ->subject('Please Confirm your Email')
+                    ->subject('Confirmez votre adresse email !')
                     ->htmlTemplate('registration/confirmation_email.html.twig')
             );
 

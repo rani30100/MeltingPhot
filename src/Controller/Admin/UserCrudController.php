@@ -71,6 +71,7 @@ class UserCrudController extends AbstractCrudController
             ->setFormType(PasswordType::class)
             ->setRequired(true)
             ->setColumns(6),
+            // ->onlyWhenCreating(),
 
             ChoiceField::new('roles')
                 ->setChoices([

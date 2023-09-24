@@ -115,5 +115,7 @@ class Page
             $this->slug = (string) $slugger->slug((string) $this)->lower();
         }
     }
-
+    public function getType() {
+        return "image";
+    }
 }

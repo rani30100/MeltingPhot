@@ -151,8 +151,7 @@
 {% if video %}
 	<a href="{{ path('app_actions', {'id': video.id}) }}">
     <!-- On vérifie si la vidéo possède une image associée. -->
-		<img class="d-none" src="{{ asset(video.getImage()) }}"
-				class="h-100 video-thumbnail" 
+		<img class="d-none h-100" src="{{ asset(video.getImage()) }}"
 				alt="Video Image"  
 				data-video-url="{{ video.url }}"
 				data-bs-toggle="modal" 

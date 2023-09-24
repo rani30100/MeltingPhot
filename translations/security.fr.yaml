@@ -1,2 +1,4 @@
-
-error: "L'adresse e-mail existe déjà."
+# Message d'erreur pour une adresse e-mail existante
+error_email_exists: L'e-mail n'existe pas.
+# Message d'erreur pour une authentification incorrecte
+Invalid credentials. : Votre mot de passe est incorrect.
