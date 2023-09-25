@@ -3,7 +3,6 @@
 namespace App\Entity;
 
 use Doctrine\DBAL\Types\Types;
-use Doctrine\ORM\Mapping\Index;
 use Doctrine\ORM\Mapping as ORM;
 use App\Repository\PageRepository;
 use Doctrine\Common\Collections\Collection;
@@ -31,14 +30,19 @@ class Page
     #[ORM\Column(type: Types::TEXT, nullable: true)]
     private ?string $content = null;
 
-
-
     #[ORM\ManyToMany(targetEntity: Posts::class)]     
     private Collection $posts;
+
+    #[ORM\ManyToMany(targetEntity: Image::class, mappedBy: 'pages')]
+    private Collection $images;
+    
+    // #[ORM\ManyToMany(targetEntity: Image::class, inversedBy: 'pages', cascade:['remove'])]
+    // private Collection $images;
 
     public function __construct()
     {
         $this->posts = new ArrayCollection();
+        // $this->images = new ArrayCollection();
     }
 
     public function __toString()
@@ -117,5 +121,70 @@ class Page
     }
     public function getType() {
         return "image";
+    }
+
+    // /**
+    //  * @return Collection<int, Image>
+    //  */
+    // public function getImages(): Collection
+    // {
+    //     return $this->images;
+    // }
+
+    // public function addImage(Image $image): static
+    // {
+    //     if (!$this->images->contains($image)) {
+    //         $this->images->add($image);
+    //     }
+
+    //     return $this;
+    // }
+
+    // public function removeImage(Image $image): static
+    // {
+    //     $this->images->removeElement($image);
+
+    //     return $this;
+    // }
+
+    
+
+    // /**
+    //  * Set the value of images
+    //  *
+    //  * @return  self
+    //  */ 
+    // public function setImages($images)
+    // {
+    //     $this->images = $images;
+
+    //     return $this;
+    // }
+
+    /**
+     * @return Collection<int, Image>
+     */
+    public function getImages(): Collection
+    {
+        return $this->images;
+    }
+
+    public function addImage(Image $image): static
+    {
+        if (!$this->images->contains($image)) {
+            $this->images->add($image);
+            $image->addImagePage($this);
+        }
+
+        return $this;
+    }
+
+    public function removeImage(Image $image): static
+    {
+        if ($this->images->removeElement($image)) {
+            $image->removeImagePage($this);
+        }
+
+        return $this;
     }
 }

@@ -23,9 +23,6 @@ class Ebook
     #[ORM\Column]
     private ?int $id = null;
 
-    #[ORM\OneToMany(mappedBy: 'ebook', targetEntity: EbookImage::class, orphanRemoval: true, cascade: ['persist', 'remove'])]
-    private $images;
-
     #[Vich\UploadableField(mapping: 'ebook_aperçu', fileNameProperty: 'imageApercu')]
     private ?File $aperçu = null;
 
@@ -53,7 +50,6 @@ class Ebook
 
     public function __construct()
     {
-        $this->images = new ArrayCollection();
     }
 
     public function __toString(): string
@@ -69,36 +65,7 @@ class Ebook
     }
 
 
-    /**
-     * @return Collection|EbookImage[]
-     */
-    public function getImages(): Collection
-    {
-        return $this->images;
-    }
-
-    public function addImage(EbookImage $image): self
-    {
-        if (!$this->images->contains($image)) {
-            $this->images[] = $image;
-            $image->setEbook($this);
-        }
-
-        return $this;
-    }
-
-    public function removeImage(EbookImage $image): self
-    {
-        if ($this->images->removeElement($image)) {
-            // set the owning side to null (unless already changed)
-            if ($image->getEbook() === $this) {
-                $image->setEbook(null);
-            }
-        }
-
-        return $this;
-    }
-
+ 
 
     public function setAperçu(?File $aperçu): self
     {
@@ -170,25 +137,6 @@ class Ebook
         return $this;
     }
 
-    /**
-     * Set the value of images
-     *
-     * @return  self
-     */
-    public function setImages($images)
-    {
-        $this->images = $images;
-
-        return $this;
-    }
-
-    /**
-     * @return Collection<int, EbookImage>
-     */
-    public function getEbookImages(): Collection
-    {
-        return $this->images;
-    }
 
     /**
      * Get the value of aperçu

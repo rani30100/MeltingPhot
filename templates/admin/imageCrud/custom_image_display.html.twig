@@ -1,0 +1,10 @@
+{% block custom_image_display %}
+    {% if field.value is not empty %}
+        {% for image in field.value %}
+            <a href="{{ asset('uploads/' ~ image.path) }}" target="_blank">
+                    <img src="{{ vich_uploader_asset(image, 'imageFile') }}" alt="{{ image.title }}">            </a>
+        {% endfor %}
+    {% else %}
+        <span class="badge badge-warning">Aucune image</span>
+    {% endif %}
+{% endblock %}

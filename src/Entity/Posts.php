@@ -23,7 +23,7 @@ class Posts
     #[ORM\Column]
     private ?int $id = null;
 
-    #[ORM\ManyToOne(targetEntity: User::class)]
+    #[ORM\ManyToOne(targetEntity: User::class, inversedBy:"posts")]
     #[ORM\JoinColumn(name: 'user_id', referencedColumnName: 'id')]
     private ?User $user;
 
@@ -32,6 +32,9 @@ class Posts
 
     #[ORM\Column(length: 255, nullable: true)]
     private ?string $path = null;
+
+    #[Vich\UploadableField(mapping: 'post_images', fileNameProperty: 'path', size: 'imageSize')]
+    private ?File $imageFile = null;
 
     #[ORM\Column(nullable: true)]
     private ?int $imageSize = null;
@@ -51,8 +54,6 @@ class Posts
     #[Assert\Valid()]
     private Collection $imagesCollection;
 
-    #[Vich\UploadableField(mapping: 'post_images', fileNameProperty: 'path', size: 'imageSize')]
-    private ?File $imageFile = null;
 
     #[ORM\Column(type: "string", length: 255, nullable: true)]
     private ?string $videoUrl = null;
@@ -78,7 +79,7 @@ class Posts
     private ?\DateTimeInterface $updatedAt = null;
 
 
-    #[ORM\ManyToMany(targetEntity: Page::class, inversedBy: "posts")]
+    #[ORM\ManyToMany(targetEntity: Page::class)]
     private Collection $pages;
 
 

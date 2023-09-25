@@ -40,10 +40,10 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     #[ORM\ManyToMany(targetEntity: Newsletter::class, mappedBy: 'user_id')]
     private Collection $newsletters;
 
-    #[ORM\OneToMany(mappedBy: 'user_id', targetEntity: Video::class)]
+    #[ORM\OneToMany(mappedBy: 'user', targetEntity: Video::class)]
     private Collection $created_at;
 
-    #[ORM\OneToMany(mappedBy: 'user_id', targetEntity: Image::class)]
+    #[ORM\OneToMany(mappedBy: 'user', targetEntity: Image::class)]
     private Collection $images;
 
     #[ORM\Column(type: 'boolean')]

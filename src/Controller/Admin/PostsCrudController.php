@@ -2,35 +2,28 @@
 
 namespace App\Controller\Admin;
 
-use App\Entity\User;
 use App\Entity\Posts;
 use Twig\Environment;
-use App\Twig\PlainTextExtension;
+use Google\Collection;
 use Symfony\Component\Form\FormEvent;
 use Symfony\Component\Form\FormEvents;
-use Google\Service\DriveActivity\Create;
 use Symfony\UX\Dropzone\Form\DropzoneType;
 use Symfony\Component\Security\Core\Security;
 use Vich\UploaderBundle\Form\Type\VichFileType;
-use EasyCorp\Bundle\EasyAdminBundle\Config\Crud;
 use EasyCorp\Bundle\EasyAdminBundle\Field\Field;
 use Symfony\Component\Form\FormBuilderInterface;
-use Vich\UploaderBundle\Form\Type\VichImageType;
 use EasyCorp\Bundle\EasyAdminBundle\Dto\EntityDto;
 use EasyCorp\Bundle\EasyAdminBundle\Field\IdField;
 use EasyCorp\Bundle\EasyAdminBundle\Config\Filters;
 use EasyCorp\Bundle\EasyAdminBundle\Field\TextField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\ImageField;
-use Symfony\Component\Validator\Constraints as Assert;
 use EasyCorp\Bundle\EasyAdminBundle\Field\DateTimeField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\TextareaField;
-use Symfony\Component\Form\Extension\Core\Type\FileType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use EasyCorp\Bundle\EasyAdminBundle\Config\KeyValueStore;
 use EasyCorp\Bundle\EasyAdminBundle\Context\AdminContext;
-use EasyCorp\Bundle\EasyAdminBundle\Field\TextEditorField;
+use EasyCorp\Bundle\EasyAdminBundle\Field\CollectionField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\AssociationField;
-use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 use EasyCorp\Bundle\EasyAdminBundle\Controller\AbstractCrudController;
 
 class PostsCrudController extends AbstractCrudController
@@ -110,6 +103,20 @@ class PostsCrudController extends AbstractCrudController
             DateTimeField::new('updatedAt','Date de Modification')
             ->hideOnForm()
             ->hideWhenCreating(),
+
+           // ...
+
+            // CollectionField::new('pages', 'Pages associées')
+            // ->setLabel('Pages')
+            // ->setFormTypeOption('by_reference', false)
+            // ->onlyOnForms(),
+
+            // AssociationField::new('pages')
+            // ->setLabel('Pages associées')
+            // // ->hideOnForm() // Ce champ ne doit pas être modifiable dans le formulaire
+            // ->autocomplete() // Permet la recherche d'entités associées
+            // ->setRequired(false),
+
     
         ];
     }

@@ -25,8 +25,11 @@ class Newsletter
     #[ORM\Column(type: Types::TEXT)]
     private ?string $description = null;
 
-    #[ORM\Column]
+    #[ORM\Column(nullable:true)]
     private ?\DateTimeImmutable $send_at = null;
+
+    #[ORM\Column(type: 'boolean', options: ['default' => false])]
+    private bool $readyToPrepare = false;
 
     public function __construct()
     {
@@ -97,4 +100,17 @@ class Newsletter
 
         return $this;
     }
+
+    public function getReadyToPrepare(): bool
+    {
+        return $this->readyToPrepare;
+    }
+
+    public function setReadyToPrepare(bool $readyToPrepare): self
+    {
+        $this->readyToPrepare = $readyToPrepare;
+
+        return $this;
+    }
+
 }

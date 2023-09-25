@@ -9,6 +9,7 @@ use App\Entity\Video;
 
 use App\Entity\Category;
 use App\Controller\Admin\UserCrudController;
+use App\Entity\Newsletter;
 use App\Entity\Page;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
@@ -137,6 +138,12 @@ class DashboardController extends AbstractDashboardController
         yield MenuItem::subMenu('Vidéos','fa-regular fa-circle-play')->setSubItems([
             MenuItem::linkToCrud('Ajouter une vidéo', 'fas fa-play', Video::class)->setAction(Crud::PAGE_NEW),
             MenuItem::linkToCrud('Mes Vidéos', 'fas fa-video', Video::class),
+
+        ]);
+
+        yield MenuItem::subMenu('Newsletter','fa-solid fa-sheet-plastic')->setSubItems([
+            MenuItem::linkToCrud('Ajouter une newsletter', 'fas fa-plus', Newsletter::class)->setAction(Crud::PAGE_NEW),
+            MenuItem::linkToCrud('Mes newsletter', 'fas fa-eye', Newsletter::class),
 
         ]);
 

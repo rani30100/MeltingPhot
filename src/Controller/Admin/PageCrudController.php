@@ -1,23 +1,19 @@
 <?php
-// src/Controller/Admin/PageCrudController.php
 
 namespace App\Controller\Admin;
 
 use App\Entity\Page;
-use App\Entity\EbookImage;
 use Symfony\Component\Form\FormEvent;
 use Symfony\Component\Form\FormEvents;
 use Doctrine\ORM\EntityManagerInterface;
-use Symfony\Bridge\Doctrine\RegistryInterface;
 use EasyCorp\Bundle\EasyAdminBundle\Config\Crud;
 use Symfony\Component\Form\FormBuilderInterface;
+use Vich\UploaderBundle\Form\Type\VichImageType;
 use EasyCorp\Bundle\EasyAdminBundle\Dto\EntityDto;
 use EasyCorp\Bundle\EasyAdminBundle\Field\TextField;
 use Symfony\Component\String\Slugger\SluggerInterface;
-use Symfony\Component\Form\Extension\Core\Type\FileType;
 use EasyCorp\Bundle\EasyAdminBundle\Config\KeyValueStore;
 use EasyCorp\Bundle\EasyAdminBundle\Context\AdminContext;
-use EasyCorp\Bundle\EasyAdminBundle\Field\TextEditorField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\AssociationField;
 use EasyCorp\Bundle\EasyAdminBundle\Controller\AbstractCrudController;
 
@@ -49,6 +45,12 @@ class PageCrudController extends AbstractCrudController
             ->setLabel('Posts')
             ->setFormTypeOption('by_reference', false)
             ->setRequired(false);
+        yield AssociationField::new('images')
+        ->setLabel('Images')
+        ->setCssClass(VichImageType::class)
+        ->setTemplatePath('admin/imageCrud/custom_image_display.html.twig'); // Chemin vers le modèle personnalisé
+        ;
+    
     }
 
     public function persistEntity(EntityManagerInterface $entityManager, $entityInstance): void

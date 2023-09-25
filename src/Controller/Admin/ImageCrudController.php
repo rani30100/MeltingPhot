@@ -4,22 +4,19 @@ namespace App\Controller\Admin;
 
 use App\Entity\Page;
 use App\Entity\Image;
-use App\Entity\EbookImage;
 use Symfony\Component\Form\FormEvent;
 use Symfony\Component\Form\FormEvents;
 use Symfony\Component\Form\FormBuilderInterface;
+use Vich\UploaderBundle\Form\Type\VichImageType;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use EasyCorp\Bundle\EasyAdminBundle\Dto\EntityDto;
 use EasyCorp\Bundle\EasyAdminBundle\Config\Filters;
 use EasyCorp\Bundle\EasyAdminBundle\Field\TextField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\ImageField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\DateTimeField;
-use Symfony\Component\Form\Extension\Core\Type\FileType;
 use EasyCorp\Bundle\EasyAdminBundle\Config\KeyValueStore;
 use EasyCorp\Bundle\EasyAdminBundle\Context\AdminContext;
-use EasyCorp\Bundle\EasyAdminBundle\Field\TextEditorField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\AssociationField;
-use Symfony\Component\Form\Extension\Core\Type\DateTimeType;
 use EasyCorp\Bundle\EasyAdminBundle\Controller\AbstractCrudController;
 
 class ImageCrudController extends AbstractCrudController
@@ -33,20 +30,18 @@ class ImageCrudController extends AbstractCrudController
     public function configureFields(string $pageName): iterable
     { 
         yield TextField::new('title', "Titre ");
-        yield ImageField::new('path')
-            ->setLabel('Image')
-            ->setBasePath('uploads/')
-            ->setUploadDir('public/uploads/')
-            ->setFormTypeOptions([
-                'required' => true,
-                'data_class' => null,
-            ])
-            ->setUploadedFileNamePattern('[uuid].[extension]')
-            ->setRequired(true);
+
+        yield ImageField::new('path', 'Image')
+        ->setBasePath('/uploads/post/')
+        ->setUploadDir('public/img/pages/')
+        // ->setFormType(VichImageType::class)
+        ->setLabel('Image');
+    
         yield DateTimeField::new('created_at', "Ajouté le ")
         ->hideWhenCreating()
         ->hideOnForm()
         ->renderAsChoice();
+
         yield AssociationField::new('page', 'Page')
         ->setFormType(EntityType::class, [
             'class' => Page::class,

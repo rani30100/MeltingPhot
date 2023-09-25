@@ -3,7 +3,6 @@
 namespace App\Controller\Admin;
 
 use App\Entity\Ebook;
-use App\Entity\EbookImage;
 use Symfony\Component\Form\FormEvent;
 use Symfony\Component\Form\FormEvents;
 use Doctrine\ORM\EntityManagerInterface;
@@ -53,26 +52,8 @@ class EbookCrudController extends AbstractCrudController
         $builder = parent::createEditFormBuilder($entityDto, $formOptions, $context);
 
         $builder
-            // ->add("imagesRaw", FileType::class, [
-            //     "multiple" => true,
-            //     "mapped" => false,
-            // ])
             ->addEventListener(FormEvents::POST_SUBMIT, function (FormEvent $event) {
-                // Your event handling logic here
-                // $form = $event->getForm();
-                // /**
-                //  * @var Ebook
-                //  */
-                // $entity = $form->getData();
-                // $imagesRaw = $form->get("imagesRaw")->getData();
-
-                // $old_images = $entity->getEbookImages();
-                // foreach ($old_images as $old_image) {
-                //     $entity->removeImage($old_image);
-                // }
-                // foreach ($imagesRaw as $image) {
-                //     $entity->addImage((new EbookImage)->setImageFile($image));
-                // }
+  
                 // Ajouter un message flash
                 $this->addFlash(
                     'success', // Le type du message flash (par exemple, 'success' pour un message de succès)
@@ -89,27 +70,8 @@ class EbookCrudController extends AbstractCrudController
         $builder = parent::createNewFormBuilder($entityDto, $formOptions, $context);
 
         $builder
-            // ->add("imagesRaw", FileType::class, [
-            //     "multiple" => true,
-            //     "mapped" => false,
-            // ])
             ->addEventListener(FormEvents::POST_SUBMIT, function (FormEvent $event) {
-                // Your event handling logic here
-                // $form = $event->getForm();
-                // /**
-                //  * @var Ebook
-                //  */
-                // $entity = $form->getData();
-                // $imagesRaw = $form->get("imagesRaw")->getData();
 
-                // $old_images = $entity->getEbookImages();
-                // foreach ($old_images as $old_image) {
-                //     $entity->removeImage($old_image);
-                // }
-                // foreach ($imagesRaw as $image) {
-                //     $entity->addImage((new EbookImage)->setImageFile($image));
-                // }
-                // Ajouter un message flash
                 $this->addFlash(
                     'success', // Le type du message flash (par exemple, 'success' pour un message de succès)
                     'Les modifications ont été enregistrées avec succès!' // Le message à afficher
