@@ -5,6 +5,7 @@ namespace App\Controller\Admin;
 use App\Entity\Posts;
 use Twig\Environment;
 use Google\Collection;
+use App\Admin\TinyMCEField;
 use Symfony\Component\Form\FormEvent;
 use Symfony\Component\Form\FormEvents;
 use Symfony\UX\Dropzone\Form\DropzoneType;
@@ -25,6 +26,7 @@ use EasyCorp\Bundle\EasyAdminBundle\Context\AdminContext;
 use EasyCorp\Bundle\EasyAdminBundle\Field\CollectionField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\AssociationField;
 use EasyCorp\Bundle\EasyAdminBundle\Controller\AbstractCrudController;
+use EasyCorp\Bundle\EasyAdminBundle\Field\UrlField;
 
 class PostsCrudController extends AbstractCrudController
 {
@@ -37,7 +39,7 @@ class PostsCrudController extends AbstractCrudController
         $this->twig = $twig;
         $this->security = $security;
     }
-    
+
     public static function getEntityFqcn(): string
     {
         return Posts::class;
@@ -46,37 +48,47 @@ class PostsCrudController extends AbstractCrudController
     public function configureFields(string $pageName): iterable
     {
         return [
-            
+
             IdField::new('id')
-            ->hideOnForm()
-            ->hideOnIndex(),
+                ->hideOnForm()
+                ->hideOnIndex(),
             TextField::new('title')->setLabel('Titre du Post'),
-            TextField::new('description', 'Description'),
 
             ImageField::new('path', 'Image')
 
-                ->setBasePath('/uploads/post')
+                ->setBasePath('/uploads/post/images')
                 ->setLabel('Image du Post')
                 ->onlyOnIndex(),
 
-                AssociationField::new('user', 'Utilisateur')
+            AssociationField::new('user', 'Utilisateur')
                 ->setLabel('Utilisateur')
                 ->setCustomOption('user', $this->security->getUser()), // Pass the user to the field
-                // ->onlyOnIndex(),
-          
+            // ->onlyOnIndex(),
 
-                // ImageField::new('imageFile', 'Image')
-                // ->setFormType(VichImageType::class)
-                // ->setFormTypeOptions([
-                //     'upload_dir' => 'uploads/post/images',
-                //     'required' => false, // Optional: Set it to true, if the field is mandatory.
-                // ]),
-                TextareaField::new('imageFile')
+
+            // ImageField::new('imageFile', 'Image')
+            // ->setFormType(VichImageType::class)
+            // ->setFormTypeOptions([
+            //     'upload_dir' => 'uploads/post/images',
+            //     'required' => false, // Optional: Set it to true, if the field is mandatory.
+            // ]),
+            TextareaField::new('imageFile')
                 ->setFormType(VichFileType::class)
                 ->onlyOnForms(),
-                
-                
-            
+
+            UrlField::new('videoFile', 'Fichier Vidéo Intégrer')
+            ->setTemplatePath('admin/videoCrud/custom_video_display.html.twig') // Chemin vers le modèle personnalisé
+            ->hideOnForm()
+            // ->setFormType(DropzoneType::class)
+            // ->setFormTypeOptions([
+            //     'required' => false, // Set initial value as false
+            // ])
+            // ->setHelp('Glisser une vidéo dans le champ')
+            // ->onlyOnForms(),
+            // ->hideOnIndex()
+            ,
+
+
 
             Field::new('video', 'Fichier Vidéo')
                 ->setFormType(DropzoneType::class)
@@ -84,27 +96,28 @@ class PostsCrudController extends AbstractCrudController
                     'required' => false, // Set initial value as false
                 ])
                 ->setHelp('Glisser une vidéo dans le champ')
-                ->onlyOnForms()
-                ->hideOnIndex(),
+                // ->onlyOnForms(),
+                ->hideOnIndex()
+                ,
 
             TextField::new('videoUrl', 'Url Vidéo')
                 ->setFormType(TextType::class) // Use TextType instead of TextField here
                 ->setFormTypeOptions([
                     'required' => false, // Set initial value as false
-                ])
-                ->onlyOnForms()
-                ->hideOnIndex(),
+                ]),
+                // ->onlyOnForms(),
+                // ->hideOnIndex(),
 
             // TextField::new('position')->onlyOnForms(),
             DateTimeField::new('createdAt', 'Date de Création ')
-            ->hideWhenCreating()
-            ->hideWhenUpdating(),
-            
-            DateTimeField::new('updatedAt','Date de Modification')
-            ->hideOnForm()
-            ->hideWhenCreating(),
+                ->hideWhenCreating()
+                ->hideWhenUpdating(),
 
-           // ...
+            DateTimeField::new('updatedAt', 'Date de Modification')
+                ->hideOnForm()
+                ->hideWhenCreating(),
+
+            // ...
 
             // CollectionField::new('pages', 'Pages associées')
             // ->setLabel('Pages')
@@ -116,8 +129,12 @@ class PostsCrudController extends AbstractCrudController
             // // ->hideOnForm() // Ce champ ne doit pas être modifiable dans le formulaire
             // ->autocomplete() // Permet la recherche d'entités associées
             // ->setRequired(false),
+            TextAreaField::new('description', 'Description')
+                ->addWebpackEncoreEntries('admin')
+                ->addCssClass('tinymce')
+                ->setFormTypeOption('attr.data-controller', 'tinymce')
+                ->setDefaultColumns('12'),
 
-    
         ];
     }
 
@@ -125,13 +142,9 @@ class PostsCrudController extends AbstractCrudController
     {
         return $filters
             ->add('title')
-            ->add('user')           
+            ->add('user')
             ->add('createdAt')
-            ->add('updatedAt')
-        
-
-            
-        ;
+            ->add('updatedAt');
     }
     public function createEditFormBuilder(EntityDto $entityDto, KeyValueStore $formOptions, AdminContext $context): FormBuilderInterface
     {
@@ -140,7 +153,7 @@ class PostsCrudController extends AbstractCrudController
 
         $builder
             ->addEventListener(FormEvents::POST_SUBMIT, function (FormEvent $event) {
-              
+
                 $this->addFlash(
                     'success', // Le type du message flash (par exemple, 'success' pour un message de succès)
                     'Les modifications ont été enregistrées avec succès!' // Le message à afficher
@@ -156,7 +169,7 @@ class PostsCrudController extends AbstractCrudController
 
         $builder
             ->addEventListener(FormEvents::POST_SUBMIT, function (FormEvent $event) {
-  
+
                 $this->addFlash(
                     'success', // Le type du message flash (par exemple, 'success' pour un message de succès)
                     'Les modifications ont été enregistrées avec succès!' // Le message à afficher
@@ -165,6 +178,4 @@ class PostsCrudController extends AbstractCrudController
 
         return $builder;
     }
-
-
 }

@@ -32,8 +32,8 @@ class ImageCrudController extends AbstractCrudController
         yield TextField::new('title', "Titre ");
 
         yield ImageField::new('path', 'Image')
-        ->setBasePath('/uploads/post/')
-        ->setUploadDir('public/img/pages/')
+        ->setBasePath('img/')
+        ->setUploadDir('public/img/')
         // ->setFormType(VichImageType::class)
         ->setLabel('Image');
     
@@ -42,14 +42,14 @@ class ImageCrudController extends AbstractCrudController
         ->hideOnForm()
         ->renderAsChoice();
 
-        yield AssociationField::new('page', 'Page')
-        ->setFormType(EntityType::class, [
-            'class' => Page::class,
-            'choice_label' => 'title', // Display page titles in the dropdown
-            'placeholder' => 'Select a page', // Optional: Add a placeholder
-            'required' => false, // Make it optional if needed
-        ])
-        ->setLabel('Page');
+        // yield AssociationField::new('page', 'Page')
+        // ->setFormType(EntityType::class, [
+        //     'class' => Page::class,
+        //     'choice_label' => 'title', // Display page titles in the dropdown
+        //     'placeholder' => 'Select a page', // Optional: Add a placeholder
+        //     'required' => false, // Make it optional if needed
+        // ])
+        // ->setLabel('Page');
     }
     
     public function configureFilters(Filters $filters): Filters

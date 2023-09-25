@@ -3,13 +3,14 @@
 namespace App\Entity;
 
 use DateTimeInterface;
-use Doctrine\DBAL\Types\Types;
-use Doctrine\ORM\Mapping as ORM;
+
 use App\Repository\ImageRepository;
-use Vich\UploaderBundle\Entity\File;
-use Doctrine\Common\Collections\Collection;
+use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\HttpFoundation\File\File;
+use Vich\UploaderBundle\Entity\File as EmbeddedFile;
+use Vich\UploaderBundle\Mapping\Annotation as Vich;use Doctrine\Common\Collections\Collection;
 use Doctrine\Common\Collections\ArrayCollection;
-use Vich\UploaderBundle\Mapping\Annotation as Vich;
+
 
 #[ORM\Entity(repositoryClass: ImageRepository::class)]
 #[Vich\Uploadable]
@@ -23,27 +24,32 @@ class Image
     #[ORM\Column(length: 255)]
     private ?string $title = null;
 
-    #[ORM\Column(type: "string", length: 255, nullable: true)]
-    // #[Vich\UploadableField(mapping: 'post_images', fileNameProperty: 'path')]
-    private ?string $path = null;
+    #[ORM\Column(length: 255,nullable: true)]
+    private ?string $path;
+
+
+    #[ORM\Column(nullable: true)]
+    private ?int $imageSize = null;
+
 
     #[ORM\ManyToOne(inversedBy: 'images')]
     private ?User $user = null;
 
-    #[ORM\ManyToOne(targetEntity: Posts::class,inversedBy:"imagesCollection")]
+    #[ORM\ManyToOne(targetEntity: Posts::class, inversedBy: "imagesCollection")]
     #[ORM\JoinColumn(name: 'post_id', referencedColumnName: 'id')]
     private ?Posts $post = null;
 
-    #[ORM\ManyToOne(targetEntity: Page::class)] 
+    #[ORM\ManyToOne(targetEntity: Page::class, cascade:["remove"])]
     #[ORM\JoinColumn(name: 'page_id', referencedColumnName: 'id')]
     private ?Page $page = null;
+
 
     #[ORM\Column(type: 'datetime')]
     private ?DateTimeInterface $created_at = null;
 
     #[ORM\ManyToMany(targetEntity: Page::class, inversedBy: 'images')]
     private Collection $pages;
-    
+
 
     #[ORM\Column(type: "datetime", nullable: true)]
     private ?\DateTimeInterface $updatedAt = null;
@@ -52,13 +58,12 @@ class Image
     {
         $this->created_at = new \DateTime();
         $this->pages = new ArrayCollection();
-        // $this->imageFile = null; // Initialisation de l'imageFile à null
     }
-    
+
     public function __toString()
-{
-    return $this->getTitle() ?? ''; // Utilisez le titre s'il est défini, sinon une chaîne vide.
-}
+    {
+        return $this->getTitle() ?? ''; // Utilisez le titre s'il est défini, sinon une chaîne vide.
+    }
 
 
     public function getId(): ?int
@@ -83,11 +88,10 @@ class Image
         return $this->path;
     }
 
-    public function setPath(string $path): self
+    public function setPath(string $path): void
     {
         $this->path = $path;
 
-        return $this;
     }
 
     public function getUser(): ?User
@@ -137,7 +141,8 @@ class Image
         return $this;
     }
 
-    public function getType() {
+    public function getType()
+    {
         return "image";
     }
 
@@ -168,49 +173,21 @@ class Image
         return $this;
     }
 
-    // /**
-    //  * Get the value of images_page
-    //  */ 
-    // public function getImages_page()
-    // {
-    //     return $this->images_page;
-    // }
-
-    // /**
-    //  * Set the value of images_page
-    //  *
-    //  * @return  self
-    //  */ 
-    // public function setImages_page($images_page)
-    // {
-    //     $this->images_page = $images_page;
-
-    //     return $this;
-    // }
 
 
-    // /**
-    //  * Get the value of imageFile
-    //  */
-    // public function getImageFile(): ?File
-    // {
-    //     return $this->imageFile;
-    // }
+    public function setImageSize(?int $imageSize): void
+    {
+        $this->imageSize = $imageSize;
+    }
 
-   
-    // public function setImageFile(?File $imageFile = null): void
-    // {
-    //     $this->imageFile = $imageFile;
-
-    //     if (null !== $imageFile) {
-    //         // Il faut biensur que la propriété updatedAt soit crée sur l'Entity.
-    //         $this->updatedAt = new \DateTimeImmutable();
-    //     }
-    // }
+    public function getImageSize(): ?int
+    {
+        return $this->imageSize;
+    }
 
     /**
      * Get the value of updatedAt
-     */ 
+     */
     public function getUpdatedAt()
     {
         return $this->updatedAt;
@@ -220,7 +197,7 @@ class Image
      * Set the value of updatedAt
      *
      * @return  self
-     */ 
+     */
     public function setUpdatedAt($updatedAt)
     {
         $this->updatedAt = $updatedAt;
@@ -233,13 +210,13 @@ class Image
      */
     public function getImagePage(): Collection
     {
-        return $this->imagePage;
+        return $this->pages;
     }
 
     public function addImagePage(Page $imagePage): static
     {
-        if (!$this->imagePage->contains($imagePage)) {
-            $this->imagePage->add($imagePage);
+        if (!$this->pages->contains($imagePage)) {
+            $this->pages->add($imagePage);
         }
 
         return $this;
@@ -247,7 +224,7 @@ class Image
 
     public function removeImagePage(Page $imagePage): static
     {
-        $this->imagePage->removeElement($imagePage);
+        $this->pages->removeElement($imagePage);
 
         return $this;
     }

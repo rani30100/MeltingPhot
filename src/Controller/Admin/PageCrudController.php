@@ -47,7 +47,8 @@ class PageCrudController extends AbstractCrudController
             ->setRequired(false);
         yield AssociationField::new('images')
         ->setLabel('Images')
-        ->setCssClass(VichImageType::class)
+        // ->setCssClass(VichImageType::class)
+        ->setFormTypeOption('by_reference', false)
         ->setTemplatePath('admin/imageCrud/custom_image_display.html.twig'); // Chemin vers le modèle personnalisé
         ;
     

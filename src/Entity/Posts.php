@@ -23,8 +23,8 @@ class Posts
     #[ORM\Column]
     private ?int $id = null;
 
-    #[ORM\ManyToOne(targetEntity: User::class, inversedBy:"posts")]
-    #[ORM\JoinColumn(name: 'user_id', referencedColumnName: 'id')]
+    #[ORM\ManyToOne(targetEntity: User::class)]
+    #[ORM\JoinColumn(name: 'user_id',referencedColumnName: 'id')]
     private ?User $user;
 
     #[ORM\Column(length: 255)]
@@ -79,7 +79,7 @@ class Posts
     private ?\DateTimeInterface $updatedAt = null;
 
 
-    #[ORM\ManyToMany(targetEntity: Page::class)]
+    #[ORM\ManyToMany(targetEntity: Page::class, inversedBy: "posts")]
     private Collection $pages;
 
 
@@ -136,11 +136,22 @@ class Posts
     }
 
 
-    public function setVideo(?File $video = null): self
+    // public function setVideo(?File $video = null): self
+    // {
+    //     $this->video = $video;
+
+    //     return $this;
+    // }
+
+    public function setVideo(?File $video = null): void
     {
         $this->video = $video;
 
-        return $this;
+        if (null !== $video) {
+            // It is required that at least one field changes if you are using doctrine
+            // otherwise the event listeners won't be called and the file is lost
+            $this->updatedAt = new \DateTimeImmutable();
+        }
     }
 
     public function getId(): ?int

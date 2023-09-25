@@ -30,11 +30,12 @@ class Page
     #[ORM\Column(type: Types::TEXT, nullable: true)]
     private ?string $content = null;
 
-    #[ORM\ManyToMany(targetEntity: Posts::class)]     
+    #[ORM\ManyToMany(targetEntity: Posts::class, cascade:["remove"])]     
     private Collection $posts;
 
-    #[ORM\ManyToMany(targetEntity: Image::class, mappedBy: 'pages')]
+    #[ORM\ManyToMany(targetEntity: Image::class, mappedBy: 'pages', cascade: ["remove"])]
     private Collection $images;
+    
     
     // #[ORM\ManyToMany(targetEntity: Image::class, inversedBy: 'pages', cascade:['remove'])]
     // private Collection $images;
@@ -42,7 +43,7 @@ class Page
     public function __construct()
     {
         $this->posts = new ArrayCollection();
-        // $this->images = new ArrayCollection();
+        $this->images = new ArrayCollection();
     }
 
     public function __toString()

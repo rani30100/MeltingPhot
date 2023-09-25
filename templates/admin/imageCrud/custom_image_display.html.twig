@@ -1,9 +1,12 @@
 {% block custom_image_display %}
     {% if field.value is not empty %}
+        <div class="col-8 d-flex justify-content-center w-100">
         {% for image in field.value %}
-            <a href="{{ asset('uploads/' ~ image.path) }}" target="_blank">
-                    <img src="{{ vich_uploader_asset(image, 'imageFile') }}" alt="{{ image.title }}">            </a>
+            <a href="{{ asset('img/' ~ image.path) }}"target='_blank' >
+                <img src="{{ asset('img/' ~ image.path) }}" alt="{{ image.title }}" style=" height: 150px; width: 150px;">
+            </a>
         {% endfor %}
+        </div>
     {% else %}
         <span class="badge badge-warning">Aucune image</span>
     {% endif %}

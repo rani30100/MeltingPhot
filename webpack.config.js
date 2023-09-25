@@ -21,6 +21,8 @@ Encore
      * and one CSS file (e.g. app.css) if your JavaScript imports CSS.
      */
     .addEntry('app', './assets/app.js')
+    .addEntry('admin', './assets/admin.js')
+
 
     // enables the Symfony UX Stimulus bridge (used in assets/bootstrap.js)
     .enableStimulusBridge('./assets/controllers.json')
@@ -58,6 +60,32 @@ Encore
 
     // enables Sass/SCSS support
     .enableSassLoader()
+    .cleanupOutputBeforeBuild()
+
+    .copyFiles([
+      {
+        from: './node_modules/tinymce/icons',
+        to: 'icons/[path][name].[ext]'
+      },
+      {
+        from: './node_modules/tinymce/models',
+        to: 'models/[path][name].[ext]'
+      },
+      {
+        from: './node_modules/tinymce/plugins',
+        to: 'plugins/[path][name].[ext]'
+      },
+      {
+        from: './node_modules/tinymce/skins',
+        to: 'skins/[path][name].[ext]'
+      },
+      {
+        from: './node_modules/tinymce/themes',
+        to: 'themes/[path][name].[ext]'
+      }
+    ])
+
+    
 
     // uncomment if you use TypeScript
     //.enableTypeScriptLoader()
