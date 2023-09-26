@@ -33,7 +33,7 @@ class Video
     private ?string $url = null;
 
     #[ORM\ManyToOne(inversedBy: 'videos')]
-    #[ORM\JoinColumn(nullable: false)]
+    #[ORM\JoinColumn(nullable: true)]
     private ?Category $category = null;
     
 
