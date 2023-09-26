@@ -9,7 +9,7 @@
 				<section class="d-flex justify-center flex-column">
 					<div class="d-flex justify-center align-items-center flex-column">
 						<h1 class="text-center">Titre du Post :
-							{{ post.title }}</h1>
+							{{ posts.title }}</h1>
 						<p class="text-center w-50">{{ posts.description|raw }}</p>
 					</div>
 
@@ -24,10 +24,10 @@
 					{% endif %}
 				</div>
 				<br>
-				{% if post.videoFile|length > 0 %}
+				{% if posts.videoFile|length > 0 %}
 					<div class="mb-5 text-center flex-column justify-content-center d-flex align-items-center">
 						<h3>Videos Du post</h3>
-						{% for video in post.videoFile  %}
+						{% for video in posts.videoFile  %}
 							<iframe src="{{ video.url }}" frameborder="0" width="640" height="360"></iframe>
 						{% endfor %}
 
