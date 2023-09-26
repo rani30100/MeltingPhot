@@ -1,0 +1,12 @@
+{% block custom_video_display %}
+	{% if field.value is not empty %}
+		<div class="col-8 d-flex justify-content-center w-100">
+			{% for video in field.value %}
+				<iframe src="{{ video.url }}"></iframe>
+				{# Your browser does not support the video tag. #}
+			{% endfor %}
+		</div>
+	{% else %}
+		<span class="badge badge-warning">Aucune vidéo</span>
+	{% endif %}
+{% endblock %}
