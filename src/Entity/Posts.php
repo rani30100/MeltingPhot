@@ -25,7 +25,7 @@ class Posts
 
     #[ORM\ManyToOne(targetEntity: User::class)]
     #[ORM\JoinColumn(name: 'user_id',referencedColumnName: 'id')]
-    private ?User $user;
+    private ?User $user= null;
 
     #[ORM\Column(length: 255)]
     private ?string $title = null;

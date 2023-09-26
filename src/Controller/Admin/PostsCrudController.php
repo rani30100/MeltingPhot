@@ -4,8 +4,7 @@ namespace App\Controller\Admin;
 
 use App\Entity\Posts;
 use Twig\Environment;
-use Google\Collection;
-use App\Admin\TinyMCEField;
+use Sonata\AdminBundle\Form\FormMapper;
 use Symfony\Component\Form\FormEvent;
 use Symfony\Component\Form\FormEvents;
 use Symfony\UX\Dropzone\Form\DropzoneType;
@@ -16,6 +15,7 @@ use Symfony\Component\Form\FormBuilderInterface;
 use EasyCorp\Bundle\EasyAdminBundle\Dto\EntityDto;
 use EasyCorp\Bundle\EasyAdminBundle\Field\IdField;
 use EasyCorp\Bundle\EasyAdminBundle\Config\Filters;
+use EasyCorp\Bundle\EasyAdminBundle\Field\UrlField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\TextField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\ImageField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\DateTimeField;
@@ -24,9 +24,9 @@ use Symfony\Component\Form\Extension\Core\Type\TextType;
 use EasyCorp\Bundle\EasyAdminBundle\Config\KeyValueStore;
 use EasyCorp\Bundle\EasyAdminBundle\Context\AdminContext;
 use EasyCorp\Bundle\EasyAdminBundle\Field\CollectionField;
+use Symfony\Component\Form\Extension\Core\Type\HiddenType;
 use EasyCorp\Bundle\EasyAdminBundle\Field\AssociationField;
 use EasyCorp\Bundle\EasyAdminBundle\Controller\AbstractCrudController;
-use EasyCorp\Bundle\EasyAdminBundle\Field\UrlField;
 
 class PostsCrudController extends AbstractCrudController
 {
@@ -60,10 +60,10 @@ class PostsCrudController extends AbstractCrudController
                 ->setLabel('Image du Post')
                 ->onlyOnIndex(),
 
-            AssociationField::new('user', 'Utilisateur')
+                AssociationField::new('user', 'Utilisateur')
                 ->setLabel('Utilisateur')
-                ->setCustomOption('user', $this->security->getUser()), // Pass the user to the field
-            // ->onlyOnIndex(),
+                ->setCustomOption('user', $this->security->getUser()) // Passer l'utilisateur actuel au champ
+                ->hideOnForm(), // Cacher le champ dans le formulaire
 
 
             // ImageField::new('imageFile', 'Image')
@@ -138,6 +138,7 @@ class PostsCrudController extends AbstractCrudController
         ];
     }
 
+
     public function configureFilters(Filters $filters): Filters
     {
         return $filters
@@ -146,36 +147,51 @@ class PostsCrudController extends AbstractCrudController
             ->add('createdAt')
             ->add('updatedAt');
     }
+
     public function createEditFormBuilder(EntityDto $entityDto, KeyValueStore $formOptions, AdminContext $context): FormBuilderInterface
     {
-
         $builder = parent::createEditFormBuilder($entityDto, $formOptions, $context);
-
-        $builder
-            ->addEventListener(FormEvents::POST_SUBMIT, function (FormEvent $event) {
-
-                $this->addFlash(
-                    'success', // Le type du message flash (par exemple, 'success' pour un message de succès)
-                    'Les modifications ont été enregistrées avec succès!' // Le message à afficher
-                );
-            });
-
+    
+        $builder->addEventListener(FormEvents::POST_SUBMIT, function (FormEvent $event) {
+            $formData = $event->getData();
+            if ($formData instanceof Posts && !$formData->getUser()) {
+                $user = $this->security->getUser();
+    
+                // Remplissez le champ "user" avec l'utilisateur actuel
+                $formData->setUser($user);
+            }
+    
+            $this->addFlash(
+                'success',
+                'Les modifications ont été enregistrées avec succès!'
+            );
+        });
+    
         return $builder;
     }
+    
+
+    
     public function createNewFormBuilder(EntityDto $entityDto, KeyValueStore $formOptions, AdminContext $context): FormBuilderInterface
     {
 
         $builder = parent::createNewFormBuilder($entityDto, $formOptions, $context);
 
-        $builder
-            ->addEventListener(FormEvents::POST_SUBMIT, function (FormEvent $event) {
-
-                $this->addFlash(
-                    'success', // Le type du message flash (par exemple, 'success' pour un message de succès)
-                    'Les modifications ont été enregistrées avec succès!' // Le message à afficher
-                );
-            });
-
+        $builder->addEventListener(FormEvents::POST_SUBMIT, function (FormEvent $event) {
+            $formData = $event->getData();
+            if ($formData instanceof Posts && !$formData->getUser()) {
+                $user = $this->security->getUser();
+    
+                // Remplissez le champ "user" avec l'utilisateur actuel
+                $formData->setUser($user);
+            }
+    
+            $this->addFlash(
+                'success',
+                'Les modifications ont été enregistrées avec succès!'
+            );
+        });
+    
         return $builder;
     }
 }
