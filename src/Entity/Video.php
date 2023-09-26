@@ -38,7 +38,7 @@ class Video
     
 
     #[ORM\Column(type: 'string', length: 255, nullable: true)]
-    private ?string $Image = null;
+    private ?string $image = null;
 
     #[ORM\ManyToMany(targetEntity: Post::class, mappedBy: 'videoFile')]
     private Collection $post;
@@ -126,12 +126,12 @@ class Video
 
     public function getImage(): ?string
     {
-        return $this->Image;
+        return $this->image;
     }
 
     public function setImage(?string $Image): self
     {
-        $this->Image = $Image;
+        $this->image = $Image;
 
         return $this;
     }
