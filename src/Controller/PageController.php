@@ -3,7 +3,7 @@
 namespace App\Controller;
 
 use App\Entity\Image;
-use App\Entity\Posts;
+use App\Entity\Post;
 use App\Repository\ImageRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\HttpFoundation\Response;

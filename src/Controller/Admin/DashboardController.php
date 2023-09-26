@@ -2,15 +2,14 @@
 namespace App\Controller\Admin;
 
 //J'appelle les entity pour les liens
+use App\Entity\Page;
+use App\Entity\Post;
 use App\Entity\Ebook;
 use App\Entity\Image;
-use App\Entity\Posts;
 use App\Entity\Video;
-
 use App\Entity\Category;
-use App\Controller\Admin\UserCrudController;
 use App\Entity\Newsletter;
-use App\Entity\Page;
+use App\Controller\Admin\UserCrudController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use EasyCorp\Bundle\EasyAdminBundle\Config\Crud;
@@ -110,9 +109,9 @@ class DashboardController extends AbstractDashboardController
 
         yield MenuItem::subMenu('Post', 'fa fa-pencil-alt')->setSubItems([
 
-            MenuItem::linkToCrud('Créer un post', 'fa fa-pencil-alt', Posts::class)
+            MenuItem::linkToCrud('Créer un post', 'fa fa-pencil-alt', Post::class)
             ->setPermission('ROLE_SUPER_ADMIN'),
-            MenuItem::linkToCrud('Mes Posts', 'fas fa-eye', Posts::class)
+            MenuItem::linkToCrud('Mes Posts', 'fas fa-eye', Post::class)
             ->setPermission('ROLE_SUPER_ADMIN'),
 
         ]);
