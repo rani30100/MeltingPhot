@@ -35,9 +35,6 @@ class Image
     #[ORM\ManyToOne(inversedBy: 'images')]
     private ?User $user = null;
 
-    #[ORM\ManyToOne(targetEntity: Posts::class, inversedBy: "imagesCollection")]
-    #[ORM\JoinColumn(name: 'post_id', referencedColumnName: 'id')]
-    private ?Posts $post = null;
 
     #[ORM\ManyToOne(targetEntity: Page::class, cascade:["remove"])]
     #[ORM\JoinColumn(name: 'page_id', referencedColumnName: 'id')]
@@ -50,14 +47,18 @@ class Image
     #[ORM\ManyToMany(targetEntity: Page::class, inversedBy: 'images')]
     private Collection $pages;
 
-
     #[ORM\Column(type: "datetime", nullable: true)]
     private ?\DateTimeInterface $updatedAt = null;
+
+    #[ORM\ManyToMany(targetEntity: Post::class, mappedBy: 'images')]
+    private Collection $post;
+
 
     public function __construct()
     {
         $this->created_at = new \DateTime();
         $this->pages = new ArrayCollection();
+        $this->post = new ArrayCollection();
     }
 
     public function __toString()
@@ -106,17 +107,6 @@ class Image
         return $this;
     }
 
-    public function getPost(): ?Posts
-    {
-        return $this->post;
-    }
-
-    public function setPost(?Posts $post): self
-    {
-        $this->post = $post;
-
-        return $this;
-    }
 
     public function getCreatedAt(): ?DateTimeInterface
     {
@@ -228,4 +218,34 @@ class Image
 
         return $this;
     }
+
+    /**
+     * @return Collection<int, Post>
+     */
+    public function getPost(): Collection
+    {
+        return $this->post;
+    }
+
+    public function addPost(Post $post): static
+    {
+        if (!$this->post->contains($post)) {
+            $this->post->add($post);
+            $post->addImage($this);
+        }
+
+        return $this;
+    }
+
+    public function removePost(Post $post): static
+    {
+        if ($this->post->removeElement($post)) {
+            $post->removeImage($this);
+        }
+
+        return $this;
+    }
+
+
+
 }

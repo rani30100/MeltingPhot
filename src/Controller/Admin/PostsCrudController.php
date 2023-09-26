@@ -2,20 +2,18 @@
 
 namespace App\Controller\Admin;
 
+use App\Entity\Post;
 use App\Entity\Posts;
 use Twig\Environment;
-use Sonata\AdminBundle\Form\FormMapper;
 use Symfony\Component\Form\FormEvent;
 use Symfony\Component\Form\FormEvents;
 use Symfony\UX\Dropzone\Form\DropzoneType;
 use Symfony\Component\Security\Core\Security;
-use Vich\UploaderBundle\Form\Type\VichFileType;
 use EasyCorp\Bundle\EasyAdminBundle\Field\Field;
 use Symfony\Component\Form\FormBuilderInterface;
 use EasyCorp\Bundle\EasyAdminBundle\Dto\EntityDto;
 use EasyCorp\Bundle\EasyAdminBundle\Field\IdField;
 use EasyCorp\Bundle\EasyAdminBundle\Config\Filters;
-use EasyCorp\Bundle\EasyAdminBundle\Field\UrlField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\TextField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\ImageField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\DateTimeField;
@@ -23,8 +21,6 @@ use EasyCorp\Bundle\EasyAdminBundle\Field\TextareaField;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use EasyCorp\Bundle\EasyAdminBundle\Config\KeyValueStore;
 use EasyCorp\Bundle\EasyAdminBundle\Context\AdminContext;
-use EasyCorp\Bundle\EasyAdminBundle\Field\CollectionField;
-use Symfony\Component\Form\Extension\Core\Type\HiddenType;
 use EasyCorp\Bundle\EasyAdminBundle\Field\AssociationField;
 use EasyCorp\Bundle\EasyAdminBundle\Controller\AbstractCrudController;
 
@@ -60,34 +56,18 @@ class PostsCrudController extends AbstractCrudController
                 ->setLabel('Image du Post')
                 ->onlyOnIndex(),
 
-                AssociationField::new('user', 'Utilisateur')
-                ->setLabel('Utilisateur')
-                ->setCustomOption('user', $this->security->getUser()) // Passer l'utilisateur actuel au champ
-                ->hideOnForm(), // Cacher le champ dans le formulaire
+            AssociationField::new('user', 'Utilisateur')
+            ->setLabel('Utilisateur')
+            ->setCustomOption('user', $this->security->getUser()) // Passer l'utilisateur actuel au champ
+            ->hideOnForm(), // Cacher le champ dans le formulaire
 
-
-            // ImageField::new('imageFile', 'Image')
-            // ->setFormType(VichImageType::class)
-            // ->setFormTypeOptions([
-            //     'upload_dir' => 'uploads/post/images',
-            //     'required' => false, // Optional: Set it to true, if the field is mandatory.
-            // ]),
-            TextareaField::new('imageFile')
-                ->setFormType(VichFileType::class)
-                ->onlyOnForms(),
-
-            UrlField::new('videoFile', 'Fichier Vidéo Intégrer')
-            ->setTemplatePath('admin/videoCrud/custom_video_display.html.twig') // Chemin vers le modèle personnalisé
-            ->hideOnForm()
-            // ->setFormType(DropzoneType::class)
-            // ->setFormTypeOptions([
-            //     'required' => false, // Set initial value as false
-            // ])
-            // ->setHelp('Glisser une vidéo dans le champ')
-            // ->onlyOnForms(),
-            // ->hideOnIndex()
+            AssociationField::new('images')
+            ->setLabel('Images')
+            // ->setCssClass(VichImageType::class)
+            ->setFormTypeOption('by_reference', false)
+            ->setTemplatePath('admin/imageCrud/custom_image_display.html.twig') // Chemin vers le modèle personnalisé
             ,
-
+        
 
 
             Field::new('video', 'Fichier Vidéo')
@@ -124,11 +104,13 @@ class PostsCrudController extends AbstractCrudController
             // ->setFormTypeOption('by_reference', false)
             // ->onlyOnForms(),
 
-            // AssociationField::new('pages')
-            // ->setLabel('Pages associées')
-            // // ->hideOnForm() // Ce champ ne doit pas être modifiable dans le formulaire
+            AssociationField::new('videoFile')
+            ->setLabel('Mes Vidéos')
+            ->setTemplatePath('admin/videoCrud/custom_video_display.html.twig') // Chemin vers le modèle personnalisé
+            // ->hideOnForm() // Ce champ ne doit pas être modifiable dans le formulaire
             // ->autocomplete() // Permet la recherche d'entités associées
-            // ->setRequired(false),
+            ->setRequired(false),
+
             TextAreaField::new('description', 'Description')
                 ->addWebpackEncoreEntries('admin')
                 ->addCssClass('tinymce')
@@ -153,19 +135,25 @@ class PostsCrudController extends AbstractCrudController
         $builder = parent::createEditFormBuilder($entityDto, $formOptions, $context);
     
         $builder->addEventListener(FormEvents::POST_SUBMIT, function (FormEvent $event) {
+            // Récupérez les données soumises dans le formulaire
             $formData = $event->getData();
-            if ($formData instanceof Posts && !$formData->getUser()) {
+            
+            // Vérifiez si les données sont une instance de la classe "Posts" (votre entité) et si le champ "user" est vide
+            if ($formData instanceof Post && !$formData->getUser()) {
+                // Récupérez l'utilisateur actuellement authentifié à partir du service "Security"
                 $user = $this->security->getUser();
-    
-                // Remplissez le champ "user" avec l'utilisateur actuel
+            
+                // Remplissez le champ "user" de l'entité "Posts" avec l'utilisateur actuel
                 $formData->setUser($user);
             }
-    
+            
+            // Ajoutez un message flash de succès pour informer l'utilisateur que les modifications ont été enregistrées avec succès
             $this->addFlash(
                 'success',
                 'Les modifications ont été enregistrées avec succès!'
             );
         });
+        
     
         return $builder;
     }
@@ -178,20 +166,47 @@ class PostsCrudController extends AbstractCrudController
         $builder = parent::createNewFormBuilder($entityDto, $formOptions, $context);
 
         $builder->addEventListener(FormEvents::POST_SUBMIT, function (FormEvent $event) {
+            // Récupérez les données soumises dans le formulaire
             $formData = $event->getData();
-            if ($formData instanceof Posts && !$formData->getUser()) {
+            
+            // Vérifiez si les données sont une instance de la classe "Posts" (votre entité) et si le champ "user" est vide
+            if ($formData instanceof Post && !$formData->getUser()) {
+                // Récupérez l'utilisateur actuellement authentifié à partir du service "Security"
                 $user = $this->security->getUser();
-    
-                // Remplissez le champ "user" avec l'utilisateur actuel
+            
+                // Remplissez le champ "user" de l'entité "Posts" avec l'utilisateur actuel
                 $formData->setUser($user);
             }
-    
+            
+            // Ajoutez un message flash de succès pour informer l'utilisateur que les modifications ont été enregistrées avec succès
             $this->addFlash(
                 'success',
                 'Les modifications ont été enregistrées avec succès!'
             );
         });
+        
     
         return $builder;
     }
 }
+
+            // ImageField::new('imageFile', 'Image')
+            // ->setFormType(VichImageType::class)
+            // ->setFormTypeOptions([
+            //     'upload_dir' => 'uploads/post/images',
+            //     'required' => false, // Optional: Set it to true, if the field is mandatory.
+            // ]),
+            // TextareaField::new('imageFile')
+            //     ->setFormType(VichFileType::class)
+            //     ->onlyOnForms(),
+
+            // AssociationField::new('videoFile', 'Fichier Vidéo Intégrer')
+            // ->hideOnForm()
+            // ->setFormType(DropzoneType::class)
+            // ->setFormTypeOptions([
+            //     'required' => false, // Set initial value as false
+            // ])
+            // ->setHelp('Glisser une vidéo dans le champ')
+            // ->onlyOnForms(),
+            // ->hideOnIndex()
+            // ,

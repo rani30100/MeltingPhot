@@ -34,8 +34,8 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     #[ORM\Column]
     private $username;
 
-    #[ORM\OneToMany(mappedBy: 'user', targetEntity: Posts::class, orphanRemoval: true)]
-    private Collection $posts;
+    #[ORM\OneToMany(mappedBy: 'user', targetEntity: Post::class, orphanRemoval: true)]
+    private Collection $post;
 
     #[ORM\ManyToMany(targetEntity: Newsletter::class, mappedBy: 'user_id')]
     private Collection $newsletters;
@@ -49,12 +49,16 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     #[ORM\Column(type: 'boolean')]
     private $isVerified = false;
 
+    #[ORM\OneToMany(mappedBy: 'user', targetEntity: Post::class)]
+    private Collection $userPost;
+
     public function __construct()
     {
-        $this->posts = new ArrayCollection();
+        $this->post = new ArrayCollection();
         $this->newsletters = new ArrayCollection();
         $this->created_at = new ArrayCollection();
         $this->images = new ArrayCollection();
+        $this->userPost = new ArrayCollection();
     }
 
        /**
@@ -136,24 +140,24 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
         // $this->plainPassword = null;
     }
 
-    public function getPosts(): Collection
+    public function getPost(): Collection
     {
-        return $this->posts;
+        return $this->post;
     }
 
-    public function addPost(Posts $post): self
+    public function addPost(Post $post): self
     {
-        if (!$this->posts->contains($post)) {
-            $this->posts->add($post);
+        if (!$this->post->contains($post)) {
+            $this->post->add($post);
             $post->setUser($this);
         }
 
         return $this;
     }
 
-    public function removePost(Posts $post): self
+    public function removePost(Post $post): self
     {
-        if ($this->posts->removeElement($post)) {
+        if ($this->post->removeElement($post)) {
             // set the owning side to null (unless already changed)
             if ($post->getUser() === $this) {
                 $post->setUser(null);
@@ -285,6 +289,36 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     //             ->addViolation();
     //     }
     // }
+
+    /**
+     * @return Collection<int, Post>
+     */
+    public function getUserPost(): Collection
+    {
+        return $this->userPost;
+    }
+
+    public function addUserPost(Post $userPost): static
+    {
+        if (!$this->userPost->contains($userPost)) {
+            $this->userPost->add($userPost);
+            $userPost->setUser($this);
+        }
+
+        return $this;
+    }
+
+    public function removeUserPost(Post $userPost): static
+    {
+        if ($this->userPost->removeElement($userPost)) {
+            // set the owning side to null (unless already changed)
+            if ($userPost->getUser() === $this) {
+                $userPost->setUser(null);
+            }
+        }
+
+        return $this;
+    }
 }
 
 

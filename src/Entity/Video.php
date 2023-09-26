@@ -23,10 +23,7 @@ class Video
 
     #[ORM\ManyToOne(inversedBy: 'created_at')]
     private ?User $user = null;
-     /**
-     * @ORM\ManyToOne(targetEntity="App\Entity\User")
-     * @ORM\JoinColumn(name="username", referencedColumnName="username")
-     */
+
     private $username;
 
     #[ORM\Column(type: 'datetime_immutable')]
@@ -42,12 +39,24 @@ class Video
 
     #[ORM\Column(type: 'string', length: 255, nullable: true)]
     private ?string $Image = null;
-    
+
+    #[ORM\ManyToMany(targetEntity: Post::class, mappedBy: 'videoFile')]
+    private Collection $post;
+
+  
 
     public function __construct()
     {
         $this->created_at = new DateTimeImmutable('now');
+        $this->post = new ArrayCollection();
     }
+
+    public function __toString()
+    {  
+        
+        return $this->getTitle();
+    }
+
 
     public function getId(): ?int
     {
@@ -150,4 +159,33 @@ class Video
     public function getType() {
         return "video";
     }
+
+    /**
+     * @return Collection<int, Post>
+     */
+    public function getPost(): Collection
+    {
+        return $this->post;
+    }
+
+    public function addPost(Post $post): static
+    {
+        if (!$this->post->contains($post)) {
+            $this->post->add($post);
+            $post->addVideoFile($this);
+        }
+
+        return $this;
+    }
+
+    public function removePost(Post $post): static
+    {
+        if ($this->post->removeElement($post)) {
+            $post->removeVideoFile($this);
+        }
+
+        return $this;
+    }
+
+   
 }

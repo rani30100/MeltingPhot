@@ -30,8 +30,8 @@ class Page
     #[ORM\Column(type: Types::TEXT, nullable: true)]
     private ?string $content = null;
 
-    #[ORM\ManyToMany(targetEntity: Posts::class, cascade:["remove"])]     
-    private Collection $posts;
+    #[ORM\ManyToMany(targetEntity: Post::class, cascade:["remove"])]     
+    private Collection $post;
 
     #[ORM\ManyToMany(targetEntity: Image::class, mappedBy: 'pages', cascade: ["remove"])]
     private Collection $images;
@@ -42,33 +42,32 @@ class Page
 
     public function __construct()
     {
-        $this->posts = new ArrayCollection();
+        $this->post = new ArrayCollection();
         $this->images = new ArrayCollection();
     }
 
     public function __toString()
     {
-        // Customize this method to return the property that should be used
-        // to represent the Page entity as a string, for example, 'title'.
+
         return (string) $this->getTitle();
     }
-    public function getPosts(): Collection
+    public function getPost(): Collection
     {
-        return $this->posts;
+        return $this->post;
     }
 
-    public function addPost(Posts $post): self
+    public function addPost(Post $post): self
     {
-        if (!$this->posts->contains($post)) {
-            $this->posts[] = $post;
+        if (!$this->post->contains($post)) {
+            $this->post[] = $post;
         }
 
         return $this;
     }
 
-    public function removePost(Posts $post): self
+    public function removePost(Post $post): self
     {
-        $this->posts->removeElement($post);
+        $this->post->removeElement($post);
 
         return $this;
     }
