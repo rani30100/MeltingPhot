@@ -595,6 +595,7 @@ body {
     .numbers,
     .color1 {
         margin-left: 0px !important;
+        font-size: large;
     }
 
     .block-article_description {
@@ -627,6 +628,13 @@ body {
     .img-article2 {
         width: 250px;
         height: 250px;
+    }
+
+
+    // Article 3
+    .article-title3{
+        align-self: baseline;
+        margin-left: 1rem;
     }
 
     .carousel1 {
@@ -685,7 +693,7 @@ body {
 
             h3 {
                 text-align: center;
-                font-size: 100%;
+                font-size: large;
                 color: #D00A4B;
                 margin-left: 170px;
                 width: max-content;
