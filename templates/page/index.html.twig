@@ -4,25 +4,31 @@
 
 	<section class=" d-flex justify-center">
 		<section class="h-100 mt-5">
-			{% for posts in page.post %}
-				<section class="d-flex justify-center flex-column">
-					<div class="d-flex justify-center align-items-center flex-column">
-						<h1 class="text-center">Titre du Post :
-							{{ posts.title }}</h1>
-						<p class="text-center w-50">{{ posts.description|raw }}</p>
-					</div>
+			{% for image in page.images %}
+				<h2>Image de la Page</h2>
+				<img src="{{ asset('img/' ~ image.path) }}" style=" max-height: 300px; margin: 5px;" alt="{{ image.title }}">
+				
+			{% endfor %}
 
+			{% for posts in page.post %}
+
+				<h2 class="text-center">Titre du Post :
+					{{ posts.title }}</h2>
+				<p class="text-center w-50">{{ posts.description|raw }}</p>
 
 					{% if posts.images|length > 0 %}
 						<div>
 							<h3 class="text-center">Images associées à la page</h3>
-							{% for image in posts.images  %}
-								<img src="{{ asset('uploads/videos/images/' ~ image.path) }}" style=" max-height: 300px; margin: 5px;" alt="{{ image.title }}">
-							{% endfor %}
+							<div class="d-flex flex-row">
+								{% for image in posts.images  %}
+										<img src="{{ asset('img/' ~ image.path) }}" style=" max-height: 300px; margin: 5px;" alt="{{ image.title }}">
+								{% endfor %}
+							</div>
 						</div>
 					{% endif %}
 				</div>
 				<br>
+
 				{% if posts.videoFile|length > 0 %}
 					<div class="mb-5 text-center flex-column justify-content-center d-flex align-items-center">
 						<h3>Videos Du post</h3>
@@ -33,10 +39,9 @@
 					</div>
 				{% endif %}
 
-			</section>
-		{% endfor %}
+			{% endfor %}
 
+		</section>
 	</section>
-
 {% endblock %}
 
