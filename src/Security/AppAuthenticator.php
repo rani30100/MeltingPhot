@@ -36,28 +36,15 @@ class AppAuthenticator extends AbstractLoginFormAuthenticator
     public function authenticate(Request $request): Passport
     {
         $email = $request->request->get('email', '');
-        // $password =$request->request->get('password','');
     
         $request->getSession()->set(Security::LAST_USERNAME, $email);
     
         // Vérifiez si l'utilisateur existe avec l'adresse e-mail fournie
         $user = $this->userRepository->findOneBy(['email' => $email]);
-        // $userPassword = $this->userRepository->findAll(['password' => 'password']);    
-        // if (!$user || !$userPassword){
-        //     throw new CustomUserMessageAuthenticationException('Vos identifiants sont incorrectes.');
-        // }
-        
-    
+
         if (!$user) {
-            // if (!$userPassword) {
-            //     // The email is correct, but the password is incorrect, so throw an exception
-            //     throw new CustomUserMessageAuthenticationException('Votre mot de passe est incorrect.');
-            // }
             throw new CustomUserMessageAuthenticationException("Cette adresse email n'existe pas.");
-        } else {
-            // throw new CustomUserMessageAuthenticationException("Votre mot de passe est incorrect.");
-        }
-        
+        } 
 
         return new Passport(
             new UserBadge($email),
@@ -75,7 +62,7 @@ class AppAuthenticator extends AbstractLoginFormAuthenticator
             return new RedirectResponse($targetPath);
         }
 
-        // For example:
+        //Une fois connecté, est redirigé sur la page principale:
         return new RedirectResponse($this->urlGenerator->generate('app_home_page'));
         throw new \Exception('TODO: provide a valid redirect inside '.__FILE__);
     }
