@@ -19,13 +19,13 @@
 
 {% block body %}
 
-	<section class="main"  style="background: #F0F0ED;"FFA630>
-		<section class="know-more">
+	<main class="main"  style="background: #F0F0ED;"FFA630>
+		<header class="know-more">
 			<div class="d-flex justify-content-center">
 					<a href="https://www.youtube.com/@meltingphot" target="_blank" class="btn btn-danger know-more_btn">En (Sa) voir +</a>
 			</div>
 			
-		</section>
+		</header>
 
 		<section id="parent-article" class="d-flex flex-column parent-article">
 			{# 1er article  #}
@@ -87,148 +87,144 @@
 				</div>
 			</article>
 		</section>
-	</section>
 
-	<section class="rubriques">
-		<h3 class="color1 size text-center"><span class="fw-light">NOS</span> ACTIONS </h3>
-		<h3 class="color1 size text-center">D'EDUCATION <span class="fw-light">PAR L'IMAGE</span></h3>
+		<section class="rubriques">
+			<h3 class="color1 size text-center"><span class="fw-light">NOS</span> ACTIONS </h3>
+			<h3 class="color1 size text-center">D'EDUCATION <span class="fw-light">PAR L'IMAGE</span></h3>
 
-		<div class="dropdown d-flex justify-content-start ms-4 mt-3">
-			<button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
-				Filtrer...
-			</button>
-			<ul class="dropdown-menu dropdown-menu-dark">
-				
-				<li><a class="dropdown-item active" href="#">Je filme mon futur Métier</a></li>
-				
-				<li><hr class="dropdown-divider d-none"></li>
-				<li><a class="dropdown-item" href="#">Odonymes</a></li>
-
-
-				<li><hr class="dropdown-divider d-none"></li>
-				<li><a class="dropdown-item" href="#">Les critiques pétillantes</a></li>
-
-				<li><hr class="dropdown-divider d-none"></li>
-				<li><a class="dropdown-item" href="#">Parole Public</a></li>
-
-				<li><hr class="dropdown-divider d-none"></li>
-				<li><a class="dropdown-item" href="#">	Les Vitrines des Cévennes</a></li>
-			</ul>
-		</div>
-
-		<div class="mb-4 mt-4  rubriques-filter-tab">
-			<ul class="d-flex justify-content-center rubriques-filter">
-				<li><a class="filter-tab " href="#">Je filme mon futur Métier</a></li>
-				<li><a class="filter-tab" href="#">Odonymes</a></li>
-				<li><a class="filter-tab" href="#">Les critiques pétillantes</a></li>
-				<li><a class="filter-tab" href="#">Parole Public</a></li>
-				<li><a class="filter-tab" href="#">	Les Vitrines des Cévennes</a></li>
-			</ul>
-		</div>
-
-
-		<div id="carouselExample" class="carousel display: flex;align-items: center;" data-bs-interval="6000">
-			<div class="carousel-inner">
-				<div class="carousel-item active justify-content-center ">
-					<div class="row row-cols-1 row-cols-md-3 row-cols-xl-5">
-						<a class="carrousel-lien carrousel_img-1" href=" {{ path("app_actions")}} ">
-							<img class="d-block h-full carrousel-image" src="{{ asset('img/Home/Image_Vignette_Page accueil meltingphot_je Filme mon futur métier.png') }}" alt="Image_Vignette_Page accueil meltingphot_je Filme mon futur métier">
-						</a>
-
-						<a class="carrousel-lien carrousel_img-2" href=" {{ path("app_actions")}} ">
-							<img class="d-block h-full carrousel-image " src="{{ asset('img/Home/Image_Vignette_Page accueil meltingphot_je Filme mon futur métier.png') }}" alt="Image_Vignette_Page accueil meltingphot_je Filme mon futur métier">
-						</a>
-								<a class="carrousel-lien carrousel_img-3" href=" {{ path("app_actions")}} ">
-							<img class="d-block h-full carrousel-image" src="{{ asset('img/Home/Image_Vignette_Page accueil meltingphot_je Filme mon futur métier.png') }}" alt="Image_Vignette_Page accueil meltingphot_je Filme mon futur métier">
-						</a>
-						
-						<a class="carrousel-lien carrousel_img-4" href=" {{ path("app_actions")}} ">
-							<img class="d-block h-full carrousel-image " src="{{ asset('img/Home/Image_Vignette_Page accueil meltingphot_je Filme mon futur métier.png') }}" alt="Image_Vignette_Page accueil meltingphot_je Filme mon futur métier">
-						</a>
-
-							<a class="carrousel-lien carrousel_img-5" href=" {{ path("app_actions")}} ">
-							<img class="d-block h-full carrousel-image " src="{{ asset('img/Home/Image_Vignette_Page accueil meltingphot_je Filme mon futur métier.png') }}" alt="Image_Vignette_Page accueil meltingphot_je Filme mon futur métier">
-						</a>
-					
-					</div>
-				</div>
-
-
-				<div class="carousel-item justify-content-center">
-					<div class="row row-cols-1 row-cols-md-3 row-cols-xl-5">
-						<a class="carrousel-lien carrousel_img-1" href=" {{ path("app_actions")}} ">
-							<img class="d-block h-full carrousel-image" src="{{ asset('img/Home/Image_Vignette_Page accueil meltingphot_je Filme mon futur métier.png') }}" alt="Image_Vignette_Page accueil meltingphot_je Filme mon futur métier">
-						</a>
-
-						<a class="carrousel-lien carrousel_img-2" href=" {{ path("app_actions")}} ">
-							<img class="d-block h-full carrousel-image " src="{{ asset('img/Home/Image_Vignette_Page accueil meltingphot_je Filme mon futur métier.png') }}" alt="Image_Vignette_Page accueil meltingphot_je Filme mon futur métier">
-						</a>
-								<a class="carrousel-lien carrousel_img-3" href="{{ path("app_actions")}}">
-							<img class="d-block h-full carrousel-image" src="{{ asset('img/Home/Image_Vignette_Page accueil meltingphot_je Filme mon futur métier.png') }}" alt="Image_Vignette_Page accueil meltingphot_je Filme mon futur métier">
-						</a>
-						
-						<a class="carrousel-lien carrousel_img-4" href="{{ path("app_actions")}}">
-							<img class="d-block h-full carrousel-image " src="{{ asset('img/Home/Image_Vignette_Page accueil meltingphot_je Filme mon futur métier.png') }}" alt="Image_Vignette_Page accueil meltingphot_je Filme mon futur métier">
-						</a>
-
-							<a class="carrousel-lien carrousel_img-5" href="{{ path("app_actions")}}">
-							<img class="d-block h-full carrousel-image " src="{{ asset('img/Home/Image_Vignette_Page accueil meltingphot_je Filme mon futur métier.png') }}" alt="Image_Vignette_Page accueil meltingphot_je Filme mon futur métier">
-						</a>
-					
-					</div>
-				</div>
-
-				<div class="carousel-item justify-content-center">
-					<div class="row row-cols-1 row-cols-md-3 row-cols-xl-5">
-						<a class="carrousel-lien carrousel_img-1" href=" {{ path("app_actions")}} ">
-							<img class="d-block h-full carrousel-image" src="{{ asset('img/Home/ODONYMES _Image_Vignette_Page accueil meltingphot_je Filme mon futur métier.png') }}" alt="Image_Vignette_Page accueil meltingphot_je Filme mon futur métier">
-						</a>
-
-						<a class="carrousel-lien carrousel_img-2" href=" {{ path("app_actions")}} ">
-							<img class="d-block h-full carrousel-image " src="{{ asset('img/Home/ODONYMES _Image_Vignette_Page accueil meltingphot_je Filme mon futur métier.png') }}" alt="Image_Vignette_Page accueil meltingphot_je Filme mon futur métier">
-						</a>
-								<a class="carrousel-lien carrousel_img-3" href=" {{ path("app_actions")}} ">
-							<img class="d-block h-full carrousel-image" src="{{ asset('img/Home/ODONYMES _Image_Vignette_Page accueil meltingphot_je Filme mon futur métier.png') }}" alt="Image_Vignette_Page accueil meltingphot_je Filme mon futur métier">
-						</a>
-						
-						<a class="carrousel-lien carrousel_img-4" href=" {{ path("app_actions")}} ">
-							<img class="d-block h-full carrousel-image " src="{{ asset('img/Home/ODONYMES _Image_Vignette_Page accueil meltingphot_je Filme mon futur métier.png') }}" alt="Image_Vignette_Page accueil meltingphot_je Filme mon futur métier">
-						</a>
-
-							<a class="carrousel-lien carrousel_img-5" href=" {{ path("app_actions")}} ">
-							<img class="d-block h-full carrousel-image " src="{{ asset('img/Home/Image_Vignette_Page accueil meltingphot_je Filme mon futur métier.png') }}" alt="Image_Vignette_Page accueil meltingphot_je Filme mon futur métier">
-						</a>
-					
-					</div>
-				</div>
-					
-				<button class="carousel-control-prev" type="button" data-bs-target="#carouselExample" data-bs-slide="prev"  style="width:24px !important">
-					<span class="" aria-hidden="true"  style="display: flex; flex-direction: column; border: aliceblue 2px solid; padding-bottom: 2rem; padding-top: 2rem; background-color: black; writing-mode: vertical-rl; text-orientation: upright;letter-spacing: 5px;">
-					Prev
-					</span>
-					<span class="visually-hidden">Previous</span>
+			<div class="dropdown d-flex justify-content-start ms-4 mt-3">
+				<button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+					Filtrer...
 				</button>
+				<ul class="dropdown-menu dropdown-menu-dark">
+					
+					<li><a class="dropdown-item active" href="#">Je filme mon futur Métier</a></li>
+					
+					<li><hr class="dropdown-divider d-none"></li>
+					<li><a class="dropdown-item" href="#">Odonymes</a></li>
 
-				<button class="carousel-control-next" type="button" data-bs-target="#carouselExample" data-bs-slide="next"  style="width:24px!important;">
-					<span class="" aria-hidden="true"  style="display: flex; flex-direction: column; border: aliceblue 2px solid; padding-bottom: 2rem; padding-top: 2rem; background-color: black; writing-mode: vertical-rl; text-orientation: upright;letter-spacing: 5px;">
-					Next
-					</span>				
-					<span class="visually-hidden">Next</span>
-				</button>
+
+					<li><hr class="dropdown-divider d-none"></li>
+					<li><a class="dropdown-item" href="#">Les critiques pétillantes</a></li>
+
+					<li><hr class="dropdown-divider d-none"></li>
+					<li><a class="dropdown-item" href="#">Parole Public</a></li>
+
+					<li><hr class="dropdown-divider d-none"></li>
+					<li><a class="dropdown-item" href="#">	Les Vitrines des Cévennes</a></li>
+				</ul>
 			</div>
-		</div>
-	</section>
+
+			<div class="mb-4 mt-4  rubriques-filter-tab">
+				<ul class="d-flex justify-content-center rubriques-filter">
+					<li><a class="filter-tab " href="#">Je filme mon futur Métier</a></li>
+					<li><a class="filter-tab" href="#">Odonymes</a></li>
+					<li><a class="filter-tab" href="#">Les critiques pétillantes</a></li>
+					<li><a class="filter-tab" href="#">Parole Public</a></li>
+					<li><a class="filter-tab" href="#">	Les Vitrines des Cévennes</a></li>
+				</ul>
+			</div>
+
+
+			<div id="carouselExample" class="carousel display: flex;align-items: center;" data-bs-interval="6000">
+				<div class="carousel-inner">
+					<div class="carousel-item active justify-content-center ">
+						<div class="row row-cols-1 row-cols-md-3 row-cols-xl-5">
+							<a class="carrousel-lien carrousel_img-1" href=" {{ path("app_actions")}} ">
+								<img class="d-block h-full carrousel-image" src="{{ asset('img/Home/Image_Vignette_Page accueil meltingphot_je Filme mon futur métier.png') }}" alt="Image_Vignette_Page accueil meltingphot_je Filme mon futur métier">
+							</a>
+
+							<a class="carrousel-lien carrousel_img-2" href=" {{ path("app_actions")}} ">
+								<img class="d-block h-full carrousel-image " src="{{ asset('img/Home/Image_Vignette_Page accueil meltingphot_je Filme mon futur métier.png') }}" alt="Image_Vignette_Page accueil meltingphot_je Filme mon futur métier">
+							</a>
+									<a class="carrousel-lien carrousel_img-3" href=" {{ path("app_actions")}} ">
+								<img class="d-block h-full carrousel-image" src="{{ asset('img/Home/Image_Vignette_Page accueil meltingphot_je Filme mon futur métier.png') }}" alt="Image_Vignette_Page accueil meltingphot_je Filme mon futur métier">
+							</a>
+							
+							<a class="carrousel-lien carrousel_img-4" href=" {{ path("app_actions")}} ">
+								<img class="d-block h-full carrousel-image " src="{{ asset('img/Home/Image_Vignette_Page accueil meltingphot_je Filme mon futur métier.png') }}" alt="Image_Vignette_Page accueil meltingphot_je Filme mon futur métier">
+							</a>
+
+								<a class="carrousel-lien carrousel_img-5" href=" {{ path("app_actions")}} ">
+								<img class="d-block h-full carrousel-image " src="{{ asset('img/Home/Image_Vignette_Page accueil meltingphot_je Filme mon futur métier.png') }}" alt="Image_Vignette_Page accueil meltingphot_je Filme mon futur métier">
+							</a>
+						
+						</div>
+					</div>
+
+
+					<div class="carousel-item justify-content-center">
+						<div class="row row-cols-1 row-cols-md-3 row-cols-xl-5">
+							<a class="carrousel-lien carrousel_img-1" href=" {{ path("app_actions")}} ">
+								<img class="d-block h-full carrousel-image" src="{{ asset('img/Home/Image_Vignette_Page accueil meltingphot_je Filme mon futur métier.png') }}" alt="Image_Vignette_Page accueil meltingphot_je Filme mon futur métier">
+							</a>
+
+							<a class="carrousel-lien carrousel_img-2" href=" {{ path("app_actions")}} ">
+								<img class="d-block h-full carrousel-image " src="{{ asset('img/Home/Image_Vignette_Page accueil meltingphot_je Filme mon futur métier.png') }}" alt="Image_Vignette_Page accueil meltingphot_je Filme mon futur métier">
+							</a>
+									<a class="carrousel-lien carrousel_img-3" href="{{ path("app_actions")}}">
+								<img class="d-block h-full carrousel-image" src="{{ asset('img/Home/Image_Vignette_Page accueil meltingphot_je Filme mon futur métier.png') }}" alt="Image_Vignette_Page accueil meltingphot_je Filme mon futur métier">
+							</a>
+							
+							<a class="carrousel-lien carrousel_img-4" href="{{ path("app_actions")}}">
+								<img class="d-block h-full carrousel-image " src="{{ asset('img/Home/Image_Vignette_Page accueil meltingphot_je Filme mon futur métier.png') }}" alt="Image_Vignette_Page accueil meltingphot_je Filme mon futur métier">
+							</a>
+
+								<a class="carrousel-lien carrousel_img-5" href="{{ path("app_actions")}}">
+								<img class="d-block h-full carrousel-image " src="{{ asset('img/Home/Image_Vignette_Page accueil meltingphot_je Filme mon futur métier.png') }}" alt="Image_Vignette_Page accueil meltingphot_je Filme mon futur métier">
+							</a>
+						
+						</div>
+					</div>
+
+					<div class="carousel-item justify-content-center">
+						<div class="row row-cols-1 row-cols-md-3 row-cols-xl-5">
+							<a class="carrousel-lien carrousel_img-1" href=" {{ path("app_actions")}} ">
+								<img class="d-block h-full carrousel-image" src="{{ asset('img/Home/ODONYMES _Image_Vignette_Page accueil meltingphot_je Filme mon futur métier.png') }}" alt="Image_Vignette_Page accueil meltingphot_je Filme mon futur métier">
+							</a>
+
+							<a class="carrousel-lien carrousel_img-2" href=" {{ path("app_actions")}} ">
+								<img class="d-block h-full carrousel-image " src="{{ asset('img/Home/ODONYMES _Image_Vignette_Page accueil meltingphot_je Filme mon futur métier.png') }}" alt="Image_Vignette_Page accueil meltingphot_je Filme mon futur métier">
+							</a>
+									<a class="carrousel-lien carrousel_img-3" href=" {{ path("app_actions")}} ">
+								<img class="d-block h-full carrousel-image" src="{{ asset('img/Home/ODONYMES _Image_Vignette_Page accueil meltingphot_je Filme mon futur métier.png') }}" alt="Image_Vignette_Page accueil meltingphot_je Filme mon futur métier">
+							</a>
+							
+							<a class="carrousel-lien carrousel_img-4" href=" {{ path("app_actions")}} ">
+								<img class="d-block h-full carrousel-image " src="{{ asset('img/Home/ODONYMES _Image_Vignette_Page accueil meltingphot_je Filme mon futur métier.png') }}" alt="Image_Vignette_Page accueil meltingphot_je Filme mon futur métier">
+							</a>
+
+								<a class="carrousel-lien carrousel_img-5" href=" {{ path("app_actions")}} ">
+								<img class="d-block h-full carrousel-image " src="{{ asset('img/Home/Image_Vignette_Page accueil meltingphot_je Filme mon futur métier.png') }}" alt="Image_Vignette_Page accueil meltingphot_je Filme mon futur métier">
+							</a>
+						
+						</div>
+					</div>
+						
+					<button class="carousel-control-prev" type="button" data-bs-target="#carouselExample" data-bs-slide="prev"  style="width:24px !important">
+						<span class="" aria-hidden="true"  style="display: flex; flex-direction: column; border: aliceblue 2px solid; padding-bottom: 2rem; padding-top: 2rem; background-color: black; writing-mode: vertical-rl; text-orientation: upright;letter-spacing: 5px;">
+						Prev
+						</span>
+						<span class="visually-hidden">Previous</span>
+					</button>
+
+					<button class="carousel-control-next" type="button" data-bs-target="#carouselExample" data-bs-slide="next"  style="width:24px!important;">
+						<span class="" aria-hidden="true"  style="display: flex; flex-direction: column; border: aliceblue 2px solid; padding-bottom: 2rem; padding-top: 2rem; background-color: black; writing-mode: vertical-rl; text-orientation: upright;letter-spacing: 5px;">
+						Next
+						</span>				
+						<span class="visually-hidden">Next</span>
+					</button>
+				</div>
+			</div>
+		</section>
 
 		<section class="temoignages d-flex justify-content-center align-items-center flex-column">
-		
 			<div id="carouselTemoignages" class="carousel slide" data-bs-ride="carousel" data-bs-interval="4000"  style="height:250px;max-width:700px;">
-			
 				<div class="carousel-inner">
 					<div class="carousel-item active flex-column">
 						<p class="text-center text-white fw-bold temoignages-content"  style="width:600px;">Lorem ipsum dolor sit amet consectetur adipisicing elit. Quis porro qui, praesentium blanditiis culpa dignissimos nostrum quia esse neque quaerat molestias eius amet quisquam repellat ullam officiis rem exercitationem soluta?</p>
 						<p class="text-center text-white fw-bold temoignages-of">Témoignages clients</p>
 						<p class="text-center text-white fw-bold">CEO Creative EPIDE</p>
-						
 					</div>
 					<div class="carousel-item flex-column">
 						<p class="text-center text-white fw-bold temoignages-content"  style="width:600px;">Lorem ipsum dolor sit amet consectetur adipisicing elit. Quis porro qui, praesentium blanditiis culpa dignissimos nostrum quia esse neque quaerat molestias eius amet quisquam repellat ullam officiis rem exercitationem soluta?</p>
@@ -253,34 +249,33 @@
 			<div class="w-50 d-flex flex-column align-items-end Others_bloc"  style="margin-left: -3rem;">
 				<article class="rencontre1">
 					<img src="{{asset('img/Home/keryJames.png')}}" alt="Image-KeryJames-MeltingPhot" style="object-fit:cover">
+					<div class="border-left" >
+						<h3  style="max-width: 302px;font-size: 22px;text-align: left;">Rencontre Kery au Cratère Scène nationale d'Alès.</h3>
+						<p  style="max-width: 302px; margin-top:1rem;"> Une journée avec le célèbre banlieusard Kery James, faisant découvrir la culture du rap </p>
+					</div>
 				</article>
-				<div class="border-left" >
-					<h3  style="max-width: 302px;font-size: 22px;text-align: left;">Rencontre Kery au Cratère Scène nationale d'Alès.</h3>
-					<p  style="max-width: 302px; margin-top:1rem;"> Une journée avec le célèbre banlieusard Kery James, faisant découvrir la culture du rap </p>
-				</div>
 
 				<article class="rencontre2">
 					<img src="{{asset('img/Home/Image_Vignette_Page accueil meltingphot_je Filme mon futur métier.png')}}" alt="Image_Vignette_Page accueil meltingphot_je Filme mon futur métier">
+					<div class="border-left">
+						<h3  style="max-width: 302px;font-size: 22px;text-align: left;">Assis sur un BANC avec le centre social RAIA.</h3>
+						<p  style="max-width: 302px; margin-top:1rem;"> Où les idées prennent vie et les liens se tissent au cœur de notre communauté. </p>
+					</div>
 				</article>
-				<div class="border-left">
-					<h3  style="max-width: 302px;font-size: 22px;text-align: left;">Assis sur un BANC avec le centre social RAIA.</h3>
-					<p  style="max-width: 302px; margin-top:1rem;"> Où les idées prennent vie et les liens se tissent au cœur de notre communauté. </p>
-				</div>
 			</div>
 
 			<div class="w-50 d-flex flex-column justify-content-center bloc-article3_home">
-				<article class="rencontre3"  style="margin-left: 7rem;margin-right: 7rem; margin-top:14rem">
-					<img src="{{asset('img/Home/MeltingPhot_Projet_culture_2_Image_Vignette_Page_accueil_meltingphot_je_Filme_mon_futur_métier_culture_Ales.png')}}" alt="Image_MeltingPhot_Projet_culture">
-				</article>
-
-				<div class="border-left_3 ">
-					<h3  style="max-width: 302px;font-size: 22px;text-align: left;">Projet Culturels avec les jeunes Volontaires de l'EEPIDE.</h3>
-					<p  style="max-width: 302px; margin-top:1rem;"> Explorons ensemble les horizons culturels avec les jeunes volontaires de l'EEPIDE.</p>
-				</div>
 				<div class="Others-title"  style ="margin-left:86px;position: relative;top: -61rem;">
 					<h3  style="font-size: 45px;" class="color1"><span class="fw-normal">POUR LES</span> CURIEUX.</h3>
 					<p  style="max-width: 302px; margin-top:1rem;"> Explorons ensemble les horizons culturels avec les jeunes volontaires de l'EEPIDE.</p>
 				</div>
+				<article class="rencontre3"  style="margin-left: 7rem;margin-right: 7rem; margin-top:14rem">
+					<img src="{{asset('img/Home/MeltingPhot_Projet_culture_2_Image_Vignette_Page_accueil_meltingphot_je_Filme_mon_futur_métier_culture_Ales.png')}}" alt="Image_MeltingPhot_Projet_culture">
+					<div class="border-left_3 ">
+						<h3  style="max-width: 302px;font-size: 22px;text-align: left;">Projet Culturels avec les jeunes Volontaires de l'EEPIDE.</h3>
+						<p  style="max-width: 302px; margin-top:1rem;"> Explorons ensemble les horizons culturels avec les jeunes volontaires de l'EEPIDE.</p>
+					</div>
+				</article>
 			</div>
 		</section>
 	
@@ -340,5 +335,6 @@
 				</div>
 			</div>
 		</section>
+	</main>
 
 {% endblock %}
