@@ -43,6 +43,8 @@ class EbookCrudController extends AbstractCrudController
             ->setBasePath('uploads/ebook/apercu');
         yield ImageField::new('pdf')
             ->setUploadDir('public/uploads/ebook/pdf')
+            ->setTemplatePath('admin/ebook/pdf_link.html.twig') // Chemin vers le modèle personnalisé
+
             ->setBasePath('uploads/ebook/pdf');
     }
 

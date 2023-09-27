@@ -1,6 +1,6 @@
 {% block form %}
 	{% if field.value %}
-		<a href="{{ asset('uploads/ebook/' ~ field.value) }}" target="_blank">Voir le PDF</a>
+		<a href="{{ asset('uploads/ebook/pdf/' ~ field.value) }}" target="_blank">Voir le PDF</a>
 	{% else %}
 		N/A
 	{% endif %}
