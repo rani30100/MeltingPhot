@@ -14,14 +14,12 @@ use EWZ\Bundle\RecaptchaBundle\Form\Type\EWZRecaptchaType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 use Karser\Recaptcha3Bundle\Validator\Constraints\Recaptcha3;
-use Symfony\Component\Form\Extension\Core\Type\HiddenType;
 
 class ContactType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder
-        ->add('id', HiddenType::class)
         ->add('Nom', TextType::class, [
             'constraints' => [
                 new Assert\NotBlank(),
