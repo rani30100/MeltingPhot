@@ -306,30 +306,6 @@ h2 {
         display: none;
     }
 
-    .nav-main {
-        display: none;
-    }
-
-    .nav-phone-content {
-
-        li {
-            margin: 1rem;
-            width: 100% !important;
-            display: flex;
-            justify-content: center;
-
-            &:hover {
-                background-color: rgb(121, 121, 161);
-            }
-
-            &:first-child {
-                &:hover {
-                    background-color: none;
-                }
-            }
-        }
-    }
-
     #logo-MeltingPhot {
         background-color: none;
     }

@@ -1,6 +1,0 @@
----
-Name: yepnopesilverstripeconfig
----
-Controller:
-  extensions:
-    - YepnopeControllerExtension

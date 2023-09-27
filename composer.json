@@ -21,7 +21,6 @@
         "guzzlehttp/guzzle": "^7.7",
         "guzzlehttp/psr7": "^2.5",
         "intervention/image": "^2.7",
-        "kinglozzer/yepnopesilverstripe": "^2.0",
         "knplabs/knp-paginator-bundle": "^6.2",
         "phpdocumentor/reflection-docblock": "^5.3",
         "phpstan/phpdoc-parser": "^1.18",

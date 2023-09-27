@@ -32,10 +32,7 @@ body {
 
 }
 
-.main {
-    //1er Bloc de page
 
-}
 
 // Bouton en savoir plus
 .btn_know-more {
@@ -331,24 +328,6 @@ body {
     font-size: 4rem;
 }
 
-
-.navbar.nav-phone {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    z-index: 999;
-}
-
-#navbarToggleExternalContent {
-    z-index: 1;
-    position: fixed;
-    background: aliceblue;
-    width: 100%;
-    height: 100% !important;
-    margin-top: -2rem;
-}
-
 .carousel-control-prev,
 .carousel-control-next,
 .carousel-indicators {
@@ -435,60 +414,6 @@ body {
     }
 }
 
-
-
-#navbar-hover li a {
-    position: relative;
-    color: black;
-    /* Couleur de texte initiale */
-    transition: color 0.3s ease;
-    /* Transition de couleur sur 0.3s */
-    font-size: 17px;
-
-    &:after {
-        position: absolute;
-        bottom: 0;
-        left: 0;
-        width: 0;
-        height: 2px;
-        content: "";
-        background-color: white;
-        /* Couleur de fond au survol */
-        transition: width 0.3s ease;
-        /* Transition de la largeur sur 0.3s */
-    }
-
-    &:hover {
-        color: white;
-        /* Couleur de texte au survol */
-
-        &:after {
-            width: 100%;
-            /* Largeur de l'underline au survol */
-        }
-    }
-}
-
-#nav-flag .navbar-nav li a {
-    &:hover {
-        color: none;
-
-        /* Couleur de texte au survol */
-        &:after {
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            width: 0;
-            height: 0px;
-            content: "";
-            background-color: none;
-            /* Couleur de fond au survol */
-            transition: width 0.3s ease;
-            /* Transition de la largeur sur 0.3s */
-        }
-    }
-}
-
 .border-left {
     margin-top: 3rem;
     margin-bottom: 3rem;
@@ -534,26 +459,6 @@ body {
 }
 
 @media screen and (min-width: 360px) and (max-width: 699px) {
-    .navbar-nav {
-        display: none;
-        /* Masquer la liste des éléments de navigation */
-    }
-
-    .navbar-expand-lg .navbar-toggler {
-        display: block;
-        /* Afficher le bouton du menu déroulant */
-    }
-
-    .navbar-collapse {
-        display: none;
-        /* Masquer la zone de contenu du menu déroulant */
-    }
-
-    .navbar-collapse.show {
-        display: block;
-        /* Afficher la zone de contenu du menu déroulant lorsqu'il est ouvert */
-    }
-
     //1 er article 
     .article {
         align-items: center;
@@ -1082,17 +987,6 @@ body .parent-article .block-article_description {
 
 
 @media screen and (min-width: 993px) {
-
-    .nav-phone {
-        display: none;
-
-    }
-
-    .nav-main {
-        display: flex !important;
-        justify-content: center !important;
-        height: 90px;
-    }
 
     .partenaire-tab {
         display: none !important;

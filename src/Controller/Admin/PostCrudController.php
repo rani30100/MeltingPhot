@@ -97,13 +97,6 @@ class PostCrudController extends AbstractCrudController
                 ->hideOnForm()
                 ->hideWhenCreating(),
 
-            // ...
-
-            // CollectionField::new('pages', 'Pages associées')
-            // ->setLabel('Pages')
-            // ->setFormTypeOption('by_reference', false)
-            // ->onlyOnForms(),
-
             AssociationField::new('videoFile')
             ->setLabel('Mes Vidéos')
             ->setTemplatePath('admin/videoCrud/custom_video_display.html.twig') // Chemin vers le modèle personnalisé
@@ -114,6 +107,8 @@ class PostCrudController extends AbstractCrudController
             TextAreaField::new('description', 'Description')
                 ->addWebpackEncoreEntries('admin')
                 ->addCssClass('tinymce')
+                //Je récupere la mise en form du tinymce avec le stimulusBundle
+                //dans controllers/tinymce_controller.js
                 ->setFormTypeOption('attr.data-controller', 'tinymce')
                 ->setDefaultColumns('12'),
 
