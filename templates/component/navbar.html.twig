@@ -10,7 +10,6 @@
 						<a class="nav-link" href="{{ path("app_actions")}}">ACTIONS</a>
 					</li>
 
-
 					<li class="nav-item me-2">
 						<a class="nav-link" href="{{path('app_contact')}}">CONTACT</a>
 					</li>
@@ -21,6 +20,9 @@
 								<i class="fa-solid fa-user hi-icon hi-icon-user"></i>
 							</a>
 
+						</li>
+						<li class="nav-item me-2">
+							<a class="nav-link" href="{{path('app_register')}}">S'INSCRIRE</a>
 						</li>
 					{% endif %}
 					{% if app.user %}
@@ -33,65 +35,23 @@
 						<li class="nav-item me-2">
 							<a class="nav-link" href="{{path('app_logout')}}">Se déconnecter</a>
 						</li>
+						<p class="text-end btn btn-warning mt-3">Bienvenue
+							{{ app.user.username }}!</p>
+					
 					{% endif %}
-					<div class="d-flex align-items-center">
+				
 						<i id="search-icon" class="fa-solid fa-magnifying-glass mx-3"></i>
+						
 						<form id="search-form" class="d-none">
 							<div class="input-group">
 								<input id="search-input" type="text" class="form-control" placeholder="Rechercher...">
 								<button id="search-button" class="btn btn-primary" type="button">Rechercher</button>
-							</div>
 						</form>
-					</div>
-
-					{% if app.user %}
-						<p class="text-end btn btn-warning mt-3">Bienvenue
-							{{ app.user.username }}!</p>
-					{% endif %}
-
-					{% if not app.user %}
-						<li class="nav-item me-2">
-							<a class="nav-link" href="{{path('app_register')}}">S'INSCRIRE</a>
-						</li>
-					{% endif %}
-
-					{# <div>
-						<p style="margin-bottom: 0px"></p>
-					</div> #}
-				</div>
-			</nav>
-		</section>
 
 
-		{# <nav class="navbar navbar-expand-lg navbar-light">
-					<div class="container-fluid">
-						<ul class="navbar-nav">
-							<!-- Icon dropdown -->
-							<li class="nav-item dropdown">
-								<a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-									<img id="flag-image" src="{{ asset('img/drapeau.png') }}" alt="">
-								</a>
-								<ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-									<li id="language-item">
-										<a class="dropdown-item d-flex" id="fr-flag" href="{{ path(app.request.attributes.get('_route'), {'_locale': 'fr'}) }}" onclick="changeLanguage('fr')">
-											<img src="{{ asset('img/drapeau.png') }}" alt="" style="margin-right: 1rem;">Français
-										</a>
-									</li>
-									<li>
-										<hr class="dropdown-divider"/>
-									</li>
-									<li>
-										<a class="dropdown-item d-flex" id="uk-flag" href="{{ path(app.request.attributes.get('_route'), {'_locale': 'en'}) }}" onclick="changeLanguage('en')">
-											<img src="{{ asset('img/unitedkingdom.png') }}" alt="" style="margin-right: 1rem;">English
-										</a>
-									</li>
-								</ul>
-							</li>
-						</ul>
-					</div>
-				</nav> #}
-
-
+				</ul>
+			</div>
+		</nav>
 
 		<nav class="navbar nav-phone navbar-dark bg-red-500">
 			<div class="container-fluid">
@@ -108,60 +68,58 @@
 							<li class="mt-5">
 								<a href="/">
 									<img class="logo me-2" id="logo-MeltingPhot" src="{{ asset('img/logo.png')}}" width alt=""></img>
+								</a>
 							</li>
-						</a>
-					</li>
+			
+							<li class="nav-item me-2 meltingphot">
+								<a class="nav-link " aria-current="page" href="/">MELTINGPHOT</a>
+							</li>
+							<li class="nav-item me-2">
+								<a class="nav-link" href="{{ path("app_actions")}}">Nos Actions</a>
+							</li>
+							<li class="nav-item me-2">
+								<a class="nav-link" href="{{path('app_contact')}}">Nous Contacter</a>
+							</li>
 
-					<li class="nav-item me-2 meltingphot">
-						<a class="nav-link " aria-current="page" href="/">MELTINGPHOT</a>
-					</li>
-					<li class="nav-item me-2">
-						<a class="nav-link" href="{{ path("app_actions")}}">Nos Actions</a>
-					</li>
+							{% if not app.user %}
+								<li class="nav-item me-2">
+									<a class="nav-link" href="{{path('app_login')}}">
+										<i class="fa-solid fa-user hi-icon hi-icon-user"></i>
+									</a>
 
+								</li>
+							{% endif %}
+							{% if app.user %}
+								{% if 'ROLE_SUPER_ADMIN' in app.user.roles %}
+									<a class="nav-link" href="{{ path('admin_') }}">Ma Page Admin</a>
+								{% endif %}
+							{% endif %}
 
-					<li class="nav-item me-2">
-						<a class="nav-link" href="{{path('app_contact')}}">Nous Contacter</a>
-					</li>
+							{% if app.user %}
+								<li class="nav-item me-2">
+									<a class="nav-link" href="{{path('app_logout')}}">Se déconnecter</a>
+								</li>
+							{% endif %}
+							<i id="search-icon" class="fa-solid fa-magnifying-glass mx-3"></i>
+							<form id="search-form" class="d-none">
+								<div class="input-group">
+									<input type="text" class="form-control" placeholder="Rechercher...">
+									<button class="btn btn-primary" type="submit">Rechercher</button>
+								</div>
+							</form>
+							{% if app.user %}
+								<p class="text-end btn btn-warning mt-3">Bienvenue,{{ app.user.username }}!</p>
+							{% endif %}
 
-					{% if not app.user %}
-						<li class="nav-item me-2">
-							<a class="nav-link" href="{{path('app_login')}}">
-								<i class="fa-solid fa-user hi-icon hi-icon-user"></i>
-							</a>
-
-						</li>
-					{% endif %}
-					{% if app.user %}
-						{% if 'ROLE_SUPER_ADMIN' in app.user.roles %}
-							<a class="nav-link" href="{{ path('admin_') }}">Ma Page Admin</a>
-						{% endif %}
-					{% endif %}
-
-					{% if app.user %}
-						<li class="nav-item me-2">
-							<a class="nav-link" href="{{path('app_logout')}}">Se déconnecter</a>
-						</li>
-					{% endif %}
-					<div class="d-flex align-items-center">
-						<i id="search-icon" class="fa-solid fa-magnifying-glass mx-3"></i>
-						<form id="search-form" class="d-none">
-							<div class="input-group">
-								<input type="text" class="form-control" placeholder="Rechercher...">
-								<button class="btn btn-primary" type="submit">Rechercher</button>
-							</div>
-						</form>
+							{% if not app.user %}
+								<li class="nav-item me-2">
+									<a class="nav-link" href="{{path('app_register')}}">S'inscrire</a>
+								</li>
+							{% endif %}
+						<ul>
 					</div>
-					{% if app.user %}
-						<p class="text-end btn btn-warning mt-3">Bienvenue,{{ app.user.username }}!</p>
-					{% endif %}
-
-					{% if not app.user %}
-						<li class="nav-item me-2">
-							<a class="nav-link" href="{{path('app_register')}}">S'inscrire</a>
-						</li>
-					{% endif %}
-					<ul></div>
 				</div>
-			</nav>
+			</div>
+		</nav>
+	</section>
 
