@@ -11,14 +11,15 @@
 
 {% block body %}
 
+
+
+	{% for message in app.flashes('success') %}
+	<div class="alert alert-success d-flex mt-5">
+		{{ message }}
+	</div>
+{% endfor %}
 	<section class="team d-flex flex-column align-items-center" style="margin:1rem">
 		<article class="d-flex flex-column align-items-center"style="margin-bottom: 2rem;margin-top:5rem">
-			{% set successMessages = app.flashes('success') %}
-			{% if successMessages is not empty %}
-				<div class="alert alert-success text-center d-flex justify-content-center rounded w-100" style="font-size:larger;" role="alert">
-					{{ successMessages[0] }}
-				</div>
-			{% endif %}
 			<h2 class="text-center team-title">
 				<span style="font-weight: lighter;">Notre</span>
 				Equipe
@@ -121,20 +122,15 @@
 
 
 
-	<section class="team-mobile">
+	<section class="team-mobile ">	
 		<article style="align-items: center; display: flex; flex-direction: column; margin-bottom: 2rem;margin-top:5rem">
-			{% set successMessages = app.flashes('success') %}
-			{% if successMessages is not empty %}
-				<div class="alert alert-success text-center d-flex justify-content-center rounded" style="margin: 0 auto;font-size:larger;" role="alert">
-					{{ successMessages[0] }}
-				</div>
-			{% endif %}
 			<h2 class="text-center team-title">
 			<span style="font-weight: lighter;">Notre</span>
 			Equipe
 			</h2>
 			<p style="max-width: 550px; text-align: center; margin: 1rem;"> Notre équipe est composée de passionnés de la photographie dévoués à capturer et partager des moments uniques. Chaque membre apporte son talent, sa créativité et son expertise pour créer des images qui reflètent votre personnalité.</p>
 		</article>
+		
 
 		<section class="">
 			<article class="mt-5 shadow-lg bg-light p-3">

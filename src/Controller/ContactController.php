@@ -17,7 +17,7 @@ use Symfony\Component\Validator\Context\ExecutionContextInterface;
 class ContactController extends AbstractController
 {
     #[Route('/contact', name: 'app_contact')]
-        public function index(Request $request, MailerInterface $mailer, EntityManagerInterface $em): Response
+        public function index(Request $request, MailerInterface $mailer, EntityManagerInterface $entityManager): Response
         {
             // création de la contrainte de validation
             $piegeConstraint = new Callback(function ($value, ExecutionContextInterface $context) {
@@ -32,23 +32,12 @@ class ContactController extends AbstractController
             $form->handleRequest($request);
             
             if ($form->isSubmitted() && $form->isValid()) {
-                // Récupérez le prochain ID disponible en consultant la base de données
-                $query = $em->createQuery('SELECT MAX(m.id) FROM App\Entity\Message m');
-                $lastId = $query->getSingleScalarResult();
-                
-                if ($lastId !== null) {
-                    $nextId = $lastId + 1;
-                } else {
-                    $nextId = 1; // Si la table est vide, commencez par l'ID 1
-                }
-                
-                // Créez un nouvel objet Message et affectez-lui l'ID généré manuellement
-                $contact = $form->getData();
-                $contact->setId($nextId);
+                $contact =$form->getData();
 
-                dd($contact);
-                $em->persist($contact);
-                $em->flush();
+                // dd($contact);
+                $entityManager->persist($contact);
+                $entityManager->flush();
+            
         
                 // Envoyer l'email
                 $email = (new Email())
