@@ -3,8 +3,6 @@
 {% block title %}Reset your password{% endblock %}
 
 {% block body %}
-
-    {% include "component/navbar.html.twig" %} 
     <section class="h-50 w-100 d-flex justify-content-center align-items-center flex-column" >
         <h1>{{ 'Titre1'|trans({}, 'resetpsw') }}</h1>
 
@@ -14,5 +12,4 @@
         {{ form_end(resetForm) }}
     </section>
 
-    {% include "component/footer.html.twig" %}
 {% endblock %}

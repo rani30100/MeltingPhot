@@ -30,9 +30,12 @@
 		{% endblock %}
 
 	</head>
+	{% include 'component/navbar.html.twig' %}
+	
 	{% block body %}
-
 	{% endblock %}
+
+	{% include 'component/footer.html.twig' %}
 	
 	{% block javascripts %}
 		{{ encore_entry_script_tags('app') }}

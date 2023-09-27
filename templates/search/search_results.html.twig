@@ -6,9 +6,6 @@
 
 {% block body %}
 
-
-	{% include 'component/navbar.html.twig' %}
-
     <section class="text-center my-24">
         {% if query is not empty %}
             <h2>Faire une nouvelle Recherche ?</h2>
@@ -71,7 +68,5 @@
 			{% endif %}
         {% endif %}
     </section>
-    {% include 'component/footer.html.twig' %}
-
 
 {% endblock %}
