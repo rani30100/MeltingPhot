@@ -9,11 +9,9 @@ use App\Repository\PostsRepository;
 use Doctrine\Common\Collections\Collection;
 use Symfony\Component\HttpFoundation\File\File;
 use Doctrine\Common\Collections\ArrayCollection;
-use Vich\UploaderBundle\Mapping\Annotation as Vich;
 use Symfony\Component\Validator\Constraints as Assert;
 
 #[ORM\Entity(repositoryClass: PostsRepository::class)]
-#[Vich\Uploadable]
 #[ORM\HasLifecycleCallbacks]
 class Post
 {
@@ -34,8 +32,6 @@ class Post
     #[ORM\Column(type: "string", length: 255, nullable: true)]
     private ?string $videoUrl = null;
 
-
-    #[Vich\UploadableField(mapping: 'video_files', fileNameProperty: 'videoFile')]
     #[Assert\File(
         maxSize: "200M",
         mimeTypes: ["video/mp4", "video/avi", "video/mpeg"],
