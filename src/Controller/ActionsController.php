@@ -2,7 +2,6 @@
 namespace App\Controller;
 
 use Google\Client;
-use App\Entity\Ebook;
 use App\Entity\Video;
 use DateTimeImmutable;
 use App\Entity\Category;
@@ -12,12 +11,8 @@ use App\Repository\VideoRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Contracts\Cache\ItemInterface;
 use Symfony\Contracts\Cache\CacheInterface;
-use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
-use Symfony\Component\HttpFoundation\JsonResponse;
-use Symfony\Component\HttpFoundation\RedirectResponse;
-use Symfony\Component\Routing\Generator\UrlGeneratorInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
 class ActionsController extends AbstractController
