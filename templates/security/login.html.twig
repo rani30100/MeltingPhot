@@ -2,6 +2,40 @@
 
 {% block title %}Log in!{% endblock %}
 
+{% block javascripts %}
+
+    <script>
+    // Récupérez les éléments nécessaires
+    const passwordInput = document.getElementById('password');
+    const togglePassword = document.getElementById('togglePassword');
+    const passwordToggleText = document.getElementById('passwordToggleText');
+
+    // Ajoutez un gestionnaire d'événements "input" pour surveiller les changements dans le champ de mot de passe
+    passwordInput.addEventListener('input', function () {
+    const hasValue = passwordInput.value.trim() !== '';
+
+    // Mettez à jour la visibilité du bouton "Toggle Password" en fonction de la valeur du champ
+    if (hasValue) {
+        togglePassword.style.display = 'block';
+    } else {
+        togglePassword.style.display = 'none';
+
+    }
+    });
+
+    // Ajoutez un gestionnaire d'événements pour basculer entre le mode texte et le mode masqué
+    togglePassword.addEventListener('click', function () {
+            if (passwordInput.type === 'password') {
+                passwordInput.type = 'text';
+                togglePassword.textContent = 'Masquer le mot de passe';
+            } else {
+                passwordInput.type = 'password';
+                togglePassword.textContent = 'Afficher le mot de passe';
+            }
+        });
+    </script>
+{% endblock %}
+
 {% block body %}
 
 <body class="bg-white font-family-karla h-screen">
@@ -81,34 +115,5 @@
 </div>
 </body>
 
-        <script>
-  // Récupérez les éléments nécessaires
-const passwordInput = document.getElementById('password');
-const togglePassword = document.getElementById('togglePassword');
-const passwordToggleText = document.getElementById('passwordToggleText');
 
-// Ajoutez un gestionnaire d'événements "input" pour surveiller les changements dans le champ de mot de passe
-passwordInput.addEventListener('input', function () {
-    const hasValue = passwordInput.value.trim() !== '';
-
-    // Mettez à jour la visibilité du bouton "Toggle Password" en fonction de la valeur du champ
-    if (hasValue) {
-        togglePassword.style.display = 'block';
-    } else {
-        togglePassword.style.display = 'none';
-  
-    }
-});
-
-// Ajoutez un gestionnaire d'événements pour basculer entre le mode texte et le mode masqué
-    togglePassword.addEventListener('click', function () {
-            if (passwordInput.type === 'password') {
-                passwordInput.type = 'text';
-                togglePassword.textContent = 'Masquer le mot de passe';
-            } else {
-                passwordInput.type = 'password';
-                togglePassword.textContent = 'Afficher le mot de passe';
-            }
-        });
-    </script>
 {% endblock %}

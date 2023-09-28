@@ -18,9 +18,7 @@ use Symfony\Component\Security\Core\Exception\CustomUserMessageAuthenticationExc
 use Symfony\Component\Security\Http\Authenticator\Passport\Credentials\PasswordCredentials;
 
 class AppAuthenticator extends AbstractLoginFormAuthenticator
-{
-
-    
+{   
     use TargetPathTrait;
 
     public const LOGIN_ROUTE = 'app_login';

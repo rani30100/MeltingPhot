@@ -23,7 +23,7 @@ class ActionsController extends AbstractController
         $client = $this->createGoogleApiClient();
         $youtube = new YouTube($client);
 
-        // Retrieve the list of videos from the playlist "Je film mon futur métier"
+        // Récupère la liste des videos de la playlist "Je film mon futur métier"
         $playlistMonFuturMetier = $youtube->playlistItems->listPlaylistItems('snippet', [
             'playlistId' => 'PLU8CGazlBJAsyM9QsrvGUK3SIDpUHngJl',
             'maxResults' => 50,
@@ -53,12 +53,16 @@ class ActionsController extends AbstractController
     {
         $client = $this->createGoogleApiClient();
         $youtube = new YouTube($client);
+        
 
         // Retrieve video details, including the thumbnail URL
-        $videoDetails = $youtube->videos->listVideos('snippet', [
-            'id' => $videoId,
-            'part' => 'snippet',
-        ]);
+        $videoDetails = $youtube->videos->listVideos(
+            //Ressources
+            'snippet', [
+                'id' => $videoId,
+                'part' => 'snippet',
+            ]
+        );
 
         if ($videoDetails->getItems()) {
             return $videoDetails->getItems()[0]->getSnippet()->getThumbnails()->getDefault()->getUrl();
@@ -92,7 +96,7 @@ class ActionsController extends AbstractController
     #[Route('/actions/{category}', defaults: ['category' => 'Je_Filme_Mon_Futur_Métier'], methods: ['GET', 'HEAD'], name: 'app_actions')]
     public function index(string $category = null, EntityManagerInterface $entityManager,EbookRepository $ebooks, CacheInterface $cache, VideoRepository $videoRepository): Response
     {
-        $ebooks = $ebooks->findAll(['category' => $category]);
+        $ebooks = $ebooks->findAll();
         $videos = $videoRepository->findAll();
         // Essaye de récupérer les vidéos depuis le cache s'ils sont disponibles
         $cachedVideos = $cache->get('playlist_videos', function (ItemInterface $item) use ($category, $entityManager) {
@@ -103,23 +107,24 @@ class ActionsController extends AbstractController
 
             // Si aucune vidéo n'existe pour la catégorie dans la base de données, récupérez-les depuis YouTube et stockez-les
             if (empty($videos)) {
+                //Récupéraiton de la playlist
                 $youtubeVideos = $this->fetchYouTubeVideos();
-
+                // Si il trouve la playlist
                 if ($youtubeVideos) {
                     $imageIndex = 0;
+                    //Associe chaque vidéo avec l'id de la vidéo 
                     foreach ($youtubeVideos as $youtubeVideo) {
                         $videoUrl = 'https://www.youtube.com/embed/' . $youtubeVideo->getSnippet()->getResourceId()->getVideoId();
 
                         // Vérifier si la vidéo avec la même URL existe déjà dans la base de données
                         $existingVideo = $videoRepository->findOneBy(['url' => $videoUrl]);
-
+                     
                         if (!$existingVideo) {
                             // La vidéo n'existe pas dans la base de données, créez-la et persistez-la
                             $video = new Video();
                             $video->setTitle($youtubeVideo->getSnippet()->getTitle());
                             $video->setUrl($videoUrl);
                             $video->setCreatedAt(new DateTimeImmutable($youtubeVideo->getSnippet()->getPublishedAt()));
-
                             $category = $entityManager->getRepository(Category::class)->find(2);
                             $video->setCategory($category);
 
@@ -143,7 +148,7 @@ class ActionsController extends AbstractController
                 }
             }
 
-            // Stocker les vidéos récupérées dans le cache pour une utilisation future
+            // Stocker les vidéos récupérées dans le cache pour éviter de rétélcharger les vidéos
             $item->expiresAfter(3600); // Cache pendant 1 heure
             $item->set($videos);
             return $videos;
