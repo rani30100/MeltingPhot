@@ -55,7 +55,7 @@ class Post
     #[ORM\ManyToMany(targetEntity: Image::class, inversedBy: 'post')]
     private Collection $images;
 
-    #[ORM\ManyToOne(inversedBy: 'userPost')]
+    #[ORM\ManyToOne(inversedBy: 'post')]
     private ?User $user = null;
 
     #[ORM\ManyToMany(targetEntity: Video::class, inversedBy: 'post')]

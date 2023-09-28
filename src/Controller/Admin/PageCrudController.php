@@ -3,9 +3,11 @@
 namespace App\Controller\Admin;
 
 use App\Entity\Page;
+use Twig\Environment;
 use Symfony\Component\Form\FormEvent;
 use Symfony\Component\Form\FormEvents;
 use Doctrine\ORM\EntityManagerInterface;
+use Symfony\Component\Security\Core\Security;
 use EasyCorp\Bundle\EasyAdminBundle\Config\Crud;
 use Symfony\Component\Form\FormBuilderInterface;
 use Vich\UploaderBundle\Form\Type\VichImageType;
@@ -20,11 +22,16 @@ use EasyCorp\Bundle\EasyAdminBundle\Controller\AbstractCrudController;
 class PageCrudController extends AbstractCrudController
 {
     private $slugger;
+    private Environment $twig;
+    private Security $security; // Inject the Security service
 
-    public function __construct(SluggerInterface $slugger)
+    public function __construct(SluggerInterface $slugger,Environment $twig, Security $security)
     {
         $this->slugger = $slugger;
+        $this->twig = $twig;
+        $this->security = $security;
     }
+    
 
     public static function getEntityFqcn(): string
     {
@@ -38,6 +45,10 @@ class PageCrudController extends AbstractCrudController
 
     public function configureFields(string $pageName): iterable
     {
+        yield AssociationField::new('user', 'Utilisateur')
+        ->setLabel('Utilisateur')
+        ->setCustomOption('user', $this->security->getUser()) // Passer l'utilisateur actuel au champ
+        ->hideOnForm(); // Cacher le champ dans le formulaire
         yield TextField::new('title')->setLabel('Titre');
         yield TextField::new('slug')->setLabel('/Url');
         yield TextField::new('content')->setLabel('Contenu');
@@ -85,37 +96,59 @@ class PageCrudController extends AbstractCrudController
 
     public function createEditFormBuilder(EntityDto $entityDto, KeyValueStore $formOptions, AdminContext $context): FormBuilderInterface
     {
-
         $builder = parent::createEditFormBuilder($entityDto, $formOptions, $context);
-
-        $builder
-            ->addEventListener(FormEvents::POST_SUBMIT, function (FormEvent $event) {
-              
-                $this->addFlash(
-                    'success', // Le type du message flash (par exemple, 'success' pour un message de succès)
-                    'Les modifications ont été enregistrées avec succès!' // Le message à afficher
-                );
-            });
-
+    
+        $builder->addEventListener(FormEvents::POST_SUBMIT, function (FormEvent $event) {
+            // Récupérez les données soumises dans le formulaire
+            $formData = $event->getData();
+            
+            // Vérifiez si les données sont une instance de la classe "Page" (votre entité) et si le champ "user" est vide
+            if ($formData instanceof Page && !$formData->getUser()) {
+                // Récupérez l'utilisateur actuellement authentifié à partir du service "Security"
+                $user = $this->security->getUser();
+            
+                // Remplissez le champ "user" de l'entité "Page" avec l'utilisateur actuel
+                $formData->setUser($user);
+            }
+            
+            // Ajoutez un message flash de succès pour informer l'utilisateur que les modifications ont été enregistrées avec succès
+            $this->addFlash(
+                'success',
+                'Les modifications ont été enregistrées avec succès!'
+            );
+        });
+        
+    
         return $builder;
     }
+
     public function createNewFormBuilder(EntityDto $entityDto, KeyValueStore $formOptions, AdminContext $context): FormBuilderInterface
     {
 
         $builder = parent::createNewFormBuilder($entityDto, $formOptions, $context);
 
-        $builder
-            ->addEventListener(FormEvents::POST_SUBMIT, function (FormEvent $event) {
-  
-                $this->addFlash(
-                    'success', // Le type du message flash (par exemple, 'success' pour un message de succès)
-                    'Les modifications ont été enregistrées avec succès!' // Le message à afficher
-                );
-            });
+        $builder->addEventListener(FormEvents::POST_SUBMIT, function (FormEvent $event) {
+            // Récupérez les données soumises dans le formulaire
+            $formData = $event->getData();
+            
+            // Vérifiez si les données sont une instance de la classe "Page" (votre entité) et si le champ "user" est vide
+            if ($formData instanceof Page && !$formData->getUser()) {
+                // Récupérez l'utilisateur actuellement authentifié à partir du service "Security"
+                $user = $this->security->getUser();
+            
+                // Remplissez le champ "user" de l'entité "Page" avec l'utilisateur actuel
+                $formData->setUser($user);
+            }
+            
+            // Ajoutez un message flash de succès pour informer l'utilisateur que les modifications ont été enregistrées avec succès
+            $this->addFlash(
+                'success',
+                'Les modifications ont été enregistrées avec succès!'
+            );
+        });
 
         return $builder;
     }
-
 
 }
 

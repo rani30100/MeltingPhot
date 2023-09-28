@@ -37,11 +37,14 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     #[ORM\OneToMany(mappedBy: 'user', targetEntity: Post::class, orphanRemoval: true)]
     private Collection $post;
 
+    #[ORM\OneToMany(mappedBy: 'user', targetEntity: Page::class, orphanRemoval: true)]
+    private Collection $page;
+
     #[ORM\ManyToMany(targetEntity: Newsletter::class, mappedBy: 'user_id')]
     private Collection $newsletters;
 
     #[ORM\OneToMany(mappedBy: 'user', targetEntity: Video::class)]
-    private Collection $created_at;
+    private Collection $video;
 
     #[ORM\OneToMany(mappedBy: 'user', targetEntity: Image::class)]
     private Collection $images;
@@ -49,16 +52,15 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     #[ORM\Column(type: 'boolean')]
     private $isVerified = false;
 
-    #[ORM\OneToMany(mappedBy: 'user', targetEntity: Post::class)]
-    private Collection $userPost;
 
     public function __construct()
     {
         $this->post = new ArrayCollection();
         $this->newsletters = new ArrayCollection();
-        $this->created_at = new ArrayCollection();
+        $this->video = new ArrayCollection();
         $this->images = new ArrayCollection();
-        $this->userPost = new ArrayCollection();
+        $this->page = new ArrayCollection();
+
     }
 
        /**
@@ -193,13 +195,13 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
 
     public function getCreatedAt(): Collection
     {
-        return $this->created_at;
+        return $this->video;
     }
 
     public function addCreatedAt(Video $createdAt): self
     {
-        if (!$this->created_at->contains($createdAt)) {
-            $this->created_at->add($createdAt);
+        if (!$this->video->contains($createdAt)) {
+            $this->video->add($createdAt);
             $createdAt->setUser($this);
         }
 
@@ -208,7 +210,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
 
     public function removeCreatedAt(Video $createdAt): self
     {
-        if ($this->created_at->removeElement($createdAt)) {
+        if ($this->video->removeElement($createdAt)) {
             // set the owning side to null (unless already changed)
             if ($createdAt->getUser() === $this) {
                 $createdAt->setUser(null);
@@ -290,35 +292,38 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     //     }
     // }
 
-    /**
-     * @return Collection<int, Post>
+    
+
+        /**
+     * @return Collection<int, Page>
      */
-    public function getUserPost(): Collection
+    public function getpage(): Collection
     {
-        return $this->userPost;
+        return $this->page;
     }
 
-    public function addUserPost(Post $userPost): static
+    public function addpage(Page $page): static
     {
-        if (!$this->userPost->contains($userPost)) {
-            $this->userPost->add($userPost);
-            $userPost->setUser($this);
+        if (!$this->page->contains($page)) {
+            $this->page->add($page);
+            $page->setUser($this);
         }
 
         return $this;
     }
 
-    public function removeUserPost(Post $userPost): static
+    public function removepage(Page $page): static
     {
-        if ($this->userPost->removeElement($userPost)) {
+        if ($this->page->removeElement($page)) {
             // set the owning side to null (unless already changed)
-            if ($userPost->getUser() === $this) {
-                $userPost->setUser(null);
+            if ($page->getUser() === $this) {
+                $page->setUser(null);
             }
         }
 
         return $this;
     }
+   
 }
 
 

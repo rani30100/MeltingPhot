@@ -35,6 +35,10 @@ class Page
 
     #[ORM\ManyToMany(targetEntity: Image::class, mappedBy: 'pages', cascade: ["remove"])]
     private Collection $images;
+
+    #[ORM\ManyToOne(inversedBy: 'page')]
+    private ?User $user = null;
+
     
     
     // #[ORM\ManyToMany(targetEntity: Image::class, inversedBy: 'pages', cascade:['remove'])]
@@ -187,4 +191,16 @@ class Page
 
         return $this;
     }
+    public function getUser(): ?User
+    {
+        return $this->user;
+    }
+
+    public function setUser(?User $user): static
+    {
+        $this->user = $user;
+
+        return $this;
+    }
+
 }
