@@ -17,6 +17,8 @@
 						<div class="h-100">
 							{% if row[0].image is not null %}
 								<img src="{{ asset('uploads/videos/images/' ~ row[0].image) }}" class="h-100 first-video" alt="Video Image" data-bs-toggle="modal" data-bs-target="#videoModal{{ row[0].id }}" data-video-id="{{ row[0].id }}">
+							{% else  %}
+								<img src="{{ asset('img/default_video_image.png') }}" class="h-100 first-video" alt="Video Image" data-bs-toggle="modal" data-bs-target="#videoModal{{ row[0].id }}" data-video-id="{{ row[0].id }}" />
 							{% endif %}
 						</div>
 					</div>
@@ -24,14 +26,19 @@
 						<div class="group">
 							<div class="h-100">
 								{% if row[1].image is not null %}
-									<img src="{{ asset('uploads/videos/images/' ~ row[1].image) }}" class="h-100 first-video" alt="Video Image" data-bs-toggle="modal" data-bs-target="#videoModal{{ row[1].id }}" data-video-id="{{ row[1].id }}">
+									<img src="{{ asset('uploads/videos/images/' ~ row[1].image) }}" class="h-100 first-video" alt="Video Image" data-bs-toggle="modal" data-bs-target="#videoModal{{ row[1].id }}" data-video-id="{{ row[1].id }}" />
+								{% else  %}
+									<img src="{{ asset('img/default_video_image.png') }}" class="h-100 first-video" alt="Video Image" data-bs-toggle="modal" data-bs-target="#videoModal{{ row[1].id }}" data-video-id="{{ row[1].id }}" />
 								{% endif %}
+
 							</div>
 						</div>
 						<div class="group">
 							<div class="h-100">
 								{% if row[2].image is not null %}
 									<img src="{{ asset('uploads/videos/images/' ~ row[2].image) }}" class="h-100 first-video" alt="Video Image" data-bs-toggle="modal" data-bs-target="#videoModal{{ row[2].id }}" data-video-id="{{ row[2].id }}">
+								{% else  %}
+									<img src="{{ asset('img/default_video_image.png') }}" class="h-100 first-video" alt="Video Image" data-bs-toggle="modal" data-bs-target="#videoModal{{ row[2].id }}" data-video-id="{{ row[2].id }}" />
 								{% endif %}
 							</div>
 						</div>
@@ -41,6 +48,8 @@
 							<div class="h-100">
 								{% if row[3].image is not null %}
 									<img src="{{ asset('uploads/videos/images/' ~ row[3].image) }}" class="h-100 first-video" alt="Video Image" data-bs-toggle="modal" data-bs-target="#videoModal{{ row[3].id }}" data-video-id="{{ row[3].id }}">
+								{% else  %}
+									<img src="{{ asset('img/default_video_image.png') }}" class="h-100 first-video" alt="Video Image" data-bs-toggle="modal" data-bs-target="#videoModal{{ row[3].id }}" data-video-id="{{ row[3].id }}" />
 								{% endif %}
 							</div>
 						</div>
@@ -48,6 +57,8 @@
 							<div class="h-100">
 								{% if row[4].image is not null %}
 									<img src="{{ asset('uploads/videos/images/' ~ row[4].image) }}" class="h-100 first-video" alt="Video Image" data-bs-toggle="modal" data-bs-target="#videoModal{{ row[4].id }}" data-video-id="{{ row[4].id }}">
+								{% else  %}
+									<img src="{{ asset('img/default_video_image.png') }}" class="h-100 first-video" alt="Video Image" data-bs-toggle="modal" data-bs-target="#videoModal{{ row[4].id }}" data-video-id="{{ row[4].id }}" />
 								{% endif %}
 							</div>
 						</div>
@@ -56,6 +67,8 @@
 						<div class="h-100">
 							{% if row[5].image is not null %}
 								<img src="{{ asset('uploads/videos/images/' ~ row[5].image) }}" class="h-100 first-video" alt="Video Image" data-bs-toggle="modal" data-bs-target="#videoModal{{ row[5].id }}" data-video-id="{{ row[5].id }}">
+							{% else  %}
+								<img src="{{ asset('img/default_video_image.png') }}" class="h-100 first-video" alt="Video Image" data-bs-toggle="modal" data-bs-target="#videoModal{{ row[5].id }}" data-video-id="{{ row[5].id }}" />
 							{% endif %}
 						</div>
 					</div>

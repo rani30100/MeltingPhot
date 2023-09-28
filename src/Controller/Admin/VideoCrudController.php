@@ -81,9 +81,13 @@ class VideoCrudController extends AbstractCrudController
         $builder->addEventListener(FormEvents::POST_SUBMIT, function (FormEvent $event) {
             // Récupérez les données soumises dans le formulaire
             $formData = $event->getData();
-            
+            // if (!$formData->getImage()) {
+            //     // Si aucune image n'est spécifiée, définissez l'image par défaut
+            //     $formData->setImage('img/uploads/videos/images/default_image.png');
+            // }
             // Vérifiez si les données sont une instance de la classe "Video" (votre entité) et si le champ "user" est vide
             if ($formData instanceof Video && !$formData->getUser()) {
+              
                 // Récupérez l'utilisateur actuellement authentifié à partir du service "Security"
                 $user = $this->security->getUser();
             
@@ -110,7 +114,10 @@ class VideoCrudController extends AbstractCrudController
         $builder->addEventListener(FormEvents::POST_SUBMIT, function (FormEvent $event) {
             // Récupérez les données soumises dans le formulaire
             $formData = $event->getData();
-            
+            if (!$formData->getImage()) {
+                // Si aucune image n'est spécifiée, définissez l'image par défaut
+                // $formData->setImage('img/uploads/videos/images/default_image.png');
+            }
             // Vérifiez si les données sont une instance de la classe "Video" (votre entité) et si le champ "user" est vide
             if ($formData instanceof Video && !$formData->getUser()) {
                 // Récupérez l'utilisateur actuellement authentifié à partir du service "Security"

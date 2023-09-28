@@ -99,60 +99,60 @@ class ActionsController extends AbstractController
         $ebooks = $ebooks->findAll();
         $videos = $videoRepository->findAll();
         // Essaye de récupérer les vidéos depuis le cache s'ils sont disponibles
-        $cachedVideos = $cache->get('playlist_videos', function (ItemInterface $item) use ($category, $entityManager) {
-            
-            // Récupération des vidéos depuis la base de données pour la catégorie spécifiée
-            $videoRepository = $entityManager->getRepository(Video::class);
-            $videos = $videoRepository->findByCategory($category);
+        if (!empty($videos)) {
 
-            // Si aucune vidéo n'existe pour la catégorie dans la base de données, récupérez-les depuis YouTube et stockez-les
-            if (empty($videos)) {
-                //Récupéraiton de la playlist
-                $youtubeVideos = $this->fetchYouTubeVideos();
-                // Si il trouve la playlist
-                if ($youtubeVideos) {
-                    $imageIndex = 0;
-                    //Associe chaque vidéo avec l'id de la vidéo 
-                    foreach ($youtubeVideos as $youtubeVideo) {
-                        $videoUrl = 'https://www.youtube.com/embed/' . $youtubeVideo->getSnippet()->getResourceId()->getVideoId();
+            $cachedVideos = $cache->get('playlist_videos', function (ItemInterface $item) use ($category, $entityManager) {
+                
+                // Récupération des vidéos depuis la base de données pour la catégorie spécifiée
+                $videoRepository = $entityManager->getRepository(Video::class);
+                $videos = $videoRepository->findByCategory($category);
 
-                        // Vérifier si la vidéo avec la même URL existe déjà dans la base de données
-                        $existingVideo = $videoRepository->findOneBy(['url' => $videoUrl]);
-                     
-                        if (!$existingVideo) {
-                            // La vidéo n'existe pas dans la base de données, créez-la et persistez-la
-                            $video = new Video();
-                            $video->setTitle($youtubeVideo->getSnippet()->getTitle());
-                            $video->setUrl($videoUrl);
-                            $video->setCreatedAt(new DateTimeImmutable($youtubeVideo->getSnippet()->getPublishedAt()));
-                            $category = $entityManager->getRepository(Category::class)->find(2);
-                            $video->setCategory($category);
+                // Stocker les vidéos récupérées dans le cache pour éviter de rétélcharger les vidéos
+                $item->expiresAfter(3600); // Cache pendant 1 heure
+                $item->set($videos);
+                return $videos;
+            });
+        }else{
+            // dd($videos);
+             // Si aucune vidéo n'existe pour la catégorie dans la base de données, récupérez-les depuis YouTube et stockez-les
+            //Récupéraiton de la playlist
+            $youtubeVideos = $this->fetchYouTubeVideos();
+            // dd($youtubeVideos);
+            // Si il trouve la playlist
+            if ($youtubeVideos) {
+                $imageIndex = 0;
+                //Associe chaque vidéo avec l'id de la vidéo 
+                foreach ($youtubeVideos as $youtubeVideo) {
+                    $videoUrl = 'https://www.youtube.com/embed/' . $youtubeVideo->getSnippet()->getResourceId()->getVideoId();
 
-                            // Obtenez l'URL de la miniature en utilisant l'ID de la vidéo
-                            $thumbnailUrl = $this->getImage($youtubeVideo->getSnippet()->getResourceId()->getVideoId());
-                            $video->setImage($thumbnailUrl);
+                    // Vérifier si la vidéo avec la même URL existe déjà dans la base de données
+                    $existingVideo = $videoRepository->findOneBy(['url' => $videoUrl]);
+                    
+                    if (!$existingVideo) {
+                        // La vidéo n'existe pas dans la base de données, créez-la et persistez-la
+                        $video = new Video();
+                        $video->setTitle($youtubeVideo->getSnippet()->getTitle());
+                        $video->setUrl($videoUrl);
+                        $video->setCreatedAt(new DateTimeImmutable($youtubeVideo->getSnippet()->getPublishedAt()));
+                        $category = $entityManager->getRepository(Category::class)->find(2);
+                        $video->setCategory($category);
 
-                            // Assigner le chemin de l'image en fonction de l'index de l'image
-                            $imagePath = '/img/videos/' . $imageIndex . '.jpg';
-                            $video->setImage($imagePath);
+                        // Obtenez l'URL de la miniature en utilisant l'ID de la vidéo
+                        // $thumbnailUrl = $this->getImage($youtubeVideo->getSnippet()->getResourceId()->getVideoId());
+                        $video->setImage(null);
 
-                            $entityManager->persist($video);
+                        $entityManager->persist($video);
 
-                            // Incrémentez l'index de l'image pour la vidéo suivante
-                            $imageIndex++;
-                        }
+                        // Incrémentez l'index de l'image pour la vidéo suivante
+                        $imageIndex++;
                     }
-
-                    $entityManager->flush();
-                    $videos = $videoRepository->findByCategory($category);
                 }
-            }
 
-            // Stocker les vidéos récupérées dans le cache pour éviter de rétélcharger les vidéos
-            $item->expiresAfter(3600); // Cache pendant 1 heure
-            $item->set($videos);
-            return $videos;
-        });
+                $entityManager->flush();
+                $videos = $videoRepository->findByCategory($category);
+            }
+            
+        }
 
         // Si les vidéos récupérées sont vides et que la catégorie n'est pas celle par défaut, rend le template "novideo.html.twig"
         if ($category !== 'Je_Filme_Mon_Futur_Métier' && empty($cachedVideos)) {
