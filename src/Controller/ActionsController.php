@@ -49,28 +49,6 @@ class ActionsController extends AbstractController
         return $client;
     }
 
-    private function getImage(string $videoId): ?string
-    {
-        $client = $this->createGoogleApiClient();
-        $youtube = new YouTube($client);
-        
-
-        // Retrieve video details, including the thumbnail URL
-        $videoDetails = $youtube->videos->listVideos(
-            //Ressources
-            'snippet', [
-                'id' => $videoId,
-                'part' => 'snippet',
-            ]
-        );
-
-        if ($videoDetails->getItems()) {
-            return $videoDetails->getItems()[0]->getSnippet()->getThumbnails()->getDefault()->getUrl();
-        }
-
-        return null;
-    }
-
 
     #[Route('/actions/{id}', name: 'app_actions_video')]
     public function redirectToVideo( int $id, VideoRepository $videoRepository): Response
@@ -96,6 +74,7 @@ class ActionsController extends AbstractController
     #[Route('/actions/{category}', defaults: ['category' => 'Je_Filme_Mon_Futur_Métier'], methods: ['GET', 'HEAD'], name: 'app_actions')]
     public function index(string $category = null, EntityManagerInterface $entityManager,EbookRepository $ebooks, CacheInterface $cache, VideoRepository $videoRepository): Response
     {
+        // Récupération du Ebook
         $ebooks = $ebooks->findAll();
         $videos = $videoRepository->findAll();
         // Essaye de récupérer les vidéos depuis le cache s'ils sont disponibles
@@ -129,7 +108,7 @@ class ActionsController extends AbstractController
                     $existingVideo = $videoRepository->findOneBy(['url' => $videoUrl]);
                     
                     if (!$existingVideo) {
-                        // La vidéo n'existe pas dans la base de données, créez-la et persistez-la
+                        // La vidéo n'existe pas dans la base de données, ça la créee
                         $video = new Video();
                         $video->setTitle($youtubeVideo->getSnippet()->getTitle());
                         $video->setUrl($videoUrl);

@@ -7,6 +7,7 @@ use Twig\Environment;
 use Symfony\Component\Form\FormEvent;
 use Symfony\Component\Form\FormEvents;
 use Symfony\Component\Security\Core\Security;
+use EasyCorp\Bundle\EasyAdminBundle\Config\Crud;
 use Symfony\Component\Form\FormBuilderInterface;
 use EasyCorp\Bundle\EasyAdminBundle\Dto\EntityDto;
 use EasyCorp\Bundle\EasyAdminBundle\Field\IdField;
@@ -48,12 +49,8 @@ class VideoCrudController extends AbstractCrudController
             ->setCustomOption('user', $this->security->getUser()) // Passer l'utilisateur actuel au champ
             ->hideOnForm(), // Cacher le champ dans le formulaire
 
-            TextField::new('user_id')->hideOnForm()
-            ->hideOnIndex(),
-
             TextField::new('title')
-            ->setLabel('Titre de la video')
-            ,
+            ->setLabel('Titre de la video'),
 
             DateTimeField::new('created_at','Ajoutée le ')->onlyOnIndex(),
 
@@ -63,12 +60,12 @@ class VideoCrudController extends AbstractCrudController
             ->setLabel('Catégorie')
             ->autocomplete(),
             
-            ImageField::new('Image')
-            ->setLabel('Image')
-            ->setBasePath('uploads/videos/images/') // Chemin de base pour afficher les images
-            ->setUploadDir('public/uploads/videos/images') // Dossier de destination pour enregistrer les images
-            ->setUploadedFileNamePattern('[name].[extension]') // Modèle de nom de fichier pour les images téléchargées
-            ->setRequired(false), // Rendre le champ facultatif si nécessaire
+            // ImageField::new('Image')
+            // ->setLabel('Image')
+            // // ->setBasePath('uploads/videos/images/') // Chemin de base pour afficher les images
+            // ->setUploadDir('public/uploads/videos/images') // Dossier de destination pour enregistrer les images
+            // ->setUploadedFileNamePattern('[name].[extension]') // Modèle de nom de fichier pour les images téléchargées
+            // ->setRequired(false), // Rendre le champ facultatif si nécessaire
             //COmmentaire
         ];
     }
@@ -81,10 +78,6 @@ class VideoCrudController extends AbstractCrudController
         $builder->addEventListener(FormEvents::POST_SUBMIT, function (FormEvent $event) {
             // Récupérez les données soumises dans le formulaire
             $formData = $event->getData();
-            // if (!$formData->getImage()) {
-            //     // Si aucune image n'est spécifiée, définissez l'image par défaut
-            //     $formData->setImage('img/uploads/videos/images/default_image.png');
-            // }
             // Vérifiez si les données sont une instance de la classe "Video" (votre entité) et si le champ "user" est vide
             if ($formData instanceof Video && !$formData->getUser()) {
               
@@ -135,6 +128,24 @@ class VideoCrudController extends AbstractCrudController
         });
 
         return $builder;
+    }
+
+    public function configureCrud(Crud $crud): Crud
+    {
+        return $crud
+
+            // in addition to a string, the argument of the singular and plural label methods
+            // can be a closure that defines two nullable arguments: entityInstance (which will
+            // be null in 'index' and 'new' pages) and the current page name
+           
+            ->setEntityLabelInPlural(function (?Video $video, ?string $pageName) {
+                return 'edit' === $pageName ? $video->getTitle() : 'Mes Vidéos';
+            })
+
+            // the Symfony Security permission needed to manage the entity
+            // (none by default, so you can manage all instances of the entity)
+            ->setEntityPermission('ROLE_SUPER_ADMIN')
+        ;
     }
     
   

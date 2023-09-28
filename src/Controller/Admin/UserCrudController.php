@@ -6,6 +6,7 @@ use App\Entity\User;
 use Symfony\Component\Form\FormEvent;
 use Symfony\Component\Form\FormEvents;
 use Doctrine\ORM\EntityManagerInterface;
+use EasyCorp\Bundle\EasyAdminBundle\Config\Crud;
 use Symfony\Component\Form\FormBuilderInterface;
 use EasyCorp\Bundle\EasyAdminBundle\Dto\EntityDto;
 use EasyCorp\Bundle\EasyAdminBundle\Field\IdField;
@@ -73,6 +74,7 @@ class UserCrudController extends AbstractCrudController
                 ->setChoices([
                     'User' => 'ROLE_USER',
                     'Admin' => 'ROLE_ADMIN',
+                    'Stagiaire' => 'ROLE_INTERN',
                     'Super Admin' => 'ROLE_SUPER_ADMIN',
                 ])
                 ->allowMultipleChoices()
@@ -137,6 +139,23 @@ class UserCrudController extends AbstractCrudController
         return $builder;
     }
 
+    public function configureCrud(Crud $crud): Crud
+    {
+        return $crud
+
+            // in addition to a string, the argument of the singular and plural label methods
+            // can be a closure that defines two nullable arguments: entityInstance (which will
+            // be null in 'index' and 'new' pages) and the current page name
+           
+            ->setEntityLabelInPlural(function (?User $user, ?string $pageName) {
+                return 'edit' === $pageName ? $user->getUserName() : 'Mes utilisateurs';
+            })
+
+            // the Symfony Security permission needed to manage the entity
+            // (none by default, so you can manage all instances of the entity)
+            ->setEntityPermission('ROLE_SUPER_ADMIN')
+        ;
+    }
 }
       
 

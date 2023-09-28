@@ -39,14 +39,14 @@ class DashboardController extends AbstractDashboardController
 
 
     #[Route('/admin', name: 'admin_')]
-    #[IsGranted('ROLE_SUPER_ADMIN')]
+    // #[IsGranted('ROLE_SUPER_ADMIN', "ROLE_INTERN")]
     public function __invoke(): Response
     {
 
 
-        if (!$this->isGranted('ROLE_SUPER_ADMIN') && !$this->isGranted('ROLE_ADMIN')) {
-            throw new AccessDeniedException('You do not have the required roles to access this page.');
-        }
+        // if (!$this->isGranted('ROLE_SUPER_ADMIN') && !$this->isGranted('ROLE_ADMIN')) {
+        //     throw new AccessDeniedException('You do not have the required roles to access this page.');
+        // }
 
 
         // // Option 1. You can make your dashboard redirect to some common page of your backend
