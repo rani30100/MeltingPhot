@@ -51,13 +51,17 @@ class VideoCrudController extends AbstractCrudController
             TextField::new('user_id')->hideOnForm()
             ->hideOnIndex(),
 
-            TextField::new('title'),
+            TextField::new('title')
+            ->setLabel('Titre de la video')
+            ,
 
             DateTimeField::new('created_at','Ajoutée le ')->onlyOnIndex(),
 
             TextField::new('url'),
 
-            AssociationField::new('category')->autocomplete(),
+            AssociationField::new('category')
+            ->setLabel('Catégorie')
+            ->autocomplete(),
             
             ImageField::new('Image')
             ->setLabel('Image')
