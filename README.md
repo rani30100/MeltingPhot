@@ -1,6 +1,6 @@
-# 🚀 Welcome to your new awesome project!
+# 🚀 Bienvenu sur MeltingPhot!
 
-This project has been created using **webpack-cli**, you can now run
+Ce projet à été crée en utilisant **webpack-cli**, tu peux le démarrer maintenant !
 
 ```
 npm run build

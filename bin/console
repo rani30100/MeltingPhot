@@ -1,4 +1,3 @@
-php composer.phar update#!/usr/bin/env php
 <?php
 
 use App\Kernel;
