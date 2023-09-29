@@ -37,6 +37,13 @@
 {% endblock %}
 
 {% block body %}
+<style>
+    .input-with-icon {position: relative;}
+    /* Style pour le champ de mot de passe */
+    .password-input {
+        padding-right: 30px; /* Réservez de l'espace pour l'icône d'œil à droite */
+    }
+</style>                
 
 <body class="bg-white font-family-karla h-screen">
     
@@ -54,12 +61,13 @@
             <p class="text-center text-3xl"></p>
 
             <form method="post" id='login-form'action="{{ path('app_login') }}" class="flex flex-col pt-3">
-            {% if error %}
-                <div class="alert alert-danger">
-                    {{ error.messageKey|trans(error.messageData, 'security') }}
-                </div>
-            {% endif %}
+            	<input type="hidden" name="_csrf_token" value="{{ csrf_token('authenticate')|e('html_attr') }}">
 
+                {% if error %}
+                    <div class="alert alert-danger">
+                        {{ error.messageKey|trans(error.messageData, 'security') }}
+                    </div>
+                {% endif %}
 
 
                 {% if app.user %}
@@ -86,15 +94,6 @@
                     </div>
 
                 </div>
-                <style>
-                    .input-with-icon {position: relative;}
-                    /* Style pour le champ de mot de passe */
-                    .password-input {
-                        padding-right: 30px; /* Réservez de l'espace pour l'icône d'œil à droite */
-                    }
-                </style>
-
-            	<input type="hidden" name="_csrf_token" value="{{ csrf_token('authenticate')|e('html_attr') }}">
                 <a href="{{ path('app_forgot_password_request') }}" value="Réinitialiser le mot de passe" class="bg-gray-300 text-black font-bold text-lg hover:bg-gray-400 p-2 mt-4">Réinitialiser le mot de passe</a>
             
                 <input type="submit" value="Se connecter" class="bg-black text-white font-bold text-lg hover:bg-gray-700 p-2 mt-8">
