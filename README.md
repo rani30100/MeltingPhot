@@ -31,6 +31,20 @@ https://www.youtube.com/@meltingphot
 
 4. **Prévention CSRF** - Le projet utilise une prévention CSRF pour sécuriser les formulaires de connexion.
 
+
+
+## Technologies utilisées
+
+**PHP** : Un langage de script populaire pour le développement web. <a href="https://www.php.net/docs.php">Documentation PHP</a>
+
+**Symfony** : Un framework PHP pour le développement d'applications web. <a href="https://symfony.com/doc/current/index.html">Documentation Symfony</a>
+
+**HTML/CSS/JS** : Les technologies de base pour le développement de sites web. <a href="https://developer.mozilla.org/fr/docs/Web/HTML">Documentation HTML</a>, <a href="https://developer.mozilla.org/fr/docs/Web/CSS">Documentation CSS</a>, <a href="https://developer.mozilla.org/fr/docs/Web/JavaScript">Documentation JavaScript</a>
+
+**Bootstrap** : Un framework CSS pour le développement d'interfaces utilisateur réactives. <a href="https://getbootstrap.com/">Documentation Bootstrap</a>
+
+**Google API** : L'API Google pour accéder à différentes fonctionnalités de Google, y compris YouTube. <a href="https://developers.google.com/youtube/v3?hl=fr">Documentation Google APIs</a>
+
 ## Comment configurer le projet
 
 1. **Clonez le dépôt**
