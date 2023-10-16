@@ -133,6 +133,9 @@ class ActionsController extends AbstractController
                 'category' => $category
             ]);
         }
+        //Récupere tout les ebooks
+        $ebooks = $ebooks->findAll();
+        // dd($ebooks);
 
         return $this->render('actions/index.html.twig', [
             'videos' => $videos,
