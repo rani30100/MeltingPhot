@@ -1,6 +1,6 @@
-// Attendez que le document soit entièrement chargé et prêt à être manipulé
+// Une fois que la page est entièrement chargé et prête à être manipulé
 document.addEventListener('DOMContentLoaded', function() {
-    // Sélectionnez tous les éléments avec la classe "lazy-video" et stockez-les dans la variable "lazyVideos"
+    // Sélectionne tous les éléments avec la classe "lazy-video" et stockez-les dans la variable "lazyVideos"
     const lazyVideos = document.querySelectorAll('.lazy-video');
 
     // Créez une instance de l'observateur d'intersection

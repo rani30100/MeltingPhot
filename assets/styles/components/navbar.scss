@@ -129,9 +129,16 @@
 }
 
 @media screen and (min-width: 360px) and (max-width:992px) {
-    .nav-main {
+    .navbar-expand-lg {
         display: none;
     }
+    .nav-phone{
+        display: flex;
+        background-color: #D00A4B;
+        z-index: 3;
+        position: absolute;
+    }
+    
     .nav-phone-content {
 
         li {

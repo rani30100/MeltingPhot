@@ -32,14 +32,10 @@ class ActionsController extends AbstractController
             'part' => 'snippet,status',
         ]);
 
-        $filteredPlaylistItems = [];
-        foreach ($playlistMonFuturMetier->getItems() as $item) {
-            $status = $item->getStatus()->getPrivacyStatus();
-            if ($status === 'public' || $status === 'private') {
-                $filteredPlaylistItems[] = $item;
-            }
-        }
-        return $filteredPlaylistItems;
+        return array_filter(
+            $playlistMonFuturMetier->getItems(),
+            fn($video) => in_array($video->getStatus()->getPrivacyStatus(), ['public', 'private'])
+        );
     }
 
     //Connection a l'api Ytb

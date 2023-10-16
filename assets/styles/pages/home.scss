@@ -402,6 +402,9 @@ body {
     padding-right: 0px !important;
 }
 
+.rencontre1{
+    display: contents;
+}
 
 .rencontre1,
 .rencontre2,
@@ -570,8 +573,10 @@ body {
             background-color: #f0f0f0;
 
         }
-
-
+        
+        .bloc_form{
+            display: none;
+        }
 
         // 1 er article 
         .parent-article {
@@ -661,6 +666,7 @@ body {
 
                     .article2-title_nom {
                         margin-right: 0px !important;
+                        display: contents;
 
                     }
                 }
@@ -915,7 +921,7 @@ body .parent-article .block-article_description {
     }
 }
 
-@media screen and (min-width: 700px) and (max-width:991px) {
+@media screen and (min-width:699px) and (max-width:991px) {
 
     .article2-main {
         margin-top: 50px;
@@ -1032,9 +1038,14 @@ body .parent-article .block-article_description {
     }
 
     .article-img-milieu {
+        width: 350px;
+        display: flex;
+        height: 400px;
+        position: absolute;
         z-index: 0;
-        margin-left: -7rem;
-        margin-top: 10px;
+        margin-left: -6rem;
+        margin-top: -2rem;
+      
     }
 
     .rond-article2 {
@@ -1062,7 +1073,6 @@ body .parent-article .block-article_description {
     }
 
     .block-article_description {
-        margin-left: 6rem;
         margin-top: 1rem;
 
     }
@@ -1109,7 +1119,7 @@ body .parent-article .block-article_description {
             margin-left: 0px !important;
             align-items: center !important;
             width: 100% !important;
-            margin-top: 20rem;
+            
 
             article.rencontre3 {
                 margin-left: 0 !important;
