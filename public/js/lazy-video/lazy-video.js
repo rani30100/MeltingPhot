@@ -28,3 +28,11 @@ document.addEventListener('DOMContentLoaded', function() {
         observer.observe(video);
     });
 });
+
+//Le script écoute l'événement "DOMContentLoaded" et, une fois que le DOM est prêt, 
+//il sélectionne tous les éléments avec la classe "lazy-video", les observe avec un observateur d'intersection,
+// et une fois qu'un élément vidéo entre dans la fenêtre visible, 
+//son URL de source est définie à partir de l'attribut "data-src" et l'observateur cesse d'observer cet élément vidéo.
+
+//Le but de ce script est de mettre en œuvre un chargement différé (lazy loading) pour les vidéos.
+// Cela signifie que les vidéos ne sont chargées qu'une fois qu'elles sont effectivement visibles dans la fenêtre du navigateur.

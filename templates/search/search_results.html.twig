@@ -33,10 +33,9 @@
 						{% endif %}
 						
                         {% elseif result.type == "video" %}
-                            <a style="display:contents"href="{{ path("app_actions_video", {id: result.id}) }}">
-                                <img src="{{ asset('img/videos/' ~ result.image) }}" alt="{{ result.title }}" style="width: 150px; height: 150px;"/>
-							<a href="{{ path("app_actions_video", {id: result.id}) }}" class="link"style="max-width:415px;"><em>{{ result.title }}</ins></em></a>
+                            <a style="display:contents"href="{{ path("app_actions_video", {id: result.id}) }}"><em>{{ result.title }}</em>
                             </a>
+						
 						
                         {% elseif result.type == "page"  %}
                             {# Handle page type here if needed #}
