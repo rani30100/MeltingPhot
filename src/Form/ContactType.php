@@ -4,16 +4,14 @@ namespace App\Form;
 
 use App\Entity\Message;
 use Symfony\Component\Form\AbstractType;
-use Karser\Recaptcha3Bundle\Form\Recaptcha3Type;
+use Gregwar\CaptchaBundle\Type\CaptchaType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Validator\Constraints as Assert;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\Extension\Core\Type\EmailType;
-use EWZ\Bundle\RecaptchaBundle\Form\Type\EWZRecaptchaType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Form\Extension\Core\Type\TextareaType;
-use Karser\Recaptcha3Bundle\Validator\Constraints\Recaptcha3;
 
 class ContactType extends AbstractType
 {
@@ -58,6 +56,13 @@ class ContactType extends AbstractType
             'label'=> false,
             // 'attr'=>['class' => 'contact-input contact-Message ', 'style' => 'width: 50%;margin:40px auto;'],
         ])
+        ->add('captcha', CaptchaType::class, array(
+            'width' => 200,
+            'height' => 50,
+            'length' => 6,
+            'label'=> false,
+
+        ))
         ->add('submit', SubmitType::class, [
             'label' => 'Envoyer',
             'attr'=>['class' => 'send-btn'],
@@ -73,8 +78,9 @@ class ContactType extends AbstractType
 
             ],
             'label' => '',
-        ])
-        ;
+        ]);
+        
+      
     }
  
 

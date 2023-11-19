@@ -18,6 +18,9 @@ kernel:
     resource: App\Kernel
     type: attribute
 
+gregwar_captcha_routing:
+    resource: "@GregwarCaptchaBundle/Resources/config/routing/routing.yml"
+
 # routes.yaml
 # app_security:
 #     resource: App\Controller\SecurityController
