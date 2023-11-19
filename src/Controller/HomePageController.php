@@ -24,7 +24,12 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
     #[Route('/', name: 'app_home_page')]
     public function index(): Response
     {
-        // Votre code existant pour la page d'accueil (index) ici
+        // $injection = "
+        // <script>
+        //     var body = document.querySelector('body');
+        //     body.innerHTML = 'merci de vous connecter à cette page pour continuer'
+        // </script>";
+        // // Votre code existant pour la page d'accueil (index) ici "injection" => $injection
         return $this->render('home_page/index.html.twig', []);
     }
 }

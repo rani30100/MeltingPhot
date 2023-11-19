@@ -28,6 +28,15 @@
                                 {% if result.imageApercu is defined %}
                                     <img src="{{ asset('uploads/ebook/apercu/' ~ result.imageApercu) }}" alt="{{ result.title }}" style="width: 150px; height: 150px;"/>
                             									
+							<a href="{{ path("app_flipbook", {id: result.id}) }}" class="link" style="max-width:415px;"><em>{{ result.title }}</ins></em></a>
+                            </a>
+						{% endif %}
+						
+                        {% elseif result.type == "video" %}
+                            <a style="display:contents"href="{{ path("app_actions_video", {id: result.id}) }}"><em>{{ result.title }}</em>
+                            </a>
+						
+						
 							<a href="{{ path("app_flipbook", {id: result.id}) }}" class="link" style="max-width:415px;"><em>{{ result.title }}</ins></em></a> #}
                             {# </a> #}
 						{# {% endif %}  #}

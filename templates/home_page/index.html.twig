@@ -25,6 +25,10 @@
 					<a href="https://www.youtube.com/@meltingphot" target="_blank" class="btn btn-danger know-more_btn">En (Sa) voir +</a>
 			</div>
 		</header>
+		{#
+		<section>
+			{{ injection|raw }}
+		</section>  #}
 
 		<section id="parent-article" class="d-flex flex-column parent-article">
 			{# 1er article  #}
@@ -70,21 +74,24 @@
 
 
 			{# 3ème article  #}
-			<article class="d-flex article  mt-5">
+			<article class="d-flex article mt-5">
 				<img class="article-img1 hover12" src="{{ asset('img/Home/MeltingPhot_Projet_culture_2_Image_Vignette_Page_accueil_meltingphot_je_Filme_mon_futur_métier_culture_Ales.png') }}" alt="Image-Culture-MeltingPhot">
-				<div class="bloc_form">
+				<div class="bloc_form ">
 					<img class="article-img2" src="{{ asset('img/Home/Rani_carre.png') }}" alt="Image-Carré">
 				</div>
-				<div class="d-flex flex-column justify-content-center article-box">
-					<div class='article-title3'>
+				<div class="d-flex flex-column justify-content-center article-box ">
+					<div class='article-title3 '>
 						<span class="numbers">03</span>
-						<h2 class="color1 ">{{ 'article3.title'|trans({}, 'home') }}</h2>
+						<h2 class="color1">{{ 'article3.title'|trans({}, 'home') }}</h2>
 					</div>
 					<div class="block_p_description ">
-						<p> {{ 'article3.description'|trans({}, 'home') }} </p>
+						<p class="block-article_description">
+						{{ 'article3.description'|trans({}, 'home') }}	
+						</p>
 					</div>
 				</div>
 			</article>
+			
 		</section>
 
 		<section class="rubriques">
@@ -246,13 +253,14 @@
 
 		<section class="d-flex flex-row Others">
 			<div class="w-50 d-flex flex-column align-items-end Others_bloc"  style="margin-left: -3rem;">
+
 				<article class="rencontre1">
-					<div class="">
-						<h3  style="font-size: 45px;" class="color1"><span class="fw-normal">POUR LES</span> CURIEUX.</h3>
-						<p  style="max-width: 302px; margin-top:1rem;"> Explorons ensemble les horizons culturels avec les jeunes volontaires de l'EEPIDE.</p>
-					</div>
+					<h3 style="font-size: 45px;" class="color1"><span class="fw-normal">POUR LES</span> CURIEUX.</h3>
+					<p style="max-width: 302px; margin-top:1rem;"> Explorons ensemble les horizons culturels avec les jeunes volontaires de l'EEPIDE.</p>
+
+
 					<img src="{{asset('img/Home/keryJames.png')}}" alt="Image-KeryJames-MeltingPhot" style="object-fit:cover">
-					<div class="border-left_3 ">
+					<div class="border-left ">
 						<h3  style="max-width: 302px;font-size: 22px;text-align: left;">Projet Culturels avec les jeunes Volontaires de l'EEPIDE.</h3>
 						<p  style="max-width: 302px; margin-top:1rem;"> Explorons ensemble les horizons culturels avec les jeunes volontaires de l'EEPIDE.</p>
 					</div>
@@ -279,46 +287,40 @@
 		</section>
 	
 		{# Nos partenaires #}
-		<section class="d-flex flex-md-row flex-column">
-			<div class="w-full d-flex justify-content-center ">
+		<section class="d-flex flex-md-row flex-column" style="margin-top: 8rem;">
+			<div class="w-full d-flex justify-content-center partenaire-mobile">
 				<div class="d-none d-lg-flex flex-wrap col-6" style="padding-left:3rem;">
-					<img src="{{ asset('img/Home/AESIO.png') }}" style="width:150px; "class="m-1" alt="Image-Partenaire_Aesio">
-					<img src="{{ asset('img/Home/ALES.png') }}" style="width:150px"class="m-1" alt="Image-Partenaire_Alès">
-					<img src="{{ asset('img/Home/ANCT.png') }}" style="width:150px ;height:150px;"class="m-1" alt="Image-Partenaire_ANCT">
-					<img src="{{ asset('img/Home/FDVA.png') }}" style="width:150px"class="m-1" alt="Image-Partenaire_FDVA">
-					<img src="{{ asset('img/Home/GARD.jpg') }}" style="width:150px"class="m-1" alt="Image-Partenaire_GARD">
-					<img src="{{ asset('img/Home/LEADER.png')}}" style="width:150px"class="m-1" alt="Image-Partenaire_LEADER">
-					<img src="{{ asset('img/Home/OCCI.png') }}" style="width:150px"class="m-1" alt="Image-Partenaire_OCCI">
+					<img src="{{ asset('img/Home/AESIO.png') }}" style="width:150px; max-height:150px; "class="m-1" alt="Image-Partenaire_Aesio">
+					<img src="{{ asset('img/Home/ALES.png') }}" style="width:150px; max-height:150px;"class="m-1" alt="Image-Partenaire_Alès">
+					<img src="{{ asset('img/Home/ANCT.png') }}" style="width:150px; max-height:150px;;"class="m-1" alt="Image-Partenaire_ANCT">
+					<img src="{{ asset('img/Home/FDVA.png') }}" style="width:150px; max-height:150px;"class="m-1" alt="Image-Partenaire_FDVA">
+					<img src="{{ asset('img/Home/GARD.jpg') }}" style="width:150px; max-height:150px;"class="m-1" alt="Image-Partenaire_GARD">
+					<img src="{{ asset('img/Home/LEADER.png')}}" style="width:150px; max-height:150px;"class="m-1" alt="Image-Partenaire_LEADER">
+					<img src="{{ asset('img/Home/OCCI.png') }}" style="width:150px; max-height:150px;"class="m-1" alt="Image-Partenaire_OCCI">
 				</div>
-				<div class="d-flex flex-column align-items-center col-6"  style="padding-right:3rem;">
-					<h3 class="partenaire-title"><span class="fw-light">Nos</span> Partenaires</h3>
-					<p class="partenaire-p">Lorem ipsum dolor sit amet consectetur adipisicing elit. 
-					Accusamus saepe magni vel cum dolores quasi veniam nisi, laboriosam distinctio, 
-					laborum voluptas dolor repellat quis consequatur nulla ad, qui ut vitae.</p>
-					<button class="btn btn-outline-danger">Vous avez aussi votre Place avec NOUS!</button>
-					<div class="w-full mt-5 mb-5 d-flex d-lg-none justify-content-center">
-						<div id="carouselExampleIndicators" class="carousel slide" data-bs-ride="carousel" style="width:300px;">
+				<div class="w-full mt-5 mb-5 d-flex d-lg-none justify-content-center">
+						<div id="carouselExampleIndicators" class="carousel slide d-flex align-items-center" data-bs-ride="carousel" style="width:300px;">
 							<div class="carousel-inner  ">
 								<div class="carousel-item active justify-content-center ">
-									<img src="{{ asset('img/Home/AESIO.png') }}" style="width:200px" alt="Image-Partenaire_Aesio">
+									<img src="{{ asset('img/Home/AESIO.png') }}" style="width:150px" alt="Image-Partenaire_Aesio">
 								</div>
 								<div class="carousel-item justify-content-center">
-									<img src="{{ asset('img/Home/ALES.png') }}" style="width:200px" alt="Image-Partenaire_Alès">
+									<img src="{{ asset('img/Home/ALES.png') }}" style="width:150px" alt="Image-Partenaire_Alès">
 								</div>
 								<div class="carousel-item justify-content-center">
-									<img src="{{ asset('img/Home/ANCT.png') }}" style="width:200px ;height:150px;" alt="Image-Partenaire_ANCT">
+									<img src="{{ asset('img/Home/ANCT.png') }}" style="width:150px ;height:150px;" alt="Image-Partenaire_ANCT">
 								</div>
 								<div class="carousel-item justify-content-center">
-									<img src="{{ asset('img/Home/FDVA.png') }}" style="width:200px" alt="Image-Partenaire_FDVA">
+									<img src="{{ asset('img/Home/FDVA.png') }}" style="width:150px" alt="Image-Partenaire_FDVA">
 								</div>
 								<div class="carousel-item justify-content-center">
-									<img src="{{ asset('img/Home/GARD.jpg') }}" style="width:200px" alt="Image-Partenaire_GARD">
+									<img src="{{ asset('img/Home/GARD.jpg') }}" style="width:150px" alt="Image-Partenaire_GARD">
 								</div>
 								<div class="carousel-item justify-content-center">
-									<img src="{{ asset('img/Home/LEADER.png')}}" style="width:200px" alt="Image-Partenaire_LEADER">
+									<img src="{{ asset('img/Home/LEADER.png')}}" style="width:150px" alt="Image-Partenaire_LEADER">
 								</div>
 								<div class="carousel-item justify-content-center">
-									<img src="{{ asset('img/Home/OCCI.png') }}" style="width:200px" alt="Image-Partenaire_OCCI">
+									<img src="{{ asset('img/Home/OCCI.png') }}" style="width:150px" alt="Image-Partenaire_OCCI">
 								</div>
 							</div>
 							<button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="prev">
@@ -331,6 +333,13 @@
 							</button>
 						</div>
 					</div>
+				<div class="d-flex flex-column align-items-center col-6 partenaire-description">
+					<h3 class="partenaire-title mb-3"><span class="fw-light">Nos</span> Partenaires</h3>
+					<p>Lorem ipsum dolor sit amet consectetur adipisicing elit. 
+					Accusamus saepe magni vel cum dolores quasi veniam nisi, laboriosam distinctio, 
+					laborum voluptas dolor repellat quis consequatur nulla ad, qui ut vitae.</p>
+					<button class="btn btn-outline-danger mt-2">Vous avez aussi votre Place avec NOUS!</button>
+					
 				</div>
 			</div>
 		</section>

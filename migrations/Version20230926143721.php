@@ -34,7 +34,6 @@ final class Version20230926143721 extends AbstractMigration
         $this->addSql('ALTER TABLE post_image ADD CONSTRAINT FK_522688B03DA5256D FOREIGN KEY (image_id) REFERENCES image (id) ON DELETE CASCADE');
         $this->addSql('ALTER TABLE post_video ADD CONSTRAINT FK_EBDC56C34B89032C FOREIGN KEY (post_id) REFERENCES post (id) ON DELETE CASCADE');
         $this->addSql('ALTER TABLE post_video ADD CONSTRAINT FK_EBDC56C329C1004E FOREIGN KEY (video_id) REFERENCES video (id) ON DELETE CASCADE');
-        $this->addSql('ALTER TABLE page_posts DROP FOREIGN KEY FK_EEDC452CD5E258C5');
         $this->addSql('ALTER TABLE page_posts DROP FOREIGN KEY FK_EEDC452CC4663E4');
         $this->addSql('ALTER TABLE posts DROP FOREIGN KEY FK_885DBAFAA76ED395');
         $this->addSql('ALTER TABLE posts_image DROP FOREIGN KEY FK_773A5F4E3DA5256D');

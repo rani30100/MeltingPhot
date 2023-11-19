@@ -2,13 +2,12 @@
   <div class="carousel-inner">
     {% for ebook in ebooks %}
         <div class=" w-ful carousel-item {{ loop.index == 1 ? 'active' }}">
-        <div>
-          <a href="{{ path('app_flipbook', { 'id': ebook.id }) }}">
-            <img style="width:300px; height:300px"src="{{ asset('uploads/ebook/apercu/' ~ ebook.imageApercu) }}" class="d-block img-ebook "alt="{{ ebook.title }}"/>
-            <span>Voir le livre</span>
-          </a>
-        </div>
-        
+          <div>
+            <a href="{{ path('app_flipbook', { 'id': ebook.id }) }}">
+              <img style="width:300px; height:300px"src="{{ asset('uploads/ebook/apercu/' ~ ebook.imageApercu) }}" class="d-block img-ebook "alt="{{ ebook.title }}"/>
+              <span>Voir le livre</span>
+            </a>
+          </div>
         </div>
     {% endfor %}
   </div>

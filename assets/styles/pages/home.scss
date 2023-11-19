@@ -402,6 +402,9 @@ body {
     padding-right: 0px !important;
 }
 
+.rencontre1{
+    display: contents;
+}
 
 .rencontre1,
 .rencontre2,
@@ -419,15 +422,9 @@ body {
     margin-bottom: 3rem;
     padding: 1rem;
     position: relative;
+    min-width: 360px;
 }
 
-.border-left_3 {
-    margin-top: 3rem;
-    margin-bottom: 0rem;
-    padding: 1rem;
-    margin-left: 158px;
-    position: relative;
-}
 
 .border-left::before {
     content: "";
@@ -570,8 +567,10 @@ body {
             background-color: #f0f0f0;
 
         }
-
-
+        
+        .bloc_form{
+            display: none;
+        }
 
         // 1 er article 
         .parent-article {
@@ -661,6 +660,7 @@ body {
 
                     .article2-title_nom {
                         margin-right: 0px !important;
+                        display: contents;
 
                     }
                 }
@@ -915,7 +915,7 @@ body .parent-article .block-article_description {
     }
 }
 
-@media screen and (min-width: 700px) and (max-width:991px) {
+@media screen and (min-width:699px) and (max-width:994px) {
 
     .article2-main {
         margin-top: 50px;
@@ -985,7 +985,7 @@ body .parent-article .block-article_description {
 
 
 
-@media screen and (min-width: 993px) {
+@media screen and (min-width: 992px) {
 
     .partenaire-tab {
         display: none !important;
@@ -1032,9 +1032,14 @@ body .parent-article .block-article_description {
     }
 
     .article-img-milieu {
+        width: 350px;
+        display: flex;
+        height: 400px;
+        position: absolute;
         z-index: 0;
-        margin-left: -7rem;
-        margin-top: 10px;
+        margin-left: -6rem;
+        margin-top: -2rem;
+      
     }
 
     .rond-article2 {
@@ -1062,7 +1067,6 @@ body .parent-article .block-article_description {
     }
 
     .block-article_description {
-        margin-left: 6rem;
         margin-top: 1rem;
 
     }
@@ -1109,7 +1113,7 @@ body .parent-article .block-article_description {
             margin-left: 0px !important;
             align-items: center !important;
             width: 100% !important;
-            margin-top: 20rem;
+            
 
             article.rencontre3 {
                 margin-left: 0 !important;
@@ -1255,7 +1259,25 @@ body .parent-article .block-article_description {
     }
 }
 
+@media screen and (min-width: 360px) and (max-width:991px) {
+    .partenaire-mobile {
+        flex-direction: column-reverse;
+        align-items: center;
 
+        .partenaire-description{
+            width: 80%;
+
+        }
+    }
+}
+
+@media screen and (min-width: 700px ) {
+    .parent-article{
+        h2{
+            font-size: revert-layer;
+        }
+    }
+}
 
 // .parent-article article {
 //     opacity: 0;
