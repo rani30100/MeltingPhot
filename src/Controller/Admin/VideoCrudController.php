@@ -60,12 +60,12 @@ class VideoCrudController extends AbstractCrudController
             ->setLabel('Catégorie')
             ->autocomplete(),
             
-            // ImageField::new('Image')
-            // ->setLabel('Image')
-            // // ->setBasePath('uploads/videos/images/') // Chemin de base pour afficher les images
-            // ->setUploadDir('public/uploads/videos/images') // Dossier de destination pour enregistrer les images
-            // ->setUploadedFileNamePattern('[name].[extension]') // Modèle de nom de fichier pour les images téléchargées
-            // ->setRequired(false), // Rendre le champ facultatif si nécessaire
+             ImageField::new('image')
+            ->setLabel('Image')
+            ->setBasePath('uploads/videos/images/') // Chemin de base pour afficher les images
+            ->setUploadDir('public/uploads/videos/images') // Dossier de destination pour enregistrer les images
+            ->setUploadedFileNamePattern('[name].[extension]') // Modèle de nom de fichier pour les images téléchargées
+            ->setRequired(false), // Rendre le champ facultatif si nécessaire
             //COmmentaire
         ];
     }

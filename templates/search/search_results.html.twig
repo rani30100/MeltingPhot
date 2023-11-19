@@ -23,24 +23,33 @@
                 <ul class="d-flex justify-center flex-column align-items-center">
                     {% set videoDisplayed = false %}
                     {% for result in pagination %}
-                        {% if result.type == "image" %}
-                            <a href="{{ path("app_flipbook", {id: result.id}) }}">
+                        {# {% if result.type == "image" %}
+                            {# <a href="{{ path("app_flipbook", {id: result.id}) }}">
                                 {% if result.imageApercu is defined %}
                                     <img src="{{ asset('uploads/ebook/apercu/' ~ result.imageApercu) }}" alt="{{ result.title }}" style="width: 150px; height: 150px;"/>
                             									
-							<a href="{{ path("app_flipbook", {id: result.id}) }}" class="link" style="max-width:415px;"><em>{{ result.title }}</ins></em></a>
-                            </a>
-						{% endif %}
+							<a href="{{ path("app_flipbook", {id: result.id}) }}" class="link" style="max-width:415px;"><em>{{ result.title }}</ins></em></a> #}
+                            {# </a> #}
+						{# {% endif %}  #}
 						
-                        {% elseif result.type == "video" %}
-                            <a style="display:contents"href="{{ path("app_actions_video", {id: result.id}) }}">
-                                <img src="{{ asset('img/videos/' ~ result.image) }}" alt="{{ result.title }}" style="width: 150px; height: 150px;"/>
-							<a href="{{ path("app_actions_video", {id: result.id}) }}" class="link"style="max-width:415px;"><em>{{ result.title }}</ins></em></a>
-                            </a>
-						
+                        {% if result.type == "video" %}
+                            <li class="mb-4">
+                                <a class="d-flex flex-column align-items-center"  href="{{ path("app_video_detail", {id: result.id}) }}">
+                                {# {% if result.image is null %}
+                                    <img src="{{ asset('uploads/videos/images/IMG_Miniature_Meltingphot__Image_Vignette_Page_accueil_meltingphot_je_Filme_mon_futur_metier300_300_px.png') }}" alt="{{ result.title }}" style="width: 150px; height: 150px;"/>
+                                {% endif %} #}
+                                {% if result.image is not null %}
+                                    <img src="{{ asset('uploads/videos/images/' ~ result.image) }}" alt="{{ result.title }}" style="width: 150px; height: 150px;"/>
+                                {% endif %}
+
+                                    <em>{{ result.title }}</em>
+                                </a>
+                            </li>
+
                         {% elseif result.type == "page"  %}
                             {# Handle page type here if needed #}
                         {% else %}
+
                             {# Handle other types if needed #}
                         {% endif %}
                     {% endfor %}

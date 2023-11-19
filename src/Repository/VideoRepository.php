@@ -56,6 +56,16 @@ class VideoRepository extends ServiceEntityRepository
         ->getResult();
 }
 
+public function findByCategoryName(string $categoryName)
+{
+    return $this->createQueryBuilder('v')
+        ->innerJoin('v.category', 'c')
+        ->andWhere('c.name = :categoryName')
+        ->setParameter('categoryName', $categoryName)
+        ->getQuery()
+        ->getResult();
+}
+
 //    /**
 //     * @return Video[] Returns an array of Video objects
 //     */

@@ -33,7 +33,7 @@ class SearchController extends AbstractController
             $videoId = $videoResult->getId();
             // Get the locale from the request (if needed)
             // $locale = $request->getLocale();
-            $linkToVideos[] = $this->generateUrl('app_actions_video', [
+            $linkToVideos[] = $this->generateUrl('app_video_detail', [
                 'category' => $category, // Use 'category' here instead of $video->getCategory()
                 'id' => $videoId,        // Use 'id' here instead of $video->getId()
             ]);

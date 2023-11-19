@@ -52,8 +52,8 @@ class ActionsController extends AbstractController
     }
 
 
-    #[Route('/actions/{id}', name: 'app_actions_video')]
-    public function redirectToVideo(int $id, VideoRepository $videoRepository): Response
+    #[Route('/video/{id}', name: 'app_video_detail')]
+    public function redirectToVideo(int $id = null, VideoRepository $videoRepository): Response
     {
         // Récupérer la vidéo à partir de l'identifiant (ID)
         $video = $videoRepository->find($id);
@@ -73,75 +73,67 @@ class ActionsController extends AbstractController
 
 
 
-    #[Route('/actions/{category}', defaults: ['category' => 'Je_Filme_Mon_Futur_Métier'], methods: ['GET', 'HEAD'], name: 'app_actions')]
+    #[Route('/actions/{category}', defaults: ['category' => 'Je_Filme_Mon_Futur_Métier'], methods: ['GET', 'HEAD'], name: 'app_actions', requirements: ['category' => 'Je_Filme_Mon_Futur_Métier|Odonymes|Les_Critiques_pétillantes|Parole_Public|Les_Vitrines_des_Cévènnes'])]
     public function index(string $category = null, EntityManagerInterface $entityManager, EbookRepository $ebooks, CacheInterface $cache, VideoRepository $videoRepository): Response
     {
-
         $cache = new FilesystemAdapter();
         // Essayez de récupérer les vidéos depuis le cache s'ils sont disponibles
         $cachedVideos = $cache->getItem('playlist_videos');
-
-        if (!$cachedVideos->isHit()) {
-            // Le cache est vide, récupérez les vidéos depuis la base de données ou YouTube
-            $videos = $videoRepository->findAll();
-
-            if (empty($videos)) {
-                // Si les vidéos ne sont pas en base de données, récupérez-les depuis YouTube
-                $youtubeVideos = $this->fetchYouTubeVideos();
-
-                if ($youtubeVideos) {
-                    $videos = [];
-
-                    foreach ($youtubeVideos as $youtubeVideo) {
-                        $videoUrl = 'https://www.youtube.com/embed/' . $youtubeVideo->getSnippet()->getResourceId()->getVideoId();
-
-                        // Vérifiez si la vidéo avec la même URL existe déjà dans la base de données
-                        $existingVideo = $videoRepository->findOneBy(['url' => $videoUrl]);
-
-                        if (!$existingVideo) {
-                            // La vidéo n'existe pas dans la base de données, créez-la
-                            $video = new Video();
-                            $video->setTitle($youtubeVideo->getSnippet()->getTitle());
-                            $video->setUrl($videoUrl);
-                            $video->setCreatedAt(new DateTimeImmutable($youtubeVideo->getSnippet()->getPublishedAt()));
-                            $categoryEntity = $entityManager->getRepository(Category::class)->find(2);
-                            $video->setCategory($categoryEntity);
-                            $video->setImage(null);
-
-                            $entityManager->persist($video);
-
-                            // Ajoutez la vidéo à la liste des vidéos
-                            $videos[] = $video;
-                        }
+    
+        // Récupérez les vidéos depuis la base de données en fonction de la catégorie sélectionnée
+        $videos = $videoRepository->findByCategoryName($category);
+    
+        if (empty($videos)) {
+            // Si les vidéos ne sont pas en base de données, récupérez-les depuis YouTube
+            $youtubeVideos = $this->fetchYouTubeVideos();
+    
+            if ($youtubeVideos) {
+                $videos = [];
+    
+                foreach ($youtubeVideos as $youtubeVideo) {
+                    $videoUrl = 'https://www.youtube.com/embed/' . $youtubeVideo->getSnippet()->getResourceId()->getVideoId();
+    
+                    // Vérifiez si la vidéo avec la même URL existe déjà dans la base de données
+                    $existingVideo = $videoRepository->findOneBy(['url' => $videoUrl]);
+    
+                    if (!$existingVideo) {
+                        // La vidéo n'existe pas dans la base de données, créez-la
+                        $video = new Video();
+                        $video->setTitle($youtubeVideo->getSnippet()->getTitle());
+                        $video->setUrl($videoUrl);
+                        $video->setCreatedAt(new DateTimeImmutable($youtubeVideo->getSnippet()->getPublishedAt()));
+                        $categoryEntity = $entityManager->getRepository(Category::class)->findOneBy(['name' => $category]);
+                        $video->setCategory($categoryEntity);
+                        $video->setImage(null);
+    
+                        $entityManager->persist($video);
+    
+                        // Ajoutez la vidéo à la liste des vidéos
+                        $videos[] = $video;
                     }
-
-                    $entityManager->flush();
                 }
-
-                // Mettre en cache les vidéos
-                $cachedVideos->set($videos);
-                $cache->save($cachedVideos);
-            } else {
-                // Mettre en cache les vidéos récupérées depuis la base de données
-                $cachedVideos->set($videos);
-                $cache->save($cachedVideos);
+    
+                $entityManager->flush();
             }
-        } else {
-            // Si les vidéos ne sont pas récupérer depuis la BDD ou YTB alors récupere les vidéos depuis le cache
-            $videos = $cachedVideos->get();
+    
+            // Mettez en cache les vidéos
+            $cachedVideos->set($videos);
+            $cachedVideos->expiresAfter(120);
+            $cache->save($cachedVideos);
         }
-
+    
         // Vérifiez si les vidéos récupérées sont vides et que la catégorie n'est pas celle par défaut
         if ($category !== 'Je_Filme_Mon_Futur_Métier' && empty($videos)) {
             return $this->render('actions/no_videos.html.twig', [
                 'category' => $category
             ]);
         }
-
+    
         return $this->render('actions/index.html.twig', [
             'videos' => $videos,
             'ebooks' => $ebooks,
             'category' => $category
         ]);
     }
+    
 }
